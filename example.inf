@@ -1,52 +1,54 @@
 use inference::std;
 use { sort } from "./sort.rs";
 
-context some_context ;
+context some_context {
 
-type: program;
+  $.type: ContextType = ContextType::Program;
 
-constant MAX_MEM : nat;
+  constant MAX_MEM : nat;
 
-fn count_values(a: address, b: address, val) -> nat {
-  $.mem[a..=b].iter().filter(|&&x| x == val).count()
+  fn count_values(a: address, b: address, val) -> nat {
+    $.mem[a..=b].iter().filter(|&&x| x == val).count()
+  }
+
+  fn check_sorted(a: address, b: address) -> bool {
+    $.mem[a] <= $.mem[b]
+  }
+
+  fn sorting_function (a: address, b : address) -> ();
+  type sf = type_of(sorting_function);
+
+  theorem preserving_count(f : sf) {
+    let a: address;
+    let b: address;
+    let val : nat;
+
+    assert a <= b;
+    assert b <= MAX_MEM;
+    
+    let before : nat = count_values(a, b, val);
+    f(a, b);
+    let after : nat = count_values(a, b, val);
+    
+    always before == after;
+  }
+
+  theorem procuring_sorted(f: sf) {
+    let a: address;
+    let b: address;
+    let a0: address;
+    let b0: address;
+
+    assert a <= a0;
+    assert a0 <= b0;
+    assert b0 <= b;
+    assert b <= MAX_MEM;
+
+    f(a, b);
+    always check_sorted(a0, b0);
+  }
+
+  apply preserving_count(sort);
+  apply procuring_sorted(sort);
+
 }
-
-fn check_sorted(a: address, b: address) -> bool {
-  $.mem[a] <= $.mem[b]
-}
-
-fn sorting_function (a: address, b : address) -> ();
-type sf = type_of(sorting_function);
-
-theorem preserving_count(f : sf) {
-  let a: address;
-  let b: address;
-  let val : nat;
-
-  assert a <= b;
-  assert b <= MAX_MEM;
-  
-  let before : nat = count_values(a, b, val);
-  f(a, b);
-  let after : nat = count_values(a, b, val);
-  
-  always before == after;
-}
-
-theorem procuring_sorted(f: sf) {
-  let a: address;
-  let b: address;
-  let a0: address;
-  let b0: address;
-
-  assert a <= a0;
-  assert a0 <= b0;
-  assert b0 <= b;
-  assert b <= MAX_MEM;
-
-  f(a, b);
-  always check_sorted(a0, b0);
-}
-
-apply preserving_count(sort);
-apply procuring_sorted(sort);

@@ -58,6 +58,44 @@
     }
   },
   {
+    "type": "context_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "const_definition",
+          "named": true
+        },
+        {
+          "type": "context_keyword",
+          "named": true
+        },
+        {
+          "type": "lcb_symbol",
+          "named": true
+        },
+        {
+          "type": "rcb_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "identifier",
     "named": true,
     "fields": {},
@@ -67,6 +105,10 @@
       "types": [
         {
           "type": "const_keyword",
+          "named": true
+        },
+        {
+          "type": "context_keyword",
           "named": true
         },
         {
@@ -90,6 +132,10 @@
       "types": [
         {
           "type": "const_definition",
+          "named": true
+        },
+        {
+          "type": "context_definition",
           "named": true
         },
         {
@@ -172,6 +218,10 @@
   },
   {
     "type": "const_keyword",
+    "named": true
+  },
+  {
+    "type": "context_keyword",
     "named": true
   },
   {

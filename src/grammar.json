@@ -27,6 +27,10 @@
         {
           "type": "SYMBOL",
           "name": "const_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_definition"
         }
       ]
     },
@@ -93,6 +97,43 @@
         }
       ]
     },
+    "context_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "context_keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lcb_symbol"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "const_definition"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rcb_symbol"
+        }
+      ]
+    },
     "use_statement": {
       "type": "SEQ",
       "members": [
@@ -144,28 +185,20 @@
                   "name": "identifier"
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "REPEAT",
-                      "content": {
-                        "type": "SEQ",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "comma_symbol"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "identifier"
-                          }
-                        ]
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "comma_symbol"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "identifier"
                       }
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                    ]
+                  }
                 },
                 {
                   "type": "SYMBOL",
@@ -201,6 +234,10 @@
       "type": "STRING",
       "value": "from"
     },
+    "context_keyword": {
+      "type": "STRING",
+      "value": "context"
+    },
     "comma_symbol": {
       "type": "STRING",
       "value": ","
@@ -220,6 +257,14 @@
     "terminal_symbol": {
       "type": "STRING",
       "value": ";"
+    },
+    "context_access_symbol": {
+      "type": "STRING",
+      "value": "$"
+    },
+    "attribute_access_symbol": {
+      "type": "STRING",
+      "value": "."
     },
     "lcb_symbol": {
       "type": "STRING",
@@ -259,6 +304,10 @@
         {
           "type": "SYMBOL",
           "name": "from_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_keyword"
         }
       ]
     },

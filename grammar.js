@@ -13,6 +13,7 @@ module.exports = grammar({
 
         _definition: $ => choice(
             $.const_definition,
+            $.context_definition,
         ),
 
         _statement: $ => choice(
@@ -33,6 +34,18 @@ module.exports = grammar({
             $.terminal_symbol
         ),
 
+        context_definition: $ => seq(
+            $.context_keyword,
+            field('name', $.identifier),
+            $.lcb_symbol,
+            repeat(
+                choice(
+                    $.const_definition
+                )
+            ),
+            $.rcb_symbol
+        ),
+
         use_statement: $ => seq(
             $.use_keyword,
             choice(
@@ -48,14 +61,13 @@ module.exports = grammar({
                 seq(
                     $.lcb_symbol,
                     $.identifier,
-                    optional(
-                        repeat(
-                            seq(
-                                $.comma_symbol,
-                                $.identifier
-                            )
+                    repeat(
+                        seq(
+                            $.comma_symbol,
+                            $.identifier
                         )
-                    ),
+                    )
+                    ,
                     $.rcb_symbol,
                     $.from_keyword,
                     $.string_literal
@@ -67,12 +79,15 @@ module.exports = grammar({
         const_keyword: $ => 'const',
         use_keyword: $ => 'use',
         from_keyword: $ => 'from',
+        context_keyword: $ => 'context',
 
         comma_symbol: $ => ',',
         semicolon_symbol: $ => ':',
         expand_symbol: $ => '::',
         equals_symbol: $ => '=',
         terminal_symbol: $ => ';',
+        context_access_symbol: $ => '$',
+        attribute_access_symbol: $ => '.',
 
         lcb_symbol: $ => '{',
         rcb_symbol: $ => '}',
@@ -84,7 +99,8 @@ module.exports = grammar({
         _reserved_identifier: $ => choice(
             $.const_keyword,
             $.use_keyword,
-            $.from_keyword
+            $.from_keyword,
+            $.context_keyword,
         ),
 
         _identifier_token: $ => /[a-zA-z_]+/,
