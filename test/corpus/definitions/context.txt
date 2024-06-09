@@ -1,5 +1,5 @@
 ===
-Context const_definition
+Context definition
 ===
 
 context some_context {
