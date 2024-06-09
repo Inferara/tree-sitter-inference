@@ -1,0 +1,16 @@
+===
+Constant definiton
+===
+
+const MAX_MEM : nat = 1000;
+
+---
+
+(source_file
+  (const_definition
+    (const_keyword)
+    name: (identifier)
+    (semicolon_symbol)
+    (equals_symbol)
+    value: (number)
+    (terminal_symbol)))

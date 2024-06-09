@@ -1,0 +1,109 @@
+[
+  {
+    "type": "const_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "nat",
+            "named": false
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "const_keyword",
+          "named": true
+        },
+        {
+          "type": "equals_symbol",
+          "named": true
+        },
+        {
+          "type": "semicolon_symbol",
+          "named": true
+        },
+        {
+          "type": "terminal_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "const_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "const_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "const",
+    "named": false
+  },
+  {
+    "type": "equals_symbol",
+    "named": true
+  },
+  {
+    "type": "nat",
+    "named": false
+  },
+  {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "semicolon_symbol",
+    "named": true
+  },
+  {
+    "type": "terminal_symbol",
+    "named": true
+  }
+]
