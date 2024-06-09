@@ -1,0 +1,73 @@
+===
+Use statement
+===
+
+use inference::std;
+
+---
+
+(source_file
+    (use_statement
+        (use_keyword)
+        (identifier)
+        (expand_symbol)
+        (identifier)
+        (terminal_symbol)))
+
+===
+Use statement nested
+===
+
+use inference::std::algorithms::sort;
+
+---
+
+(source_file
+    (use_statement
+        (use_keyword)
+        (identifier)
+        (expand_symbol)
+        (identifier)
+        (expand_symbol)
+        (identifier)
+        (expand_symbol)
+        (identifier)
+        (terminal_symbol)))
+
+===
+Use statement from
+===
+
+use { sort } from "./sort.rs";
+
+---
+
+(source_file
+    (use_statement
+        (use_keyword)
+        (lcb_symbol)
+        (identifier)
+        (rcb_symbol)
+        (from_keyword)
+        (string_literal)
+        (terminal_symbol)))
+
+===
+User several imports
+===
+
+use { sort, filter } from "./sort.rs";
+
+---
+
+(source_file
+    (use_statement
+        (use_keyword)
+        (lcb_symbol)
+        (identifier)
+        (comma_symbol)
+        (identifier)
+        (rcb_symbol)
+        (from_keyword)
+        (string_literal)
+        (terminal_symbol)))

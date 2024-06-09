@@ -11,7 +11,13 @@ case "$1" in
     bt)
         tree-sitter test
         ;;
+    t)
+        tree-sitter test
+        ;;
+    te)
+        tree-sitter parse ./example.inf
+        ;;
     *)
-        usage
+        tree-sitter generate
         ;;
 esac

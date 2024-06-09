@@ -2,15 +2,24 @@ module.exports = grammar({
     name: 'inference',
 
     rules: {
-        source_file: $ => repeat($._definition),
+        source_file: $ => repeat(
+            choice(
+                $._definition,
+                $._statement
+            ),
+        ),
 
-        word : $ => $.identifier,
+        word: $ => $.identifier,
 
         _definition: $ => choice(
             $.const_definition,
         ),
 
-        _type : $ => choice(
+        _statement: $ => choice(
+            $.use_statement
+        ),
+
+        _type: $ => choice(
             'nat',
         ),
 
@@ -24,23 +33,74 @@ module.exports = grammar({
             $.terminal_symbol
         ),
 
-        const_keyword : $ => 'const',
+        use_statement: $ => seq(
+            $.use_keyword,
+            choice(
+                seq(
+                    $.identifier,
+                    repeat1(
+                        seq(
+                            $.expand_symbol,
+                            field('name', $.identifier),
+                        )
+                    )
+                ),
+                seq(
+                    $.lcb_symbol,
+                    $.identifier,
+                    optional(
+                        repeat(
+                            seq(
+                                $.comma_symbol,
+                                $.identifier
+                            )
+                        )
+                    ),
+                    $.rcb_symbol,
+                    $.from_keyword,
+                    $.string_literal
+                )
+            ),
+            $.terminal_symbol
+        ),
 
-        semicolon_symbol : $ => ':',
+        const_keyword: $ => 'const',
+        use_keyword: $ => 'use',
+        from_keyword: $ => 'from',
+
+        comma_symbol: $ => ',',
+        semicolon_symbol: $ => ':',
+        expand_symbol: $ => '::',
         equals_symbol: $ => '=',
-        terminal_symbol : $ => ';',
+        terminal_symbol: $ => ';',
+
+        lcb_symbol: $ => '{',
+        rcb_symbol: $ => '}',
+        lsb_symbol: $ => '[',
+        rsb_symbol: $ => ']',
+        lrb_symbol: $ => '(',
+        rrb_symbol: $ => ')',
+
+        _reserved_identifier: $ => choice(
+            $.const_keyword,
+            $.use_keyword,
+            $.from_keyword
+        ),
+
+        _identifier_token: $ => /[a-zA-z_]+/,
+
+        string_literal: $ => seq(
+            '"',
+            $._string_literal_content,
+            '"'
+        ),
+
+        _string_literal_content: $ => token.immediate(prec(1, /[^"\\\n]+/)),
 
         identifier: $ => choice(
             $._identifier_token,
             $._reserved_identifier
         ),
-
-
-        _reserved_identifier: $ => choice(
-            'const',
-        ),
-
-        _identifier_token: $ => /[a-zA-z_]+/,
 
         number: $ => /\d+/,
     }
