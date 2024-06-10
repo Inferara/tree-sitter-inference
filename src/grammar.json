@@ -13,6 +13,10 @@
           {
             "type": "SYMBOL",
             "name": "_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "context_assign_expression"
           }
         ]
       }
@@ -49,6 +53,27 @@
         {
           "type": "STRING",
           "value": "nat"
+        }
+      ]
+    },
+    "_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "assign_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_member_access_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "member_access_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_access_expression"
         }
       ]
     },
@@ -222,6 +247,135 @@
         }
       ]
     },
+    "type_member_access_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expand_symbol"
+              },
+              {
+                "type": "FIELD",
+                "name": "name",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "terminal_symbol"
+        }
+      ]
+    },
+    "context_access_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "context_access_symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "attribute_access_symbol"
+        }
+      ]
+    },
+    "context_assign_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "context_access_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assign_expression"
+        }
+      ]
+    },
+    "member_access_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "attribute_access_symbol"
+              },
+              {
+                "type": "FIELD",
+                "name": "name",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "terminal_symbol"
+        }
+      ]
+    },
+    "assign_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "equals_symbol"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "terminal_symbol"
+        }
+      ]
+    },
     "const_keyword": {
       "type": "STRING",
       "value": "const"
@@ -353,6 +507,10 @@
         {
           "type": "SYMBOL",
           "name": "_reserved_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_access_symbol"
         }
       ]
     },

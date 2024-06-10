@@ -1,0 +1,18 @@
+===
+Context assign expression
+===
+
+$.type = ABC;
+
+---
+
+(source_file
+      (context_assign_expression
+        (context_access_expression
+          (context_access_symbol)
+          (attribute_access_symbol))
+        (assign_expression
+          (identifier)
+          (equals_symbol)
+          (identifier)
+          (terminal_symbol))))

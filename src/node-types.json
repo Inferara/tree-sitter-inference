@@ -1,5 +1,45 @@
 [
   {
+    "type": "assign_expression",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "equals_symbol",
+          "named": true
+        },
+        {
+          "type": "terminal_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "const_definition",
     "named": true,
     "fields": {
@@ -58,6 +98,44 @@
     }
   },
   {
+    "type": "context_access_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_access_symbol",
+          "named": true
+        },
+        {
+          "type": "context_access_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "context_assign_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assign_expression",
+          "named": true
+        },
+        {
+          "type": "context_access_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "context_definition",
     "named": true,
     "fields": {
@@ -108,6 +186,10 @@
           "named": true
         },
         {
+          "type": "context_access_symbol",
+          "named": true
+        },
+        {
           "type": "context_keyword",
           "named": true
         },
@@ -117,6 +199,36 @@
         },
         {
           "type": "use_keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "member_access_expression",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_access_symbol",
+          "named": true
+        },
+        {
+          "type": "terminal_symbol",
           "named": true
         }
       ]
@@ -135,6 +247,10 @@
           "named": true
         },
         {
+          "type": "context_assign_expression",
+          "named": true
+        },
+        {
           "type": "context_definition",
           "named": true
         },
@@ -149,6 +265,36 @@
     "type": "string_literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "type_member_access_expression",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expand_symbol",
+          "named": true
+        },
+        {
+          "type": "terminal_symbol",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "use_statement",
@@ -213,11 +359,19 @@
     "named": false
   },
   {
+    "type": "attribute_access_symbol",
+    "named": true
+  },
+  {
     "type": "comma_symbol",
     "named": true
   },
   {
     "type": "const_keyword",
+    "named": true
+  },
+  {
+    "type": "context_access_symbol",
     "named": true
   },
   {

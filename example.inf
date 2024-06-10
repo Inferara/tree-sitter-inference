@@ -3,7 +3,7 @@ use { sort } from "./sort.rs";
 
 context some_context {
 
-  $.type: ContextType = ContextType::Program;
+  $.type = ContextType::Program;
 
   constant MAX_MEM : nat;
 

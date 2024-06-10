@@ -5,7 +5,8 @@ module.exports = grammar({
         source_file: $ => repeat(
             choice(
                 $._definition,
-                $._statement
+                $._statement,
+                $.context_assign_expression,
             ),
         ),
 
@@ -22,6 +23,13 @@ module.exports = grammar({
 
         _type: $ => choice(
             'nat',
+        ),
+
+        _expression: $ => choice(
+            $.assign_expression,
+            $.type_member_access_expression,
+            $.member_access_expression,
+            $.context_access_expression,
         ),
 
         const_definition: $ => seq(
@@ -76,6 +84,45 @@ module.exports = grammar({
             $.terminal_symbol
         ),
 
+        type_member_access_expression: $ => seq(
+            field('name', $.identifier),
+            repeat1(
+                seq(
+                    $.expand_symbol,
+                    field('name', $.identifier)
+                )
+            ),
+            $.terminal_symbol,
+        ),
+
+        context_access_expression: $ => seq(
+            $.context_access_symbol,
+            $.attribute_access_symbol,
+        ),
+
+        context_assign_expression: $ => seq(
+            $.context_access_expression,
+            $.assign_expression,
+        ),
+
+        member_access_expression: $ => seq(
+            field('name', $.identifier),
+            repeat1(
+                seq(
+                    $.attribute_access_symbol,
+                    field('name', $.identifier)
+                )
+            ),
+            $.terminal_symbol,
+        ),
+
+        assign_expression: $ => seq(
+            field('name', $.identifier),
+            $.equals_symbol,
+            field('value', $.identifier),
+            $.terminal_symbol
+        ),
+
         const_keyword: $ => 'const',
         use_keyword: $ => 'use',
         from_keyword: $ => 'from',
@@ -115,7 +162,8 @@ module.exports = grammar({
 
         identifier: $ => choice(
             $._identifier_token,
-            $._reserved_identifier
+            $._reserved_identifier,
+            $.context_access_symbol,
         ),
 
         number: $ => /\d+/,
