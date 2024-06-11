@@ -1,0 +1,102 @@
+===
+Function definition
+===
+
+fn func() -> nat {
+
+}
+
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (lrb_symbol)
+        (rrb_symbol)
+        (rightarrow_symbol)
+        (type)
+        (lcb_symbol)
+        (rcb_symbol)))
+
+===
+Function with one parameter
+===
+
+fn func(x: nat) -> nat {
+
+}
+
+---
+
+(source_file
+    (function_definition
+    (function_keyword)
+    (identifier)
+    (lrb_symbol)
+    (parameter_definition
+        (identifier)
+        (semicolon_symbol)
+        (type))
+    (rrb_symbol)
+    (rightarrow_symbol)
+    (type)
+    (lcb_symbol)
+    (rcb_symbol)))
+
+===
+Function with multiple parameters
+===
+fn func(x: nat, y: nat) -> nat {
+
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (lrb_symbol)
+        (parameter_definition
+            (identifier)
+            (semicolon_symbol)
+            (type))
+        (comma_symbol)
+        (parameter_definition
+            (identifier)
+            (semicolon_symbol)
+            (type))
+        (rrb_symbol)
+        (rightarrow_symbol)
+        (type)
+        (lcb_symbol)
+        (rcb_symbol)))
+
+===
+Function with trailing comma in parameter list
+===
+fn func(x: nat, y: nat,) -> nat {
+
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (lrb_symbol)
+        (parameter_definition
+            (identifier)
+            (semicolon_symbol)
+            (type))
+        (comma_symbol)
+        (parameter_definition
+            (identifier)
+            (semicolon_symbol)
+            (type))
+        (comma_symbol)
+        (rrb_symbol)
+        (rightarrow_symbol)
+        (type)
+        (lcb_symbol)
+        (rcb_symbol)))

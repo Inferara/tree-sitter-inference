@@ -35,6 +35,10 @@
         {
           "type": "SYMBOL",
           "name": "context_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_definition"
         }
       ]
     },
@@ -47,12 +51,20 @@
         }
       ]
     },
-    "_type": {
+    "type": {
       "type": "CHOICE",
       "members": [
         {
           "type": "STRING",
           "value": "nat"
+        },
+        {
+          "type": "STRING",
+          "value": "bool"
+        },
+        {
+          "type": "STRING",
+          "value": "()"
         }
       ]
     },
@@ -101,7 +113,7 @@
           "name": "type",
           "content": {
             "type": "SYMBOL",
-            "name": "_type"
+            "name": "type"
           }
         },
         {
@@ -149,6 +161,10 @@
               {
                 "type": "SYMBOL",
                 "name": "const_definition"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "function_definition"
               }
             ]
           }
@@ -156,6 +172,112 @@
         {
           "type": "SYMBOL",
           "name": "rcb_symbol"
+        }
+      ]
+    },
+    "function_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "function_keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lrb_symbol"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "parameter_definition"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "comma_symbol"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rrb_symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rightarrow_symbol"
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "type"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lcb_symbol"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_statement"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rcb_symbol"
+        }
+      ]
+    },
+    "parameter_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "semicolon_symbol"
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "type"
+          }
         }
       ]
     },
@@ -392,6 +514,10 @@
       "type": "STRING",
       "value": "context"
     },
+    "function_keyword": {
+      "type": "STRING",
+      "value": "fn"
+    },
     "comma_symbol": {
       "type": "STRING",
       "value": ","
@@ -419,6 +545,10 @@
     "attribute_access_symbol": {
       "type": "STRING",
       "value": "."
+    },
+    "rightarrow_symbol": {
+      "type": "STRING",
+      "value": "->"
     },
     "lcb_symbol": {
       "type": "STRING",
@@ -462,6 +592,10 @@
         {
           "type": "SYMBOL",
           "name": "context_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_keyword"
         }
       ]
     },

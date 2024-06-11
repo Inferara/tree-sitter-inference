@@ -5,7 +5,7 @@ context some_context {
 
   $.type = ContextType::Program;
 
-  constant MAX_MEM : nat;
+  constant MAX_MEM : nat = 1000;
 
   fn count_values(a: address, b: address, val) -> nat {
     $.mem[a..=b].iter().filter(|&&x| x == val).count()

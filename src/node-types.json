@@ -58,8 +58,8 @@
         "required": true,
         "types": [
           {
-            "type": "nat",
-            "named": false
+            "type": "type",
+            "named": true
           }
         ]
       },
@@ -163,11 +163,83 @@
           "named": true
         },
         {
+          "type": "function_definition",
+          "named": true
+        },
+        {
           "type": "lcb_symbol",
           "named": true
         },
         {
           "type": "rcb_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comma_symbol",
+          "named": true
+        },
+        {
+          "type": "function_keyword",
+          "named": true
+        },
+        {
+          "type": "lcb_symbol",
+          "named": true
+        },
+        {
+          "type": "lrb_symbol",
+          "named": true
+        },
+        {
+          "type": "parameter_definition",
+          "named": true
+        },
+        {
+          "type": "rcb_symbol",
+          "named": true
+        },
+        {
+          "type": "rightarrow_symbol",
+          "named": true
+        },
+        {
+          "type": "rrb_symbol",
+          "named": true
+        },
+        {
+          "type": "use_statement",
           "named": true
         }
       ]
@@ -195,6 +267,10 @@
         },
         {
           "type": "from_keyword",
+          "named": true
+        },
+        {
+          "type": "function_keyword",
           "named": true
         },
         {
@@ -235,6 +311,42 @@
     }
   },
   {
+    "type": "parameter_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "semicolon_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -255,6 +367,10 @@
           "named": true
         },
         {
+          "type": "function_definition",
+          "named": true
+        },
+        {
           "type": "use_statement",
           "named": true
         }
@@ -263,6 +379,11 @@
   },
   {
     "type": "string_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "type",
     "named": true,
     "fields": {}
   },
@@ -359,8 +480,16 @@
     "named": false
   },
   {
+    "type": "()",
+    "named": false
+  },
+  {
     "type": "attribute_access_symbol",
     "named": true
+  },
+  {
+    "type": "bool",
+    "named": false
   },
   {
     "type": "comma_symbol",
@@ -391,7 +520,15 @@
     "named": true
   },
   {
+    "type": "function_keyword",
+    "named": true
+  },
+  {
     "type": "lcb_symbol",
+    "named": true
+  },
+  {
+    "type": "lrb_symbol",
     "named": true
   },
   {
@@ -404,6 +541,14 @@
   },
   {
     "type": "rcb_symbol",
+    "named": true
+  },
+  {
+    "type": "rightarrow_symbol",
+    "named": true
+  },
+  {
+    "type": "rrb_symbol",
     "named": true
   },
   {
