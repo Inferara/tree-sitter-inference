@@ -1,3 +1,9 @@
+const PRECEDENCE = {
+    EXPRESSION : 300,
+    QUALIFIED_NAME: 200,
+    INDENTIFIER: 100,
+}
+
 module.exports = grammar({
     name: 'inference',
 
@@ -6,20 +12,20 @@ module.exports = grammar({
             choice(
                 $._definition,
                 $._statement,
-                $.context_assign_expression,
             ),
         ),
 
         word: $ => $.identifier,
 
         _definition: $ => choice(
-            $.const_definition,
+            $.variable_definition,
             $.context_definition,
             $.function_definition,
         ),
 
         _statement: $ => choice(
-            $.use_statement
+            $.use_statement,
+            $.return_statement,
         ),
 
         type: $ => choice(
@@ -28,20 +34,24 @@ module.exports = grammar({
             '()'
         ),
 
-        _expression: $ => choice(
-            $.assign_expression,
-            $.type_member_access_expression,
-            $.member_access_expression,
-            $.context_access_expression,
-        ),
+        _expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
+            $.binary_expression,
+            $.bool_literal,
+            $.string_literal,
+            $.number,
+        )),
 
-        const_definition: $ => seq(
-            $.const_keyword,
+        variable_declaration: $ => seq(
+            optional($.const_keyword),
             field('name', $.identifier),
             $.semicolon_symbol,
             field('type', $.type),
-            $.equals_symbol,
-            field('value', $.number),
+        ),
+
+        variable_definition: $ => seq(
+            $.variable_declaration,
+            $.assign_operator,
+            $._expression,
             $.terminal_symbol
         ),
 
@@ -51,7 +61,7 @@ module.exports = grammar({
             $.lcb_symbol,
             repeat(
                 choice(
-                    $.const_definition,
+                    $.variable_definition,
                     $.function_definition,
                 )
             ),
@@ -69,7 +79,7 @@ module.exports = grammar({
                 ),
             ),
             $.rrb_symbol,
-            $.rightarrow_symbol,
+            $.rightarrow_operator,
             field('type', $.type),
             $.lcb_symbol,
             repeat(
@@ -93,7 +103,7 @@ module.exports = grammar({
                     $.identifier,
                     repeat1(
                         seq(
-                            $.expand_symbol,
+                            $.expand_operator,
                             field('name', $.identifier),
                         )
                     )
@@ -116,43 +126,29 @@ module.exports = grammar({
             $.terminal_symbol
         ),
 
-        type_member_access_expression: $ => seq(
-            field('name', $.identifier),
-            repeat1(
-                seq(
-                    $.expand_symbol,
-                    field('name', $.identifier)
-                )
-            ),
-            $.terminal_symbol,
-        ),
-
-        context_access_expression: $ => seq(
-            $.context_access_symbol,
-            $.attribute_access_symbol,
-        ),
-
-        context_assign_expression: $ => seq(
-            $.context_access_expression,
-            $.assign_expression,
-        ),
-
-        member_access_expression: $ => seq(
-            field('name', $.identifier),
-            repeat1(
-                seq(
-                    $.attribute_access_symbol,
-                    field('name', $.identifier)
-                )
-            ),
-            $.terminal_symbol,
-        ),
-
-        assign_expression: $ => seq(
-            field('name', $.identifier),
-            $.equals_symbol,
-            field('value', $.identifier),
+        return_statement: $ => seq(
+            $.return_keyword,
+            field('expression', $._expression),
             $.terminal_symbol
+        ),
+
+        type_qualified_name: $ => seq(
+            field('base', $.identifier),
+            $.expand_operator,
+            field('name', $.identifier),
+            $.terminal_symbol,
+        ),
+
+        binary_expression: $ => seq(
+            field('left', choice($._expression, $.identifier)),
+            $.binary_operator,
+            field('right', choice($._expression, $.identifier)),
+            $.terminal_symbol
+        ),
+
+        bool_literal: $ => choice(
+            'true',
+            'false',
         ),
 
         const_keyword: $ => 'const',
@@ -160,15 +156,33 @@ module.exports = grammar({
         from_keyword: $ => 'from',
         context_keyword: $ => 'context',
         function_keyword: $ => 'fn',
+        return_keyword: $ => 'return',
 
         comma_symbol: $ => ',',
         semicolon_symbol: $ => ':',
-        expand_symbol: $ => '::',
-        equals_symbol: $ => '=',
         terminal_symbol: $ => ';',
-        context_access_symbol: $ => '$',
-        attribute_access_symbol: $ => '.',
-        rightarrow_symbol: $ => '->',
+
+        binary_operator: $ => choice(
+            $.assign_operator,
+            $.less_operator,
+            $.greater_operator,
+            $.less_equal_operator,
+            $.greater_equal_operator,
+            $.equals_operator,
+            $.not_equals_operator,
+        ),
+
+        assign_operator: $ => '=',
+        expand_operator: $ => '::',
+        attribute_access_operator: $ => '.',
+        less_operator: $ => '<',
+        greater_operator: $ => '>',
+        less_equal_operator: $ => '<=',
+        greater_equal_operator: $ => '>=',
+        equals_operator: $ => '==',
+        not_equals_operator: $ => '!=',
+
+        rightarrow_operator: $ => '->',
 
         lcb_symbol: $ => '{',
         rcb_symbol: $ => '}',
@@ -183,9 +197,24 @@ module.exports = grammar({
             $.from_keyword,
             $.context_keyword,
             $.function_keyword,
+            $.return_keyword,
         ),
 
-        _identifier_token: $ => /[a-zA-z_]+/,
+        _identifier_token: $ => token(seq(optional('@'), /[\p{L}\p{Nl}_][\p{L}\p{Nl}\p{Nd}\p{Pc}\p{Cf}\p{Mn}\p{Mc}]*/)),
+
+        qualified_name: $ => prec(PRECEDENCE.QUALIFIED_NAME, seq(
+            field(
+                'name', 
+                $._identifier_token,
+            ),
+            repeat1(
+                seq(
+                    $.attribute_access_operator,
+                    field('name', $.identifier)
+                )
+            ),
+            $.terminal_symbol,
+        )),
 
         string_literal: $ => seq(
             '"',
@@ -196,9 +225,9 @@ module.exports = grammar({
         _string_literal_content: $ => token.immediate(prec(1, /[^"\\\n]+/)),
 
         identifier: $ => choice(
+            $.qualified_name,
             $._identifier_token,
-            $._reserved_identifier,
-            $.context_access_symbol,
+            '$',
         ),
 
         number: $ => /\d+/,

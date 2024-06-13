@@ -14,7 +14,7 @@ fn func() -> nat {
         (identifier)
         (lrb_symbol)
         (rrb_symbol)
-        (rightarrow_symbol)
+        (rightarrow_operator)
         (type)
         (lcb_symbol)
         (rcb_symbol)))
@@ -39,7 +39,7 @@ fn func(x: nat) -> nat {
         (semicolon_symbol)
         (type))
     (rrb_symbol)
-    (rightarrow_symbol)
+    (rightarrow_operator)
     (type)
     (lcb_symbol)
     (rcb_symbol)))
@@ -67,7 +67,7 @@ fn func(x: nat, y: nat) -> nat {
             (semicolon_symbol)
             (type))
         (rrb_symbol)
-        (rightarrow_symbol)
+        (rightarrow_operator)
         (type)
         (lcb_symbol)
         (rcb_symbol)))
@@ -96,7 +96,80 @@ fn func(x: nat, y: nat,) -> nat {
             (type))
         (comma_symbol)
         (rrb_symbol)
-        (rightarrow_symbol)
+        (rightarrow_operator)
         (type)
         (lcb_symbol)
+        (rcb_symbol)))
+
+===
+Function with return nat
+===
+
+fn func() -> nat {
+    return 0;
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (lrb_symbol)
+        (rrb_symbol)
+        (rightarrow_operator)
+        (type)
+        (lcb_symbol)
+        (return_statement
+            (return_keyword)
+            (number)
+            (terminal_symbol))
+        (rcb_symbol)))
+
+
+===
+Function with return bool true
+===
+
+fn func() -> bool {
+    return true;
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (lrb_symbol)
+        (rrb_symbol)
+        (rightarrow_operator)
+        (type)
+        (lcb_symbol)
+        (return_statement
+            (return_keyword)
+            (bool_literal)
+            (terminal_symbol))
+        (rcb_symbol)))
+
+===
+Function with return bool false
+===
+
+fn func() -> bool {
+    return true;
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (lrb_symbol)
+        (rrb_symbol)
+        (rightarrow_operator)
+        (type)
+        (lcb_symbol)
+        (return_statement
+            (return_keyword)
+            (bool_literal)
+            (terminal_symbol))
         (rcb_symbol)))

@@ -8,11 +8,11 @@ context some_context {
   constant MAX_MEM : nat = 1000;
 
   fn count_values(a: address, b: address, val) -> nat {
-    $.mem[a..=b].iter().filter(|&&x| x == val).count()
+    return $.mem[a..=b].iter().filter(|&&x| x == val).count();
   }
 
   fn check_sorted(a: address, b: address) -> bool {
-    $.mem[a] <= $.mem[b]
+    return $.mem[a] <= $.mem[b];
   }
 
   fn sorting_function (a: address, b : address) -> ();

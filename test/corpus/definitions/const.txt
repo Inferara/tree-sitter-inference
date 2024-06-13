@@ -12,6 +12,6 @@ const MAX_MEM : nat = 1000;
     name: (identifier)
     (semicolon_symbol)
     type: (type)
-    (equals_symbol)
+    (assign_operator)
     value: (number)
     (terminal_symbol)))
