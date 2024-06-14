@@ -13,6 +13,14 @@
           {
             "type": "SYMBOL",
             "name": "_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_definition"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "binary_operator"
           }
         ]
       }
@@ -80,6 +88,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "field_access_expression"
+          },
+          {
+            "type": "SYMBOL",
             "name": "bool_literal"
           },
           {
@@ -89,6 +101,10 @@
           {
             "type": "SYMBOL",
             "name": "number"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
           }
         ]
       }
@@ -482,6 +498,35 @@
           "name": "terminal_symbol"
         }
       ]
+    },
+    "field_access_expression": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "object",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "attribute_access_operator"
+          },
+          {
+            "type": "FIELD",
+            "name": "field",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          }
+        ]
+      }
     },
     "bool_literal": {
       "type": "CHOICE",

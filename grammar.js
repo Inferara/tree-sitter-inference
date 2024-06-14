@@ -1,7 +1,7 @@
 const PRECEDENCE = {
-    EXPRESSION : 300,
+    EXPRESSION: 300,
     QUALIFIED_NAME: 200,
-    INDENTIFIER: 100,
+    IDENTIFIER: 100,
 }
 
 module.exports = grammar({
@@ -12,6 +12,7 @@ module.exports = grammar({
             choice(
                 $._definition,
                 $._statement,
+                $._definition,
             ),
         ),
 
@@ -36,9 +37,11 @@ module.exports = grammar({
 
         _expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
             $.binary_expression,
+            $.field_access_expression,
             $.bool_literal,
             $.string_literal,
             $.number,
+            $.identifier,  // Allow identifiers as expressions
         )),
 
         variable_declaration: $ => seq(
@@ -145,6 +148,12 @@ module.exports = grammar({
             field('right', choice($._expression, $.identifier)),
             $.terminal_symbol
         ),
+
+        field_access_expression: $ => prec.left(seq(
+            field('object', $.identifier),
+            $.attribute_access_operator,
+            field('field', $.identifier)
+        )),
 
         bool_literal: $ => choice(
             'true',

@@ -16,6 +16,10 @@
             "named": true
           },
           {
+            "type": "field_access_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -39,6 +43,10 @@
           },
           {
             "type": "bool_literal",
+            "named": true
+          },
+          {
+            "type": "field_access_expression",
             "named": true
           },
           {
@@ -152,6 +160,42 @@
         },
         {
           "type": "variable_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "field_access_expression",
+    "named": true,
+    "fields": {
+      "field": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "object": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_access_operator",
           "named": true
         }
       ]
@@ -327,6 +371,14 @@
             "named": true
           },
           {
+            "type": "field_access_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -360,6 +412,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
         {
           "type": "context_definition",
           "named": true
@@ -509,6 +565,14 @@
         },
         {
           "type": "bool_literal",
+          "named": true
+        },
+        {
+          "type": "field_access_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         },
         {

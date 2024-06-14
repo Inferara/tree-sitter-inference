@@ -1,21 +1,23 @@
 use inference::std;
-use { sort } from "./sort.rs";
+use { sorting_function } from "./sort.rs";
 
 context some_context {
 
-  $.type = ContextType::Program;
-
   constant MAX_MEM : nat = 1000;
 
+  fn constructor() -> some_context{
+    ctx.type = ContextType::Program;
+  }
+
   fn count_values(a: address, b: address, val) -> nat {
-    return $.mem[a..=b].iter().filter(|&&x| x == val).count();
+    return ctx.mem[a..=b].iter().filter(|&&x| x == val).count();
   }
 
   fn check_sorted(a: address, b: address) -> bool {
-    return $.mem[a] <= $.mem[b];
+    return ctx.mem[a] <= ctx.mem[b];
   }
 
-  fn sorting_function (a: address, b : address) -> ();
+  external fn sorting_function (a: address, b : address) -> ();
   type sf = type_of(sorting_function);
 
   theorem preserving_count(f : sf) {
@@ -42,7 +44,7 @@ context some_context {
     assert a <= a0;
     assert a0 <= b0;
     assert b0 <= b;
-    assert b <= MAX_MEM;
+    assert b <= ctx.MAX_MEM;
 
     f(a, b);
     always check_sorted(a0, b0);
