@@ -1,53 +1,103 @@
 use inference::std;
 use { sorting_function } from "./sort.rs";
 
+typedef address = u32;
+
 context some_context {
 
-  constant MAX_MEM : nat = 1000;
+  external fn sorting_function (address, address) -> address;
+  typedef sf = type_of(sorting_function);
 
-  fn constructor() -> some_context{
+  fn constructor() -> some_context {
     ctx.type = ContextType::Program;
+    ctx.arh = Arch::WASM;
+    ctx.max_curr_mem = 2 ** 16;
+    ctx.mem = new u32[](ctx.max_curr_mem);
   }
 
-  fn count_values(a: address, b: address, val) -> nat {
-    return ctx.mem[a..=b].iter().filter(|&&x| x == val).count();
+  total fn add(a : i32, b : i32) -> i32 {
+    return a + b;
   }
 
-  fn check_sorted(a: address, b: address) -> bool {
-    return ctx.mem[a] <= ctx.mem[b];
+  fn valid_address(a: address) -> address {
+    assert (a < ctx.max_curr_mem && !(a % 4));
+    return a;
   }
 
-  external fn sorting_function (a: address, b : address) -> ();
-  type sf = type_of(sorting_function);
+  fn count_values(a: address, b: address, val : i32) -> u32 {
+    let res : u32 = 0;
+    for (let i : address = a; i <= b; i.next()) {
+      if (ctx.mem[i] == val) {
+        res += 1;
+      }
+    }
+    return res;
+  }
 
-  theorem preserving_count(f : sf) {
+  total fn preserving_count(func : sf) {
     let a: address;
     let b: address;
-    let val : nat;
 
-    assert a <= b;
-    assert b <= MAX_MEM;
+    filter {
+      a = valid_address(i32::all());
+      b = valid_address(i32::all());
+      assert a <= b;
+    }
+
+    let val : i32 = i32::all();
     
-    let before : nat = count_values(a, b, val);
-    f(a, b);
-    let after : nat = count_values(a, b, val);
+    let before : u32 = count_values(a, b, val);
+    func(a, b);
+    let after : u32 = count_values(a, b, val);
     
-    always before == after;
+    assert before == after;
   }
 
-  theorem procuring_sorted(f: sf) {
+  total fn procuring_sorted(func: sf) {
     let a: address;
     let b: address;
     let a0: address;
     let b0: address;
 
-    assert a <= a0;
-    assert a0 <= b0;
-    assert b0 <= b;
-    assert b <= ctx.MAX_MEM;
+    filter {
+      a = valid_address(i32::all());
+      b = valid_address(i32::all());
+      assert a <= b;
+    }
 
-    f(a, b);
-    always check_sorted(a0, b0);
+    func(a, b);
+
+    filter {
+      a0 = valid_address(i32::all());
+      b0 = valid_address(i32::all());
+
+      assert a <= a0;
+      assert a0 < b0;
+      assert b0 <= b;
+    }
+
+    assert ctx.mem[a0] <= ctx.mem[b0];
+  }
+
+  total no_side_effects(func : sf) {
+    let a: address;
+    let b: address;
+
+    let c0: address;
+
+    filter {
+      a = valid_address(i32::all());
+      b = valid_address(i32::all());
+      c = valid_address(i32::all());
+      assert a <= b;
+      assert c < a || c > b;
+    }
+
+    let before = ctx.mem[c];
+    func(a, b);
+    let after = ctx.mem[c];
+
+    assert before == after;
   }
 
   apply preserving_count(sort);
