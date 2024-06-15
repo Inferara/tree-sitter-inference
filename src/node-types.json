@@ -701,6 +701,10 @@
     "named": true
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "const_keyword",
     "named": true
   },

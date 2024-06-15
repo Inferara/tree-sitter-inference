@@ -28,6 +28,11 @@ module.exports = grammar({
         [$.member_access_expression, $.qualified_name]
     ],
 
+    extras: $ => [
+        /\s/,
+        $.comment,
+    ],
+
     rules: {
         source_file: $ => repeat(
             choice(
@@ -288,5 +293,7 @@ module.exports = grammar({
             $._identifier,
             $._reserved_identifier,
         ),
+
+        comment: _ => token(seq('//', /[^\n\r]*/))
     }
 });
