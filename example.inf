@@ -1,12 +1,12 @@
 use inference::std;
 use { sorting_function } from "./sort.rs";
 
-typedef address = u32;
+///TODO define in grammar.js > typedef address = u32;
 
 context some_context {
 
-  external fn sorting_function (address, address) -> address;
-  typedef sf = type_of(sorting_function);
+  ///TODO define in grammar.js > external fn sorting_function (address, address) -> address;
+  ///TODO define in grammar.js > typedef sf = type_of(sorting_function);
 
   fn constructor() -> some_context {
     ctx.type = ContextType::Program;
@@ -100,7 +100,7 @@ context some_context {
     assert before == after;
   }
 
-  apply preserving_count(sort);
-  apply procuring_sorted(sort);
+  ///TODO define in grammar.js > apply preserving_count(sort);
+  ///TODO define in grammar.js > apply procuring_sorted(sort);
 
 }
