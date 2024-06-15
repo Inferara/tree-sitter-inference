@@ -10,7 +10,7 @@ use inference::std;
     (use_statement
         (use_keyword)
         (identifier)
-        (expand_symbol)
+        (expand_operator)
         (identifier)
         (terminal_symbol)))
 
@@ -26,11 +26,11 @@ use inference::std::algorithms::sort;
     (use_statement
         (use_keyword)
         (identifier)
-        (expand_symbol)
+        (expand_operator)
         (identifier)
-        (expand_symbol)
+        (expand_operator)
         (identifier)
-        (expand_symbol)
+        (expand_operator)
         (identifier)
         (terminal_symbol)))
 

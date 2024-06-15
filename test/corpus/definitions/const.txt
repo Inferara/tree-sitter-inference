@@ -2,16 +2,17 @@
 Constant definiton
 ===
 
-const MAX_MEM : nat = 1000;
+const MAX_MEM : i64 = 1000;
 
 ---
 
 (source_file
-  (const_definition
+    (constant_definition
     (const_keyword)
-    name: (identifier)
+    (identifier)
     (semicolon_symbol)
-    type: (type)
-    (equals_symbol)
-    value: (number)
+    (type)
+    (assign_operator)
+    (literal
+        (number_literal))
     (terminal_symbol)))

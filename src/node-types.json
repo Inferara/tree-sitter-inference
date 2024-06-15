@@ -1,9 +1,9 @@
 [
   {
-    "type": "assign_expression",
+    "type": "alias_qualified_name",
     "named": true,
     "fields": {
-      "name": {
+      "alias": {
         "multiple": false,
         "required": true,
         "types": [
@@ -13,12 +13,46 @@
           }
         ]
       },
-      "value": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "assign_expression",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ctx",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
             "named": true
           }
         ]
@@ -29,7 +63,7 @@
       "required": true,
       "types": [
         {
-          "type": "equals_symbol",
+          "type": "assign_operator",
           "named": true
         },
         {
@@ -40,7 +74,91 @@
     }
   },
   {
-    "type": "const_definition",
+    "type": "binary_expression",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "terminal_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_operator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assign_operator",
+          "named": true
+        },
+        {
+          "type": "equals_operator",
+          "named": true
+        },
+        {
+          "type": "greater_equal_operator",
+          "named": true
+        },
+        {
+          "type": "greater_operator",
+          "named": true
+        },
+        {
+          "type": "less_equal_operator",
+          "named": true
+        },
+        {
+          "type": "less_operator",
+          "named": true
+        },
+        {
+          "type": "not_equals_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bool_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "constant_definition",
     "named": true,
     "fields": {
       "name": {
@@ -68,7 +186,7 @@
         "required": true,
         "types": [
           {
-            "type": "number",
+            "type": "literal",
             "named": true
           }
         ]
@@ -79,11 +197,11 @@
       "required": true,
       "types": [
         {
-          "type": "const_keyword",
+          "type": "assign_operator",
           "named": true
         },
         {
-          "type": "equals_symbol",
+          "type": "const_keyword",
           "named": true
         },
         {
@@ -92,44 +210,6 @@
         },
         {
           "type": "terminal_symbol",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "context_access_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "attribute_access_symbol",
-          "named": true
-        },
-        {
-          "type": "context_access_symbol",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "context_assign_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "assign_expression",
-          "named": true
-        },
-        {
-          "type": "context_access_expression",
           "named": true
         }
       ]
@@ -155,10 +235,6 @@
       "required": true,
       "types": [
         {
-          "type": "const_definition",
-          "named": true
-        },
-        {
           "type": "context_keyword",
           "named": true
         },
@@ -172,6 +248,46 @@
         },
         {
           "type": "rcb_symbol",
+          "named": true
+        },
+        {
+          "type": "variable_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expand_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "assign_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        },
+        {
+          "type": "member_access_expression",
           "named": true
         }
       ]
@@ -211,6 +327,10 @@
           "named": true
         },
         {
+          "type": "expression",
+          "named": true
+        },
+        {
           "type": "function_keyword",
           "named": true
         },
@@ -231,7 +351,11 @@
           "named": true
         },
         {
-          "type": "rightarrow_symbol",
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "rightarrow_operator",
           "named": true
         },
         {
@@ -248,33 +372,26 @@
   {
     "type": "identifier",
     "named": true,
+    "fields": {}
+  },
+  {
+    "type": "literal",
+    "named": true,
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "const_keyword",
+          "type": "bool_literal",
           "named": true
         },
         {
-          "type": "context_access_symbol",
+          "type": "number_literal",
           "named": true
         },
         {
-          "type": "context_keyword",
-          "named": true
-        },
-        {
-          "type": "from_keyword",
-          "named": true
-        },
-        {
-          "type": "function_keyword",
-          "named": true
-        },
-        {
-          "type": "use_keyword",
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -284,8 +401,34 @@
     "type": "member_access_expression",
     "named": true,
     "fields": {
+      "expression": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "alias_qualified_name",
+            "named": true
+          },
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      },
       "name": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -294,20 +437,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "attribute_access_symbol",
-          "named": true
-        },
-        {
-          "type": "terminal_symbol",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -347,6 +476,70 @@
     }
   },
   {
+    "type": "qualified_name",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "qualifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "alias_qualified_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "return_statement",
+    "named": true,
+    "fields": {
+      "expression": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "return_keyword",
+          "named": true
+        },
+        {
+          "type": "terminal_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -355,11 +548,7 @@
       "required": false,
       "types": [
         {
-          "type": "const_definition",
-          "named": true
-        },
-        {
-          "type": "context_assign_expression",
+          "type": "constant_definition",
           "named": true
         },
         {
@@ -371,7 +560,15 @@
           "named": true
         },
         {
+          "type": "return_statement",
+          "named": true
+        },
+        {
           "type": "use_statement",
+          "named": true
+        },
+        {
+          "type": "variable_definition",
           "named": true
         }
       ]
@@ -386,36 +583,6 @@
     "type": "type",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "type_member_access_expression",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expand_symbol",
-          "named": true
-        },
-        {
-          "type": "terminal_symbol",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "use_statement",
@@ -441,7 +608,7 @@
           "named": true
         },
         {
-          "type": "expand_symbol",
+          "type": "expand_operator",
           "named": true
         },
         {
@@ -476,6 +643,36 @@
     }
   },
   {
+    "type": "variable_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assign_operator",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -484,7 +681,15 @@
     "named": false
   },
   {
-    "type": "attribute_access_symbol",
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "::",
+    "named": false
+  },
+  {
+    "type": "assign_operator",
     "named": true
   },
   {
@@ -500,20 +705,20 @@
     "named": true
   },
   {
-    "type": "context_access_symbol",
-    "named": true
-  },
-  {
     "type": "context_keyword",
     "named": true
   },
   {
-    "type": "equals_symbol",
+    "type": "ctx",
+    "named": false
+  },
+  {
+    "type": "equals_operator",
     "named": true
   },
   {
-    "type": "expand_symbol",
-    "named": true
+    "type": "false",
+    "named": false
   },
   {
     "type": "from_keyword",
@@ -524,19 +729,47 @@
     "named": true
   },
   {
+    "type": "greater_equal_operator",
+    "named": true
+  },
+  {
+    "type": "greater_operator",
+    "named": true
+  },
+  {
+    "type": "i32",
+    "named": false
+  },
+  {
+    "type": "i64",
+    "named": false
+  },
+  {
     "type": "lcb_symbol",
     "named": true
+  },
+  {
+    "type": "less_equal_operator",
+    "named": true
+  },
+  {
+    "type": "less_operator",
+    "named": true
+  },
+  {
+    "type": "let",
+    "named": false
   },
   {
     "type": "lrb_symbol",
     "named": true
   },
   {
-    "type": "nat",
-    "named": false
+    "type": "not_equals_operator",
+    "named": true
   },
   {
-    "type": "number",
+    "type": "number_literal",
     "named": true
   },
   {
@@ -544,7 +777,11 @@
     "named": true
   },
   {
-    "type": "rightarrow_symbol",
+    "type": "return_keyword",
+    "named": true
+  },
+  {
+    "type": "rightarrow_operator",
     "named": true
   },
   {
@@ -558,6 +795,18 @@
   {
     "type": "terminal_symbol",
     "named": true
+  },
+  {
+    "type": "true",
+    "named": false
+  },
+  {
+    "type": "u32",
+    "named": false
+  },
+  {
+    "type": "u64",
+    "named": false
   },
   {
     "type": "use_keyword",
