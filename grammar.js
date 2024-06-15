@@ -294,6 +294,6 @@ module.exports = grammar({
             $._reserved_identifier,
         ),
 
-        comment: _ => token(seq('//', /[^\n\r]*/))
+        comment: _ => token(seq('///', /[^\n\r]*/))
     }
 });
