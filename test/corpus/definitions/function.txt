@@ -2,7 +2,7 @@
 Function definition
 ===
 
-fn func() -> nat {
+fn func() -> i32 {
 
 }
 
@@ -23,7 +23,7 @@ fn func() -> nat {
 Function with one parameter
 ===
 
-fn func(x: nat) -> nat {
+fn func(x: i32) -> i32 {
 
 }
 
@@ -47,7 +47,7 @@ fn func(x: nat) -> nat {
 ===
 Function with multiple parameters
 ===
-fn func(x: nat, y: nat) -> nat {
+fn func(x: i32, y: i32) -> i32 {
 
 }
 ---
@@ -75,7 +75,7 @@ fn func(x: nat, y: nat) -> nat {
 ===
 Function with trailing comma in parameter list
 ===
-fn func(x: nat, y: nat,) -> nat {
+fn func(x: i32, y: i32,) -> i32 {
 
 }
 ---
@@ -102,29 +102,30 @@ fn func(x: nat, y: nat,) -> nat {
         (rcb_symbol)))
 
 ===
-Function with return nat
+Function with return i32
 ===
 
-fn func() -> nat {
+fn func() -> i32 {
     return 0;
 }
 ---
 
 (source_file
     (function_definition
-        (function_keyword)
-        (identifier)
-        (lrb_symbol)
-        (rrb_symbol)
-        (rightarrow_operator)
-        (type)
-        (lcb_symbol)
-        (return_statement
-            (return_keyword)
-            (number)
-            (terminal_symbol))
-        (rcb_symbol)))
-
+    (function_keyword)
+    (identifier)
+    (lrb_symbol)
+    (rrb_symbol)
+    (rightarrow_operator)
+    (type)
+    (lcb_symbol)
+    (return_statement
+        (return_keyword)
+        (expression
+        (literal
+            (number_literal)))
+        (terminal_symbol))
+    (rcb_symbol)))
 
 ===
 Function with return bool true
@@ -146,7 +147,9 @@ fn func() -> bool {
         (lcb_symbol)
         (return_statement
             (return_keyword)
-            (bool_literal)
+            (expression
+                (literal
+                    (bool_literal)))
             (terminal_symbol))
         (rcb_symbol)))
 
@@ -170,6 +173,8 @@ fn func() -> bool {
         (lcb_symbol)
         (return_statement
             (return_keyword)
-            (bool_literal)
+            (expression
+                (literal
+                    (bool_literal)))
             (terminal_symbol))
         (rcb_symbol)))

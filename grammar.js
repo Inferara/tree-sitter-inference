@@ -1,4 +1,19 @@
+/**
+ * Creates a rule to match one or more of the rules separated by `separator`
+ *
+ * @param {RuleOrLiteral} rule
+ *
+ * @param {RuleOrLiteral} separator
+ *
+ * @return {SeqRule}
+ *
+ */
+function sep1(rule, separator) {
+    return seq(rule, repeat(seq(separator, rule)));
+}
+
 const PRECEDENCE = {
+    DOT : 1000,
     EXPRESSION: 300,
     QUALIFIED_NAME: 200,
     IDENTIFIER: 100,
@@ -7,21 +22,27 @@ const PRECEDENCE = {
 module.exports = grammar({
     name: 'inference',
 
+    conflicts: $ => [
+        [$._lval_expression, $._name],
+
+        [$.member_access_expression, $.qualified_name]
+    ],
+
     rules: {
         source_file: $ => repeat(
             choice(
                 $._definition,
                 $._statement,
-                $._definition,
+                $.constant_definition
             ),
         ),
 
         word: $ => $.identifier,
 
         _definition: $ => choice(
-            $.variable_definition,
             $.context_definition,
             $.function_definition,
+            $.variable_definition,
         ),
 
         _statement: $ => choice(
@@ -30,31 +51,70 @@ module.exports = grammar({
         ),
 
         type: $ => choice(
-            'nat',
+            'i32',
+            'i64',
+            'u32',
+            'u64',
             'bool',
             '()'
         ),
 
-        _expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
-            $.binary_expression,
-            $.field_access_expression,
+        literal : $ => choice(
             $.bool_literal,
             $.string_literal,
-            $.number,
-            $.identifier,  // Allow identifiers as expressions
+            $.number_literal,
+        ),
+
+        expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
+            $._non_lval_expression,
+            $._lval_expression,
         )),
 
-        variable_declaration: $ => seq(
-            optional($.const_keyword),
+        _lval_expression: $ => choice(
+            'ctx',
+            $.member_access_expression,
+            $.identifier
+        ),
+
+        _non_lval_expression: $ => choice(
+            $.binary_expression,
+            $.assign_expression,
+            $.literal
+        ),
+
+        member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
+            field('expression', choice($.expression, $.type, $._name)),
+            '.',
             field('name', $.identifier),
-            $.semicolon_symbol,
-            field('type', $.type),
+        )),
+
+        assign_expression: $ => seq(
+            field('left', $._lval_expression),
+            $.assign_operator,
+            field('right', $.expression),
+            $.terminal_symbol
+        ),
+
+        binary_expression: $ => seq(
+            field('left', $.expression),
+            $.binary_operator,
+            field('right', $.expression),
+            $.terminal_symbol
         ),
 
         variable_definition: $ => seq(
-            $.variable_declaration,
+            'let',
+            field('name', $.identifier),
+            optional(seq($.assign_operator, $.expression)),
+        ),
+
+        constant_definition: $ => seq(
+            $.const_keyword,
+            field('name', $.identifier),
+            $.semicolon_symbol,
+            field('type', $.type),
             $.assign_operator,
-            $._expression,
+            field('value', $.literal),
             $.terminal_symbol
         ),
 
@@ -88,6 +148,7 @@ module.exports = grammar({
             repeat(
                 choice(
                     $._statement,
+                    $.expression
                 )
             ),
             $.rcb_symbol
@@ -131,7 +192,7 @@ module.exports = grammar({
 
         return_statement: $ => seq(
             $.return_keyword,
-            field('expression', $._expression),
+            field('expression', $.expression),
             $.terminal_symbol
         ),
 
@@ -140,24 +201,6 @@ module.exports = grammar({
             $.expand_operator,
             field('name', $.identifier),
             $.terminal_symbol,
-        ),
-
-        binary_expression: $ => seq(
-            field('left', choice($._expression, $.identifier)),
-            $.binary_operator,
-            field('right', choice($._expression, $.identifier)),
-            $.terminal_symbol
-        ),
-
-        field_access_expression: $ => prec.left(seq(
-            field('object', $.identifier),
-            $.attribute_access_operator,
-            field('field', $.identifier)
-        )),
-
-        bool_literal: $ => choice(
-            'true',
-            'false',
         ),
 
         const_keyword: $ => 'const',
@@ -200,30 +243,11 @@ module.exports = grammar({
         lrb_symbol: $ => '(',
         rrb_symbol: $ => ')',
 
-        _reserved_identifier: $ => choice(
-            $.const_keyword,
-            $.use_keyword,
-            $.from_keyword,
-            $.context_keyword,
-            $.function_keyword,
-            $.return_keyword,
+
+        bool_literal: $ => choice(
+            'true',
+            'false',
         ),
-
-        _identifier_token: $ => token(seq(optional('@'), /[aA-zZ_]+/)),
-
-        qualified_name: $ => prec(PRECEDENCE.QUALIFIED_NAME, seq(
-            field(
-                'name', 
-                choice($._identifier_token, '$')
-            ),
-            repeat1(
-                seq(
-                    $.attribute_access_operator,
-                    field('name', $.identifier)
-                )
-            ),
-            $.terminal_symbol,
-        )),
 
         string_literal: $ => seq(
             '"',
@@ -233,12 +257,36 @@ module.exports = grammar({
 
         _string_literal_content: $ => token.immediate(prec(1, /[^"\\\n]+/)),
 
-        identifier: $ => choice(
+        number_literal: $ => /\d+/,
+
+        qualified_identifier: $ => sep1($.identifier, '.'),
+
+        _name: $ => choice(
+            $.alias_qualified_name,
             $.qualified_name,
-            $._identifier_token,
-            '$',
+            $.identifier,
         ),
 
-        number: $ => /\d+/,
+        alias_qualified_name: $ => seq(
+            field('alias', $.identifier),
+            '::',
+            field('name', $.identifier),
+        ),
+
+        qualified_name: $ => prec(PRECEDENCE.DOT, seq(
+            field('qualifier', $._name),
+            '.',
+            field('name', $.identifier),
+        )),
+
+        _reserved_identifier: $ => choice(
+            
+        ),
+
+        _identifier: _ => /\w*[A-Za-z]\w*/,
+        identifier: $ => choice(
+            $._identifier,
+            $._reserved_identifier,
+        ),
     }
 });
