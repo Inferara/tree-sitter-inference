@@ -7,11 +7,12 @@ const MAX_MEM : nat = 1000;
 ---
 
 (source_file
-  (const_definition
-    (const_keyword)
-    name: (identifier)
-    (semicolon_symbol)
-    type: (type)
+  (variable_definition
+    (variable_declaration
+      (const_keyword)
+      (identifier)
+      (semicolon_symbol)
+      (type))
     (assign_operator)
-    value: (number)
+    (number)
     (terminal_symbol)))

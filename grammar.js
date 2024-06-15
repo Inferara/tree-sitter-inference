@@ -209,12 +209,12 @@ module.exports = grammar({
             $.return_keyword,
         ),
 
-        _identifier_token: $ => token(seq(optional('@'), /[\p{L}\p{Nl}_][\p{L}\p{Nl}\p{Nd}\p{Pc}\p{Cf}\p{Mn}\p{Mc}]*/)),
+        _identifier_token: $ => token(seq(optional('@'), /[aA-zZ_]+/)),
 
         qualified_name: $ => prec(PRECEDENCE.QUALIFIED_NAME, seq(
             field(
                 'name', 
-                $._identifier_token,
+                choice($._identifier_token, '$')
             ),
             repeat1(
                 seq(

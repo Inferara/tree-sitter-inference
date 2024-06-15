@@ -333,6 +333,10 @@
         "required": true,
         "types": [
           {
+            "type": "$",
+            "named": false
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -412,10 +416,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "binary_operator",
-          "named": true
-        },
         {
           "type": "context_definition",
           "named": true

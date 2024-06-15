@@ -1,9 +1,0 @@
-===
-Context assign expression
-===
-
-$.type = ABC;
-
----
-
-

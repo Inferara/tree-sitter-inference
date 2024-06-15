@@ -1,4 +1,9 @@
 ===
-Binary expression
+Context assign
 ===
+
+$.type = ABC;
+
+---
+
 

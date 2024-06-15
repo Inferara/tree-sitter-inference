@@ -17,10 +17,6 @@
           {
             "type": "SYMBOL",
             "name": "_definition"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "binary_operator"
           }
         ]
       }
@@ -722,7 +718,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "[\\p{L}\\p{Nl}_][\\p{L}\\p{Nl}\\p{Nd}\\p{Pc}\\p{Cf}\\p{Mn}\\p{Mc}]*"
+            "value": "[aA-zZ_]+"
           }
         ]
       }
@@ -737,8 +733,17 @@
             "type": "FIELD",
             "name": "name",
             "content": {
-              "type": "SYMBOL",
-              "name": "_identifier_token"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_identifier_token"
+                },
+                {
+                  "type": "STRING",
+                  "value": "$"
+                }
+              ]
             }
           },
           {
