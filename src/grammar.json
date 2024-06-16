@@ -737,7 +737,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "semicolon_symbol"
+          "name": "_typedef_symbol"
         },
         {
           "type": "FIELD",
@@ -761,7 +761,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "terminal_symbol"
+          "name": "_terminal_symbol"
         }
       ]
     },
@@ -859,7 +859,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "comma_symbol"
+                    "name": "_comma_symbol"
                   },
                   {
                     "type": "BLANK"
@@ -908,7 +908,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "semicolon_symbol"
+          "name": "_typedef_symbol"
         },
         {
           "type": "FIELD",
@@ -976,7 +976,7 @@
                         "members": [
                           {
                             "type": "SYMBOL",
-                            "name": "comma_symbol"
+                            "name": "_comma_symbol"
                           },
                           {
                             "type": "SYMBOL",
@@ -1005,7 +1005,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "terminal_symbol"
+          "name": "_terminal_symbol"
         }
       ]
     },
@@ -1018,7 +1018,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "terminal_symbol"
+          "name": "_terminal_symbol"
         }
       ]
     },
@@ -1048,7 +1048,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "terminal_symbol"
+          "name": "_terminal_symbol"
         }
       ]
     },
@@ -1076,15 +1076,15 @@
       "type": "STRING",
       "value": "return"
     },
-    "comma_symbol": {
+    "_comma_symbol": {
       "type": "STRING",
       "value": ","
     },
-    "semicolon_symbol": {
+    "_typedef_symbol": {
       "type": "STRING",
       "value": ":"
     },
-    "terminal_symbol": {
+    "_terminal_symbol": {
       "type": "STRING",
       "value": ";"
     },
@@ -1373,8 +1373,8 @@
     ],
     [
       "_lval_expression",
-      "type_qualified_name",
-      "_name"
+      "_name",
+      "type_qualified_name"
     ],
     [
       "qualified_name",

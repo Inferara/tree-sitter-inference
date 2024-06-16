@@ -11,8 +11,7 @@ use inference::std;
         (use_keyword)
         (identifier)
         (expand_operator)
-        (identifier)
-        (terminal_symbol)))
+        (identifier)))
 
 ===
 Use directive nested
@@ -31,8 +30,7 @@ use inference::std::algorithms::sort;
         (expand_operator)
         (identifier)
         (expand_operator)
-        (identifier)
-        (terminal_symbol)))
+        (identifier)))
 
 ===
 Use directive from
@@ -47,8 +45,7 @@ use { sort } from "./sort.rs";
         (use_keyword)
         (identifier)
         (from_keyword)
-        (string_literal)
-        (terminal_symbol)))
+        (string_literal)))
 
 ===
 User several imports
@@ -62,8 +59,6 @@ use { sort, filter } from "./sort.rs";
     (use_directive
         (use_keyword)
         (identifier)
-        (comma_symbol)
         (identifier)
         (from_keyword)
-        (string_literal)
-        (terminal_symbol)))
+        (string_literal)))

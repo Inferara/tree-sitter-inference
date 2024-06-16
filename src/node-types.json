@@ -197,14 +197,6 @@
         {
           "type": "const_keyword",
           "named": true
-        },
-        {
-          "type": "semicolon_symbol",
-          "named": true
-        },
-        {
-          "type": "terminal_symbol",
-          "named": true
         }
       ]
     }
@@ -279,15 +271,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "assign_expression",
-          "named": true
-        },
-        {
-          "type": "terminal_symbol",
           "named": true
         }
       ]
@@ -332,10 +320,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "comma_symbol",
-          "named": true
-        },
         {
           "type": "function_keyword",
           "named": true
@@ -455,16 +439,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "semicolon_symbol",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -527,15 +501,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "return_keyword",
-          "named": true
-        },
-        {
-          "type": "terminal_symbol",
           "named": true
         }
       ]
@@ -645,10 +615,6 @@
       "required": true,
       "types": [
         {
-          "type": "comma_symbol",
-          "named": true
-        },
-        {
           "type": "expand_operator",
           "named": true
         },
@@ -662,10 +628,6 @@
         },
         {
           "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "terminal_symbol",
           "named": true
         },
         {
@@ -723,10 +685,6 @@
   },
   {
     "type": "attribute_access_operator",
-    "named": true
-  },
-  {
-    "type": "comma_symbol",
     "named": true
   },
   {
@@ -822,15 +780,7 @@
     "named": true
   },
   {
-    "type": "semicolon_symbol",
-    "named": true
-  },
-  {
     "type": "sub_operator",
-    "named": true
-  },
-  {
-    "type": "terminal_symbol",
     "named": true
   },
   {

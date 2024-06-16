@@ -10,9 +10,7 @@ const MAX_MEM : i64 = 1000;
     (constant_definition
     (const_keyword)
     (identifier)
-    (semicolon_symbol)
     (type)
     (assign_operator)
     (literal
-        (number_literal))
-    (terminal_symbol)))
+        (number_literal))))

@@ -148,11 +148,11 @@ module.exports = grammar({
         constant_definition: $ => seq(
             $.const_keyword,
             field('name', $.identifier),
-            $.semicolon_symbol,
+            $._typedef_symbol,
             field('type', $.type),
             $.assign_operator,
             field('value', $.literal),
-            $.terminal_symbol
+            $._terminal_symbol
         ),
 
         context_definition: $ => seq(
@@ -181,7 +181,7 @@ module.exports = grammar({
             repeat(
                 seq(
                     $.parameter_definition,
-                    optional($.comma_symbol),
+                    optional($._comma_symbol),
                 ),
             ),
             $._rrb_symbol,
@@ -192,7 +192,7 @@ module.exports = grammar({
 
         parameter_definition: $ => seq(
             field('name', $.identifier),
-            $.semicolon_symbol,
+            $._typedef_symbol,
             field('type', $.type),
         ),
 
@@ -207,17 +207,17 @@ module.exports = grammar({
                     $._lcb_symbol,
                     sep1(
                         $.identifier,
-                        $.comma_symbol
+                        $._comma_symbol
                     ),
                     $._rcb_symbol,
                     $.from_keyword,
                     $.string_literal
                 )
             ),
-            $.terminal_symbol
+            $._terminal_symbol
         ),
 
-        expression_statement: $ => seq($._expression_statement, $.terminal_symbol),
+        expression_statement: $ => seq($._expression_statement, $._terminal_symbol),
 
         _expression_statement: $ => seq(
             $.assign_expression,
@@ -226,7 +226,7 @@ module.exports = grammar({
         return_statement: $ => seq(
             $.return_keyword,
             field('expression', $.expression),
-            $.terminal_symbol
+            $._terminal_symbol
         ),
 
         const_keyword: $ => 'const',
@@ -235,10 +235,6 @@ module.exports = grammar({
         context_keyword: $ => 'context',
         function_keyword: $ => 'fn',
         return_keyword: $ => 'return',
-
-        comma_symbol: $ => ',',
-        semicolon_symbol: $ => ':',
-        terminal_symbol: $ => ';',
 
         add_operator: _ => '+',
         sub_operator: _ => '-',
@@ -266,6 +262,9 @@ module.exports = grammar({
         _rcb_symbol: _ => '}',
         _lrb_symbol: _ => '(',
         _rrb_symbol: _ => ')',
+        _comma_symbol: $ => ',',
+        _typedef_symbol: $ => ':',
+        _terminal_symbol: $ => ';',
 
 
         bool_literal: _ => choice(

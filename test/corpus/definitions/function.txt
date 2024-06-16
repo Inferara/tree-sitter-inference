@@ -32,7 +32,6 @@ fn func(x: i32) -> i32 {
     (identifier)
     (parameter_definition
         (identifier)
-        (semicolon_symbol)
         (type))
     (rightarrow_operator)
     (type)
@@ -52,12 +51,9 @@ fn func(x: i32, y: i32) -> i32 {
         (identifier)
         (parameter_definition
             (identifier)
-            (semicolon_symbol)
             (type))
-        (comma_symbol)
         (parameter_definition
             (identifier)
-            (semicolon_symbol)
             (type))
         (rightarrow_operator)
         (type)
@@ -77,14 +73,10 @@ fn func(x: i32, y: i32,) -> i32 {
         (identifier)
         (parameter_definition
             (identifier)
-            (semicolon_symbol)
             (type))
-        (comma_symbol)
         (parameter_definition
             (identifier)
-            (semicolon_symbol)
             (type))
-        (comma_symbol)
         (rightarrow_operator)
         (type)
         (block)))
@@ -109,8 +101,7 @@ fn func() -> i32 {
             (return_keyword)
             (expression
                 (literal
-                (number_literal)))
-            (terminal_symbol)))))
+                (number_literal)))))))
 
 ===
 Function with return bool literal
@@ -132,8 +123,7 @@ fn func() -> bool {
             (return_keyword)
             (expression
               (literal
-                (bool_literal)))
-            (terminal_symbol)))))
+                (bool_literal)))))))
 
 ===
 Function with return identifier
@@ -164,12 +154,9 @@ fn add(a : i32, b : i32) -> i32 {
         (identifier)
         (parameter_definition
           (identifier)
-          (semicolon_symbol)
           (type))
-        (comma_symbol)
         (parameter_definition
           (identifier)
-          (semicolon_symbol)
           (type))
         (rightarrow_operator)
         (type)
@@ -182,6 +169,5 @@ fn add(a : i32, b : i32) -> i32 {
                   (identifier))
                 (add_operator)
                 (expression
-                  (identifier))))
-            (terminal_symbol)))))
+                  (identifier))))))))
 

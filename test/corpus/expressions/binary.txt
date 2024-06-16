@@ -22,8 +22,7 @@ fn context_assign() -> () {
                 (identifier))
                 (assign_operator)
                 (expression
-                (identifier)))
-            (terminal_symbol)))))
+                (identifier)))))))
 
 
 ===
@@ -56,8 +55,7 @@ fn constructor() -> some_context {
                   (expression
                     (identifier))
                   (expand_operator)
-                  (identifier))))
-            (terminal_symbol))
+                  (identifier)))))
           (expression_statement
             (assign_expression
               (member_access_expression
@@ -70,8 +68,7 @@ fn constructor() -> some_context {
                   (expression
                     (identifier))
                   (expand_operator)
-                  (identifier))))
-            (terminal_symbol))
+                  (identifier)))))
           (expression_statement
             (assign_expression
               (member_access_expression
@@ -87,5 +84,4 @@ fn constructor() -> some_context {
                   (pow_operator)
                   (expression
                     (literal
-                      (number_literal))))))
-            (terminal_symbol)))))
+                      (number_literal))))))))))
