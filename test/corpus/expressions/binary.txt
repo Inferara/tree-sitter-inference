@@ -178,7 +178,7 @@ fn constructor() -> some_context {
             (terminal_symbol)))))
 
 ===
-Create and assign Array<u32> withouT parameters
+Create and assign Array<u32> without parameters
 ===
 fn constructor() -> some_context {
     ctx.mem = Array<u32>::new();

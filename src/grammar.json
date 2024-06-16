@@ -1578,8 +1578,8 @@
       "_name"
     ],
     [
-      "member_access_expression",
-      "qualified_name"
+      "qualified_name",
+      "member_access_expression"
     ]
   ],
   "precedences": [],
