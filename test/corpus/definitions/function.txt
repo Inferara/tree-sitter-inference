@@ -136,7 +136,7 @@ fn add(a : i32, b : i32) -> i32 {
     (function_definition
         (function_keyword)
         (identifier)
-       (argument_list
+        (argument_list
           (argument_declaration
             (identifier)
             (type))
@@ -155,4 +155,3 @@ fn add(a : i32, b : i32) -> i32 {
                 (add_operator)
                 (expression
                   (identifier))))))))
-

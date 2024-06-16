@@ -147,7 +147,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "_simple_name"
         }
       ]
     },
@@ -213,7 +213,7 @@
             "name": "name",
             "content": {
               "type": "SYMBOL",
-              "name": "identifier"
+              "name": "_simple_name"
             }
           }
         ]
@@ -740,6 +740,31 @@
         }
       ]
     },
+    "function_call_expression": {
+      "type": "PREC",
+      "value": 900,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "function",
+            "content": {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "arguments",
+            "content": {
+              "type": "SYMBOL",
+              "name": "argument_list"
+            }
+          }
+        ]
+      }
+    },
     "variable_definition": {
       "type": "SEQ",
       "members": [
@@ -811,6 +836,7 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_typedef_symbol"
           "name": "_typedef_symbol"
         },
         {
@@ -1351,7 +1377,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "_simple_name"
         }
       ]
     },
@@ -1375,8 +1401,21 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "_simple_name"
           }
+        }
+      ]
+    },
+    "_simple_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_name"
         }
       ]
     },
@@ -1403,11 +1442,74 @@
             "name": "name",
             "content": {
               "type": "SYMBOL",
-              "name": "identifier"
+              "name": "_simple_name"
             }
           }
         ]
       }
+    },
+    "generic_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_argument_list"
+        }
+      ]
+    },
+    "type_argument_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "STRING",
+                "value": ","
+              }
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "type"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_comma_symbol"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "type"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
     },
     "_reserved_identifier": {
       "type": "CHOICE",
@@ -1464,17 +1566,20 @@
   ],
   "conflicts": [
     [
+      "_simple_name",
+      "generic_name"
+    ],
+    [
+      "_simple_name",
+      "type_qualified_name"
+    ],
+    [
       "_lval_expression",
       "_name"
     ],
     [
-      "_lval_expression",
-      "_name",
-      "type_qualified_name"
-    ],
-    [
-      "qualified_name",
-      "member_access_expression"
+      "member_access_expression",
+      "qualified_name"
     ]
   ],
   "precedences": [],

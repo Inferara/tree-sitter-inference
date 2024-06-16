@@ -174,4 +174,15 @@ fn constructor() -> some_context {
                   (pow_operator)
                   (expression
                     (literal
-                      (number_literal))))))))))
+                      (number_literal))))))
+            (terminal_symbol)))))
+
+===
+Create and assign Array<u32> withouT parameters
+===
+fn constructor() -> some_context {
+    ctx.mem = Array<u32>::new();
+}
+---
+
+
