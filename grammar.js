@@ -177,23 +177,22 @@ module.exports = grammar({
         function_definition: $ => seq(
             $.function_keyword,
             field('name', $.identifier),
-            $._lrb_symbol,
-            repeat(
-                seq(
-                    $.parameter_definition,
-                    optional($._comma_symbol),
-                ),
-            ),
-            $._rrb_symbol,
+            $.argument_list,
             $.rightarrow_operator,
             field('returns', $.type),
             field('body', $.block)
         ),
 
-        parameter_definition: $ => seq(
+        argument_list: $ => seq(
+            $._lrb_symbol,
+            optional(sep1($.argument_declaration, $._comma_symbol)),
+            $._rrb_symbol,
+        ),
+
+        argument_declaration: $ => seq(
             field('name', $.identifier),
             $._typedef_symbol,
-            field('type', $.type),
+            field('type', $.type)
         ),
 
         use_directive: $ => seq(

@@ -1,5 +1,46 @@
 [
   {
+    "type": "argument_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "argument_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "argument_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assign_expression",
     "named": true,
     "fields": {
@@ -321,11 +362,11 @@
       "required": true,
       "types": [
         {
-          "type": "function_keyword",
+          "type": "argument_list",
           "named": true
         },
         {
-          "type": "parameter_definition",
+          "type": "function_keyword",
           "named": true
         },
         {
@@ -413,32 +454,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "parameter_definition",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "type",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {

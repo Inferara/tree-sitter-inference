@@ -12,6 +12,7 @@ fn func() -> i32 {
     (function_definition
         (function_keyword)
         (identifier)
+        (argument_list)
         (rightarrow_operator)
         (type)
         (block)))
@@ -30,9 +31,10 @@ fn func(x: i32) -> i32 {
     (function_definition
     (function_keyword)
     (identifier)
-    (parameter_definition
-        (identifier)
-        (type))
+    (argument_list
+        (argument_declaration
+            (identifier)
+            (type)))
     (rightarrow_operator)
     (type)
     (block)))
@@ -49,34 +51,13 @@ fn func(x: i32, y: i32) -> i32 {
     (function_definition
         (function_keyword)
         (identifier)
-        (parameter_definition
+        (argument_list
+          (argument_declaration
             (identifier)
             (type))
-        (parameter_definition
+          (argument_declaration
             (identifier)
-            (type))
-        (rightarrow_operator)
-        (type)
-        (block)))
-
-===
-Function with trailing comma in parameter list
-===
-fn func(x: i32, y: i32,) -> i32 {
-
-}
----
-
-(source_file
-    (function_definition
-        (function_keyword)
-        (identifier)
-        (parameter_definition
-            (identifier)
-            (type))
-        (parameter_definition
-            (identifier)
-            (type))
+            (type)))
         (rightarrow_operator)
         (type)
         (block)))
@@ -94,6 +75,7 @@ fn func() -> i32 {
     (function_definition
         (function_keyword)
         (identifier)
+        (argument_list)
         (rightarrow_operator)
         (type)
         (block
@@ -116,6 +98,7 @@ fn func() -> bool {
     (function_definition
         (function_keyword)
         (identifier)
+        (argument_list)
         (rightarrow_operator)
         (type)
         (block
@@ -136,6 +119,7 @@ fn constructor() -> some_context {
     (function_definition
     (function_keyword)
     (identifier)
+    (argument_list)
     (rightarrow_operator)
     (type
         (identifier))
@@ -152,12 +136,13 @@ fn add(a : i32, b : i32) -> i32 {
     (function_definition
         (function_keyword)
         (identifier)
-        (parameter_definition
-          (identifier)
-          (type))
-        (parameter_definition
-          (identifier)
-          (type))
+       (argument_list
+          (argument_declaration
+            (identifier)
+            (type))
+          (argument_declaration
+            (identifier)
+            (type)))
         (rightarrow_operator)
         (type)
         (block

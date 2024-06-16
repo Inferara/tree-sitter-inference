@@ -843,35 +843,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_lrb_symbol"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "parameter_definition"
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_comma_symbol"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_rrb_symbol"
+          "name": "argument_list"
         },
         {
           "type": "SYMBOL",
@@ -895,7 +867,53 @@
         }
       ]
     },
-    "parameter_definition": {
+    "argument_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_lrb_symbol"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "argument_declaration"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_comma_symbol"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "argument_declaration"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_rrb_symbol"
+        }
+      ]
+    },
+    "argument_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -1076,18 +1094,6 @@
       "type": "STRING",
       "value": "return"
     },
-    "_comma_symbol": {
-      "type": "STRING",
-      "value": ","
-    },
-    "_typedef_symbol": {
-      "type": "STRING",
-      "value": ":"
-    },
-    "_terminal_symbol": {
-      "type": "STRING",
-      "value": ";"
-    },
     "add_operator": {
       "type": "STRING",
       "value": "+"
@@ -1171,6 +1177,18 @@
     "_rrb_symbol": {
       "type": "STRING",
       "value": ")"
+    },
+    "_comma_symbol": {
+      "type": "STRING",
+      "value": ","
+    },
+    "_typedef_symbol": {
+      "type": "STRING",
+      "value": ":"
+    },
+    "_terminal_symbol": {
+      "type": "STRING",
+      "value": ";"
     },
     "bool_literal": {
       "type": "CHOICE",
