@@ -168,25 +168,16 @@ module.exports = grammar({
         use_statement: $ => seq(
             $.use_keyword,
             choice(
-                seq(
+                sep1(
                     $.identifier,
-                    repeat1(
-                        seq(
-                            $.expand_operator,
-                            field('name', $.identifier),
-                        )
-                    )
+                    $.expand_operator
                 ),
                 seq(
                     $.lcb_symbol,
-                    $.identifier,
-                    repeat(
-                        seq(
-                            $.comma_symbol,
-                            $.identifier
-                        )
-                    )
-                    ,
+                    sep1(
+                        $.identifier,
+                        $.comma_symbol
+                    ),
                     $.rcb_symbol,
                     $.from_keyword,
                     $.string_literal
