@@ -23,6 +23,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expand_operator",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -72,6 +82,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "attribute_access_operator",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "binary_expression",
@@ -258,11 +273,6 @@
     }
   },
   {
-    "type": "expand_operator",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -307,7 +317,7 @@
           }
         ]
       },
-      "type": {
+      "returns": {
         "multiple": false,
         "required": true,
         "types": [
@@ -507,6 +517,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_access_operator",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -582,7 +602,25 @@
   {
     "type": "type",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "alias_qualified_name",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "qualified_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "use_statement",
@@ -666,24 +704,12 @@
     "named": false
   },
   {
-    "type": "()",
-    "named": false
-  },
-  {
     "type": ".",
-    "named": false
-  },
-  {
-    "type": "::",
     "named": false
   },
   {
     "type": "assign_operator",
     "named": true
-  },
-  {
-    "type": "bool",
-    "named": false
   },
   {
     "type": "comma_symbol",
@@ -710,6 +736,10 @@
     "named": true
   },
   {
+    "type": "expand_operator",
+    "named": true
+  },
+  {
     "type": "false",
     "named": false
   },
@@ -728,14 +758,6 @@
   {
     "type": "greater_operator",
     "named": true
-  },
-  {
-    "type": "i32",
-    "named": false
-  },
-  {
-    "type": "i64",
-    "named": false
   },
   {
     "type": "lcb_symbol",
@@ -791,14 +813,6 @@
   },
   {
     "type": "true",
-    "named": false
-  },
-  {
-    "type": "u32",
-    "named": false
-  },
-  {
-    "type": "u64",
     "named": false
   },
   {

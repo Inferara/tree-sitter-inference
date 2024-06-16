@@ -178,3 +178,22 @@ fn func() -> bool {
                     (bool_literal)))
             (terminal_symbol))
         (rcb_symbol)))
+
+===
+Function with return identifier
+===
+fn constructor() -> some_context {
+}
+---
+
+(source_file
+    (function_definition
+    (function_keyword)
+    (identifier)
+    (lrb_symbol)
+    (rrb_symbol)
+    (rightarrow_operator)
+    (type
+        (identifier))
+    (lcb_symbol)
+    (rcb_symbol)))

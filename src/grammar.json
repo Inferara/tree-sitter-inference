@@ -59,30 +59,46 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "i32"
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
-          "type": "STRING",
-          "value": "i64"
-        },
-        {
-          "type": "STRING",
-          "value": "u32"
-        },
-        {
-          "type": "STRING",
-          "value": "u64"
-        },
-        {
-          "type": "STRING",
-          "value": "bool"
-        },
-        {
-          "type": "STRING",
-          "value": "()"
+          "type": "SYMBOL",
+          "name": "_embedded_type"
         }
       ]
+    },
+    "_embedded_type": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "i32"
+          },
+          {
+            "type": "STRING",
+            "value": "i64"
+          },
+          {
+            "type": "STRING",
+            "value": "u32"
+          },
+          {
+            "type": "STRING",
+            "value": "u64"
+          },
+          {
+            "type": "STRING",
+            "value": "bool"
+          },
+          {
+            "type": "STRING",
+            "value": "()"
+          }
+        ]
+      }
     },
     "literal": {
       "type": "CHOICE",
@@ -429,7 +445,7 @@
         },
         {
           "type": "FIELD",
-          "name": "type",
+          "name": "returns",
           "content": {
             "type": "SYMBOL",
             "name": "type"
@@ -816,8 +832,8 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": "."
+                "type": "SYMBOL",
+                "name": "attribute_access_operator"
               },
               {
                 "type": "SYMBOL",
@@ -857,8 +873,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "::"
+          "type": "SYMBOL",
+          "name": "expand_operator"
         },
         {
           "type": "FIELD",
@@ -885,8 +901,8 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "."
+            "type": "SYMBOL",
+            "name": "attribute_access_operator"
           },
           {
             "type": "FIELD",
@@ -905,7 +921,7 @@
     },
     "_identifier": {
       "type": "PATTERN",
-      "value": "\\w*[A-Za-z]\\w*"
+      "value": "\\w*[_a-zA-Z]\\w*"
     },
     "identifier": {
       "type": "CHOICE",
@@ -951,10 +967,6 @@
     [
       "_lval_expression",
       "_name"
-    ],
-    [
-      "member_access_expression",
-      "qualified_name"
     ]
   ],
   "precedences": [],

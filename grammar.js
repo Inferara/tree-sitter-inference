@@ -24,8 +24,6 @@ module.exports = grammar({
 
     conflicts: $ => [
         [$._lval_expression, $._name],
-
-        [$.member_access_expression, $.qualified_name]
     ],
 
     extras: $ => [
@@ -56,13 +54,18 @@ module.exports = grammar({
         ),
 
         type: $ => choice(
+            $._name,
+            $._embedded_type,
+        ),
+
+        _embedded_type: _ => token(choice(
             'i32',
             'i64',
             'u32',
             'u64',
             'bool',
             '()'
-        ),
+        )),
 
         literal : $ => choice(
             $.bool_literal,
@@ -148,7 +151,7 @@ module.exports = grammar({
             ),
             $.rrb_symbol,
             $.rightarrow_operator,
-            field('type', $.type),
+            field('returns', $.type),
             $.lcb_symbol,
             repeat(
                 choice(
@@ -255,7 +258,7 @@ module.exports = grammar({
 
         number_literal: $ => /\d+/,
 
-        qualified_identifier: $ => sep1($.identifier, '.'),
+        qualified_identifier: $ => sep1($.identifier, $.attribute_access_operator),
 
         _name: $ => choice(
             $.alias_qualified_name,
@@ -265,13 +268,13 @@ module.exports = grammar({
 
         alias_qualified_name: $ => seq(
             field('alias', $.identifier),
-            '::',
+            $.expand_operator,
             field('name', $.identifier),
         ),
 
         qualified_name: $ => prec(PRECEDENCE.DOT, seq(
             field('qualifier', $._name),
-            '.',
+            $.attribute_access_operator,
             field('name', $.identifier),
         )),
 
@@ -279,7 +282,7 @@ module.exports = grammar({
             
         ),
 
-        _identifier: _ => /\w*[A-Za-z]\w*/,
+        _identifier: _ => /\w*[_a-zA-Z]\w*/,
         identifier: $ => choice(
             $._identifier,
             $._reserved_identifier,
