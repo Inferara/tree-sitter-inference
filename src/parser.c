@@ -718,30 +718,19 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_name, 2},
     {field_qualifier, 0},
   [5] =
-  [5] =
     {field_alias, 0},
     {field_name, 2},
   [7] =
-  [7] =
     {field_name, 0},
     {field_type, 2},
-  [9] =
   [9] =
     {field_body, 5},
     {field_name, 1},
     {field_returns, 4},
   [12] =
-  [12] =
     {field_name, 1},
     {field_type, 3},
     {field_value, 5},
-  [15] =
-    {field_expression, 0},
-    {field_name, 2},
-  [17] =
-    {field_left, 0},
-    {field_operator, 1},
-    {field_right, 2},
   [15] =
     {field_expression, 0},
     {field_name, 2},
@@ -5390,9 +5379,6 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(316), 6,
       ts_builtin_sym_end,
       anon_sym_let,
-      sym_const_keyword,
-      sym_use_keyword,
-      sym_context_keyword,
       sym_const_keyword,
       sym_use_keyword,
       sym_context_keyword,
