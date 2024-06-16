@@ -13,7 +13,8 @@ fn func() -> i32 {
         (function_keyword)
         (identifier)
         (rightarrow_operator)
-        (type)))
+        (type)
+        (block)))
 
 ===
 Function with one parameter
@@ -34,7 +35,8 @@ fn func(x: i32) -> i32 {
         (semicolon_symbol)
         (type))
     (rightarrow_operator)
-    (type)))
+    (type)
+    (block)))
 
 ===
 Function with multiple parameters
@@ -58,7 +60,8 @@ fn func(x: i32, y: i32) -> i32 {
             (semicolon_symbol)
             (type))
         (rightarrow_operator)
-        (type)))
+        (type)
+        (block)))
 
 ===
 Function with trailing comma in parameter list
@@ -83,7 +86,8 @@ fn func(x: i32, y: i32,) -> i32 {
             (type))
         (comma_symbol)
         (rightarrow_operator)
-        (type)))
+        (type)
+        (block)))
 
 ===
 Function with return i32
@@ -96,19 +100,20 @@ fn func() -> i32 {
 
 (source_file
     (function_definition
-    (function_keyword)
-    (identifier)
-    (rightarrow_operator)
-    (type)
-    (return_statement
-        (return_keyword)
-        (expression
-        (literal
-            (number_literal)))
-        (terminal_symbol))))
+        (function_keyword)
+        (identifier)
+        (rightarrow_operator)
+        (type)
+        (block
+            (return_statement
+            (return_keyword)
+            (expression
+                (literal
+                (number_literal)))
+            (terminal_symbol)))))
 
 ===
-Function with return bool true
+Function with return bool literal
 ===
 
 fn func() -> bool {
@@ -122,34 +127,13 @@ fn func() -> bool {
         (identifier)
         (rightarrow_operator)
         (type)
-        (return_statement
+        (block
+          (return_statement
             (return_keyword)
             (expression
-                (literal
-                    (bool_literal)))
-            (terminal_symbol))))
-
-===
-Function with return bool false
-===
-
-fn func() -> bool {
-    return true;
-}
----
-
-(source_file
-    (function_definition
-        (function_keyword)
-        (identifier)
-        (rightarrow_operator)
-        (type)
-        (return_statement
-            (return_keyword)
-            (expression
-                (literal
-                    (bool_literal)))
-            (terminal_symbol))))
+              (literal
+                (bool_literal)))
+            (terminal_symbol)))))
 
 ===
 Function with return identifier
@@ -164,7 +148,8 @@ fn constructor() -> some_context {
     (identifier)
     (rightarrow_operator)
     (type
-        (identifier))))
+        (identifier))
+    (block)))
 
 ===
 Function returns binary expression
@@ -178,24 +163,25 @@ fn add(a : i32, b : i32) -> i32 {
         (function_keyword)
         (identifier)
         (parameter_definition
-            (identifier)
-            (semicolon_symbol)
-            (type))
+          (identifier)
+          (semicolon_symbol)
+          (type))
         (comma_symbol)
         (parameter_definition
-            (identifier)
-            (semicolon_symbol)
-            (type))
+          (identifier)
+          (semicolon_symbol)
+          (type))
         (rightarrow_operator)
         (type)
-        (return_statement
+        (block
+          (return_statement
             (return_keyword)
             (expression
-            (binary_expression
+              (binary_expression
                 (expression
-                (identifier))
-                (binary_operator
-                (add_operator))
+                  (identifier))
+                (add_operator)
                 (expression
-                (identifier))))
-            (terminal_symbol))))
+                  (identifier))))
+            (terminal_symbol)))))
+

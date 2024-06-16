@@ -14,6 +14,17 @@ function sep1(rule, separator) {
 
 const PRECEDENCE = {
     DOT: 1000,
+
+    POW : 600,
+    MUL : 590,
+    ADD : 580,
+    COMPARE : 570,
+    EQUALS : 560,
+    AND : 550,
+    OR : 540,
+    AND : 530,
+    OR : 520,
+
     EXPRESSION: 300,
     QUALIFIED_NAME: 200,
     IDENTIFIER: 100,
@@ -24,6 +35,7 @@ module.exports = grammar({
 
     conflicts: $ => [
         [$._lval_expression, $._name],
+        [$._lval_expression, $._name, $.type_qualified_name],
         [$.qualified_name, $.member_access_expression],
     ],
 
@@ -87,13 +99,13 @@ module.exports = grammar({
 
         _non_lval_expression: $ => choice(
             $.binary_expression,
-            $.assign_expression,
-            $.literal
+            $.literal,
+            $._expression_statement
         ),
 
         member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
-            field('expression', choice($.expression, $.type, $._name)),
-            $.attribute_access_operator,
+            field('expression', choice($.expression, $._embedded_type, $._name)),
+            choice($.attribute_access_operator, $.expand_operator),
             field('name', $.identifier),
         )),
 
@@ -103,11 +115,29 @@ module.exports = grammar({
             field('right', $.expression)
         )),
 
-        binary_expression: $ => prec.left(seq(
-            field('left', $.expression),
-            $.binary_operator,
-            field('right', $.expression)
-        )),
+        binary_expression: $ => choice(
+            ...[
+                [$.pow_operator, PRECEDENCE.POW],
+                [$.and_operator, PRECEDENCE.AND],
+                [$.or_operator, PRECEDENCE.OR],
+                [$.add_operator, PRECEDENCE.ADD],
+                [$.sub_operator, PRECEDENCE.ADD],
+                [$.mul_operator, PRECEDENCE.MUL],
+                [$.mod_operator, PRECEDENCE.MUL],
+                [$.less_operator, PRECEDENCE.COMPARE],
+                [$.less_equal_operator, PRECEDENCE.COMPARE],
+                [$.equals_operator, PRECEDENCE.EQUALS],
+                [$.not_equals_operator, PRECEDENCE.EQUALS],
+                [$.greater_equal_operator, PRECEDENCE.COMPARE],
+                [$.greater_operator, PRECEDENCE.COMPARE],
+              ].map(([operator, precedence]) =>
+                prec.left(precedence, seq(
+                  field('left', $.expression),
+                  field('operator', operator),
+                  field('right', $.expression),
+                )),
+              ),
+        ),
 
         variable_definition: $ => seq(
             'let',
@@ -138,6 +168,12 @@ module.exports = grammar({
             $._rcb_symbol
         ),
 
+        block : $ => seq(
+            $._lcb_symbol,
+            repeat($._statement),
+            $._rcb_symbol
+        ),
+
         function_definition: $ => seq(
             $.function_keyword,
             field('name', $.identifier),
@@ -151,9 +187,7 @@ module.exports = grammar({
             $._rrb_symbol,
             $.rightarrow_operator,
             field('returns', $.type),
-            $._lcb_symbol,
-            repeat($._statement),
-            $._rcb_symbol
+            field('body', $.block)
         ),
 
         parameter_definition: $ => seq(
@@ -195,12 +229,6 @@ module.exports = grammar({
             $.terminal_symbol
         ),
 
-        type_qualified_name: $ => seq(
-            field('base', $.identifier),
-            $.expand_operator,
-            field('name', $.identifier)
-        ),
-
         const_keyword: $ => 'const',
         use_keyword: $ => 'use',
         from_keyword: $ => 'from',
@@ -212,41 +240,35 @@ module.exports = grammar({
         semicolon_symbol: $ => ':',
         terminal_symbol: $ => ';',
 
-        binary_operator: $ => choice(
-            $.add_operator,
-            $.subtract_operator,
-            $.multiply_operator,
-            $.less_operator,
-            $.greater_operator,
-            $.less_equal_operator,
-            $.greater_equal_operator,
-            $.equals_operator,
-            $.not_equals_operator,
-        ),
+        add_operator: _ => '+',
+        sub_operator: _ => '-',
+        mul_operator: _ => '*',
+        pow_operator: _ => '**',
+        mod_operator: _ => '%',
 
-        add_operator: $ => '+',
-        subtract_operator: $ => '-',
-        multiply_operator: $ => '*',
-        assign_operator: $ => '=',
-        less_operator: $ => '<',
-        greater_operator: $ => '>',
-        less_equal_operator: $ => '<=',
-        greater_equal_operator: $ => '>=',
-        equals_operator: $ => '==',
-        not_equals_operator: $ => '!=',
+        and_operator: _ => '&&',
+        or_operator: _ => '||',
 
-        expand_operator: $ => '::',
-        attribute_access_operator: $ => '.',
+        less_operator: _ => '<',
+        greater_operator: _ => '>',
+        less_equal_operator: _ => '<=',
+        greater_equal_operator: _ => '>=',
+        equals_operator: _ => '==',
+        not_equals_operator: _ => '!=',
 
-        rightarrow_operator: $ => '->',
+        assign_operator: _ => '=',
+        expand_operator: _ => '::',
+        attribute_access_operator: _ => '.',
 
-        _lcb_symbol: $ => '{',
-        _rcb_symbol: $ => '}',
-        _lrb_symbol: $ => '(',
-        _rrb_symbol: $ => ')',
+        rightarrow_operator: _ => '->',
+
+        _lcb_symbol: _ => '{',
+        _rcb_symbol: _ => '}',
+        _lrb_symbol: _ => '(',
+        _rrb_symbol: _ => ')',
 
 
-        bool_literal: $ => choice(
+        bool_literal: _ => choice(
             'true',
             'false',
         ),
@@ -264,12 +286,12 @@ module.exports = grammar({
         qualified_identifier: $ => sep1($.identifier, $.attribute_access_operator),
 
         _name: $ => choice(
-            $.alias_qualified_name,
+            $.type_qualified_name,
             $.qualified_name,
             $.identifier,
         ),
 
-        alias_qualified_name: $ => seq(
+        type_qualified_name: $ => seq(
             field('alias', $.identifier),
             $.expand_operator,
             field('name', $.identifier),

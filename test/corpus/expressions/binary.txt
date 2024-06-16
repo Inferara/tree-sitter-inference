@@ -13,13 +13,79 @@ fn context_assign() -> () {
         (identifier)
         (rightarrow_operator)
         (type)
-        (expression_statement
+        (block
+            (expression_statement
             (assign_expression
-            (member_access_expression
+                (member_access_expression
                 (expression)
                 (attribute_access_operator)
                 (identifier))
-            (assign_operator)
-            (expression
+                (assign_operator)
+                (expression
                 (identifier)))
-            (terminal_symbol))))
+            (terminal_symbol)))))
+
+
+===
+Context constructor with various binary expressions
+===
+fn constructor() -> some_context {
+    ctx.type = ContextType::Program;
+    ctx.arh = Arch::WASM;
+    ctx.max_curr_mem = 2 ** 16;
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (rightarrow_operator)
+        (type
+          (identifier))
+        (block
+          (expression_statement
+            (assign_expression
+              (member_access_expression
+                (expression)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (expression
+                (member_access_expression
+                  (expression
+                    (identifier))
+                  (expand_operator)
+                  (identifier))))
+            (terminal_symbol))
+          (expression_statement
+            (assign_expression
+              (member_access_expression
+                (expression)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (expression
+                (member_access_expression
+                  (expression
+                    (identifier))
+                  (expand_operator)
+                  (identifier))))
+            (terminal_symbol))
+          (expression_statement
+            (assign_expression
+              (member_access_expression
+                (expression)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (expression
+                (binary_expression
+                  (expression
+                    (literal
+                      (number_literal)))
+                  (pow_operator)
+                  (expression
+                    (literal
+                      (number_literal))))))
+            (terminal_symbol)))))
