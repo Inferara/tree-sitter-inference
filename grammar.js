@@ -142,7 +142,10 @@ module.exports = grammar({
         variable_definition: $ => seq(
             'let',
             field('name', $.identifier),
+            $._typedef_symbol,
+            field('type', $.type),
             optional(seq($.assign_operator, $.expression)),
+            $._terminal_symbol
         ),
 
         constant_definition: $ => seq(

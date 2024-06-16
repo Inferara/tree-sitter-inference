@@ -698,6 +698,18 @@
           }
         },
         {
+          "type": "SYMBOL",
+          "name": "_typedef_symbol"
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "type"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -717,6 +729,10 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_terminal_symbol"
         }
       ]
     },
