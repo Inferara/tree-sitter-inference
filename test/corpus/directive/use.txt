@@ -1,5 +1,5 @@
 ===
-Use statement
+Use directive
 ===
 
 use inference::std;
@@ -7,7 +7,7 @@ use inference::std;
 ---
 
 (source_file
-    (use_statement
+    (use_directive
         (use_keyword)
         (identifier)
         (expand_operator)
@@ -15,7 +15,7 @@ use inference::std;
         (terminal_symbol)))
 
 ===
-Use statement nested
+Use directive nested
 ===
 
 use inference::std::algorithms::sort;
@@ -23,7 +23,7 @@ use inference::std::algorithms::sort;
 ---
 
 (source_file
-    (use_statement
+    (use_directive
         (use_keyword)
         (identifier)
         (expand_operator)
@@ -35,7 +35,7 @@ use inference::std::algorithms::sort;
         (terminal_symbol)))
 
 ===
-Use statement from
+Use directive from
 ===
 
 use { sort } from "./sort.rs";
@@ -43,11 +43,9 @@ use { sort } from "./sort.rs";
 ---
 
 (source_file
-    (use_statement
+    (use_directive
         (use_keyword)
-        (lcb_symbol)
         (identifier)
-        (rcb_symbol)
         (from_keyword)
         (string_literal)
         (terminal_symbol)))
@@ -61,13 +59,11 @@ use { sort, filter } from "./sort.rs";
 ---
 
 (source_file
-    (use_statement
+    (use_directive
         (use_keyword)
-        (lcb_symbol)
         (identifier)
         (comma_symbol)
         (identifier)
-        (rcb_symbol)
         (from_keyword)
         (string_literal)
         (terminal_symbol)))

@@ -12,7 +12,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_statement"
+            "name": "use_directive"
           },
           {
             "type": "SYMBOL",
@@ -47,7 +47,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "use_statement"
+          "name": "expression_statement"
         },
         {
           "type": "SYMBOL",
@@ -196,8 +196,8 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "."
+            "type": "SYMBOL",
+            "name": "attribute_access_operator"
           },
           {
             "type": "FIELD",
@@ -211,62 +211,62 @@
       }
     },
     "assign_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "left",
-          "content": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_lval_expression"
+            }
+          },
+          {
             "type": "SYMBOL",
-            "name": "_lval_expression"
+            "name": "assign_operator"
+          },
+          {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assign_operator"
-        },
-        {
-          "type": "FIELD",
-          "name": "right",
-          "content": {
-            "type": "SYMBOL",
-            "name": "expression"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "terminal_symbol"
-        }
-      ]
+        ]
+      }
     },
     "binary_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "left",
-          "content": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
+          },
+          {
             "type": "SYMBOL",
-            "name": "expression"
+            "name": "binary_operator"
+          },
+          {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "binary_operator"
-        },
-        {
-          "type": "FIELD",
-          "name": "right",
-          "content": {
-            "type": "SYMBOL",
-            "name": "expression"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "terminal_symbol"
-        }
-      ]
+        ]
+      }
     },
     "variable_definition": {
       "type": "SEQ",
@@ -368,7 +368,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "lcb_symbol"
+          "name": "_lcb_symbol"
         },
         {
           "type": "REPEAT",
@@ -388,7 +388,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "rcb_symbol"
+          "name": "_rcb_symbol"
         }
       ]
     },
@@ -409,7 +409,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "lrb_symbol"
+          "name": "_lrb_symbol"
         },
         {
           "type": "REPEAT",
@@ -437,7 +437,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "rrb_symbol"
+          "name": "_rrb_symbol"
         },
         {
           "type": "SYMBOL",
@@ -453,27 +453,18 @@
         },
         {
           "type": "SYMBOL",
-          "name": "lcb_symbol"
+          "name": "_lcb_symbol"
         },
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_statement"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "expression"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_statement"
           }
         },
         {
           "type": "SYMBOL",
-          "name": "rcb_symbol"
+          "name": "_rcb_symbol"
         }
       ]
     },
@@ -502,7 +493,7 @@
         }
       ]
     },
-    "use_statement": {
+    "use_directive": {
       "type": "SEQ",
       "members": [
         {
@@ -542,7 +533,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "lcb_symbol"
+                  "name": "_lcb_symbol"
                 },
                 {
                   "type": "SEQ",
@@ -571,7 +562,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "rcb_symbol"
+                  "name": "_rcb_symbol"
                 },
                 {
                   "type": "SYMBOL",
@@ -588,6 +579,28 @@
         {
           "type": "SYMBOL",
           "name": "terminal_symbol"
+        }
+      ]
+    },
+    "expression_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_expression_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "terminal_symbol"
+        }
+      ]
+    },
+    "_expression_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "assign_expression"
         }
       ]
     },
@@ -634,10 +647,6 @@
             "type": "SYMBOL",
             "name": "identifier"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "terminal_symbol"
         }
       ]
     },
@@ -682,7 +691,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "assign_operator"
+          "name": "add_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subtract_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "multiply_operator"
         },
         {
           "type": "SYMBOL",
@@ -710,17 +727,21 @@
         }
       ]
     },
+    "add_operator": {
+      "type": "STRING",
+      "value": "+"
+    },
+    "subtract_operator": {
+      "type": "STRING",
+      "value": "-"
+    },
+    "multiply_operator": {
+      "type": "STRING",
+      "value": "*"
+    },
     "assign_operator": {
       "type": "STRING",
       "value": "="
-    },
-    "expand_operator": {
-      "type": "STRING",
-      "value": "::"
-    },
-    "attribute_access_operator": {
-      "type": "STRING",
-      "value": "."
     },
     "less_operator": {
       "type": "STRING",
@@ -746,31 +767,31 @@
       "type": "STRING",
       "value": "!="
     },
+    "expand_operator": {
+      "type": "STRING",
+      "value": "::"
+    },
+    "attribute_access_operator": {
+      "type": "STRING",
+      "value": "."
+    },
     "rightarrow_operator": {
       "type": "STRING",
       "value": "->"
     },
-    "lcb_symbol": {
+    "_lcb_symbol": {
       "type": "STRING",
       "value": "{"
     },
-    "rcb_symbol": {
+    "_rcb_symbol": {
       "type": "STRING",
       "value": "}"
     },
-    "lsb_symbol": {
-      "type": "STRING",
-      "value": "["
-    },
-    "rsb_symbol": {
-      "type": "STRING",
-      "value": "]"
-    },
-    "lrb_symbol": {
+    "_lrb_symbol": {
       "type": "STRING",
       "value": "("
     },
-    "rrb_symbol": {
+    "_rrb_symbol": {
       "type": "STRING",
       "value": ")"
     },
@@ -917,7 +938,12 @@
     },
     "_reserved_identifier": {
       "type": "CHOICE",
-      "members": []
+      "members": [
+        {
+          "type": "STRING",
+          "value": "constructor"
+        }
+      ]
     },
     "_identifier": {
       "type": "PATTERN",
@@ -967,6 +993,10 @@
     [
       "_lval_expression",
       "_name"
+    ],
+    [
+      "qualified_name",
+      "member_access_expression"
     ]
   ],
   "precedences": [],

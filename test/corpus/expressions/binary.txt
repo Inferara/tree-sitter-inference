@@ -9,22 +9,17 @@ fn context_assign() -> () {
 
 (source_file
     (function_definition
-    (function_keyword)
-    (identifier)
-    (lrb_symbol)
-    (rrb_symbol)
-    (rightarrow_operator)
-    (type)
-    (lcb_symbol)
-    (expression
-        (binary_expression
-        (expression
+        (function_keyword)
+        (identifier)
+        (rightarrow_operator)
+        (type)
+        (expression_statement
+            (assign_expression
             (member_access_expression
-            (expression)
-            (identifier)))
-        (binary_operator
-            (assign_operator))
-        (expression
-            (identifier))
-        (terminal_symbol)))
-    (rcb_symbol)))
+                (expression)
+                (attribute_access_operator)
+                (identifier))
+            (assign_operator)
+            (expression
+                (identifier)))
+            (terminal_symbol))))

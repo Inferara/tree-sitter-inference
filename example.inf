@@ -15,10 +15,6 @@ context some_context {
     ctx.mem = new u32[](ctx.max_curr_mem);
   }
 
-  total fn add(a : i32, b : i32) -> i32 {
-    return a + b;
-  }
-
   fn valid_address(a: address) -> address {
     assert (a < ctx.max_curr_mem && !(a % 4));
     return a;

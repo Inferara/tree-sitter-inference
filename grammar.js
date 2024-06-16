@@ -13,7 +13,7 @@ function sep1(rule, separator) {
 }
 
 const PRECEDENCE = {
-    DOT : 1000,
+    DOT: 1000,
     EXPRESSION: 300,
     QUALIFIED_NAME: 200,
     IDENTIFIER: 100,
@@ -24,6 +24,7 @@ module.exports = grammar({
 
     conflicts: $ => [
         [$._lval_expression, $._name],
+        [$.qualified_name, $.member_access_expression],
     ],
 
     extras: $ => [
@@ -35,7 +36,7 @@ module.exports = grammar({
         source_file: $ => repeat(
             choice(
                 $._definition,
-                $._statement,
+                $.use_directive,
                 $.constant_definition
             ),
         ),
@@ -49,7 +50,7 @@ module.exports = grammar({
         ),
 
         _statement: $ => choice(
-            $.use_statement,
+            $.expression_statement,
             $.return_statement,
         ),
 
@@ -67,7 +68,7 @@ module.exports = grammar({
             '()'
         )),
 
-        literal : $ => choice(
+        literal: $ => choice(
             $.bool_literal,
             $.string_literal,
             $.number_literal,
@@ -92,23 +93,21 @@ module.exports = grammar({
 
         member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
             field('expression', choice($.expression, $.type, $._name)),
-            '.',
+            $.attribute_access_operator,
             field('name', $.identifier),
         )),
 
-        assign_expression: $ => seq(
+        assign_expression: $ => prec.left(seq(
             field('left', $._lval_expression),
             $.assign_operator,
-            field('right', $.expression),
-            $.terminal_symbol
-        ),
+            field('right', $.expression)
+        )),
 
-        binary_expression: $ => seq(
+        binary_expression: $ => prec.left(seq(
             field('left', $.expression),
             $.binary_operator,
-            field('right', $.expression),
-            $.terminal_symbol
-        ),
+            field('right', $.expression)
+        )),
 
         variable_definition: $ => seq(
             'let',
@@ -129,37 +128,32 @@ module.exports = grammar({
         context_definition: $ => seq(
             $.context_keyword,
             field('name', $.identifier),
-            $.lcb_symbol,
+            $._lcb_symbol,
             repeat(
                 choice(
                     $.variable_definition,
                     $.function_definition,
                 )
             ),
-            $.rcb_symbol
+            $._rcb_symbol
         ),
 
         function_definition: $ => seq(
             $.function_keyword,
             field('name', $.identifier),
-            $.lrb_symbol,
+            $._lrb_symbol,
             repeat(
                 seq(
                     $.parameter_definition,
                     optional($.comma_symbol),
                 ),
             ),
-            $.rrb_symbol,
+            $._rrb_symbol,
             $.rightarrow_operator,
             field('returns', $.type),
-            $.lcb_symbol,
-            repeat(
-                choice(
-                    $._statement,
-                    $.expression
-                )
-            ),
-            $.rcb_symbol
+            $._lcb_symbol,
+            repeat($._statement),
+            $._rcb_symbol
         ),
 
         parameter_definition: $ => seq(
@@ -168,7 +162,7 @@ module.exports = grammar({
             field('type', $.type),
         ),
 
-        use_statement: $ => seq(
+        use_directive: $ => seq(
             $.use_keyword,
             choice(
                 sep1(
@@ -176,17 +170,23 @@ module.exports = grammar({
                     $.expand_operator
                 ),
                 seq(
-                    $.lcb_symbol,
+                    $._lcb_symbol,
                     sep1(
                         $.identifier,
                         $.comma_symbol
                     ),
-                    $.rcb_symbol,
+                    $._rcb_symbol,
                     $.from_keyword,
                     $.string_literal
                 )
             ),
             $.terminal_symbol
+        ),
+
+        expression_statement: $ => seq($._expression_statement, $.terminal_symbol),
+
+        _expression_statement: $ => seq(
+            $.assign_expression,
         ),
 
         return_statement: $ => seq(
@@ -198,8 +198,7 @@ module.exports = grammar({
         type_qualified_name: $ => seq(
             field('base', $.identifier),
             $.expand_operator,
-            field('name', $.identifier),
-            $.terminal_symbol,
+            field('name', $.identifier)
         ),
 
         const_keyword: $ => 'const',
@@ -214,7 +213,9 @@ module.exports = grammar({
         terminal_symbol: $ => ';',
 
         binary_operator: $ => choice(
-            $.assign_operator,
+            $.add_operator,
+            $.subtract_operator,
+            $.multiply_operator,
             $.less_operator,
             $.greater_operator,
             $.less_equal_operator,
@@ -223,9 +224,10 @@ module.exports = grammar({
             $.not_equals_operator,
         ),
 
+        add_operator: $ => '+',
+        subtract_operator: $ => '-',
+        multiply_operator: $ => '*',
         assign_operator: $ => '=',
-        expand_operator: $ => '::',
-        attribute_access_operator: $ => '.',
         less_operator: $ => '<',
         greater_operator: $ => '>',
         less_equal_operator: $ => '<=',
@@ -233,14 +235,15 @@ module.exports = grammar({
         equals_operator: $ => '==',
         not_equals_operator: $ => '!=',
 
+        expand_operator: $ => '::',
+        attribute_access_operator: $ => '.',
+
         rightarrow_operator: $ => '->',
 
-        lcb_symbol: $ => '{',
-        rcb_symbol: $ => '}',
-        lsb_symbol: $ => '[',
-        rsb_symbol: $ => ']',
-        lrb_symbol: $ => '(',
-        rrb_symbol: $ => ')',
+        _lcb_symbol: $ => '{',
+        _rcb_symbol: $ => '}',
+        _lrb_symbol: $ => '(',
+        _rrb_symbol: $ => ')',
 
 
         bool_literal: $ => choice(
@@ -254,7 +257,7 @@ module.exports = grammar({
             '"'
         ),
 
-        _string_literal_content: $ => token.immediate(prec(1, /[^"\\\n]+/)),
+        _string_literal_content: _ => token.immediate(prec(1, /[^"\\\n]+/)),
 
         number_literal: $ => /\d+/,
 
@@ -278,8 +281,8 @@ module.exports = grammar({
             field('name', $.identifier),
         )),
 
-        _reserved_identifier: $ => choice(
-            
+        _reserved_identifier: _ => choice(
+            'constructor'
         ),
 
         _identifier: _ => /\w*[_a-zA-Z]\w*/,
