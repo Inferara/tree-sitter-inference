@@ -253,10 +253,6 @@ module.exports = grammar({
         function_keyword: $ => 'fn',
         return_keyword: $ => 'return',
 
-        _comma_symbol: $ => ',',
-        _typedef_symbol: $ => ':',
-        _terminal_symbol: $ => ';',
-
         add_operator: _ => '+',
         sub_operator: _ => '-',
         mul_operator: _ => '*',
