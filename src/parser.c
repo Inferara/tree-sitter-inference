@@ -357,12 +357,8 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
   },
   [sym__typedef_symbol] = {
     .visible = false,
-  [sym__typedef_symbol] = {
-    .visible = false,
     .named = true,
   },
-  [sym__terminal_symbol] = {
-    .visible = false,
   [sym__terminal_symbol] = {
     .visible = false,
     .named = true,
