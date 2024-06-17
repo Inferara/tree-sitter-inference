@@ -184,4 +184,137 @@ fn constructor() -> some_context {
 }
 ---
 
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type
+          (identifier))
+        (block
+          (expression_statement
+            (assign_expression
+              (member_access_expression
+                (expression)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (expression
+                (function_call_expression
+                  (member_access_expression
+                    (expression
+                      (generic_name
+                        (identifier)
+                        (type_argument_list
+                          (type))))
+                    (expand_operator)
+                    (identifier)))))))))
 
+===
+Create and assign Array<i64> with one parameter
+===
+fn constructor() -> some_context {
+    ctx.mem = Array<i64>::new(10);
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type
+          (identifier))
+        (block
+          (expression_statement
+            (assign_expression
+              (member_access_expression
+                (expression)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (expression
+                (function_call_expression
+                  (member_access_expression
+                    (expression
+                      (generic_name
+                        (identifier)
+                        (type_argument_list
+                          (type))))
+                    (expand_operator)
+                    (identifier))
+                  (expression
+                    (literal
+                      (number_literal))))))))))
+
+===
+Create and assign Array<u64> with multiple parameters
+===
+fn constructor() -> some_context {
+    ctx.mem = Array<u64>::new(10, a, false, get_name("abc"), "str", Array<i32>::new(10 * 2));
+}
+---
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type
+          (identifier))
+        (block
+          (expression_statement
+            (assign_expression
+              (member_access_expression
+                (expression)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (expression
+                (function_call_expression
+                  (member_access_expression
+                    (expression
+                      (generic_name
+                        (identifier)
+                        (type_argument_list
+                          (type))))
+                    (expand_operator)
+                    (identifier))
+                  (expression
+                    (literal
+                      (number_literal)))
+                  (expression
+                    (identifier))
+                  (expression
+                    (literal
+                      (bool_literal)))
+                  (expression
+                    (function_call_expression
+                      (identifier)
+                      (expression
+                        (literal
+                          (string_literal)))))
+                  (expression
+                    (literal
+                      (string_literal)))
+                  (expression
+                    (function_call_expression
+                      (member_access_expression
+                        (expression
+                          (generic_name
+                            (identifier)
+                            (type_argument_list
+                              (type))))
+                        (expand_operator)
+                        (identifier))
+                      (expression
+                        (binary_expression
+                          (expression
+                            (literal
+                              (number_literal)))
+                          (mul_operator)
+                          (expression
+                            (literal
+                              (number_literal))))))))))))))
