@@ -13,7 +13,7 @@ context some_context {
     ctx.type = ContextType::Program;
     ctx.arh = Arch::WASM;
     ctx.max_curr_mem = 2 ** 16;
-    ctx.mem = new u32[](ctx.max_curr_mem);
+    ctx.mem = Array<u32>::new(ctx.max_curr_mem);
   }
 
   fn valid_Address(a: Address) -> Address {
