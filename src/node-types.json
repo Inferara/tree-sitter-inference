@@ -426,6 +426,10 @@
         {
           "type": "rightarrow_operator",
           "named": true
+        },
+        {
+          "type": "total_keyword",
+          "named": true
         }
       ]
     }
@@ -940,6 +944,10 @@
   },
   {
     "type": "sub_operator",
+    "named": true
+  },
+  {
+    "type": "total_keyword",
     "named": true
   },
   {

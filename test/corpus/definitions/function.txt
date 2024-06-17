@@ -155,3 +155,36 @@ fn add(a : i32, b : i32) -> i32 {
                 (add_operator)
                 (expression
                   (identifier))))))))
+
+===
+Total function definition
+===
+total fn add(a : i32, b : i32) -> i32 {
+    return a + b;
+}
+---
+
+(source_file
+    (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type))
+          (argument_declaration
+            (identifier)
+            (type)))
+        (rightarrow_operator)
+        (type)
+        (block
+          (return_statement
+            (return_keyword)
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (add_operator)
+                (expression
+                  (identifier))))))))

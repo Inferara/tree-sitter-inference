@@ -187,6 +187,7 @@ module.exports = grammar({
         ),
 
         function_definition: $ => seq(
+            optional($.total_keyword),
             $.function_keyword,
             field('name', $.identifier),
             $.argument_list,
@@ -247,6 +248,7 @@ module.exports = grammar({
         context_keyword: $ => 'context',
         function_keyword: $ => 'fn',
         return_keyword: $ => 'return',
+        total_keyword: $ => 'total',
 
         add_operator: _ => '+',
         sub_operator: _ => '-',

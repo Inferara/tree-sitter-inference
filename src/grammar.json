@@ -904,6 +904,18 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "total_keyword"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "function_keyword"
         },
@@ -1171,6 +1183,10 @@
     "return_keyword": {
       "type": "STRING",
       "value": "return"
+    },
+    "total_keyword": {
+      "type": "STRING",
+      "value": "total"
     },
     "add_operator": {
       "type": "STRING",
