@@ -55,6 +55,10 @@
         {
           "type": "SYMBOL",
           "name": "variable_definition_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_definition_statement"
         }
       ]
     },
@@ -72,6 +76,10 @@
         {
           "type": "SYMBOL",
           "name": "external_function_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_definition_statement"
         }
       ]
     },
@@ -397,6 +405,31 @@
           }
         ]
       }
+    },
+    "typeof_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "typeof"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "typeref",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_name"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "binary_expression": {
       "type": "CHOICE",
@@ -879,6 +912,35 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_terminal_symbol"
+        }
+      ]
+    },
+    "type_definition_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "type"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assign_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "typeof_expression"
         },
         {
           "type": "SYMBOL",
@@ -1526,6 +1588,10 @@
         {
           "type": "SYMBOL",
           "name": "parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "typeof_expression"
         }
       ]
     },
@@ -1905,6 +1971,10 @@
         {
           "type": "STRING",
           "value": "filter"
+        },
+        {
+          "type": "STRING",
+          "value": "type"
         }
       ]
     },

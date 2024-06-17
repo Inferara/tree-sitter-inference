@@ -68,13 +68,15 @@ module.exports = grammar({
             $.filter_statement,
             $.for_statement,
             $.if_statement,
-            $.variable_definition_statement
+            $.variable_definition_statement,
+            $.type_definition_statement
         ),
 
         _definition : $ => choice(
             $.constant_definition,
             $.function_definition,
-            $.external_function_definition
+            $.external_function_definition,
+            $.type_definition_statement
         ),
 
         type: $ => choice(
@@ -156,6 +158,13 @@ module.exports = grammar({
             $.expression,
         )),
 
+        typeof_expression: $ => seq(
+            'typeof',
+            '(',
+            field('typeref', $._name),
+            ')'
+        ),
+
         binary_expression: $ => choice(
             ...[
                 [$.pow_operator, PRECEDENCE.POW],
@@ -186,6 +195,14 @@ module.exports = grammar({
             $._typedef_symbol,
             field('type', $.type),
             optional(seq($.assign_operator, $.expression)),
+            $._terminal_symbol
+        ),
+
+        type_definition_statement: $ => seq(
+            'type',
+            field('name', $.identifier),
+            $.assign_operator,
+            $.typeof_expression,
             $._terminal_symbol
         ),
 
@@ -315,7 +332,8 @@ module.exports = grammar({
             $.prefix_unary_expression,
             $.assert_expression,
             $.apply_expression,
-            $.parenthesized_expression
+            $.parenthesized_expression,
+            $.typeof_expression,
         ),
 
         return_statement: $ => seq(
@@ -417,7 +435,8 @@ module.exports = grammar({
         _reserved_identifier: _ => choice(
             'constructor',
             'proof',
-            'filter'
+            'filter',
+            'type'
         ),
 
         _identifier: _ => /\w*[_a-zA-Z]\w*/,

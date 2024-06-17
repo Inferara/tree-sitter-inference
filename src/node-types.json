@@ -243,6 +243,10 @@
           "named": true
         },
         {
+          "type": "type_definition_statement",
+          "named": true
+        },
+        {
           "type": "variable_definition_statement",
           "named": true
         }
@@ -338,6 +342,10 @@
         {
           "type": "function_definition",
           "named": true
+        },
+        {
+          "type": "type_definition_statement",
+          "named": true
         }
       ]
     }
@@ -393,6 +401,10 @@
         {
           "type": "prefix_unary_expression",
           "named": true
+        },
+        {
+          "type": "typeof_expression",
+          "named": true
         }
       ]
     }
@@ -427,6 +439,10 @@
         },
         {
           "type": "prefix_unary_expression",
+          "named": true
+        },
+        {
+          "type": "typeof_expression",
           "named": true
         }
       ]
@@ -537,6 +553,10 @@
           },
           {
             "type": "return_statement",
+            "named": true
+          },
+          {
+            "type": "type_definition_statement",
             "named": true
           },
           {
@@ -885,6 +905,10 @@
         {
           "type": "prefix_unary_expression",
           "named": true
+        },
+        {
+          "type": "typeof_expression",
+          "named": true
         }
       ]
     }
@@ -1007,6 +1031,10 @@
           "named": true
         },
         {
+          "type": "type_definition_statement",
+          "named": true
+        },
+        {
           "type": "use_directive",
           "named": true
         }
@@ -1061,6 +1089,36 @@
     }
   },
   {
+    "type": "type_definition_statement",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assign_operator",
+          "named": true
+        },
+        {
+          "type": "typeof_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_qualified_name",
     "named": true,
     "fields": {
@@ -1098,6 +1156,34 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "typeof_expression",
+    "named": true,
+    "fields": {
+      "typeref": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1345,6 +1431,14 @@
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "type",
+    "named": false
+  },
+  {
+    "type": "typeof",
     "named": false
   },
   {
