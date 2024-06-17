@@ -35,8 +35,9 @@ module.exports = grammar({
     name: 'inference',
 
     conflicts: $ => [
+        [$._simple_name, $.generic_name],
+        [$._simple_name, $.type_qualified_name],
         [$._lval_expression, $._name],
-        [$._lval_expression, $._name, $.type_qualified_name],
         [$.qualified_name, $.member_access_expression],
     ],
 
@@ -95,7 +96,7 @@ module.exports = grammar({
         _lval_expression: $ => choice(
             'ctx',
             $.member_access_expression,
-            $.identifier
+            $._simple_name
         ),
 
         _non_lval_expression: $ => choice(
@@ -107,7 +108,7 @@ module.exports = grammar({
         member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
             field('expression', choice($.expression, $._embedded_type, $._name)),
             choice($.attribute_access_operator, $.expand_operator),
-            field('name', $.identifier),
+            field('name', $._simple_name),
         )),
 
         assign_expression: $ => prec.left(seq(
@@ -298,20 +299,36 @@ module.exports = grammar({
         _name: $ => choice(
             $.type_qualified_name,
             $.qualified_name,
-            $.identifier,
+            $._simple_name,
         ),
 
         type_qualified_name: $ => seq(
             field('alias', $.identifier),
             $.expand_operator,
-            field('name', $.identifier),
+            field('name', $._simple_name),
+        ),
+
+        _simple_name: $ => choice(
+            $.identifier,
+            $.generic_name,
         ),
 
         qualified_name: $ => prec(PRECEDENCE.DOT, seq(
             field('qualifier', $._name),
             $.attribute_access_operator,
-            field('name', $.identifier),
+            field('name', $._simple_name),
         )),
+
+        generic_name: $ => seq($.identifier, $.type_argument_list),
+
+        type_argument_list: $ => seq(
+            '<',
+            choice(
+                repeat(','),
+                sep1($.type, $._comma_symbol),
+            ),
+            '>',
+        ),
 
         _reserved_identifier: _ => choice(
             'constructor'
