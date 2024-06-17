@@ -17,14 +17,14 @@ context some_context {
   }
 
   fn valid_Address(a: Address) -> Address {
-    assert (a < ctx.max_curr_mem && !(a % 4));
+    assert(a < ctx.max_curr_mem && !(a % 4));
     return a;
   }
 
   fn count_values(a: Address, b: Address, val : i32) -> u32 {
     let res : u32 = 0;
     for (let i : Address = a; i <= b; i.next()) {
-      if (ctx.mem[i] == val) {
+      if (ctx.mem.at(i) == val) {
         res += 1;
       }
     }
@@ -38,7 +38,7 @@ context some_context {
     filter {
       a = valid_Address(i32::all());
       b = valid_Address(i32::all());
-      assert a <= b;
+      assert(a <= b);
     }
 
     let val : i32 = i32::all();
@@ -47,7 +47,7 @@ context some_context {
     func(a, b);
     let after : u32 = count_values(a, b, val);
     
-    assert before == after;
+    assert(before == after);
   }
 
   total fn procuring_sorted(func: sf) {
@@ -59,7 +59,7 @@ context some_context {
     filter {
       a = valid_Address(i32::all());
       b = valid_Address(i32::all());
-      assert a <= b;
+      assert(a <= b);
     }
 
     func(a, b);
@@ -68,12 +68,12 @@ context some_context {
       a0 = valid_Address(i32::all());
       b0 = valid_Address(i32::all());
 
-      assert a <= a0;
-      assert a0 < b0;
-      assert b0 <= b;
+      assert(a <= a0);
+      assert(a0 < b0);
+      assert(b0 <= b);
     }
 
-    assert ctx.mem[a0] <= ctx.mem[b0];
+    assert ctx.mem.at(a0) <= ctx.mem.at(b0);
   }
 
   total no_side_effects(func : sf) {
@@ -86,15 +86,15 @@ context some_context {
       a = valid_Address(i32::all());
       b = valid_Address(i32::all());
       c = valid_Address(i32::all());
-      assert a <= b;
-      assert c < a || c > b;
+      assert(a <= b);
+      assert(c < a || c > b);
     }
 
-    let before = ctx.mem[c];
+    let before = ctx.mem.at(c);
     func(a, b);
-    let after = ctx.mem[c];
+    let after = ctx.mem.at(c);
 
-    assert before == after;
+    assert(before == after);
   }
 
   ///TODO define in grammar.js > apply preserving_count(sort);
