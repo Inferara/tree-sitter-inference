@@ -12,3 +12,26 @@ context some_context {
     (context_definition
         (context_keyword)
         (identifier)))
+
+===
+External function definition
+===
+
+context some_context {
+    external fn sorting_function (Address, Address) -> Address;
+}
+
+---
+
+(source_file
+      (context_definition
+        (context_keyword)
+        (identifier)
+        (external_function_definition
+          (function_keyword)
+          (identifier)
+          (identifier)
+          (identifier)
+          (rightarrow_operator)
+          (type
+            (identifier)))))

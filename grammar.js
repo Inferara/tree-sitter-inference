@@ -53,18 +53,13 @@ module.exports = grammar({
     rules: {
         source_file: $ => repeat(
             choice(
-                $._definition,
                 $.use_directive,
-                $.constant_definition
+                $.context_definition,
+                $._definition
             ),
         ),
 
         word: $ => $.identifier,
-
-        _definition: $ => choice(
-            $.context_definition,
-            $.function_definition,
-        ),
 
         _statement: $ => choice(
             $.block,
@@ -74,6 +69,12 @@ module.exports = grammar({
             $.for_statement,
             $.if_statement,
             $.variable_definition_statement
+        ),
+
+        _definition : $ => choice(
+            $.constant_definition,
+            $.function_definition,
+            $.external_function_definition
         ),
 
         type: $ => choice(
@@ -202,12 +203,7 @@ module.exports = grammar({
             $.context_keyword,
             field('name', $.identifier),
             $._lcb_symbol,
-            repeat(
-                choice(
-                    $.constant_definition,
-                    $.function_definition,
-                )
-            ),
+            repeat($._definition),
             $._rcb_symbol
         ),
 
@@ -227,6 +223,21 @@ module.exports = grammar({
                 optional(seq($.rightarrow_operator,  $.type))
             ),
             field('body', $.block)
+        ),
+
+        external_function_definition: $ => seq(
+            'external',
+            optional($.total_keyword),
+            $.function_keyword,
+            field('name', $.identifier),
+            $._lrb_symbol,
+            sep1($._name, $._comma_symbol),
+            $._rrb_symbol,
+            field(
+                'returns',
+                optional(seq($.rightarrow_operator,  $.type))
+            ),
+            ';'
         ),
 
         argument_list: $ => seq(

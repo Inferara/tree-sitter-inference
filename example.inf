@@ -38,7 +38,7 @@ context some_context {
     filter {
       a = valid_Address(i32::all());
       b = valid_Address(i32::all());
-      assert(a <= b);
+      assert a <= b;
     }
 
     let val : i32 = i32::all();
@@ -59,7 +59,7 @@ context some_context {
     filter {
       a = valid_Address(i32::all());
       b = valid_Address(i32::all());
-      assert(a <= b);
+      assert a <= b;
     }
 
     func(a, b);
@@ -76,7 +76,7 @@ context some_context {
     assert ctx.mem.at(a0) <= ctx.mem.at(b0);
   }
 
-  total no_side_effects(func : sf) {
+  total fn no_side_effects(func : sf) {
     let a: Address;
     let b: Address;
 
@@ -90,9 +90,9 @@ context some_context {
       assert c < a || c > b;
     }
 
-    let before = ctx.mem.at(c);
+    let before : i32 = ctx.mem.at(c);
     func(a, b);
-    let after = ctx.mem.at(c);
+    let after : i32 = ctx.mem.at(c);
 
     assert before == after;
   }
