@@ -24,13 +24,14 @@ fn valid_Address(a: Address) -> Address {
           (expression_statement
             (assert_expression
               (expression
-                (binary_expression
-                  (expression
-                    (identifier))
-                  (less_operator)
-                  (expression
-                    (literal
-                      (number_literal)))))))
+                (parenthesized_expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (less_operator)
+                    (expression
+                      (literal
+                        (number_literal))))))))
           (return_statement
             (return_keyword)
             (expression
@@ -71,3 +72,57 @@ fn valid_Address(a: Address) -> Address {
             (return_keyword)
             (expression
               (identifier))))))
+
+===
+Apply expression
+===
+
+fn proof() -> () {
+    apply preserving_count(sort);
+}
+
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type)
+        (block
+          (expression_statement
+            (apply_expression
+              (function_call_expression
+                (identifier)
+                (expression
+                  (identifier))))))))
+
+===
+Assert expression
+===
+
+fn proof() -> () {
+    assert a < 0;
+}
+
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type)
+        (block
+          (expression_statement
+            (assert_expression
+              (expression
+                (binary_expression
+                  (expression
+                    (identifier))
+                  (less_operator)
+                  (expression
+                    (literal
+                      (number_literal))))))))))

@@ -132,10 +132,13 @@ module.exports = grammar({
 
         assert_expression: $ => seq(
             'assert',
-            '(',
             $.expression,
-            ')'
         ),
+
+        apply_expression : $ => prec.right(PRECEDENCE.UNARY, seq(
+            'apply',
+            $.function_call_expression
+        )),
 
         parenthesized_expression: $ => seq(
             '(',
@@ -260,6 +263,7 @@ module.exports = grammar({
             $.function_call_expression,
             $.prefix_unary_expression,
             $.assert_expression,
+            $.apply_expression,
             $.parenthesized_expression
         ),
 
@@ -360,7 +364,8 @@ module.exports = grammar({
         ),
 
         _reserved_identifier: _ => choice(
-            'constructor'
+            'constructor',
+            'proof'
         ),
 
         _identifier: _ => /\w*[_a-zA-Z]\w*/,

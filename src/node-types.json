@@ -1,5 +1,20 @@
 [
   {
+    "type": "apply_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_call_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "argument_declaration",
     "named": true,
     "fields": {
@@ -312,6 +327,10 @@
       "required": false,
       "types": [
         {
+          "type": "apply_expression",
+          "named": true
+        },
+        {
           "type": "assert_expression",
           "named": true
         },
@@ -362,6 +381,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "apply_expression",
+          "named": true
+        },
         {
           "type": "assert_expression",
           "named": true
@@ -614,6 +637,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "apply_expression",
+          "named": true
+        },
         {
           "type": "assert_expression",
           "named": true
@@ -962,6 +989,10 @@
   {
     "type": "and_operator",
     "named": true
+  },
+  {
+    "type": "apply",
+    "named": false
   },
   {
     "type": "assert",

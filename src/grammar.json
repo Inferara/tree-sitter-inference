@@ -322,18 +322,27 @@
           "value": "assert"
         },
         {
-          "type": "STRING",
-          "value": "("
-        },
-        {
           "type": "SYMBOL",
           "name": "expression"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
         }
       ]
+    },
+    "apply_expression": {
+      "type": "PREC_RIGHT",
+      "value": 800,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "apply"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "function_call_expression"
+          }
+        ]
+      }
     },
     "parenthesized_expression": {
       "type": "SEQ",
@@ -1207,6 +1216,10 @@
         {
           "type": "SYMBOL",
           "name": "assert_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "apply_expression"
         },
         {
           "type": "SYMBOL",
