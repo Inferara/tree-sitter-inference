@@ -188,3 +188,57 @@ total fn add(a : i32, b : i32) -> i32 {
                 (add_operator)
                 (expression
                   (identifier))))))))
+
+===
+Function with filter block
+===
+
+total fn procuring_sorted(func: sf) -> () {
+    filter {
+      a = valid_Address();
+      b = valid_Address();
+      assert(a <= b);
+    }
+}
+
+---
+
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type
+              (identifier))))
+        (rightarrow_operator)
+        (type)
+        (block
+          (filter_statement
+            (block
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (expression
+                    (function_call_expression
+                      (identifier)))))
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (expression
+                    (function_call_expression
+                      (identifier)))))
+              (expression_statement
+                (assert_expression
+                  (expression
+                    (parenthesized_expression
+                      (binary_expression
+                        (expression
+                          (identifier))
+                        (less_equal_operator)
+                        (expression
+                          (identifier))))))))))))

@@ -70,6 +70,7 @@ module.exports = grammar({
         _statement: $ => choice(
             $.expression_statement,
             $.return_statement,
+            $.filter_statement,
         ),
 
         type: $ => choice(
@@ -235,6 +236,11 @@ module.exports = grammar({
             field('type', $.type)
         ),
 
+        filter_statement: $ => seq(
+            'filter',
+            $.block
+        ),
+
         use_directive: $ => seq(
             $.use_keyword,
             choice(
@@ -365,7 +371,8 @@ module.exports = grammar({
 
         _reserved_identifier: _ => choice(
             'constructor',
-            'proof'
+            'proof',
+            'filter'
         ),
 
         _identifier: _ => /\w*[_a-zA-Z]\w*/,

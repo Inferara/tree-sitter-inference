@@ -52,6 +52,10 @@
         {
           "type": "SYMBOL",
           "name": "return_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "filter_statement"
         }
       ]
     },
@@ -1096,6 +1100,19 @@
         }
       ]
     },
+    "filter_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "filter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
     "use_directive": {
       "type": "SEQ",
       "members": [
@@ -1595,6 +1612,14 @@
         {
           "type": "STRING",
           "value": "constructor"
+        },
+        {
+          "type": "STRING",
+          "value": "proof"
+        },
+        {
+          "type": "STRING",
+          "value": "filter"
         }
       ]
     },
