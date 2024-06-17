@@ -148,11 +148,6 @@ module.exports = grammar({
               ),
         ),
 
-        function_call_expression: $ => prec(PRECEDENCE.FUNC_CALL, seq(
-            field('function', $.expression),
-            field('arguments', $.argument_list),
-        )),
-
         variable_definition: $ => seq(
             'let',
             field('name', $.identifier),

@@ -342,26 +342,38 @@
     "type": "function_call_expression",
     "named": true,
     "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "argument_list",
-            "named": true
-          }
-        ]
-      },
       "function": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "expression",
+            "type": "ctx",
+            "named": false
+          },
+          {
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -804,6 +816,14 @@
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
     "named": false
   },
   {

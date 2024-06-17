@@ -174,8 +174,7 @@ fn constructor() -> some_context {
                   (pow_operator)
                   (expression
                     (literal
-                      (number_literal))))))
-            (terminal_symbol)))))
+                      (number_literal))))))))))
 
 ===
 Create and assign Array<u32> without parameters
