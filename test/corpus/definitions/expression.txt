@@ -35,3 +35,39 @@ fn valid_Address(a: Address) -> Address {
             (return_keyword)
             (expression
               (identifier))))))
+
+===
+Assign unary expression
+===
+
+fn valid_Address(a: Address) -> Address {
+    a = !a;
+    return a;
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type
+              (identifier))))
+        (rightarrow_operator)
+        (type
+          (identifier))
+        (block
+          (expression_statement
+            (assign_expression
+              (identifier)
+              (assign_operator)
+              (expression
+                (prefix_unary_expression
+                  (expression
+                    (identifier))))))
+          (return_statement
+            (return_keyword)
+            (expression
+              (identifier))))))

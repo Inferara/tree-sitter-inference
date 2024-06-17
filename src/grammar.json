@@ -151,6 +151,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "prefix_unary_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "parenthesized_expression"
         }
       ]
@@ -347,6 +351,23 @@
           "value": ")"
         }
       ]
+    },
+    "prefix_unary_expression": {
+      "type": "PREC",
+      "value": 800,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "!"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
     },
     "binary_expression": {
       "type": "CHOICE",
@@ -1178,6 +1199,10 @@
         {
           "type": "SYMBOL",
           "name": "function_call_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "prefix_unary_expression"
         },
         {
           "type": "SYMBOL",

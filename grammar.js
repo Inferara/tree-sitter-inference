@@ -15,6 +15,7 @@ function sep1(rule, separator) {
 const PRECEDENCE = {
     DOT: 1000,
     FUNC_CALL : 900,
+    UNARY : 800,
 
     POW : 600,
     MUL : 590,
@@ -100,6 +101,7 @@ module.exports = grammar({
             'ctx',
             $.member_access_expression,
             $._simple_name,
+            $.prefix_unary_expression,
             $.parenthesized_expression
         ),
 
@@ -140,6 +142,11 @@ module.exports = grammar({
             $._non_lval_expression,
             ')'
         ),
+
+        prefix_unary_expression: $ => prec(PRECEDENCE.UNARY, seq(
+            '!',
+            $.expression,
+        )),
 
         binary_expression: $ => choice(
             ...[
@@ -251,6 +258,7 @@ module.exports = grammar({
         _expression_statement: $ => choice(
             $.assign_expression,
             $.function_call_expression,
+            $.prefix_unary_expression,
             $.assert_expression,
             $.parenthesized_expression
         ),

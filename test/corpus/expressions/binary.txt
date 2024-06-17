@@ -371,3 +371,65 @@ fn valid_Address(a: Address) -> Address {
             (return_keyword)
             (expression
               (identifier))))))
+
+===
+Binary and unary mix
+===
+
+fn valid_Address(a: Address) -> Address {
+    assert (a < ctx.max_curr_mem && !(a % 4) && !a);
+    return a;
+}
+
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type
+              (identifier))))
+        (rightarrow_operator)
+        (type
+          (identifier))
+        (block
+          (expression_statement
+            (assert_expression
+              (expression
+                (binary_expression
+                  (expression
+                    (binary_expression
+                      (expression
+                        (binary_expression
+                          (expression
+                            (identifier))
+                          (less_operator)
+                          (expression
+                            (member_access_expression
+                              (expression)
+                              (attribute_access_operator)
+                              (identifier)))))
+                      (and_operator)
+                      (expression
+                        (prefix_unary_expression
+                          (expression
+                            (parenthesized_expression
+                              (binary_expression
+                                (expression
+                                  (identifier))
+                                (mod_operator)
+                                (expression
+                                  (literal
+                                    (number_literal))))))))))
+                  (and_operator)
+                  (expression
+                    (prefix_unary_expression
+                      (expression
+                        (identifier))))))))
+          (return_statement
+            (return_keyword)
+            (expression
+              (identifier))))))
