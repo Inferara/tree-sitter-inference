@@ -15,7 +15,6 @@ function sep1(rule, separator) {
 const PRECEDENCE = {
     DOT: 1000,
     FUNC_CALL : 900,
-    ASSIGN : 890,
 
     POW : 600,
     MUL : 590,
