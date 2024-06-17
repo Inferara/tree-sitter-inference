@@ -67,9 +67,11 @@ module.exports = grammar({
         ),
 
         _statement: $ => choice(
+            $.block,
             $.expression_statement,
             $.return_statement,
             $.filter_statement,
+            $.for_statement,
             $.if_statement,
             $.variable_definition_statement
         ),
@@ -251,6 +253,25 @@ module.exports = grammar({
             optional(seq('else', field('else_arm', $.block)))
         )),
 
+        for_statement: $ => seq(
+            'for',
+            '(',
+            field('initializer',optional(
+                choice(
+                    $.variable_definition_statement,
+                    seq(
+                        sep1($.expression, $._comma_symbol),
+                        ';'
+                    )
+                )
+            )),
+            field('condition', optional($.expression)),
+            ';',
+            field('update', optional($.expression)),
+            ')',
+            field('body', $._statement)
+        ),
+
         use_directive: $ => seq(
             $.use_keyword,
             choice(
@@ -272,7 +293,10 @@ module.exports = grammar({
             $._terminal_symbol
         ),
 
-        expression_statement: $ => seq($._expression_statement, $._terminal_symbol),
+        expression_statement: $ => seq(
+            $._expression_statement,
+            $._terminal_symbol
+        ),
 
         _expression_statement: $ => choice(
             $.assign_expression,

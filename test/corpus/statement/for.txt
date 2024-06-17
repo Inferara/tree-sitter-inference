@@ -1,0 +1,108 @@
+===
+Base for statement
+===
+
+fn main() {
+    for(let i : i32 = 0; i < 10; i = i + 1) {
+        println("hello");
+    }
+}
+
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (for_statement
+            (variable_definition_statement
+              (identifier)
+              (type)
+              (assign_operator)
+              (expression
+                (literal
+                  (number_literal))))
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (less_operator)
+                (expression
+                  (literal
+                    (number_literal)))))
+            (expression
+              (assign_expression
+                (identifier)
+                (assign_operator)
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (add_operator)
+                    (expression
+                      (literal
+                        (number_literal)))))))
+            (block
+              (expression_statement
+                (function_call_expression
+                  (identifier)
+                  (expression
+                    (literal
+                      (string_literal))))))))))
+
+===
+For statement without initialization
+===
+
+fn main() {
+    let i : i32 = 0;
+    for(i < 10; i = i + 1) {
+        println("hello");
+    }
+}
+
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type)
+            (assign_operator)
+            (expression
+              (literal
+                (number_literal))))
+          (for_statement
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (less_operator)
+                (expression
+                  (literal
+                    (number_literal)))))
+            (expression
+              (assign_expression
+                (identifier)
+                (assign_operator)
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (add_operator)
+                    (expression
+                      (literal
+                        (number_literal)))))))
+            (block
+              (expression_statement
+                (function_call_expression
+                  (identifier)
+                  (expression
+                    (literal
+                      (string_literal))))))))))
