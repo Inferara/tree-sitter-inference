@@ -219,8 +219,10 @@ module.exports = grammar({
             $.function_keyword,
             field('name', $.identifier),
             $.argument_list,
-            $.rightarrow_operator,
-            field('returns', $.type),
+            field(
+                'returns',
+                optional(seq($.rightarrow_operator,  $.type))
+            ),
             field('body', $.block)
         ),
 

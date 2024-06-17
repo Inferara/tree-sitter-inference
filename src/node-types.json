@@ -498,9 +498,13 @@
         ]
       },
       "returns": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
+          {
+            "type": "rightarrow_operator",
+            "named": true
+          },
           {
             "type": "type",
             "named": true
@@ -518,10 +522,6 @@
         },
         {
           "type": "function_keyword",
-          "named": true
-        },
-        {
-          "type": "rightarrow_operator",
           "named": true
         },
         {

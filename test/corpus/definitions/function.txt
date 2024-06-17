@@ -1,5 +1,5 @@
 ===
-Function definition
+Base function definition
 ===
 
 fn func() -> i32 {
@@ -15,6 +15,23 @@ fn func() -> i32 {
         (argument_list)
         (rightarrow_operator)
         (type)
+        (block)))
+
+===
+Function definition without return type
+===
+
+fn func() {
+
+}
+
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
         (block)))
 
 ===
