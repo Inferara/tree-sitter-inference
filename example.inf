@@ -25,7 +25,7 @@ context some_context {
     let res : u32 = 0;
     for (let i : Address = a; i <= b; i.next()) {
       if (ctx.mem.at(i) == val) {
-        res += 1;
+        res = res + 1;
       }
     }
     return res;

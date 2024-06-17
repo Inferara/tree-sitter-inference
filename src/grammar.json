@@ -35,10 +35,6 @@
         {
           "type": "SYMBOL",
           "name": "function_definition"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "variable_definition"
         }
       ]
     },
@@ -56,6 +52,14 @@
         {
           "type": "SYMBOL",
           "name": "filter_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable_definition_statement"
         }
       ]
     },
@@ -816,7 +820,7 @@
         }
       ]
     },
-    "variable_definition": {
+    "variable_definition_statement": {
       "type": "SEQ",
       "members": [
         {
@@ -941,7 +945,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "variable_definition"
+                "name": "constant_definition"
               },
               {
                 "type": "SYMBOL",
@@ -1125,6 +1129,60 @@
           "name": "block"
         }
       ]
+    },
+    "if_statement": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "if"
+          },
+          {
+            "type": "FIELD",
+            "name": "condition",
+            "content": {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "if_arm",
+            "content": {
+              "type": "SYMBOL",
+              "name": "block"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "else"
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "else_arm",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "block"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "use_directive": {
       "type": "SEQ",

@@ -64,13 +64,14 @@ module.exports = grammar({
         _definition: $ => choice(
             $.context_definition,
             $.function_definition,
-            $.variable_definition,
         ),
 
         _statement: $ => choice(
             $.expression_statement,
             $.return_statement,
             $.filter_statement,
+            $.if_statement,
+            $.variable_definition_statement
         ),
 
         type: $ => choice(
@@ -176,7 +177,7 @@ module.exports = grammar({
               ),
         ),
 
-        variable_definition: $ => seq(
+        variable_definition_statement: $ => seq(
             'let',
             field('name', $.identifier),
             $._typedef_symbol,
@@ -201,7 +202,7 @@ module.exports = grammar({
             $._lcb_symbol,
             repeat(
                 choice(
-                    $.variable_definition,
+                    $.constant_definition,
                     $.function_definition,
                 )
             ),
@@ -242,6 +243,13 @@ module.exports = grammar({
             'filter',
             $.block
         ),
+
+        if_statement: $ => prec.right(seq(
+            'if',
+            field('condition', $.expression),
+            field('if_arm', $.block),
+            optional(seq('else', field('else_arm', $.block)))
+        )),
 
         use_directive: $ => seq(
             $.use_keyword,

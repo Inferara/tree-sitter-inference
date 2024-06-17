@@ -227,7 +227,15 @@
           "named": true
         },
         {
+          "type": "if_statement",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "variable_definition_statement",
           "named": true
         }
       ]
@@ -308,15 +316,15 @@
       "required": true,
       "types": [
         {
+          "type": "constant_definition",
+          "named": true
+        },
+        {
           "type": "context_keyword",
           "named": true
         },
         {
           "type": "function_definition",
-          "named": true
-        },
-        {
-          "type": "variable_definition",
           "named": true
         }
       ]
@@ -559,6 +567,42 @@
     "type": "identifier",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "if_statement",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "else_arm": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "if_arm": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "less_operator",
@@ -807,10 +851,6 @@
         {
           "type": "use_directive",
           "named": true
-        },
-        {
-          "type": "variable_definition",
-          "named": true
         }
       ]
     }
@@ -934,7 +974,7 @@
     }
   },
   {
-    "type": "variable_definition",
+    "type": "variable_definition_statement",
     "named": true,
     "fields": {
       "name": {
@@ -1046,6 +1086,10 @@
     "named": false
   },
   {
+    "type": "else",
+    "named": false
+  },
+  {
     "type": "equals_operator",
     "named": true
   },
@@ -1072,6 +1116,10 @@
   {
     "type": "greater_equal_operator",
     "named": true
+  },
+  {
+    "type": "if",
+    "named": false
   },
   {
     "type": "less_equal_operator",
