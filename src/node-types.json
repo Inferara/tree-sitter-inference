@@ -41,6 +41,21 @@
     }
   },
   {
+    "type": "assert_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assign_expression",
     "named": true,
     "fields": {
@@ -289,6 +304,10 @@
       "required": false,
       "types": [
         {
+          "type": "assert_expression",
+          "named": true
+        },
+        {
           "type": "assign_expression",
           "named": true
         },
@@ -327,6 +346,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "assert_expression",
+          "named": true
+        },
         {
           "type": "assign_expression",
           "named": true
@@ -849,6 +872,10 @@
   {
     "type": "and_operator",
     "named": true
+  },
+  {
+    "type": "assert",
+    "named": false
   },
   {
     "type": "assign_operator",

@@ -124,6 +124,13 @@ module.exports = grammar({
             ')'
         )),
 
+        assert_expression: $ => seq(
+            'assert',
+            '(',
+            $.expression,
+            ')'
+        ),
+
         binary_expression: $ => choice(
             ...[
                 [$.pow_operator, PRECEDENCE.POW],
@@ -234,6 +241,7 @@ module.exports = grammar({
         _expression_statement: $ => choice(
             $.assign_expression,
             $.function_call_expression,
+            $.assert_expression
         ),
 
         return_statement: $ => seq(

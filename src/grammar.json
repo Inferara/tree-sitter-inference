@@ -306,6 +306,27 @@
         ]
       }
     },
+    "assert_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "assert"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
     "binary_expression": {
       "type": "CHOICE",
       "members": [
@@ -1136,6 +1157,10 @@
         {
           "type": "SYMBOL",
           "name": "function_call_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assert_expression"
         }
       ]
     },

@@ -1,0 +1,37 @@
+===
+Function with assert expression statement
+===
+fn valid_Address(a: Address) -> Address {
+    assert (a < 0);
+    return a;
+}
+
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type
+              (identifier))))
+        (rightarrow_operator)
+        (type
+          (identifier))
+        (block
+          (expression_statement
+            (assert_expression
+              (expression
+                (binary_expression
+                  (expression
+                    (identifier))
+                  (less_operator)
+                  (expression
+                    (literal
+                      (number_literal)))))))
+          (return_statement
+            (return_keyword)
+            (expression
+              (identifier))))))
