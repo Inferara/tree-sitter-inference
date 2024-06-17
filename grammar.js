@@ -37,7 +37,10 @@ module.exports = grammar({
     conflicts: $ => [
         [$._simple_name, $.generic_name],
         [$._simple_name, $.type_qualified_name],
+
+        [$._expression_statement, $._lval_expression],
         [$._lval_expression, $._name],
+
         [$.qualified_name, $.member_access_expression],
     ],
 
@@ -96,7 +99,8 @@ module.exports = grammar({
         _lval_expression: $ => choice(
             'ctx',
             $.member_access_expression,
-            $._simple_name
+            $._simple_name,
+            $.parenthesized_expression
         ),
 
         _non_lval_expression: $ => choice(
@@ -128,6 +132,12 @@ module.exports = grammar({
             'assert',
             '(',
             $.expression,
+            ')'
+        ),
+
+        parenthesized_expression: $ => seq(
+            '(',
+            $._non_lval_expression,
             ')'
         ),
 
@@ -241,7 +251,8 @@ module.exports = grammar({
         _expression_statement: $ => choice(
             $.assign_expression,
             $.function_call_expression,
-            $.assert_expression
+            $.assert_expression,
+            $.parenthesized_expression
         ),
 
         return_statement: $ => seq(
