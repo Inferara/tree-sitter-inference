@@ -14,6 +14,8 @@ function sep1(rule, separator) {
 
 const PRECEDENCE = {
     DOT: 1000,
+    FUNC_CALL : 900,
+    ASSIGN : 890,
 
     POW : 600,
     MUL : 590,
@@ -113,6 +115,13 @@ module.exports = grammar({
             field('left', $._lval_expression),
             $.assign_operator,
             field('right', $.expression)
+        )),
+
+        function_call_expression: $ => prec(PRECEDENCE.FUNC_CALL, seq(
+            field('function', $._lval_expression),
+            '(',
+            optional(sep1($.expression, ',')),
+            ')'
         )),
 
         binary_expression: $ => choice(
@@ -221,8 +230,9 @@ module.exports = grammar({
 
         expression_statement: $ => seq($._expression_statement, $._terminal_symbol),
 
-        _expression_statement: $ => seq(
+        _expression_statement: $ => choice(
             $.assign_expression,
+            $.function_call_expression,
         ),
 
         return_statement: $ => seq(

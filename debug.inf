@@ -1,1 +1,3 @@
-ctx.type
+fn context_assign() -> () {
+    ctx.type = ABC;
+}

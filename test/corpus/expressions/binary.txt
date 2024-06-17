@@ -25,6 +25,94 @@ fn context_assign() -> () {
                 (expression
                 (identifier)))))))
 
+===
+Assign expression from function call
+===
+
+fn assign_from_fn_call() -> () {
+    ctx.type = get_type();
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type)
+        (block
+          (expression_statement
+            (assign_expression
+              (member_access_expression
+                (expression)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (expression
+                (function_call_expression
+                  (identifier))))))))
+
+===
+Return function call with one parameter
+===
+fn return_fn_call_with_param() -> Type {
+    return get_type(1);
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type
+          (identifier))
+        (block
+          (return_statement
+            (return_keyword)
+            (expression
+              (function_call_expression
+                (identifier)
+                (expression
+                  (literal
+                    (number_literal)))))))))
+
+===
+Function call with multiple parameters
+===
+fn fn_call_with_multiple_params() -> () {
+    get_type(1, true, a, get_name("abc"));
+}
+---
+
+(source_file
+    (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type)
+        (block
+            (expression_statement
+            (function_call_expression
+                (identifier)
+                (expression
+                (literal
+                    (number_literal)))
+                (expression
+                (literal
+                    (bool_literal)))
+                (expression
+                (identifier))
+                (expression
+                (function_call_expression
+                    (identifier)
+                    (expression
+                    (literal
+                        (string_literal))))))))))
+
 
 ===
 Context constructor with various binary expressions
