@@ -1,13 +1,13 @@
 # tree-sitter-inference
 
-[![CI](https://github.com/Inferara/tree-sitter-inference/actions/workflows/ci.yml/badge.svg)](https://github.com/Inferara/tree-sitter-inference/actions/workflows/ci.yml)
+[![CI][ci]](https://github.com/Inferara/tree-sitter-inference/actions/workflows/ci.yml)
+[![crates][crates]](https://crates.io/crates/tree-sitter-inference)
 
 Inference grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter) based on Inference Language spec.
 
 ## Status
 
 - [ ] Discord
-- [ ] crates.io
 
 ## Development
 
@@ -23,3 +23,6 @@ It can be used with the following options:
 ## References
 
 - Inference Language spec
+
+[ci]: https://img.shields.io/github/actions/workflow/status/Inferara/tree-sitter-inference/ci.yml?logo=github&label=CI
+[crates]: https://img.shields.io/crates/v/tree-sitter-inference?logo=rust
