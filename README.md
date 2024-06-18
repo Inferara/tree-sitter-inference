@@ -1,6 +1,6 @@
 # tree-sitter-inference
 
-[![CI][ci]](https://github.com/tree-sitter/tree-sitter-inference/actions/workflows/ci.yml)
+[![CI](https://github.com/Inferara/tree-sitter-inference/actions/workflows/ci.yml/badge.svg)](https://github.com/Inferara/tree-sitter-inference/actions/workflows/ci.yml)
 
 Inference grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter) based on Inference Language spec.
 
