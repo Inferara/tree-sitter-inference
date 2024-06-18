@@ -25,7 +25,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
+    "prebuildify": "prebuildify --napi --strip",
+    "lint": "eslint grammar.js"
   },
   "dependencies": {
     "node-addon-api": "^8.0.0",
