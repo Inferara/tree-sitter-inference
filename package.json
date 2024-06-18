@@ -23,10 +23,14 @@
   },
   "homepage": "https://github.com/Inferara/tree-sitter-inference#readme",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip",
-    "lint": "eslint grammar.js"
+    "lint": "eslint grammar.js",
+    "b": "tree-sitter generate",
+    "t": "tree-sitter test",
+    "bt": "npm run b && npm run t",
+    "d": "tree-sitter parse debug.inf",
+    "te" : "tree-sitter parse example.inf"
   },
   "dependencies": {
     "node-addon-api": "^8.0.0",
@@ -43,7 +47,7 @@
   "devDependencies": {
     "eslint": "^8.57.0",
     "eslint-config-google": "^0.14.0",
-    "prebuildify": "^6.0.0",
+    "prebuildify": "^6.0.1",
     "tree-sitter-cli": "^0.22.6"
   },
   "files": [
@@ -57,7 +61,7 @@
   "tree-sitter": [
     {
       "scope": "source.inf",
-      "injection-regex": "^inf$",
+      "injection-regex": "inf",
       "file-types": [
         "inf"
       ],

@@ -1,5 +1,5 @@
 fn main() {
-    let src_dir = std::path::Path::new("tree-sitter-inference/src");
+    let src_dir = std::path::Path::new("src");
 
     let mut c_config = cc::Build::new();
     c_config.std("c11").include(src_dir);
@@ -18,5 +18,5 @@ fn main() {
     println!("cargo:rerun-if-changed={}", scanner_path.to_str().unwrap());
     */
 
-    c_config.compile("tree-sitter-Inference");
+    c_config.compile("tree-sitter-inference");
 }
