@@ -1,10 +1,11 @@
 # tree-sitter-inference
 
+[![CI][ci]](https://github.com/tree-sitter/tree-sitter-inference/actions/workflows/ci.yml)
+
 Inference grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter) based on Inference Language spec.
 
 ## Status
 
-- [ ] CI
 - [ ] Discord
 - [ ] crates.io
 
