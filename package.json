@@ -1,27 +1,40 @@
 {
   "name": "tree-sitter-inference",
   "version": "0.0.1",
-  "description": "Inference tree-sitter",
-  "main": "index.js",
+  "description": "Inference grammar for tree-sitter",
+  "main": "bindings/node",
   "types": "bindings/node",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
-  },
+  "author": "Georgii Plotnikov <accembler@gmail.com>",
+  "license": "MIT",
+  "contributors": [],
+  "maintainers": [],
+  "keywords": [
+    "incremental",
+    "parsing",
+    "tree-sitter",
+    "inference"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Inferara/tree-sitter-inference.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Inferara/tree-sitter-inference/issues"
   },
   "homepage": "https://github.com/Inferara/tree-sitter-inference#readme",
+  "scripts": {
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip",
+    "lint": "eslint grammar.js",
+    "b": "tree-sitter generate",
+    "t": "tree-sitter test",
+    "bt": "npm run b && npm run t",
+    "d": "tree-sitter parse debug.inf",
+    "te" : "tree-sitter parse example.inf"
+  },
   "dependencies": {
-    "node-addon-api": "^7.1.0",
-    "node-gyp-build": "^4.8.0"
+    "node-addon-api": "^8.0.0",
+    "node-gyp-build": "^4.8.1"
   },
   "peerDependencies": {
     "tree-sitter": "^0.21.0"
@@ -32,8 +45,10 @@
     }
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.22.6",
-    "prebuildify": "^6.0.0"
+    "eslint": "^8.57.0",
+    "eslint-config-google": "^0.14.0",
+    "prebuildify": "^6.0.1",
+    "tree-sitter-cli": "^0.22.6"
   },
   "files": [
     "grammar.js",
@@ -46,7 +61,7 @@
   "tree-sitter": [
     {
       "scope": "source.inf",
-      "injection-regex": "^inf$",
+      "injection-regex": "inf",
       "file-types": [
         "inf"
       ],
@@ -54,5 +69,47 @@
         "queries/highlights.scm"
       ]
     }
-  ]
+  ],
+  "eslintConfig": {
+    "env": {
+      "commonjs": true,
+      "es2021": true
+    },
+    "extends": "google",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "arrow-parens": "off",
+      "camel-case": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "max-len": [
+        "error",
+        {
+          "code": 160,
+          "ignoreComments": true,
+          "ignoreUrls": true,
+          "ignoreStrings": true
+        }
+      ],
+      "spaced-comment": [
+        "warn",
+        "always",
+        {
+          "line": {
+            "markers": [
+              "/"
+            ]
+          }
+        }
+      ]
+    }
+  }
 }
