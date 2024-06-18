@@ -45,8 +45,14 @@
   ],
   "tree-sitter": [
     {
-      "scope": "source.Inference",
-      "injection-regex": "^Inference$"
+      "scope": "source.inf",
+      "injection-regex": "^inf$",
+      "file-types": [
+        "inf"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
     }
   ]
 }
