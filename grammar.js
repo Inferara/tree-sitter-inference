@@ -27,9 +27,7 @@ const PRECEDENCE = {
     AND : 530,
     OR : 520,
 
-    EXPRESSION: 300,
-    QUALIFIED_NAME: 200,
-    IDENTIFIER: 100,
+    EXPRESSION: 300
 }
 
 module.exports = grammar({
