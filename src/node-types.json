@@ -294,15 +294,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "assign_operator",
-          "named": true
-        },
-        {
-          "type": "const_keyword",
           "named": true
         }
       ]
@@ -325,14 +321,10 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "constant_definition",
-          "named": true
-        },
-        {
-          "type": "context_keyword",
           "named": true
         },
         {
@@ -994,16 +986,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "return_keyword",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1199,19 +1181,11 @@
           "named": true
         },
         {
-          "type": "from_keyword",
-          "named": true
-        },
-        {
           "type": "identifier",
           "named": true
         },
         {
           "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "use_keyword",
           "named": true
         }
       ]
@@ -1318,16 +1292,16 @@
     "named": true
   },
   {
-    "type": "const_keyword",
-    "named": true
+    "type": "const",
+    "named": false
   },
   {
     "type": "constructor",
     "named": false
   },
   {
-    "type": "context_keyword",
-    "named": true
+    "type": "context",
+    "named": false
   },
   {
     "type": "ctx",
@@ -1362,8 +1336,8 @@
     "named": false
   },
   {
-    "type": "from_keyword",
-    "named": true
+    "type": "from",
+    "named": false
   },
   {
     "type": "function_keyword",
@@ -1414,8 +1388,8 @@
     "named": false
   },
   {
-    "type": "return_keyword",
-    "named": true
+    "type": "return",
+    "named": false
   },
   {
     "type": "rightarrow_operator",
@@ -1442,7 +1416,7 @@
     "named": false
   },
   {
-    "type": "use_keyword",
-    "named": true
+    "type": "use",
+    "named": false
   }
 ]

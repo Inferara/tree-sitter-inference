@@ -71,7 +71,6 @@ fn return_fn_call_with_param() -> Type {
           (identifier))
         (block
           (return_statement
-            (return_keyword)
             (expression
               (function_call_expression
                 (identifier)
@@ -369,7 +368,6 @@ fn valid_Address(a: Address) -> Address {
                             (literal
                               (number_literal)))))))))))
           (return_statement
-            (return_keyword)
             (expression
               (identifier))))))
 ===
@@ -431,6 +429,5 @@ fn valid_Address(a: Address) -> Address {
                         (expression
                           (identifier)))))))))
           (return_statement
-            (return_keyword)
             (expression
               (identifier))))))

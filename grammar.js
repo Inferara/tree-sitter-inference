@@ -205,7 +205,7 @@ module.exports = grammar({
     ),
 
     constant_definition: $ => seq(
-      $.const_keyword,
+      'const',
       field('name', $.identifier),
       $._typedef_symbol,
       field('type', $.type),
@@ -215,7 +215,7 @@ module.exports = grammar({
     ),
 
     context_definition: $ => seq(
-      $.context_keyword,
+      'context',
       field('name', $.identifier),
       $._lcb_symbol,
       repeat($._definition),
@@ -299,20 +299,23 @@ module.exports = grammar({
     ),
 
     use_directive: $ => seq(
-      $.use_keyword,
+      'use',
       choice(
-        sep1(
-          $.identifier,
-          $.expand_operator,
+        seq(
+          sep1($.identifier, $.expand_operator),
+          optional(
+            seq(
+              $._lcb_symbol,
+              sep1($.identifier, $._comma_symbol),
+              $._rcb_symbol,
+            ),
+          ),
         ),
         seq(
           $._lcb_symbol,
-          sep1(
-            $.identifier,
-            $._comma_symbol,
-          ),
+          sep1($.identifier, $._comma_symbol),
           $._rcb_symbol,
-          $.from_keyword,
+          'from',
           $.string_literal,
         ),
       ),
@@ -335,17 +338,12 @@ module.exports = grammar({
     ),
 
     return_statement: $ => seq(
-      $.return_keyword,
+      'return',
       field('expression', $.expression),
       $._terminal_symbol,
     ),
 
-    const_keyword: $ => 'const',
-    use_keyword: $ => 'use',
-    from_keyword: $ => 'from',
-    context_keyword: $ => 'context',
     function_keyword: $ => 'fn',
-    return_keyword: $ => 'return',
     total_keyword: $ => 'total',
 
     add_operator: _ => '+',

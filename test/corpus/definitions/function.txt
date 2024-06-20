@@ -97,7 +97,6 @@ fn func() -> i32 {
         (type)
         (block
             (return_statement
-            (return_keyword)
             (expression
                 (literal
                 (number_literal)))))))
@@ -120,7 +119,6 @@ fn func() -> bool {
         (type)
         (block
           (return_statement
-            (return_keyword)
             (expression
               (literal
                 (bool_literal)))))))
@@ -164,7 +162,6 @@ fn add(a : i32, b : i32) -> i32 {
         (type)
         (block
           (return_statement
-            (return_keyword)
             (expression
               (binary_expression
                 (expression
@@ -197,7 +194,6 @@ total fn add(a : i32, b : i32) -> i32 {
         (type)
         (block
           (return_statement
-            (return_keyword)
             (expression
               (binary_expression
                 (expression
