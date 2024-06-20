@@ -305,6 +305,7 @@ module.exports = grammar({
           sep1($.identifier, $.expand_operator),
           optional(
             seq(
+              $.expand_operator,
               $._lcb_symbol,
               sep1($.identifier, $._comma_symbol),
               $._rcb_symbol,

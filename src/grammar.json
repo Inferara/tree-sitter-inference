@@ -1506,6 +1506,10 @@
                       "members": [
                         {
                           "type": "SYMBOL",
+                          "name": "expand_operator"
+                        },
+                        {
+                          "type": "SYMBOL",
                           "name": "_lcb_symbol"
                         },
                         {
