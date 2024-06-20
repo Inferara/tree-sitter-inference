@@ -2030,7 +2030,7 @@
         }
       ]
     },
-    "comment": {
+    "_comment": {
       "type": "TOKEN",
       "content": {
         "type": "SEQ",
@@ -2054,7 +2054,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "comment"
+      "name": "_comment"
     }
   ],
   "conflicts": [

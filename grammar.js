@@ -45,7 +45,7 @@ module.exports = grammar({
 
   extras: $ => [
     /\s/,
-    $.comment,
+    $._comment,
   ],
 
   rules: {
@@ -442,6 +442,6 @@ module.exports = grammar({
       $._reserved_identifier,
     ),
 
-    comment: _ => token(seq('///', /[^\n\r]*/)),
+    _comment: _ => token(seq('///', /[^\n\r]*/)),
   },
 });
