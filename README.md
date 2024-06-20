@@ -11,7 +11,7 @@ Inference grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter) 
 
 ## Development
 
-For the simplifying development and testing process, the `build_and_test.sh` script is provided.
+For the simplifying development and testing process, the number of `npm` script is provided.
 
 It can be used with the following options:
 

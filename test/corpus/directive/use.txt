@@ -8,7 +8,6 @@ use inference::std;
 
 (source_file
     (use_directive
-        (use_keyword)
         (identifier)
         (expand_operator)
         (identifier)))
@@ -23,7 +22,6 @@ use inference::std::algorithms::sort;
 
 (source_file
     (use_directive
-        (use_keyword)
         (identifier)
         (expand_operator)
         (identifier)
@@ -42,23 +40,38 @@ use { sort } from "./sort.rs";
 
 (source_file
     (use_directive
-        (use_keyword)
         (identifier)
-        (from_keyword)
         (string_literal)))
 
 ===
 User several imports
 ===
 
-use { sort, filter } from "./sort.rs";
+use { sort, hash } from "./sort.rs";
 
 ---
 
 (source_file
     (use_directive
-        (use_keyword)
         (identifier)
         (identifier)
-        (from_keyword)
         (string_literal)))
+
+===
+Use several types from one import
+===
+
+use inference::std::algorithms::{sort,hash};
+
+---
+
+    (source_file
+      (use_directive
+        (identifier)
+        (expand_operator)
+        (identifier)
+        (expand_operator)
+        (identifier)
+        (expand_operator)
+        (identifier)
+        (identifier)))

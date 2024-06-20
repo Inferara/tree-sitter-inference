@@ -952,8 +952,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "const_keyword"
+          "type": "STRING",
+          "value": "const"
         },
         {
           "type": "FIELD",
@@ -997,8 +997,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "context_keyword"
+          "type": "STRING",
+          "value": "context"
         },
         {
           "type": "FIELD",
@@ -1464,8 +1464,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "use_keyword"
+          "type": "STRING",
+          "value": "use"
         },
         {
           "type": "CHOICE",
@@ -1474,24 +1474,79 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "expand_operator"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "identifier"
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "expand_operator"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "identifier"
-                      }
-                    ]
-                  }
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "expand_operator"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "_lcb_symbol"
+                        },
+                        {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "identifier"
+                            },
+                            {
+                              "type": "REPEAT",
+                              "content": {
+                                "type": "SEQ",
+                                "members": [
+                                  {
+                                    "type": "SYMBOL",
+                                    "name": "_comma_symbol"
+                                  },
+                                  {
+                                    "type": "SYMBOL",
+                                    "name": "identifier"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "_rcb_symbol"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
                 }
               ]
             },
@@ -1532,8 +1587,8 @@
                   "name": "_rcb_symbol"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "from_keyword"
+                  "type": "STRING",
+                  "value": "from"
                 },
                 {
                   "type": "SYMBOL",
@@ -1599,8 +1654,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "return_keyword"
+          "type": "STRING",
+          "value": "return"
         },
         {
           "type": "FIELD",
@@ -1616,29 +1671,9 @@
         }
       ]
     },
-    "const_keyword": {
-      "type": "STRING",
-      "value": "const"
-    },
-    "use_keyword": {
-      "type": "STRING",
-      "value": "use"
-    },
-    "from_keyword": {
-      "type": "STRING",
-      "value": "from"
-    },
-    "context_keyword": {
-      "type": "STRING",
-      "value": "context"
-    },
     "function_keyword": {
       "type": "STRING",
       "value": "fn"
-    },
-    "return_keyword": {
-      "type": "STRING",
-      "value": "return"
     },
     "total_keyword": {
       "type": "STRING",

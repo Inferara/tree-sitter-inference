@@ -10,7 +10,6 @@ context some_context {
 
 (source_file
     (context_definition
-        (context_keyword)
         (identifier)))
 
 ===
@@ -25,7 +24,6 @@ context some_context {
 
 (source_file
       (context_definition
-        (context_keyword)
         (identifier)
         (external_function_definition
           (function_keyword)
@@ -48,7 +46,6 @@ context some_context {
 
     (source_file
       (context_definition
-        (context_keyword)
         (identifier)
         (type_definition_statement
           (identifier)
