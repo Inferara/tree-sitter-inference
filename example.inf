@@ -1,5 +1,5 @@
 use inference::std;
-use inference::std::collections::Array;
+use inference::std::collections::{ Array, Set };
 use inference::std::types::Address;
 use { sorting_function } from "./sort.rs";
 
