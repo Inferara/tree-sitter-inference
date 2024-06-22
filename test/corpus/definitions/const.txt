@@ -11,8 +11,7 @@ const MAX_MEM : i64 = 1000;
     (identifier)
     (type)
     (assign_operator)
-    (literal
-        (number_literal))))
+    (number_literal)))
 
 ===
 Constant definition with negative number literal
@@ -20,9 +19,8 @@ Constant definition with negative number literal
 const X : i32 = -4;
 ---
 (source_file
-  (constant_definition
+    (constant_definition
     (identifier)
     (type)
     (assign_operator)
-    (literal
-      (number_literal))))
+    (number_literal)))

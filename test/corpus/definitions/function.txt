@@ -98,8 +98,7 @@ fn func() -> i32 {
         (block
             (return_statement
             (expression
-                (literal
-                (number_literal)))))))
+                (number_literal))))))
 
 ===
 Function with return bool literal
@@ -120,8 +119,7 @@ fn func() -> bool {
         (block
           (return_statement
             (expression
-              (literal
-                (bool_literal)))))))
+              (bool_literal))))))
 
 ===
 Function with return identifier

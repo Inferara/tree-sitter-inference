@@ -22,16 +22,14 @@ fn main() {
               (type)
               (assign_operator)
               (expression
-                (literal
-                  (number_literal))))
+                (number_literal)))
             (expression
               (binary_expression
                 (expression
                   (identifier))
                 (less_operator)
                 (expression
-                  (literal
-                    (number_literal)))))
+                  (number_literal))))
             (expression
               (assign_expression
                 (identifier)
@@ -42,15 +40,13 @@ fn main() {
                       (identifier))
                     (add_operator)
                     (expression
-                      (literal
-                        (number_literal)))))))
+                      (number_literal))))))
             (block
               (expression_statement
                 (function_call_expression
                   (identifier)
                   (expression
-                    (literal
-                      (string_literal))))))))))
+                    (string_literal)))))))))
 
 ===
 For statement without initialization
@@ -76,8 +72,7 @@ fn main() {
             (type)
             (assign_operator)
             (expression
-              (literal
-                (number_literal))))
+              (number_literal)))
           (for_statement
             (expression
               (binary_expression
@@ -85,8 +80,7 @@ fn main() {
                   (identifier))
                 (less_operator)
                 (expression
-                  (literal
-                    (number_literal)))))
+                  (number_literal))))
             (expression
               (assign_expression
                 (identifier)
@@ -97,12 +91,10 @@ fn main() {
                       (identifier))
                     (add_operator)
                     (expression
-                      (literal
-                        (number_literal)))))))
+                      (number_literal))))))
             (block
               (expression_statement
                 (function_call_expression
                   (identifier)
                   (expression
-                    (literal
-                      (string_literal))))))))))
+                    (string_literal)))))))))

@@ -75,8 +75,7 @@ fn return_fn_call_with_param() -> Type {
               (function_call_expression
                 (identifier)
                 (expression
-                  (literal
-                    (number_literal)))))))))
+                  (number_literal))))))))
 
 ===
 Function call with multiple parameters
@@ -98,19 +97,16 @@ fn fn_call_with_multiple_params() -> () {
             (function_call_expression
                 (identifier)
                 (expression
-                (literal
-                    (number_literal)))
+                (number_literal))
                 (expression
-                (literal
-                    (bool_literal)))
+                (bool_literal))
                 (expression
                 (identifier))
                 (expression
                 (function_call_expression
                     (identifier)
                     (expression
-                    (literal
-                        (string_literal))))))))))
+                    (string_literal)))))))))
 
 
 ===
@@ -168,12 +164,10 @@ fn constructor() -> some_context {
               (expression
                 (binary_expression
                   (expression
-                    (literal
-                      (number_literal)))
+                    (number_literal))
                   (pow_operator)
                   (expression
-                    (literal
-                      (number_literal))))))))))
+                    (number_literal)))))))))
 
 ===
 Create and assign Array<u32> without parameters
@@ -245,8 +239,7 @@ fn constructor() -> some_context {
                     (expand_operator)
                     (identifier))
                   (expression
-                    (literal
-                      (number_literal))))))))))
+                    (number_literal)))))))))
 
 ===
 Create and assign Array<u64> with multiple parameters
@@ -282,22 +275,18 @@ fn constructor() -> some_context {
                     (expand_operator)
                     (identifier))
                   (expression
-                    (literal
-                      (number_literal)))
+                    (number_literal))
                   (expression
                     (identifier))
                   (expression
-                    (literal
-                      (bool_literal)))
+                    (bool_literal))
                   (expression
                     (function_call_expression
                       (identifier)
                       (expression
-                        (literal
-                          (string_literal)))))
+                        (string_literal))))
                   (expression
-                    (literal
-                      (string_literal)))
+                    (string_literal))
                   (expression
                     (function_call_expression
                       (member_access_expression
@@ -311,12 +300,10 @@ fn constructor() -> some_context {
                       (expression
                         (binary_expression
                           (expression
-                            (literal
-                              (number_literal)))
+                            (number_literal))
                           (mul_operator)
                           (expression
-                            (literal
-                              (number_literal))))))))))))))
+                            (number_literal)))))))))))))
 
 ===
 Compound binary expression with parenthesized expression
@@ -365,8 +352,7 @@ fn valid_Address(a: Address) -> Address {
                             (identifier))
                           (mod_operator)
                           (expression
-                            (literal
-                              (number_literal)))))))))))
+                            (number_literal))))))))))
           (return_statement
             (expression
               (identifier))))))
@@ -421,8 +407,7 @@ fn valid_Address(a: Address) -> Address {
                                     (identifier))
                                   (mod_operator)
                                   (expression
-                                    (literal
-                                      (number_literal))))))))))
+                                    (number_literal)))))))))
                     (and_operator)
                     (expression
                       (prefix_unary_expression

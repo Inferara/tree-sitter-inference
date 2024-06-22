@@ -30,8 +30,7 @@ fn valid_Address(a: Address) -> Address {
                       (identifier))
                     (less_operator)
                     (expression
-                      (literal
-                        (number_literal))))))))
+                      (number_literal)))))))
           (return_statement
             (expression
               (identifier))))))
@@ -122,5 +121,4 @@ fn proof() -> () {
                     (identifier))
                   (less_operator)
                   (expression
-                    (literal
-                      (number_literal))))))))))
+                    (number_literal)))))))))
