@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-inference",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Inference grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
@@ -30,7 +30,7 @@
     "t": "tree-sitter test",
     "bt": "npm run b && npm run t",
     "d": "tree-sitter parse debug.inf",
-    "te" : "tree-sitter parse example.inf"
+    "te": "tree-sitter parse example.inf"
   },
   "dependencies": {
     "node-addon-api": "^8.0.0",
