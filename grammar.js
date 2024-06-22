@@ -91,7 +91,7 @@ module.exports = grammar({
       '()',
     )),
 
-    literal: $ => choice(
+    _literal: $ => choice(
       $.bool_literal,
       $.string_literal,
       $.number_literal,
@@ -112,7 +112,7 @@ module.exports = grammar({
 
     _non_lval_expression: $ => choice(
       $.binary_expression,
-      $.literal,
+      $._literal,
       $._expression_statement,
     ),
 
@@ -210,7 +210,7 @@ module.exports = grammar({
       $._typedef_symbol,
       field('type', $.type),
       $.assign_operator,
-      field('value', $.literal),
+      field('value', $._literal),
       $._terminal_symbol,
     ),
 
