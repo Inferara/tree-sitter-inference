@@ -1090,18 +1090,24 @@
             "named": true
           }
         ]
+      },
+      "typeof_exression": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "typeof_expression",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "assign_operator",
-          "named": true
-        },
-        {
-          "type": "typeof_expression",
           "named": true
         }
       ]
