@@ -5,10 +5,10 @@ increment_version() {
   local version=$1
   IFS='.' read -r major minor patch <<< "$version"
   patch=$((patch + 1))
-  if [ $patch -ge 10 ]; then
+  if [ $patch -ge 100 ]; then
     patch=0
     minor=$((minor + 1))
-    if [ $minor -ge 10 ]; then
+    if [ $minor -ge 50 ]; then
       minor=0
       major=$((major + 1))
     fi
