@@ -1,1 +1,4 @@
-use inference::std::algorithms::{sort,hash};
+use inference::std;
+use inference::std::collections::{ Array, Set };
+use inference::std::types::Address;
+use { sorting_function, another_function } from "./sort.rs";

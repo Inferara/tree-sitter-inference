@@ -26,6 +26,7 @@
     "install": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip",
     "lint": "eslint grammar.js",
+    "bump_version": "./bump_version.sh",
     "b": "tree-sitter generate",
     "t": "tree-sitter test",
     "bt": "npm run b && npm run t",
