@@ -200,7 +200,7 @@ module.exports = grammar({
       'type',
       field('name', $.identifier),
       $.assign_operator,
-      field('typeof_exression', $.typeof_expression),
+      field('typeof_expression', $.typeof_expression),
       $._terminal_symbol,
     ),
 
