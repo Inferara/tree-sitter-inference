@@ -844,7 +844,7 @@ enum ts_field_identifiers {
   field_right = 17,
   field_segment = 18,
   field_type = 19,
-  field_typeof_exression = 20,
+  field_typeof_expression = 20,
   field_typeref = 21,
   field_update = 22,
   field_value = 23,
@@ -871,7 +871,7 @@ static const char * const ts_field_names[] = {
   [field_right] = "right",
   [field_segment] = "segment",
   [field_type] = "type",
-  [field_typeof_exression] = "typeof_exression",
+  [field_typeof_expression] = "typeof_expression",
   [field_typeref] = "typeref",
   [field_update] = "update",
   [field_value] = "value",
@@ -953,7 +953,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_name, 1},
   [8] =
     {field_name, 1},
-    {field_typeof_exression, 3},
+    {field_typeof_expression, 3},
   [10] =
     {field_imported_type, 1},
   [11] =
