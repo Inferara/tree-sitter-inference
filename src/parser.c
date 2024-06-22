@@ -890,51 +890,51 @@ static const TSFieldMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
   [10] = {.index = 14, .length = 2},
   [11] = {.index = 16, .length = 2},
   [12] = {.index = 18, .length = 2},
-  [13] = {.index = 20, .length = 4},
-  [14] = {.index = 24, .length = 2},
-  [15] = {.index = 26, .length = 2},
-  [16] = {.index = 28, .length = 2},
-  [17] = {.index = 30, .length = 1},
-  [18] = {.index = 31, .length = 3},
-  [19] = {.index = 34, .length = 2},
-  [20] = {.index = 36, .length = 2},
-  [21] = {.index = 38, .length = 2},
-  [22] = {.index = 40, .length = 2},
-  [23] = {.index = 42, .length = 2},
-  [24] = {.index = 44, .length = 1},
-  [25] = {.index = 45, .length = 3},
-  [26] = {.index = 48, .length = 1},
-  [27] = {.index = 49, .length = 2},
-  [28] = {.index = 51, .length = 4},
-  [29] = {.index = 55, .length = 3},
-  [30] = {.index = 58, .length = 2},
-  [31] = {.index = 60, .length = 3},
-  [32] = {.index = 63, .length = 3},
-  [33] = {.index = 66, .length = 3},
-  [34] = {.index = 69, .length = 3},
-  [35] = {.index = 72, .length = 3},
-  [36] = {.index = 75, .length = 4},
-  [37] = {.index = 79, .length = 2},
-  [38] = {.index = 81, .length = 3},
-  [39] = {.index = 84, .length = 1},
-  [40] = {.index = 85, .length = 4},
-  [41] = {.index = 89, .length = 3},
-  [42] = {.index = 92, .length = 2},
-  [43] = {.index = 94, .length = 2},
-  [44] = {.index = 96, .length = 2},
-  [45] = {.index = 98, .length = 4},
-  [46] = {.index = 102, .length = 3},
-  [47] = {.index = 105, .length = 3},
-  [48] = {.index = 108, .length = 3},
-  [49] = {.index = 111, .length = 3},
-  [50] = {.index = 114, .length = 4},
-  [51] = {.index = 118, .length = 4},
-  [52] = {.index = 122, .length = 4},
-  [53] = {.index = 126, .length = 4},
-  [54] = {.index = 130, .length = 5},
-  [55] = {.index = 135, .length = 5},
-  [56] = {.index = 140, .length = 5},
-  [57] = {.index = 145, .length = 6},
+  [13] = {.index = 20, .length = 3},
+  [14] = {.index = 23, .length = 2},
+  [15] = {.index = 25, .length = 2},
+  [16] = {.index = 27, .length = 2},
+  [17] = {.index = 29, .length = 1},
+  [18] = {.index = 30, .length = 3},
+  [19] = {.index = 33, .length = 2},
+  [20] = {.index = 35, .length = 2},
+  [21] = {.index = 37, .length = 2},
+  [22] = {.index = 39, .length = 2},
+  [23] = {.index = 41, .length = 2},
+  [24] = {.index = 43, .length = 1},
+  [25] = {.index = 44, .length = 3},
+  [26] = {.index = 47, .length = 1},
+  [27] = {.index = 48, .length = 2},
+  [28] = {.index = 50, .length = 3},
+  [29] = {.index = 53, .length = 3},
+  [30] = {.index = 56, .length = 2},
+  [31] = {.index = 58, .length = 3},
+  [32] = {.index = 61, .length = 3},
+  [33] = {.index = 64, .length = 3},
+  [34] = {.index = 67, .length = 3},
+  [35] = {.index = 70, .length = 3},
+  [36] = {.index = 73, .length = 4},
+  [37] = {.index = 77, .length = 2},
+  [38] = {.index = 79, .length = 3},
+  [39] = {.index = 82, .length = 1},
+  [40] = {.index = 83, .length = 4},
+  [41] = {.index = 87, .length = 3},
+  [42] = {.index = 90, .length = 2},
+  [43] = {.index = 92, .length = 2},
+  [44] = {.index = 94, .length = 2},
+  [45] = {.index = 96, .length = 4},
+  [46] = {.index = 100, .length = 3},
+  [47] = {.index = 103, .length = 3},
+  [48] = {.index = 106, .length = 3},
+  [49] = {.index = 109, .length = 3},
+  [50] = {.index = 112, .length = 4},
+  [51] = {.index = 116, .length = 4},
+  [52] = {.index = 120, .length = 4},
+  [53] = {.index = 124, .length = 4},
+  [54] = {.index = 128, .length = 5},
+  [55] = {.index = 133, .length = 5},
+  [56] = {.index = 138, .length = 5},
+  [57] = {.index = 143, .length = 6},
 };
 
 static const TSFieldMapEntry ts_field_map_entries[] = {
@@ -973,173 +973,171 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
   [20] =
     {field_body, 5},
     {field_name, 1},
-    {field_returns, 3},
     {field_returns, 4},
-  [24] =
+  [23] =
     {field_argument, 1},
     {field_argument, 2, .inherited = true},
-  [26] =
+  [25] =
     {field_argument, 0, .inherited = true},
     {field_argument, 1, .inherited = true},
-  [28] =
+  [27] =
     {field_name, 0},
     {field_type, 2},
-  [30] =
+  [29] =
     {field_typeref, 2},
-  [31] =
+  [30] =
     {field_name, 1},
     {field_type, 3},
     {field_value, 5},
-  [34] =
+  [33] =
     {field_argument, 4},
     {field_name, 2},
-  [36] =
+  [35] =
     {field_from_literal, 5},
     {field_imported_type, 2},
-  [38] =
+  [37] =
     {field_imported_type, 4},
     {field_segment, 1},
-  [40] =
+  [39] =
     {field_expression, 0},
     {field_name, 2},
-  [42] =
+  [41] =
     {field_condition, 1},
     {field_if_arm, 2},
-  [44] =
+  [43] =
     {field_expression, 1},
-  [45] =
+  [44] =
     {field_left, 0},
     {field_operator, 1},
     {field_right, 2},
-  [48] =
+  [47] =
     {field_function, 0},
-  [49] =
+  [48] =
     {field_left, 0},
     {field_right, 2},
-  [51] =
+  [50] =
     {field_body, 6},
     {field_name, 2},
-    {field_returns, 4},
     {field_returns, 5},
-  [55] =
+  [53] =
     {field_argument, 4},
     {field_argument, 5, .inherited = true},
     {field_name, 2},
-  [58] =
+  [56] =
     {field_argument, 5},
     {field_name, 3},
-  [60] =
+  [58] =
     {field_from_literal, 6},
     {field_imported_type, 2},
     {field_imported_type, 3, .inherited = true},
-  [63] =
+  [61] =
     {field_imported_type, 4},
     {field_imported_type, 5, .inherited = true},
     {field_segment, 1},
-  [66] =
+  [64] =
     {field_imported_type, 5},
     {field_segment, 1},
     {field_segment, 2, .inherited = true},
-  [69] =
+  [67] =
     {field_argument, 4},
     {field_name, 2},
     {field_returns, 7},
-  [72] =
+  [70] =
     {field_argument, 5},
     {field_argument, 6, .inherited = true},
     {field_name, 3},
-  [75] =
+  [73] =
     {field_imported_type, 5},
     {field_imported_type, 6, .inherited = true},
     {field_segment, 1},
     {field_segment, 2, .inherited = true},
-  [79] =
+  [77] =
     {field_name, 1},
     {field_type, 3},
-  [81] =
+  [79] =
     {field_condition, 1},
     {field_else_arm, 4},
     {field_if_arm, 2},
-  [84] =
+  [82] =
     {field_body, 4},
-  [85] =
+  [83] =
     {field_argument, 4},
     {field_argument, 5, .inherited = true},
     {field_name, 2},
     {field_returns, 8},
-  [89] =
+  [87] =
     {field_argument, 5},
     {field_name, 3},
     {field_returns, 8},
-  [92] =
+  [90] =
     {field_body, 5},
     {field_update, 3},
-  [94] =
+  [92] =
     {field_body, 5},
     {field_condition, 2},
-  [96] =
+  [94] =
     {field_body, 5},
     {field_initializer, 2},
-  [98] =
+  [96] =
     {field_argument, 5},
     {field_argument, 6, .inherited = true},
     {field_name, 3},
     {field_returns, 9},
-  [102] =
+  [100] =
     {field_body, 6},
     {field_initializer, 2},
     {field_initializer, 3},
-  [105] =
+  [103] =
     {field_body, 6},
     {field_condition, 2},
     {field_update, 4},
-  [108] =
+  [106] =
     {field_body, 6},
     {field_initializer, 2},
     {field_update, 4},
-  [111] =
+  [109] =
     {field_body, 6},
     {field_condition, 3},
     {field_initializer, 2},
-  [114] =
+  [112] =
     {field_body, 7},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_update, 5},
-  [118] =
+  [116] =
     {field_body, 7},
     {field_condition, 4},
     {field_initializer, 2},
     {field_initializer, 3},
-  [122] =
+  [120] =
     {field_body, 7},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_initializer, 4},
-  [126] =
+  [124] =
     {field_body, 7},
     {field_condition, 3},
     {field_initializer, 2},
     {field_update, 5},
-  [130] =
+  [128] =
     {field_body, 8},
     {field_condition, 4},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_update, 6},
-  [135] =
+  [133] =
     {field_body, 8},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_initializer, 4},
     {field_update, 6},
-  [140] =
+  [138] =
     {field_body, 8},
     {field_condition, 5},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_initializer, 4},
-  [145] =
+  [143] =
     {field_body, 9},
     {field_condition, 5},
     {field_initializer, 2},

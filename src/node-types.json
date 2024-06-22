@@ -679,13 +679,9 @@
         ]
       },
       "returns": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "rightarrow_operator",
-            "named": true
-          },
           {
             "type": "type",
             "named": true
@@ -703,6 +699,10 @@
         },
         {
           "type": "function_keyword",
+          "named": true
+        },
+        {
+          "type": "rightarrow_operator",
           "named": true
         },
         {
