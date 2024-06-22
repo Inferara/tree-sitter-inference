@@ -1,1 +1,3 @@
-external fn sorting_function (Address, Address) -> Address;
+context A {
+     type sf = typeof(sorting_function);
+}
