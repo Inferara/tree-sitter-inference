@@ -1081,29 +1081,29 @@
           "name": "argument_list"
         },
         {
-          "type": "FIELD",
-          "name": "returns",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "rightarrow_operator"
-                  },
-                  {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "rightarrow_operator"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "returns",
+                  "content": {
                     "type": "SYMBOL",
                     "name": "type"
                   }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "FIELD",
