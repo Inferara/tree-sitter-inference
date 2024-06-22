@@ -302,22 +302,22 @@ module.exports = grammar({
       'use',
       choice(
         seq(
-          sep1($.identifier, $.expand_operator),
+          sep1(field('segment', $.identifier), $.expand_operator),
           optional(
             seq(
               $.expand_operator,
               $._lcb_symbol,
-              sep1($.identifier, $._comma_symbol),
+              sep1(field('imported_type', $.identifier), $._comma_symbol),
               $._rcb_symbol,
             ),
           ),
         ),
         seq(
           $._lcb_symbol,
-          sep1($.identifier, $._comma_symbol),
+          sep1(field('imported_type', $.identifier), $._comma_symbol),
           $._rcb_symbol,
           'from',
-          $.string_literal,
+          field('from_literal', $.string_literal),
         ),
       ),
       $._terminal_symbol,

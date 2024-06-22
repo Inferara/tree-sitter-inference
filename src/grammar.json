@@ -1477,8 +1477,12 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "identifier"
+                      "type": "FIELD",
+                      "name": "segment",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "identifier"
+                      }
                     },
                     {
                       "type": "REPEAT",
@@ -1490,8 +1494,12 @@
                             "name": "expand_operator"
                           },
                           {
-                            "type": "SYMBOL",
-                            "name": "identifier"
+                            "type": "FIELD",
+                            "name": "segment",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "identifier"
+                            }
                           }
                         ]
                       }
@@ -1516,8 +1524,12 @@
                           "type": "SEQ",
                           "members": [
                             {
-                              "type": "SYMBOL",
-                              "name": "identifier"
+                              "type": "FIELD",
+                              "name": "imported_type",
+                              "content": {
+                                "type": "SYMBOL",
+                                "name": "identifier"
+                              }
                             },
                             {
                               "type": "REPEAT",
@@ -1529,8 +1541,12 @@
                                     "name": "_comma_symbol"
                                   },
                                   {
-                                    "type": "SYMBOL",
-                                    "name": "identifier"
+                                    "type": "FIELD",
+                                    "name": "imported_type",
+                                    "content": {
+                                      "type": "SYMBOL",
+                                      "name": "identifier"
+                                    }
                                   }
                                 ]
                               }
@@ -1561,8 +1577,12 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "identifier"
+                      "type": "FIELD",
+                      "name": "imported_type",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "identifier"
+                      }
                     },
                     {
                       "type": "REPEAT",
@@ -1574,8 +1594,12 @@
                             "name": "_comma_symbol"
                           },
                           {
-                            "type": "SYMBOL",
-                            "name": "identifier"
+                            "type": "FIELD",
+                            "name": "imported_type",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "identifier"
+                            }
                           }
                         ]
                       }
@@ -1591,8 +1615,12 @@
                   "value": "from"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "string_literal"
+                  "type": "FIELD",
+                  "name": "from_literal",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "string_literal"
+                  }
                 }
               ]
             }
