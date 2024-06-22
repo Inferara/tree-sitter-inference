@@ -391,7 +391,7 @@ module.exports = grammar({
 
     _string_literal_content: _ => token.immediate(prec(1, /[^"\\\n]+/)),
 
-    number_literal: $ => /\d+/,
+    number_literal: $ => seq(optional('-'), /\d+/),
 
     qualified_identifier: $ => sep1($.identifier, $.attribute_access_operator),
 
