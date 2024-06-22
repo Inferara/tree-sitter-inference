@@ -1091,7 +1091,7 @@
           }
         ]
       },
-      "typeof_exression": {
+      "typeof_expression": {
         "multiple": false,
         "required": true,
         "types": [
