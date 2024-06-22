@@ -939,8 +939,12 @@
           "name": "assign_operator"
         },
         {
-          "type": "SYMBOL",
-          "name": "typeof_expression"
+          "type": "FIELD",
+          "name": "typeof_exression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "typeof_expression"
+          }
         },
         {
           "type": "SYMBOL",
