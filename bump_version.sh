@@ -1,19 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 
 # Function to increment version
 increment_version() {
   local version=$1
-  IFS='.' read -r -a parts <<< "$version"
-  parts[2]=$((parts[2] + 1))
-  if [ "${parts[2]}" -ge 10 ]; then
-    parts[2]=0
-    parts[1]=$((parts[1] + 1))
-    if [ "${parts[1]}" -ge 10 ]; then
-      parts[1]=0
-      parts[0]=$((parts[0] + 1))
+  IFS='.' read -r major minor patch <<< "$version"
+  patch=$((patch + 1))
+  if [ $patch -ge 10 ]; then
+    patch=0
+    minor=$((minor + 1))
+    if [ $minor -ge 10 ]; then
+      minor=0
+      major=$((major + 1))
     fi
   fi
-  echo "${parts[0]}.${parts[1]}.${parts[2]}"
+  echo "$major.$minor.$patch"
 }
 
 # Function to update version in a file
@@ -41,7 +41,6 @@ files_to_update=(
   "Makefile:^VERSION\\s*:=\\s*([0-9]+\\.[0-9]+\\.[0-9]+)"
   "pyproject.toml:version\\s*=\\s*\"([0-9]+\\.[0-9]+\\.[0-9]+)\""
   "package.json:\"version\":\\s*\"([0-9]+\\.[0-9]+\\.[0-9]+)\""
-  "package-lock.json:\"version\":\\s*\"([0-9]+\\.[0-9]+\\.[0-9]+)\""
 )
 
 # Update the version in each file
