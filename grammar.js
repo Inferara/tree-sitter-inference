@@ -246,18 +246,15 @@ module.exports = grammar({
       $.function_keyword,
       field('name', $.identifier),
       $._lrb_symbol,
-      sep1($._name, $._comma_symbol),
+      sep1(field('argument', $._name), $._comma_symbol),
       $._rrb_symbol,
-      field(
-        'returns',
-        optional(seq($.rightarrow_operator, $.type)),
-      ),
+      optional(seq($.rightarrow_operator, field('returns', $.type))),
       ';',
     ),
 
     argument_list: $ => seq(
       $._lrb_symbol,
-      optional(sep1($.argument_declaration, $._comma_symbol)),
+      optional(sep1(field('argument', $.argument_declaration), $._comma_symbol)),
       $._rrb_symbol,
     ),
 
