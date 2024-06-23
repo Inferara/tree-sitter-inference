@@ -80,10 +80,6 @@
         "required": true,
         "types": [
           {
-            "type": "ctx",
-            "named": false
-          },
-          {
             "type": "generic_name",
             "named": true
           },
@@ -349,7 +345,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "apply_expression",
@@ -616,10 +612,6 @@
         "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "ctx",
-            "named": false
-          },
           {
             "type": "generic_name",
             "named": true

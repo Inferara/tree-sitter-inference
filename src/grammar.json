@@ -166,10 +166,6 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "ctx"
-        },
-        {
           "type": "SYMBOL",
           "name": "member_access_expression"
         },
@@ -2058,6 +2054,10 @@
         {
           "type": "STRING",
           "value": "type"
+        },
+        {
+          "type": "STRING",
+          "value": "ctx"
         }
       ]
     },
