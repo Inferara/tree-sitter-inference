@@ -7,9 +7,8 @@ fn valid_Address(a: Address) -> Address {
 }
 
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list
@@ -23,18 +22,13 @@ fn valid_Address(a: Address) -> Address {
         (block
           (expression_statement
             (assert_expression
-              (expression
-                (parenthesized_expression
-                  (binary_expression
-                    (expression
-                      (identifier))
-                    (less_operator)
-                    (expression
-                      (literal
-                        (number_literal))))))))
+              (parenthesized_expression
+                (binary_expression
+                  (identifier)
+                  (less_operator)
+                  (number_literal)))))
           (return_statement
-            (expression
-              (identifier))))))
+            (identifier)))))
 
 ===
 Assign unary expression
@@ -45,9 +39,8 @@ fn valid_Address(a: Address) -> Address {
     return a;
 }
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list
@@ -63,13 +56,10 @@ fn valid_Address(a: Address) -> Address {
             (assign_expression
               (identifier)
               (assign_operator)
-              (expression
-                (prefix_unary_expression
-                  (expression
-                    (identifier))))))
+              (prefix_unary_expression
+                (identifier))))
           (return_statement
-            (expression
-              (identifier))))))
+            (identifier)))))
 
 ===
 Apply expression
@@ -80,9 +70,8 @@ fn proof() -> () {
 }
 
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list)
@@ -93,8 +82,7 @@ fn proof() -> () {
             (apply_expression
               (function_call_expression
                 (identifier)
-                (expression
-                  (identifier))))))))
+                (identifier)))))))
 
 ===
 Assert expression
@@ -105,9 +93,8 @@ fn proof() -> () {
 }
 
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list)
@@ -116,11 +103,7 @@ fn proof() -> () {
         (block
           (expression_statement
             (assert_expression
-              (expression
-                (binary_expression
-                  (expression
-                    (identifier))
-                  (less_operator)
-                  (expression
-                    (literal
-                      (number_literal))))))))))
+              (binary_expression
+                (identifier)
+                (less_operator)
+                (number_literal)))))))
