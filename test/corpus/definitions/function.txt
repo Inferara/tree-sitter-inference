@@ -14,7 +14,7 @@ fn func() -> i32 {
         (identifier)
         (argument_list)
         (rightarrow_operator)
-        (type)
+        (type_i32)
         (block)))
 
 ===
@@ -51,9 +51,9 @@ fn func(x: i32) -> i32 {
     (argument_list
         (argument_declaration
             (identifier)
-            (type)))
+            (type_i32)))
     (rightarrow_operator)
-    (type)
+    (type_i32)
     (block)))
 
 ===
@@ -71,12 +71,12 @@ fn func(x: i32, y: i32) -> i32 {
         (argument_list
           (argument_declaration
             (identifier)
-            (type))
+            (type_i32))
           (argument_declaration
             (identifier)
-            (type)))
+            (type_i32)))
         (rightarrow_operator)
-        (type)
+        (type_i32)
         (block)))
 
 ===
@@ -93,7 +93,7 @@ fn func() -> i32 {
         (identifier)
         (argument_list)
         (rightarrow_operator)
-        (type)
+        (type_i32)
         (block
           (return_statement
             (number_literal)))))
@@ -112,7 +112,7 @@ fn func() -> bool {
         (identifier)
         (argument_list)
         (rightarrow_operator)
-        (type)
+        (type_bool)
         (block
           (return_statement
             (bool_literal)))))
@@ -129,8 +129,7 @@ fn constructor() -> some_context {
     (identifier)
     (argument_list)
     (rightarrow_operator)
-    (type
-        (identifier))
+    (identifier)
     (block)))
 
 ===
@@ -147,12 +146,12 @@ fn add(a : i32, b : i32) -> i32 {
         (argument_list
           (argument_declaration
             (identifier)
-            (type))
+            (type_i32))
           (argument_declaration
             (identifier)
-            (type)))
+            (type_i32)))
         (rightarrow_operator)
-        (type)
+        (type_i32)
         (block
           (return_statement
             (binary_expression
@@ -175,12 +174,12 @@ total fn add(a : i32, b : i32) -> i32 {
         (argument_list
           (argument_declaration
             (identifier)
-            (type))
+            (type_i32))
           (argument_declaration
             (identifier)
-            (type)))
+            (type_i32)))
         (rightarrow_operator)
-        (type)
+        (type_i32)
         (block
           (return_statement
             (binary_expression
@@ -209,10 +208,9 @@ total fn procuring_sorted(func: sf) -> () {
         (argument_list
           (argument_declaration
             (identifier)
-            (type
-              (identifier))))
+            (identifier)))
         (rightarrow_operator)
-        (type)
+        (type_unit)
         (block
           (filter_statement
             (block

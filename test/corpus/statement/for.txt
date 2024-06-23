@@ -18,7 +18,7 @@ fn main() {
           (for_statement
             (variable_definition_statement
               (identifier)
-              (type)
+              (type_i32)
               (assign_operator)
               (number_literal))
             (binary_expression
@@ -58,7 +58,7 @@ fn main() {
         (block
           (variable_definition_statement
             (identifier)
-            (type)
+            (type_i32)
             (assign_operator)
             (number_literal))
           (for_statement

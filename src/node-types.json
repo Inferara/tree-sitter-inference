@@ -33,7 +33,43 @@
         "required": true,
         "types": [
           {
-            "type": "type",
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_unit",
             "named": true
           }
         ]
@@ -482,7 +518,43 @@
         "required": true,
         "types": [
           {
-            "type": "type",
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_unit",
             "named": true
           }
         ]
@@ -635,7 +707,43 @@
         "required": false,
         "types": [
           {
-            "type": "type",
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_unit",
             "named": true
           }
         ]
@@ -1040,7 +1148,43 @@
         "required": false,
         "types": [
           {
-            "type": "type",
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_unit",
             "named": true
           }
         ]
@@ -1263,7 +1407,31 @@
             "named": true
           },
           {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_unit",
             "named": true
           },
           {
@@ -1585,33 +1753,6 @@
     "fields": {}
   },
   {
-    "type": "type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "generic_name",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "qualified_name",
-          "named": true
-        },
-        {
-          "type": "type_qualified_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "type_argument_list",
     "named": true,
     "fields": {
@@ -1620,7 +1761,43 @@
         "required": false,
         "types": [
           {
-            "type": "type",
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_unit",
             "named": true
           }
         ]
@@ -1796,7 +1973,43 @@
         "required": true,
         "types": [
           {
-            "type": "type",
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_unit",
             "named": true
           }
         ]
@@ -2044,6 +2257,30 @@
   {
     "type": "type",
     "named": false
+  },
+  {
+    "type": "type_bool",
+    "named": true
+  },
+  {
+    "type": "type_i32",
+    "named": true
+  },
+  {
+    "type": "type_i64",
+    "named": true
+  },
+  {
+    "type": "type_u32",
+    "named": true
+  },
+  {
+    "type": "type_u64",
+    "named": true
+  },
+  {
+    "type": "type_unit",
+    "named": true
   },
   {
     "type": "typeof",

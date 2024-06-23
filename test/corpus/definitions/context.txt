@@ -31,8 +31,7 @@ context some_context {
           (identifier)
           (identifier)
           (rightarrow_operator)
-          (type
-            (identifier)))))
+          (identifier))))
 
 ===
 Type definition

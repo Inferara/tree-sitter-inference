@@ -21,7 +21,7 @@ fn main() {
         (block
           (variable_definition_statement
             (identifier)
-            (type)
+            (type_i32)
             (assign_operator)
             (number_literal))
           (if_statement
@@ -61,7 +61,7 @@ fn main() {
         (block
           (variable_definition_statement
             (identifier)
-            (type)
+            (type_i32)
             (assign_operator)
             (number_literal))
           (if_statement

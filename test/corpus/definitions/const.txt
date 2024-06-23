@@ -9,6 +9,6 @@ const MAX_MEM : i64 = 1000;
 (source_file
     (constant_definition
     (identifier)
-    (type)
+    (type_i64)
     (assign_operator)
     (number_literal)))

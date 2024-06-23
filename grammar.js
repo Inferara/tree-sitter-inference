@@ -77,19 +77,26 @@ module.exports = grammar({
       $.type_definition_statement,
     ),
 
-    type: $ => choice(
+    _type: $ => choice(
       $._name,
       $._embedded_type,
     ),
 
-    _embedded_type: _ => token(choice(
-      'i32',
-      'i64',
-      'u32',
-      'u64',
-      'bool',
-      '()',
-    )),
+    _embedded_type: $ => choice(
+      $.type_i32,
+      $.type_i64,
+      $.type_u32,
+      $.type_u64,
+      $.type_bool,
+      $.type_unit,
+    ),
+
+    type_i32: _ => token('i32'),
+    type_i64: _ => token('i64'),
+    type_u32: _ => token('u32'),
+    type_u64: _ => token('u64'),
+    type_bool: _ => token('bool'),
+    type_unit: _ => token('()'),
 
     _literal: $ => choice(
       $.bool_literal,
@@ -190,7 +197,7 @@ module.exports = grammar({
       'let',
       field('name', $.identifier),
       $._typedef_symbol,
-      field('type', $.type),
+      field('type', $._type),
       optional(seq($.assign_operator, $._expression)),
       $._terminal_symbol,
     ),
@@ -207,7 +214,7 @@ module.exports = grammar({
       'const',
       field('name', $.identifier),
       $._typedef_symbol,
-      field('type', $.type),
+      field('type', $._type),
       $.assign_operator,
       field('value', $._literal),
       $._terminal_symbol,
@@ -232,7 +239,7 @@ module.exports = grammar({
       $.function_keyword,
       field('name', $.identifier),
       $.argument_list,
-      optional(seq($.rightarrow_operator, field('returns', $.type))),
+      optional(seq($.rightarrow_operator, field('returns', $._type))),
       field('body', $.block),
     ),
 
@@ -244,7 +251,7 @@ module.exports = grammar({
       $._lrb_symbol,
       sep1(field('argument', $._name), $._comma_symbol),
       $._rrb_symbol,
-      optional(seq($.rightarrow_operator, field('returns', $.type))),
+      optional(seq($.rightarrow_operator, field('returns', $._type))),
       ';',
     ),
 
@@ -257,7 +264,7 @@ module.exports = grammar({
     argument_declaration: $ => seq(
       field('name', $.identifier),
       $._typedef_symbol,
-      field('type', $.type),
+      field('type', $._type),
     ),
 
     filter_statement: $ => seq(
@@ -417,7 +424,7 @@ module.exports = grammar({
       '<',
       choice(
         repeat(','),
-        sep1(field('type', $.type), $._comma_symbol),
+        sep1(field('type', $._type), $._comma_symbol),
       ),
       '>',
     ),
