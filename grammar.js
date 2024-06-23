@@ -411,13 +411,13 @@ module.exports = grammar({
       field('name', $._simple_name),
     )),
 
-    generic_name: $ => seq($.identifier, $.type_argument_list),
+    generic_name: $ => seq(field('base_type', $.identifier), $.type_argument_list),
 
     type_argument_list: $ => seq(
       '<',
       choice(
         repeat(','),
-        sep1($.type, $._comma_symbol),
+        sep1(field('type', $.type), $._comma_symbol),
       ),
       '>',
     ),
