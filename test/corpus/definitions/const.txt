@@ -11,5 +11,4 @@ const MAX_MEM : i64 = 1000;
     (identifier)
     (type)
     (assign_operator)
-    (literal
-        (number_literal))))
+    (number_literal)))

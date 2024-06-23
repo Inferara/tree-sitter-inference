@@ -9,9 +9,8 @@ fn main() {
 }
 
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list)
@@ -21,36 +20,23 @@ fn main() {
               (identifier)
               (type)
               (assign_operator)
-              (expression
-                (literal
-                  (number_literal))))
-            (expression
+              (number_literal))
+            (binary_expression
+              (identifier)
+              (less_operator)
+              (number_literal))
+            (assign_expression
+              (identifier)
+              (assign_operator)
               (binary_expression
-                (expression
-                  (identifier))
-                (less_operator)
-                (expression
-                  (literal
-                    (number_literal)))))
-            (expression
-              (assign_expression
                 (identifier)
-                (assign_operator)
-                (expression
-                  (binary_expression
-                    (expression
-                      (identifier))
-                    (add_operator)
-                    (expression
-                      (literal
-                        (number_literal)))))))
+                (add_operator)
+                (number_literal)))
             (block
               (expression_statement
                 (function_call_expression
                   (identifier)
-                  (expression
-                    (literal
-                      (string_literal))))))))))
+                  (string_literal))))))))
 
 ===
 For statement without initialization
@@ -64,9 +50,8 @@ fn main() {
 }
 
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list)
@@ -75,34 +60,21 @@ fn main() {
             (identifier)
             (type)
             (assign_operator)
-            (expression
-              (literal
-                (number_literal))))
+            (number_literal))
           (for_statement
-            (expression
+            (binary_expression
+              (identifier)
+              (less_operator)
+              (number_literal))
+            (assign_expression
+              (identifier)
+              (assign_operator)
               (binary_expression
-                (expression
-                  (identifier))
-                (less_operator)
-                (expression
-                  (literal
-                    (number_literal)))))
-            (expression
-              (assign_expression
                 (identifier)
-                (assign_operator)
-                (expression
-                  (binary_expression
-                    (expression
-                      (identifier))
-                    (add_operator)
-                    (expression
-                      (literal
-                        (number_literal)))))))
+                (add_operator)
+                (number_literal)))
             (block
               (expression_statement
                 (function_call_expression
                   (identifier)
-                  (expression
-                    (literal
-                      (string_literal))))))))))
+                  (string_literal))))))))

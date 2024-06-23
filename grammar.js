@@ -91,13 +91,13 @@ module.exports = grammar({
       '()',
     )),
 
-    literal: $ => choice(
+    _literal: $ => choice(
       $.bool_literal,
       $.string_literal,
       $.number_literal,
     ),
 
-    expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
+    _expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
       $._non_lval_expression,
       $._lval_expression,
     )),
@@ -111,12 +111,12 @@ module.exports = grammar({
 
     _non_lval_expression: $ => choice(
       $.binary_expression,
-      $.literal,
+      $._literal,
       $._expression_statement,
     ),
 
     member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
-      field('expression', choice($.expression, $._embedded_type, $._name)),
+      field('expression', choice($._expression, $._embedded_type, $._name)),
       choice($.attribute_access_operator, $.expand_operator),
       field('name', $._simple_name),
     )),
@@ -124,19 +124,19 @@ module.exports = grammar({
     assign_expression: $ => prec.left(seq(
       field('left', $._lval_expression),
       $.assign_operator,
-      field('right', $.expression),
+      field('right', $._expression),
     )),
 
     function_call_expression: $ => prec(PRECEDENCE.FUNC_CALL, seq(
       field('function', $._lval_expression),
       '(',
-      optional(sep1($.expression, ',')),
+      optional(sep1($._expression, ',')),
       ')',
     )),
 
     assert_expression: $ => seq(
       'assert',
-      $.expression,
+      $._expression,
     ),
 
     apply_expression: $ => prec.right(PRECEDENCE.UNARY, seq(
@@ -152,7 +152,7 @@ module.exports = grammar({
 
     prefix_unary_expression: $ => prec(PRECEDENCE.UNARY, seq(
       '!',
-      $.expression,
+      $._expression,
     )),
 
     typeof_expression: $ => seq(
@@ -179,9 +179,9 @@ module.exports = grammar({
         [$.greater_operator, PRECEDENCE.COMPARE],
       ].map(([operator, precedence]) =>
         prec.left(precedence, seq(
-          field('left', $.expression),
+          field('left', $._expression),
           field('operator', operator),
-          field('right', $.expression),
+          field('right', $._expression),
         )),
       ),
     ),
@@ -191,7 +191,7 @@ module.exports = grammar({
       field('name', $.identifier),
       $._typedef_symbol,
       field('type', $.type),
-      optional(seq($.assign_operator, $.expression)),
+      optional(seq($.assign_operator, $._expression)),
       $._terminal_symbol,
     ),
 
@@ -209,7 +209,7 @@ module.exports = grammar({
       $._typedef_symbol,
       field('type', $.type),
       $.assign_operator,
-      field('value', $.literal),
+      field('value', $._literal),
       $._terminal_symbol,
     ),
 
@@ -267,7 +267,7 @@ module.exports = grammar({
 
     if_statement: $ => prec.right(seq(
       'if',
-      field('condition', $.expression),
+      field('condition', $._expression),
       field('if_arm', $.block),
       optional(seq('else', field('else_arm', $.block))),
     )),
@@ -279,14 +279,14 @@ module.exports = grammar({
         choice(
           $.variable_definition_statement,
           seq(
-            sep1($.expression, $._comma_symbol),
+            sep1($._expression, $._comma_symbol),
             ';',
           ),
         ),
       )),
-      field('condition', optional($.expression)),
+      field('condition', optional($._expression)),
       ';',
-      field('update', optional($.expression)),
+      field('update', optional($._expression)),
       ')',
       field('body', $._statement),
     ),
@@ -333,7 +333,7 @@ module.exports = grammar({
 
     return_statement: $ => seq(
       'return',
-      field('expression', $.expression),
+      field('expression', $._expression),
       $._terminal_symbol,
     ),
 

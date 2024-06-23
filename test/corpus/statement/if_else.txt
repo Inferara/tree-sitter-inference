@@ -13,9 +13,8 @@ fn main() {
 }
 
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list)
@@ -24,32 +23,22 @@ fn main() {
             (identifier)
             (type)
             (assign_operator)
-            (expression
-              (literal
-                (number_literal))))
+            (number_literal))
           (if_statement
-            (expression
-              (binary_expression
-                (expression
-                  (identifier))
-                (less_operator)
-                (expression
-                  (literal
-                    (number_literal)))))
+            (binary_expression
+              (identifier)
+              (less_operator)
+              (number_literal))
             (block
               (expression_statement
                 (function_call_expression
                   (identifier)
-                  (expression
-                    (literal
-                      (string_literal))))))
+                  (string_literal))))
             (block
               (expression_statement
                 (function_call_expression
                   (identifier)
-                  (expression
-                    (literal
-                      (string_literal))))))))))
+                  (string_literal))))))))
 
 ===
 Is-else statement without else branch
@@ -64,9 +53,8 @@ fn main() {
 }
 
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list)
@@ -75,22 +63,14 @@ fn main() {
             (identifier)
             (type)
             (assign_operator)
-            (expression
-              (literal
-                (number_literal))))
+            (number_literal))
           (if_statement
-            (expression
-              (binary_expression
-                (expression
-                  (identifier))
-                (less_operator)
-                (expression
-                  (literal
-                    (number_literal)))))
+            (binary_expression
+              (identifier)
+              (less_operator)
+              (number_literal))
             (block
               (expression_statement
                 (function_call_expression
                   (identifier)
-                  (expression
-                    (literal
-                      (string_literal))))))))))
+                  (string_literal))))))))

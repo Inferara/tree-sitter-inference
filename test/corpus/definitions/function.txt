@@ -87,19 +87,16 @@ fn func() -> i32 {
     return 0;
 }
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list)
         (rightarrow_operator)
         (type)
         (block
-            (return_statement
-            (expression
-                (literal
-                (number_literal)))))))
+          (return_statement
+            (number_literal)))))
 
 ===
 Function with return bool literal
@@ -109,9 +106,8 @@ fn func() -> bool {
     return true;
 }
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list)
@@ -119,9 +115,7 @@ fn func() -> bool {
         (type)
         (block
           (return_statement
-            (expression
-              (literal
-                (bool_literal)))))))
+            (bool_literal)))))
 
 ===
 Function with return identifier
@@ -129,7 +123,6 @@ Function with return identifier
 fn constructor() -> some_context {
 }
 ---
-
 (source_file
     (function_definition
     (function_keyword)
@@ -147,8 +140,8 @@ fn add(a : i32, b : i32) -> i32 {
     return a + b;
 }
 ---
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (function_keyword)
         (identifier)
         (argument_list
@@ -162,13 +155,10 @@ fn add(a : i32, b : i32) -> i32 {
         (type)
         (block
           (return_statement
-            (expression
-              (binary_expression
-                (expression
-                  (identifier))
-                (add_operator)
-                (expression
-                  (identifier))))))))
+            (binary_expression
+              (identifier)
+              (add_operator)
+              (identifier))))))
 
 ===
 Total function definition
@@ -177,9 +167,8 @@ total fn add(a : i32, b : i32) -> i32 {
     return a + b;
 }
 ---
-
-(source_file
-    (function_definition
+    (source_file
+      (function_definition
         (total_keyword)
         (function_keyword)
         (identifier)
@@ -194,13 +183,10 @@ total fn add(a : i32, b : i32) -> i32 {
         (type)
         (block
           (return_statement
-            (expression
-              (binary_expression
-                (expression
-                  (identifier))
-                (add_operator)
-                (expression
-                  (identifier))))))))
+            (binary_expression
+              (identifier)
+              (add_operator)
+              (identifier))))))
 
 ===
 Function with filter block
@@ -215,7 +201,6 @@ total fn procuring_sorted(func: sf) -> () {
 }
 
 ---
-
     (source_file
       (function_definition
         (total_keyword)
@@ -235,23 +220,18 @@ total fn procuring_sorted(func: sf) -> () {
                 (assign_expression
                   (identifier)
                   (assign_operator)
-                  (expression
-                    (function_call_expression
-                      (identifier)))))
+                  (function_call_expression
+                    (identifier))))
               (expression_statement
                 (assign_expression
                   (identifier)
                   (assign_operator)
-                  (expression
-                    (function_call_expression
-                      (identifier)))))
+                  (function_call_expression
+                    (identifier))))
               (expression_statement
                 (assert_expression
-                  (expression
-                    (parenthesized_expression
-                      (binary_expression
-                        (expression
-                          (identifier))
-                        (less_equal_operator)
-                        (expression
-                          (identifier))))))))))))
+                  (parenthesized_expression
+                    (binary_expression
+                      (identifier)
+                      (less_equal_operator)
+                      (identifier))))))))))
