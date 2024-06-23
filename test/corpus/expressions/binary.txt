@@ -344,3 +344,27 @@ fn valid_Address(a: Address) -> Address {
                     (identifier))))))
           (return_statement
             (identifier)))))
+
+===
+Binary operators with negative number literals
+===
+
+fn main() -> i32 {
+  return -1 - -2;
+}
+
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list)
+    (rightarrow_operator)
+    (type_i32)
+    (block
+      (return_statement
+        (binary_expression
+          (number_literal)
+          (sub_operator)
+          (number_literal))))))
+
