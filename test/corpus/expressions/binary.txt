@@ -18,7 +18,7 @@ fn context_assign() -> () {
             (expression_statement
             (assign_expression
                 (member_access_expression
-                (expression)
+                (identifier)
                 (attribute_access_operator)
                 (identifier))
                 (assign_operator)
@@ -45,7 +45,7 @@ fn assign_from_fn_call() -> () {
           (expression_statement
             (assign_expression
               (member_access_expression
-                (expression)
+                (identifier)
                 (attribute_access_operator)
                 (identifier))
               (assign_operator)
@@ -135,7 +135,7 @@ fn constructor() -> some_context {
           (expression_statement
             (assign_expression
               (member_access_expression
-                (expression)
+                (identifier)
                 (attribute_access_operator)
                 (identifier))
               (assign_operator)
@@ -148,7 +148,7 @@ fn constructor() -> some_context {
           (expression_statement
             (assign_expression
               (member_access_expression
-                (expression)
+                (identifier)
                 (attribute_access_operator)
                 (identifier))
               (assign_operator)
@@ -161,7 +161,7 @@ fn constructor() -> some_context {
           (expression_statement
             (assign_expression
               (member_access_expression
-                (expression)
+                (identifier)
                 (attribute_access_operator)
                 (identifier))
               (assign_operator)
@@ -195,7 +195,7 @@ fn constructor() -> some_context {
           (expression_statement
             (assign_expression
               (member_access_expression
-                (expression)
+                (identifier)
                 (attribute_access_operator)
                 (identifier))
               (assign_operator)
@@ -230,7 +230,7 @@ fn constructor() -> some_context {
           (expression_statement
             (assign_expression
               (member_access_expression
-                (expression)
+                (identifier)
                 (attribute_access_operator)
                 (identifier))
               (assign_operator)
@@ -267,7 +267,7 @@ fn constructor() -> some_context {
           (expression_statement
             (assign_expression
               (member_access_expression
-                (expression)
+                (identifier)
                 (attribute_access_operator)
                 (identifier))
               (assign_operator)
@@ -354,7 +354,7 @@ fn valid_Address(a: Address) -> Address {
                         (less_operator)
                         (expression
                           (member_access_expression
-                            (expression)
+                            (identifier)
                             (attribute_access_operator)
                             (identifier)))))
                     (and_operator)
@@ -408,7 +408,7 @@ fn valid_Address(a: Address) -> Address {
                             (less_operator)
                             (expression
                               (member_access_expression
-                                (expression)
+                                (identifier)
                                 (attribute_access_operator)
                                 (identifier)))))
                         (and_operator)

@@ -103,7 +103,6 @@ module.exports = grammar({
     )),
 
     _lval_expression: $ => choice(
-      'ctx',
       $.member_access_expression,
       $._simple_name,
       $.prefix_unary_expression,
@@ -428,6 +427,7 @@ module.exports = grammar({
       'proof',
       'filter',
       'type',
+      'ctx',
     ),
 
     _identifier: _ => /\w*[_a-zA-Z]\w*/,
