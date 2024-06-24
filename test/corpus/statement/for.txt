@@ -78,3 +78,43 @@ fn main() {
                 (function_call_expression
                   (identifier)
                   (string_literal))))))))
+
+===
+For statement using negative numbers
+===
+
+fn main() {
+  for (let i : i32 = -10;i>-5;i = i + 1) {
+      println("test");
+    }
+}
+
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list)
+    (block
+      (for_statement
+        (variable_definition_statement
+          (identifier)
+          (type_i32)
+          (assign_operator)
+          (number_literal))
+        (binary_expression
+          (identifier)
+          (greater_operator)
+          (number_literal))
+        (assign_expression
+          (identifier)
+          (assign_operator)
+          (binary_expression
+            (identifier)
+            (add_operator)
+            (number_literal)))
+        (block
+          (expression_statement
+            (function_call_expression
+              (identifier)
+              (string_literal))))))))

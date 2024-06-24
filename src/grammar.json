@@ -1900,8 +1900,25 @@
       }
     },
     "number_literal": {
-      "type": "PATTERN",
-      "value": "\\d+"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "-"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d+"
+        }
+      ]
     },
     "qualified_identifier": {
       "type": "SEQ",
