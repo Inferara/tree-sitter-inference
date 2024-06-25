@@ -137,7 +137,7 @@ module.exports = grammar({
     function_call_expression: $ => prec(PRECEDENCE.FUNC_CALL, seq(
       field('function', $._lval_expression),
       '(',
-      optional(sep1($._expression, ',')),
+      optional(sep1(field('argument', $._expression), ',')),
       ')',
     )),
 
