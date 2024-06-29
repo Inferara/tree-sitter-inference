@@ -53,6 +53,7 @@ fn valid_Address(a: Address) -> Address {
               (identifier)
               (assign_operator)
               (prefix_unary_expression
+                (unary_not)
                 (identifier))))
           (return_statement
             (identifier)))))

@@ -158,7 +158,7 @@ module.exports = grammar({
     ),
 
     prefix_unary_expression: $ => prec(PRECEDENCE.UNARY, seq(
-      '!',
+      field('operator', $.unary_not),
       $._expression,
     )),
 
@@ -198,7 +198,7 @@ module.exports = grammar({
       field('name', $.identifier),
       $._typedef_symbol,
       field('type', $._type),
-      optional(seq($.assign_operator, $._expression)),
+      optional(seq($.assign_operator, field('value', $._expression))),
       $._terminal_symbol,
     ),
 
@@ -238,7 +238,7 @@ module.exports = grammar({
       optional($.total_keyword),
       $.function_keyword,
       field('name', $.identifier),
-      $.argument_list,
+      field('argument_list', $.argument_list),
       optional(seq($.rightarrow_operator, field('returns', $._type))),
       field('body', $.block),
     ),
@@ -346,6 +346,8 @@ module.exports = grammar({
 
     function_keyword: $ => 'fn',
     total_keyword: $ => 'total',
+
+    unary_not: _ => '!',
 
     add_operator: _ => '+',
     sub_operator: _ => '-',

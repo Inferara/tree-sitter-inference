@@ -439,8 +439,12 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "!"
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "SYMBOL",
+              "name": "unary_not"
+            }
           },
           {
             "type": "SYMBOL",
@@ -946,8 +950,12 @@
                   "name": "assign_operator"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "_expression"
+                  "type": "FIELD",
+                  "name": "value",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_expression"
+                  }
                 }
               ]
             },
@@ -1120,8 +1128,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "argument_list"
+          "type": "FIELD",
+          "name": "argument_list",
+          "content": {
+            "type": "SYMBOL",
+            "name": "argument_list"
+          }
         },
         {
           "type": "CHOICE",
@@ -1769,6 +1781,10 @@
     "total_keyword": {
       "type": "STRING",
       "value": "total"
+    },
+    "unary_not": {
+      "type": "STRING",
+      "value": "!"
     },
     "add_operator": {
       "type": "STRING",
