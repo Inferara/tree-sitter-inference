@@ -26,3 +26,17 @@ const X : i32 = -1;
     (type_i32)
     (assign_operator)
     (number_literal)))
+
+===
+Constant definition with unit literal
+===
+
+const UNIT : () = ();
+
+---
+(source_file
+  (constant_definition
+    (identifier)
+    (type_unit)
+    (assign_operator)
+    (unit_literal)))

@@ -233,3 +233,23 @@ total fn procuring_sorted(func: sf) -> () {
                       (identifier)
                       (less_equal_operator)
                       (identifier))))))))))
+
+===
+Function that returns a unit literal
+===
+
+fn func() -> () {
+    return ();
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_unit)
+        (block
+          (return_statement
+            (unit_literal)))))
+
