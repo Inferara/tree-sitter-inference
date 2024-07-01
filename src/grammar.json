@@ -181,6 +181,10 @@
         {
           "type": "SYMBOL",
           "name": "number_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unit_literal"
         }
       ]
     },
@@ -1944,6 +1948,10 @@
         }
       ]
     },
+    "unit_literal": {
+      "type": "STRING",
+      "value": "()"
+    },
     "qualified_identifier": {
       "type": "SEQ",
       "members": [
@@ -2217,6 +2225,10 @@
     [
       "qualified_name",
       "member_access_expression"
+    ],
+    [
+      "type_unit",
+      "unit_literal"
     ]
   ],
   "precedences": [],
