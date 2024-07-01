@@ -41,6 +41,7 @@ module.exports = grammar({
     [$._lval_expression, $._name],
 
     [$.qualified_name, $.member_access_expression],
+    [$.type_unit, $.unit_literal],
   ],
 
   extras: $ => [
@@ -102,6 +103,7 @@ module.exports = grammar({
       $.bool_literal,
       $.string_literal,
       $.number_literal,
+      $.unit_literal,
     ),
 
     _expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
@@ -394,6 +396,8 @@ module.exports = grammar({
     _string_literal_content: _ => token.immediate(prec(1, /[^"\\\n]+/)),
 
     number_literal: $ => seq(optional('-'), /\d+/),
+
+    unit_literal: $ => '()',
 
     qualified_identifier: $ => sep1($.identifier, $.attribute_access_operator),
 
