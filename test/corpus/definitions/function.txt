@@ -253,3 +253,24 @@ fn func() -> () {
           (return_statement
             (unit_literal)))))
 
+===
+Arrays as parameters and return types
+===
+fn concatInts(xss : i64[][]) -> i64[] {
+
+}
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list
+      (argument_declaration
+        (identifier)
+        (type_array
+          (type_array
+            (type_i64)))))
+    (rightarrow_operator)
+    (type_array
+      (type_i64))
+    (block)))

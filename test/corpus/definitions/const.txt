@@ -40,3 +40,20 @@ const UNIT : () = ();
     (type_unit)
     (assign_operator)
     (unit_literal)))
+
+===
+Constant definition using array type
+===
+
+/// Not semantically correct code, but gives simple
+/// syntax tree
+const arr : i32[] = ();
+
+---
+(source_file
+  (constant_definition
+    (identifier)
+    (type_array
+      (type_i32))
+    (assign_operator)
+    (unit_literal)))

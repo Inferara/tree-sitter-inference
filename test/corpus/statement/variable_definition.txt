@@ -1,0 +1,64 @@
+===
+Variable definition in function with array
+===
+
+fn test() {
+  let mem : i32[];
+}
+
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_array
+          (type_i32))))))
+
+===
+Multi-dimensional arrays
+===
+fn test() {
+  let 3d_array : u32[][][];
+}
+
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_array
+          (type_array
+            (type_array
+              (type_u32))))))))
+
+===
+Array of non-primitive types
+===
+fn test() {
+  let x : Optional<someNamespace::String>[];
+}
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_array
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_qualified_name
+                (identifier)
+                (expand_operator)
+                (identifier)))))))))
