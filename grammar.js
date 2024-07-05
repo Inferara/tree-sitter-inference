@@ -91,6 +91,7 @@ module.exports = grammar({
       $.type_u64,
       $.type_bool,
       $.type_unit,
+      $.type_array,
     ),
 
     type_i32: _ => token('i32'),
@@ -99,6 +100,7 @@ module.exports = grammar({
     type_u64: _ => token('u64'),
     type_bool: _ => token('bool'),
     type_unit: _ => token('()'),
+    type_array: $ => seq(field('base_type', $._type), token('[]')),
 
     _literal: $ => choice(
       $.bool_literal,
