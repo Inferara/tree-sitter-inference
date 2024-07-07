@@ -62,3 +62,26 @@ fn test() {
                 (identifier)
                 (expand_operator)
                 (identifier)))))))))
+===
+Mix of number literals and identifiers in array declaration
+===
+fn test() {
+  let params : [i32; 3] = [100, MAX_MEM, 0, red_color];
+}
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_array
+          (type_i32))
+        (assign_operator)
+        (array_literal
+          (number_literal)
+          (identifier)
+          (number_literal)
+          (identifier))))))
