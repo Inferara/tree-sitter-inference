@@ -42,6 +42,7 @@ module.exports = grammar({
 
     [$.qualified_name, $.member_access_expression],
     [$.type_unit, $.unit_literal],
+    [$.array_literal, $._simple_name],
   ],
 
   extras: $ => [
@@ -100,13 +101,21 @@ module.exports = grammar({
     type_u64: _ => token('u64'),
     type_bool: _ => token('bool'),
     type_unit: _ => token('()'),
-    type_array: $ => seq(field('base_type', $._type), token('[]')),
+    type_array: $ => seq(
+      '[',
+      $._type,
+      optional(
+        seq(';', /\d+/),
+      ),
+      ']',
+    ),
 
     _literal: $ => choice(
       $.bool_literal,
       $.string_literal,
       $.number_literal,
       $.unit_literal,
+      $.array_literal,
     ),
 
     _expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
@@ -411,6 +420,15 @@ module.exports = grammar({
     number_literal: $ => seq(optional('-'), /\d+/),
 
     unit_literal: $ => '()',
+
+    array_literal: $ => seq(
+      '[',
+      sep1(
+        choice($.number_literal, $.identifier),
+        ',',
+      ),
+      ']',
+    ),
 
     qualified_identifier: $ => sep1($.identifier, $.attribute_access_operator),
 
