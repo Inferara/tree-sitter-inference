@@ -424,7 +424,7 @@ module.exports = grammar({
     array_literal: $ => seq(
       '[',
       sep1(
-        choice($.number_literal, $.identifier),
+        choice($.number_literal, $.bool_literal, $.array_literal, $.identifier),
         ',',
       ),
       ']',
