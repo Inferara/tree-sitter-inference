@@ -45,9 +45,7 @@ const UNIT : () = ();
 Constant definition using array type
 ===
 
-/// Not semantically correct code, but gives simple
-/// syntax tree
-const arr : i32[] = ();
+const arr : [i32;4] = [1,2,3];
 
 ---
 (source_file
@@ -56,4 +54,7 @@ const arr : i32[] = ();
     (type_array
       (type_i32))
     (assign_operator)
-    (unit_literal)))
+    (array_literal
+      (number_literal)
+      (number_literal)
+      (number_literal))))

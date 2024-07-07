@@ -256,7 +256,7 @@ fn func() -> () {
 ===
 Arrays as parameters and return types
 ===
-fn concatInts(xss : i64[][]) -> i64[] {
+fn concatInts(xss : [[i64]]) -> [i64] {
 
 }
 ---

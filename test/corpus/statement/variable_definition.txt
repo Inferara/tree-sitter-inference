@@ -3,7 +3,7 @@ Variable definition in function with array
 ===
 
 fn test() {
-  let mem : i32[];
+  let mem : [i32];
 }
 
 ---
@@ -22,7 +22,7 @@ fn test() {
 Multi-dimensional arrays
 ===
 fn test() {
-  let 3d_array : u32[][][];
+  let 3d_array : [[[u32]]];
 }
 
 ---
@@ -43,7 +43,7 @@ fn test() {
 Array of non-primitive types
 ===
 fn test() {
-  let x : Optional<someNamespace::String>[];
+  let x : [Optional<someNamespace::String>; 4];
 }
 ---
 (source_file
