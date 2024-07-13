@@ -148,8 +148,8 @@ module.exports = grammar({
       $._expression,
     ),
 
-    apply_expression: $ => prec.right(PRECEDENCE.UNARY, seq(
-      'apply',
+    verify_expression: $ => prec.right(PRECEDENCE.UNARY, seq(
+      'verify',
       $.function_call_expression,
     )),
 
@@ -335,7 +335,7 @@ module.exports = grammar({
       $.function_call_expression,
       $.prefix_unary_expression,
       $.assert_expression,
-      $.apply_expression,
+      $.verify_expression,
       $.parenthesized_expression,
       $.typeof_expression,
     ),

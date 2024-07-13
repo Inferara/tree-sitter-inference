@@ -59,11 +59,11 @@ fn valid_Address(a: Address) -> Address {
             (identifier)))))
 
 ===
-Apply expression
+Verify expression
 ===
 
 fn proof() -> () {
-    apply preserving_count(sort);
+    verify preserving_count(sort);
 }
 
 ---
@@ -76,7 +76,7 @@ fn proof() -> () {
         (type_unit)
         (block
           (expression_statement
-            (apply_expression
+            (verify_expression
               (function_call_expression
                 (identifier)
                 (identifier)))))))

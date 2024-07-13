@@ -98,8 +98,8 @@ context sort_function_context {
   }
 
   fn proof() -> () {
-    apply preserving_count(sort);
-    apply procuring_sorted(sort);
+    verify preserving_count(sort);
+    verify procuring_sorted(sort);
   }
 
 }

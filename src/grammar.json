@@ -402,7 +402,7 @@
         }
       ]
     },
-    "apply_expression": {
+    "verify_expression": {
       "type": "PREC_RIGHT",
       "value": 800,
       "content": {
@@ -410,7 +410,7 @@
         "members": [
           {
             "type": "STRING",
-            "value": "apply"
+            "value": "verify"
           },
           {
             "type": "SYMBOL",
@@ -1745,7 +1745,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "apply_expression"
+          "name": "verify_expression"
         },
         {
           "type": "SYMBOL",
