@@ -924,6 +924,22 @@
           "value": "let"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "undef",
+              "content": {
+                "type": "SYMBOL",
+                "name": "undef_keyword"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "FIELD",
           "name": "name",
           "content": {
@@ -1785,6 +1801,10 @@
     "total_keyword": {
       "type": "STRING",
       "value": "total"
+    },
+    "undef_keyword": {
+      "type": "STRING",
+      "value": "undef"
     },
     "unary_not": {
       "type": "STRING",

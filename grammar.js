@@ -197,6 +197,7 @@ module.exports = grammar({
 
     variable_definition_statement: $ => seq(
       'let',
+      optional(field('undef', $.undef_keyword)),
       field('name', $.identifier),
       $._typedef_symbol,
       field('type', $._type),
@@ -348,6 +349,7 @@ module.exports = grammar({
 
     function_keyword: $ => 'fn',
     total_keyword: $ => 'total',
+    undef_keyword: $ => 'undef',
 
     unary_not: _ => '!',
 

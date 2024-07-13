@@ -1,0 +1,44 @@
+===
+Variable declaration
+===
+
+fn proof() -> () {
+    let a: Address = 0;
+}
+
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_unit)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (identifier)
+            (assign_operator)
+            (number_literal)))))
+
+===
+Undef variable declaration
+===
+
+fn proof() -> () {
+    let undef a: i32;
+}
+
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_unit)
+        (block
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (type_i32)))))

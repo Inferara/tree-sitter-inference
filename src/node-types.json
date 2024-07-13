@@ -2092,6 +2092,16 @@
           }
         ]
       },
+      "undef": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "undef_keyword",
+            "named": true
+          }
+        ]
+      },
       "value": {
         "multiple": false,
         "required": false,
@@ -2379,6 +2389,10 @@
   },
   {
     "type": "unary_not",
+    "named": true
+  },
+  {
+    "type": "undef_keyword",
     "named": true
   },
   {
