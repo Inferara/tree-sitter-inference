@@ -61,7 +61,8 @@ fn test() {
               (type_qualified_name
                 (identifier)
                 (expand_operator)
-                (identifier)))))))))
+                (identifier))))
+          (number_literal))))))
 ===
 Mix of number literals and identifiers in array declaration
 ===
@@ -78,7 +79,8 @@ fn test() {
       (variable_definition_statement
         (identifier)
         (type_array
-          (type_i32))
+          (type_i32)
+          (number_literal))
         (assign_operator)
         (array_literal
           (number_literal)
