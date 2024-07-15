@@ -105,7 +105,7 @@ module.exports = grammar({
       '[',
       $._type,
       optional(
-        seq(';', /\d+/),
+        seq(';', $.number_literal),
       ),
       ']',
     ),
