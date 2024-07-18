@@ -76,6 +76,7 @@ module.exports = grammar({
       $.function_definition,
       $.external_function_definition,
       $.type_definition_statement,
+      $.enum_definition,
     ),
 
     _type: $ => choice(
@@ -228,6 +229,14 @@ module.exports = grammar({
       field('name', $.identifier),
       $._lcb_symbol,
       repeat($._definition),
+      $._rcb_symbol,
+    ),
+
+    enum_definition: $ => seq(
+      'enum',
+      field('name', $.identifier),
+      $._lcb_symbol,
+      sep1(field('enum_variant', $.identifier), $._comma_symbol),
       $._rcb_symbol,
     ),
 
