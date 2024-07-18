@@ -1,0 +1,16 @@
+===
+Enum definition
+===
+
+enum Arch {
+  Wasm,
+  Evm
+}
+
+---
+
+(source_file
+      (enum_definition
+        (identifier)
+        (identifier)
+        (identifier)))
