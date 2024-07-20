@@ -236,7 +236,7 @@ module.exports = grammar({
       'enum',
       field('name', $.identifier),
       $._lcb_symbol,
-      sep1(field('enum_variant', $.identifier), $._comma_symbol),
+      sep1(field('variant', $.identifier), $._comma_symbol),
       $._rcb_symbol,
     ),
 

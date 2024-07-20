@@ -1,6 +1,4 @@
-fn constructor() -> some_context {
-    ctx.type = ContextType::Program;
-    ctx.arh = Arch::WASM;
-    ctx.max_curr_mem = 2 ** 16;
-    ctx.mem = Array<u32>::new(ctx.max_curr_mem);
+enum Arch {
+    Wasm,
+    Evm
 }
