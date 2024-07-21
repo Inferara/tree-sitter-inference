@@ -103,9 +103,9 @@ module.exports = grammar({
     type_unit: _ => token('()'),
     type_array: $ => seq(
       '[',
-      $._type,
+      field('type', $._type),
       optional(
-        seq(';', $.number_literal),
+        field('length', seq(';', $.number_literal)),
       ),
       ']',
     ),
