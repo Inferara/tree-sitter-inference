@@ -42,7 +42,6 @@ module.exports = grammar({
 
     [$.qualified_name, $.member_access_expression],
     [$.type_unit, $.unit_literal],
-    [$.array_literal, $._simple_name],
   ],
 
   extras: $ => [
@@ -115,7 +114,6 @@ module.exports = grammar({
       $.string_literal,
       $.number_literal,
       $.unit_literal,
-      $.array_literal,
     ),
 
     _expression: $ => prec(PRECEDENCE.EXPRESSION, choice(
@@ -133,6 +131,7 @@ module.exports = grammar({
     _non_lval_expression: $ => choice(
       $.binary_expression,
       $._literal,
+      $.array_literal,
       $._expression_statement,
     ),
 
@@ -424,7 +423,7 @@ module.exports = grammar({
     array_literal: $ => seq(
       '[',
       sep1(
-        choice($.number_literal, $.bool_literal, $.array_literal, $.identifier),
+        $._expression,
         ',',
       ),
       ']',
