@@ -125,6 +125,7 @@ module.exports = grammar({
 
     _lval_expression: $ => choice(
       $.member_access_expression,
+      $.array_index_access_expression,
       $._simple_name,
       $.prefix_unary_expression,
       $.parenthesized_expression,
@@ -135,6 +136,13 @@ module.exports = grammar({
       $._literal,
       $.array_literal,
       $._expression_statement,
+    ),
+
+    array_index_access_expression: $ => seq(
+      field('array', $._lval_expression),
+      '[',
+      field('index', $._expression),
+      ']',
     ),
 
     member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
