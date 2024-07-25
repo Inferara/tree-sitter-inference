@@ -226,13 +226,12 @@ total fn procuring_sorted(func: sf) -> () {
                   (assign_operator)
                   (function_call_expression
                     (identifier))))
-              (expression_statement
-                (assert_expression
-                  (parenthesized_expression
-                    (binary_expression
-                      (identifier)
-                      (less_equal_operator)
-                      (identifier))))))))))
+              (assert_statement
+                (parenthesized_expression
+                  (binary_expression
+                    (identifier)
+                    (less_equal_operator)
+                    (identifier)))))))))
 
 ===
 Function that returns a unit literal

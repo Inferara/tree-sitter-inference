@@ -1,5 +1,5 @@
 ===
-Function with assert expression statement
+Function with assert statement
 ===
 fn valid_Address(a: Address) -> Address {
     assert (a < 0);
@@ -18,13 +18,12 @@ fn valid_Address(a: Address) -> Address {
         (rightarrow_operator)
         (identifier)
         (block
-          (expression_statement
-            (assert_expression
-              (parenthesized_expression
-                (binary_expression
-                  (identifier)
-                  (less_operator)
-                  (number_literal)))))
+          (assert_statement
+            (parenthesized_expression
+              (binary_expression
+                (identifier)
+                (less_operator)
+                (number_literal))))
           (return_statement
             (identifier)))))
 
@@ -75,14 +74,13 @@ fn proof() -> () {
         (rightarrow_operator)
         (type_unit)
         (block
-          (expression_statement
-            (verify_expression
-              (function_call_expression
-                (identifier)
-                (identifier)))))))
+          (verify_statement
+            (function_call_expression
+              (identifier)
+              (identifier))))))
 
 ===
-Assert expression
+Assert statement
 ===
 
 fn proof() -> () {
@@ -98,9 +96,8 @@ fn proof() -> () {
         (rightarrow_operator)
         (type_unit)
         (block
-          (expression_statement
-            (assert_expression
-              (binary_expression
-                (identifier)
-                (less_operator)
-                (number_literal)))))))
+          (assert_statement
+            (binary_expression
+              (identifier)
+              (less_operator)
+              (number_literal))))))
