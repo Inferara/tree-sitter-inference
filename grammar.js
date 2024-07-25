@@ -69,6 +69,8 @@ module.exports = grammar({
       $.if_statement,
       $.variable_definition_statement,
       $.type_definition_statement,
+      $.assert_statement,
+      $.verify_statement,
     ),
 
     _definition: $ => choice(
@@ -154,14 +156,16 @@ module.exports = grammar({
       ')',
     )),
 
-    assert_expression: $ => seq(
+    assert_statement: $ => seq(
       'assert',
       $._expression,
+      $._terminal_symbol,
     ),
 
-    verify_expression: $ => prec.right(PRECEDENCE.UNARY, seq(
+    verify_statement: $ => prec.right(PRECEDENCE.UNARY, seq(
       'verify',
       $.function_call_expression,
+      $._terminal_symbol,
     )),
 
     parenthesized_expression: $ => seq(
@@ -354,8 +358,6 @@ module.exports = grammar({
       $.assign_expression,
       $.function_call_expression,
       $.prefix_unary_expression,
-      $.assert_expression,
-      $.verify_expression,
       $.parenthesized_expression,
       $.typeof_expression,
     ),
