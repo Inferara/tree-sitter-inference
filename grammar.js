@@ -230,7 +230,7 @@ module.exports = grammar({
       $._typedef_symbol,
       field('type', $._type),
       $.assign_operator,
-      field('value', $._literal),
+      field('value', $._expression),
       $._terminal_symbol,
     ),
 
