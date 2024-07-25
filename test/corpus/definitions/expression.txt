@@ -27,3 +27,30 @@ fn valid_Address(a: Address) -> Address {
                 (identifier))))
           (return_statement
             (identifier)))))
+
+===
+Array access expressions
+===
+
+fn get_first(xs: [i32; 3]) -> i32 {
+  return xs[0];
+}
+
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list
+      (argument_declaration
+        (identifier)
+        (type_array
+          (type_i32)
+          (number_literal))))
+    (rightarrow_operator)
+    (type_i32)
+    (block
+      (return_statement
+        (array_index_access_expression
+          (identifier)
+          (number_literal))))))
