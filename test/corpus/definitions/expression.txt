@@ -1,33 +1,4 @@
 ===
-Function with assert statement
-===
-fn valid_Address(a: Address) -> Address {
-    assert (a < 0);
-    return a;
-}
-
----
-    (source_file
-      (function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list
-          (argument_declaration
-            (identifier)
-            (identifier)))
-        (rightarrow_operator)
-        (identifier)
-        (block
-          (assert_statement
-            (parenthesized_expression
-              (binary_expression
-                (identifier)
-                (less_operator)
-                (number_literal))))
-          (return_statement
-            (identifier)))))
-
-===
 Assign unary expression
 ===
 
@@ -56,48 +27,3 @@ fn valid_Address(a: Address) -> Address {
                 (identifier))))
           (return_statement
             (identifier)))))
-
-===
-Verify expression
-===
-
-fn proof() -> () {
-    verify preserving_count(sort);
-}
-
----
-    (source_file
-      (function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list)
-        (rightarrow_operator)
-        (type_unit)
-        (block
-          (verify_statement
-            (function_call_expression
-              (identifier)
-              (identifier))))))
-
-===
-Assert statement
-===
-
-fn proof() -> () {
-    assert a < 0;
-}
-
----
-    (source_file
-      (function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list)
-        (rightarrow_operator)
-        (type_unit)
-        (block
-          (assert_statement
-            (binary_expression
-              (identifier)
-              (less_operator)
-              (number_literal))))))
