@@ -118,3 +118,65 @@ fn main() {
             (function_call_expression
               (identifier)
               (string_literal))))))))
+
+===
+Iterating through array
+===
+
+fn sum_all(xs: [i32; 10]) -> i32 {
+  let accumulator : i32 = 0;
+  for (let i : i32 = 0; i < 10; i = i + 1) {
+    accumulator = accumulator + xs[i];
+  }
+  return accumulator;
+}
+
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list
+      (argument_declaration
+        (identifier)
+        (type_array
+          (type_i32)
+          (number_literal))))
+    (rightarrow_operator)
+    (type_i32)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (assign_operator)
+        (number_literal))
+      (for_statement
+        (variable_definition_statement
+          (identifier)
+          (type_i32)
+          (assign_operator)
+          (number_literal))
+        (binary_expression
+          (identifier)
+          (less_operator)
+          (number_literal))
+        (assign_expression
+          (identifier)
+          (assign_operator)
+          (binary_expression
+            (identifier)
+            (add_operator)
+            (number_literal)))
+        (block
+          (expression_statement
+            (assign_expression
+              (identifier)
+              (assign_operator)
+              (binary_expression
+                (identifier)
+                (add_operator)
+                (array_index_access_expression
+                  (identifier)
+                  (identifier)))))))
+      (return_statement
+        (identifier)))))

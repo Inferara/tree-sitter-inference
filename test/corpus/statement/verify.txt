@@ -1,0 +1,22 @@
+===
+Verify statement
+===
+
+fn proof() -> () {
+    verify preserving_count(sort);
+}
+
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_unit)
+        (block
+          (verify_statement
+            (function_call_expression
+              (identifier)
+              (identifier))))))
+

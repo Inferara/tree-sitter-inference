@@ -69,6 +69,8 @@ module.exports = grammar({
       $.if_statement,
       $.variable_definition_statement,
       $.type_definition_statement,
+      $.assert_statement,
+      $.verify_statement,
     ),
 
     _definition: $ => choice(
@@ -91,6 +93,7 @@ module.exports = grammar({
       $.type_u64,
       $.type_bool,
       $.type_unit,
+      $.type_array,
     ),
 
     type_i32: _ => token('i32'),
@@ -99,6 +102,14 @@ module.exports = grammar({
     type_u64: _ => token('u64'),
     type_bool: _ => token('bool'),
     type_unit: _ => token('()'),
+    type_array: $ => seq(
+      '[',
+      field('type', $._type),
+      optional(
+        field('length', seq(';', $.number_literal)),
+      ),
+      ']',
+    ),
 
     _literal: $ => choice(
       $.bool_literal,
@@ -114,6 +125,7 @@ module.exports = grammar({
 
     _lval_expression: $ => choice(
       $.member_access_expression,
+      $.array_index_access_expression,
       $._simple_name,
       $.prefix_unary_expression,
       $.parenthesized_expression,
@@ -122,7 +134,15 @@ module.exports = grammar({
     _non_lval_expression: $ => choice(
       $.binary_expression,
       $._literal,
+      $.array_literal,
       $._expression_statement,
+    ),
+
+    array_index_access_expression: $ => seq(
+      field('array', $._lval_expression),
+      '[',
+      field('index', $._expression),
+      ']',
     ),
 
     member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
@@ -144,14 +164,16 @@ module.exports = grammar({
       ')',
     )),
 
-    assert_expression: $ => seq(
+    assert_statement: $ => seq(
       'assert',
       $._expression,
+      $._terminal_symbol,
     ),
 
-    verify_expression: $ => prec.right(PRECEDENCE.UNARY, seq(
+    verify_statement: $ => prec.right(PRECEDENCE.UNARY, seq(
       'verify',
       $.function_call_expression,
+      $._terminal_symbol,
     )),
 
     parenthesized_expression: $ => seq(
@@ -220,7 +242,7 @@ module.exports = grammar({
       $._typedef_symbol,
       field('type', $._type),
       $.assign_operator,
-      field('value', $._literal),
+      field('value', $._expression),
       $._terminal_symbol,
     ),
 
@@ -344,8 +366,6 @@ module.exports = grammar({
       $.assign_expression,
       $.function_call_expression,
       $.prefix_unary_expression,
-      $.assert_expression,
-      $.verify_expression,
       $.parenthesized_expression,
       $.typeof_expression,
     ),
@@ -409,6 +429,15 @@ module.exports = grammar({
     number_literal: $ => seq(optional('-'), /\d+/),
 
     unit_literal: $ => '()',
+
+    array_literal: $ => seq(
+      '[',
+      sep1(
+        $._expression,
+        ',',
+      ),
+      ']',
+    ),
 
     qualified_identifier: $ => sep1($.identifier, $.attribute_access_operator),
 

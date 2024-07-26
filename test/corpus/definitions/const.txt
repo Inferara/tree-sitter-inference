@@ -40,3 +40,55 @@ const UNIT : () = ();
     (type_unit)
     (assign_operator)
     (unit_literal)))
+
+===
+Constant definition using array type
+===
+
+const arr : [i32;3] = [1,2,3];
+
+---
+(source_file
+  (constant_definition
+    (identifier)
+    (type_array
+      (type_i32)
+      (number_literal))
+    (assign_operator)
+    (array_literal
+      (number_literal)
+      (number_literal)
+      (number_literal))))
+
+===
+Nested array definition
+===
+const EMPTY_BOARD : [[bool; 3]; 3] =
+  [ [false, false, false]
+  , [false, false, false]
+  , [false, false, false]
+  ];
+
+---
+(source_file
+  (constant_definition
+    (identifier)
+    (type_array
+      (type_array
+        (type_bool)
+        (number_literal))
+      (number_literal))
+    (assign_operator)
+    (array_literal
+      (array_literal
+        (bool_literal)
+        (bool_literal)
+        (bool_literal))
+      (array_literal
+        (bool_literal)
+        (bool_literal)
+        (bool_literal))
+      (array_literal
+        (bool_literal)
+        (bool_literal)
+        (bool_literal)))))

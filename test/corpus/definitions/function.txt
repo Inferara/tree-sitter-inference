@@ -226,13 +226,12 @@ total fn procuring_sorted(func: sf) -> () {
                   (assign_operator)
                   (function_call_expression
                     (identifier))))
-              (expression_statement
-                (assert_expression
-                  (parenthesized_expression
-                    (binary_expression
-                      (identifier)
-                      (less_equal_operator)
-                      (identifier))))))))))
+              (assert_statement
+                (parenthesized_expression
+                  (binary_expression
+                    (identifier)
+                    (less_equal_operator)
+                    (identifier)))))))))
 
 ===
 Function that returns a unit literal
@@ -253,3 +252,24 @@ fn func() -> () {
           (return_statement
             (unit_literal)))))
 
+===
+Arrays as parameters and return types
+===
+fn concatInts(xss : [[i64]]) -> [i64] {
+
+}
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list
+      (argument_declaration
+        (identifier)
+        (type_array
+          (type_array
+            (type_i64)))))
+    (rightarrow_operator)
+    (type_array
+      (type_i64))
+    (block)))

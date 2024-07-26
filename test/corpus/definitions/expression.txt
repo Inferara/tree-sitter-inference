@@ -1,34 +1,4 @@
 ===
-Function with assert expression statement
-===
-fn valid_Address(a: Address) -> Address {
-    assert (a < 0);
-    return a;
-}
-
----
-    (source_file
-      (function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list
-          (argument_declaration
-            (identifier)
-            (identifier)))
-        (rightarrow_operator)
-        (identifier)
-        (block
-          (expression_statement
-            (assert_expression
-              (parenthesized_expression
-                (binary_expression
-                  (identifier)
-                  (less_operator)
-                  (number_literal)))))
-          (return_statement
-            (identifier)))))
-
-===
 Assign unary expression
 ===
 
@@ -59,48 +29,28 @@ fn valid_Address(a: Address) -> Address {
             (identifier)))))
 
 ===
-Verify expression
+Array access expressions
 ===
 
-fn proof() -> () {
-    verify preserving_count(sort);
+fn get_first(xs: [i32; 3]) -> i32 {
+  return xs[0];
 }
 
 ---
-    (source_file
-      (function_definition
-        (function_keyword)
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list
+      (argument_declaration
         (identifier)
-        (argument_list)
-        (rightarrow_operator)
-        (type_unit)
-        (block
-          (expression_statement
-            (verify_expression
-              (function_call_expression
-                (identifier)
-                (identifier)))))))
-
-===
-Assert expression
-===
-
-fn proof() -> () {
-    assert a < 0;
-}
-
----
-    (source_file
-      (function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list)
-        (rightarrow_operator)
-        (type_unit)
-        (block
-          (expression_statement
-            (assert_expression
-              (binary_expression
-                (identifier)
-                (less_operator)
-                (number_literal)))))))
+        (type_array
+          (type_i32)
+          (number_literal))))
+    (rightarrow_operator)
+    (type_i32)
+    (block
+      (return_statement
+        (array_index_access_expression
+          (identifier)
+          (number_literal))))))

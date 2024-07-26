@@ -59,6 +59,14 @@
         {
           "type": "SYMBOL",
           "name": "type_definition_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assert_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "verify_statement"
         }
       ]
     },
@@ -126,6 +134,10 @@
         {
           "type": "SYMBOL",
           "name": "type_unit"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_array"
         }
       ]
     },
@@ -170,6 +182,52 @@
         "type": "STRING",
         "value": "()"
       }
+    },
+    "type_array": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "length",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ";"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "number_literal"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
     },
     "_literal": {
       "type": "CHOICE",
@@ -218,6 +276,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "array_index_access_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_simple_name"
         },
         {
@@ -243,7 +305,40 @@
         },
         {
           "type": "SYMBOL",
+          "name": "array_literal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_expression_statement"
+        }
+      ]
+    },
+    "array_index_access_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "array",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_lval_expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "FIELD",
+          "name": "index",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
@@ -393,7 +488,7 @@
         ]
       }
     },
-    "assert_expression": {
+    "assert_statement": {
       "type": "SEQ",
       "members": [
         {
@@ -403,10 +498,14 @@
         {
           "type": "SYMBOL",
           "name": "_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_terminal_symbol"
         }
       ]
     },
-    "verify_expression": {
+    "verify_statement": {
       "type": "PREC_RIGHT",
       "value": 800,
       "content": {
@@ -419,6 +518,10 @@
           {
             "type": "SYMBOL",
             "name": "function_call_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_terminal_symbol"
           }
         ]
       }
@@ -1063,7 +1166,7 @@
           "name": "value",
           "content": {
             "type": "SYMBOL",
-            "name": "_literal"
+            "name": "_expression"
           }
         },
         {
@@ -1819,14 +1922,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "assert_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "verify_expression"
-        },
-        {
-          "type": "SYMBOL",
           "name": "parenthesized_expression"
         },
         {
@@ -2033,6 +2128,44 @@
     "unit_literal": {
       "type": "STRING",
       "value": "()"
+    },
+    "array_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_expression"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
     },
     "qualified_identifier": {
       "type": "SEQ",
