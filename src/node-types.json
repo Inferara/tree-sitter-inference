@@ -2164,13 +2164,9 @@
     "named": true,
     "fields": {
       "length": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": ";",
-            "named": false
-          },
           {
             "type": "number_literal",
             "named": true

@@ -106,7 +106,10 @@ module.exports = grammar({
       '[',
       field('type', $._type),
       optional(
-        field('length', seq(';', $.number_literal)),
+        seq(
+          ';',
+          field('length', $.number_literal),
+        ),
       ),
       ']',
     ),

@@ -1067,43 +1067,43 @@ static const TSFieldMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
   [33] = {.index = 61, .length = 1},
   [34] = {.index = 62, .length = 2},
   [35] = {.index = 64, .length = 4},
-  [36] = {.index = 68, .length = 3},
-  [37] = {.index = 71, .length = 2},
-  [38] = {.index = 73, .length = 2},
-  [39] = {.index = 75, .length = 3},
-  [40] = {.index = 78, .length = 2},
-  [41] = {.index = 80, .length = 3},
-  [42] = {.index = 83, .length = 3},
-  [43] = {.index = 86, .length = 3},
-  [44] = {.index = 89, .length = 2},
-  [45] = {.index = 91, .length = 2},
-  [46] = {.index = 93, .length = 3},
-  [47] = {.index = 96, .length = 3},
-  [48] = {.index = 99, .length = 4},
-  [49] = {.index = 103, .length = 2},
-  [50] = {.index = 105, .length = 3},
-  [51] = {.index = 108, .length = 1},
-  [52] = {.index = 109, .length = 3},
-  [53] = {.index = 112, .length = 4},
-  [54] = {.index = 116, .length = 3},
-  [55] = {.index = 119, .length = 3},
-  [56] = {.index = 122, .length = 2},
-  [57] = {.index = 124, .length = 2},
-  [58] = {.index = 126, .length = 2},
-  [59] = {.index = 128, .length = 4},
-  [60] = {.index = 132, .length = 3},
-  [61] = {.index = 135, .length = 3},
-  [62] = {.index = 138, .length = 3},
-  [63] = {.index = 141, .length = 3},
-  [64] = {.index = 144, .length = 4},
-  [65] = {.index = 148, .length = 4},
-  [66] = {.index = 152, .length = 4},
-  [67] = {.index = 156, .length = 4},
-  [68] = {.index = 160, .length = 4},
-  [69] = {.index = 164, .length = 5},
-  [70] = {.index = 169, .length = 5},
-  [71] = {.index = 174, .length = 5},
-  [72] = {.index = 179, .length = 6},
+  [36] = {.index = 68, .length = 2},
+  [37] = {.index = 70, .length = 2},
+  [38] = {.index = 72, .length = 2},
+  [39] = {.index = 74, .length = 3},
+  [40] = {.index = 77, .length = 2},
+  [41] = {.index = 79, .length = 3},
+  [42] = {.index = 82, .length = 3},
+  [43] = {.index = 85, .length = 3},
+  [44] = {.index = 88, .length = 2},
+  [45] = {.index = 90, .length = 2},
+  [46] = {.index = 92, .length = 3},
+  [47] = {.index = 95, .length = 3},
+  [48] = {.index = 98, .length = 4},
+  [49] = {.index = 102, .length = 2},
+  [50] = {.index = 104, .length = 3},
+  [51] = {.index = 107, .length = 1},
+  [52] = {.index = 108, .length = 3},
+  [53] = {.index = 111, .length = 4},
+  [54] = {.index = 115, .length = 3},
+  [55] = {.index = 118, .length = 3},
+  [56] = {.index = 121, .length = 2},
+  [57] = {.index = 123, .length = 2},
+  [58] = {.index = 125, .length = 2},
+  [59] = {.index = 127, .length = 4},
+  [60] = {.index = 131, .length = 3},
+  [61] = {.index = 134, .length = 3},
+  [62] = {.index = 137, .length = 3},
+  [63] = {.index = 140, .length = 3},
+  [64] = {.index = 143, .length = 4},
+  [65] = {.index = 147, .length = 4},
+  [66] = {.index = 151, .length = 4},
+  [67] = {.index = 155, .length = 4},
+  [68] = {.index = 159, .length = 4},
+  [69] = {.index = 163, .length = 5},
+  [70] = {.index = 168, .length = 5},
+  [71] = {.index = 173, .length = 5},
+  [72] = {.index = 178, .length = 6},
 };
 
 static const TSFieldMapEntry ts_field_map_entries[] = {
@@ -1211,153 +1211,152 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_name, 2},
     {field_returns, 5},
   [68] =
-    {field_length, 2},
     {field_length, 3},
     {field_type, 1},
-  [71] =
+  [70] =
     {field_type, 1},
     {field_type, 2, .inherited = true},
-  [73] =
+  [72] =
     {field_type, 0, .inherited = true},
     {field_type, 1, .inherited = true},
-  [75] =
+  [74] =
     {field_argument, 4},
     {field_argument, 5, .inherited = true},
     {field_name, 2},
-  [78] =
+  [77] =
     {field_argument, 5},
     {field_name, 3},
-  [80] =
+  [79] =
     {field_from_literal, 6},
     {field_imported_type, 2},
     {field_imported_type, 3, .inherited = true},
-  [83] =
+  [82] =
     {field_imported_type, 4},
     {field_imported_type, 5, .inherited = true},
     {field_segment, 1},
-  [86] =
+  [85] =
     {field_imported_type, 5},
     {field_segment, 1},
     {field_segment, 2, .inherited = true},
-  [89] =
+  [88] =
     {field_array, 0},
     {field_index, 2},
-  [91] =
+  [90] =
     {field_argument, 2},
     {field_function, 0},
-  [93] =
+  [92] =
     {field_argument, 4},
     {field_name, 2},
     {field_returns, 7},
-  [96] =
+  [95] =
     {field_argument, 5},
     {field_argument, 6, .inherited = true},
     {field_name, 3},
-  [99] =
+  [98] =
     {field_imported_type, 5},
     {field_imported_type, 6, .inherited = true},
     {field_segment, 1},
     {field_segment, 2, .inherited = true},
-  [103] =
+  [102] =
     {field_name, 1},
     {field_type, 3},
-  [105] =
+  [104] =
     {field_condition, 1},
     {field_else_arm, 4},
     {field_if_arm, 2},
-  [108] =
+  [107] =
     {field_body, 4},
-  [109] =
+  [108] =
     {field_argument, 2},
     {field_argument, 3, .inherited = true},
     {field_function, 0},
-  [112] =
+  [111] =
     {field_argument, 4},
     {field_argument, 5, .inherited = true},
     {field_name, 2},
     {field_returns, 8},
-  [116] =
+  [115] =
     {field_argument, 5},
     {field_name, 3},
     {field_returns, 8},
-  [119] =
+  [118] =
     {field_name, 2},
     {field_type, 4},
     {field_undef, 1},
-  [122] =
+  [121] =
     {field_body, 5},
     {field_update, 3},
-  [124] =
+  [123] =
     {field_body, 5},
     {field_condition, 2},
-  [126] =
+  [125] =
     {field_body, 5},
     {field_initializer, 2},
-  [128] =
+  [127] =
     {field_argument, 5},
     {field_argument, 6, .inherited = true},
     {field_name, 3},
     {field_returns, 9},
-  [132] =
+  [131] =
     {field_body, 6},
     {field_initializer, 2},
     {field_initializer, 3},
-  [135] =
+  [134] =
     {field_body, 6},
     {field_condition, 2},
     {field_update, 4},
-  [138] =
+  [137] =
     {field_body, 6},
     {field_initializer, 2},
     {field_update, 4},
-  [141] =
+  [140] =
     {field_body, 6},
     {field_condition, 3},
     {field_initializer, 2},
-  [144] =
+  [143] =
     {field_name, 2},
     {field_type, 4},
     {field_undef, 1},
     {field_value, 6},
-  [148] =
+  [147] =
     {field_body, 7},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_update, 5},
-  [152] =
+  [151] =
     {field_body, 7},
     {field_condition, 4},
     {field_initializer, 2},
     {field_initializer, 3},
-  [156] =
+  [155] =
     {field_body, 7},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_initializer, 4},
-  [160] =
+  [159] =
     {field_body, 7},
     {field_condition, 3},
     {field_initializer, 2},
     {field_update, 5},
-  [164] =
+  [163] =
     {field_body, 8},
     {field_condition, 4},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_update, 6},
-  [169] =
+  [168] =
     {field_body, 8},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_initializer, 4},
     {field_update, 6},
-  [174] =
+  [173] =
     {field_body, 8},
     {field_condition, 5},
     {field_initializer, 2},
     {field_initializer, 3},
     {field_initializer, 4},
-  [179] =
+  [178] =
     {field_body, 9},
     {field_condition, 5},
     {field_initializer, 2},
