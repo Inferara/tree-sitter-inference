@@ -79,6 +79,7 @@ module.exports = grammar({
       $.external_function_definition,
       $.type_definition_statement,
       $.enum_definition,
+      $.struct_definition,
     ),
 
     _type: $ => choice(
@@ -263,6 +264,22 @@ module.exports = grammar({
       $._lcb_symbol,
       sep1(field('variant', $.identifier), $._comma_symbol),
       $._rcb_symbol,
+    ),
+
+    struct_definition: $ => seq(
+      'struct',
+      field('name', $.identifier),
+      $._lcb_symbol,
+      sep1(choice(
+        $.struct_field,
+      ),','),
+      $._rcb_symbol,
+    ),
+
+    struct_field: $ => seq(
+      field('name',$.identifier),
+      $._typedef_symbol,
+      field('type', $._type),
     ),
 
     block: $ => seq(
