@@ -1,0 +1,43 @@
+===
+Basic struct definition
+===
+
+struct pizza {
+	toppings : [PizzaTopping; 5]
+}
+
+---
+(source_file
+	(struct_definition
+		(identifier)
+		(struct_field
+			(identifier)
+			(type_array
+				(identifier)
+				(number_literal)))))
+
+===
+Structs with multiple fields
+===
+
+struct pizza {
+	toppings : [PizzaTopping; 5],
+	numSlices : i32,
+	thinCrust : bool
+}
+
+---
+(source_file
+	(struct_definition
+		(identifier)
+		(struct_field
+			(identifier)
+			(type_array
+				(identifier)
+				(number_literal)))
+		(struct_field
+			(identifier)
+			(type_i32))
+		(struct_field
+			(identifier)
+			(type_bool))))
