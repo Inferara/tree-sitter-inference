@@ -272,12 +272,12 @@ module.exports = grammar({
       $._lcb_symbol,
       sep1(choice(
         $.struct_field,
-      ),','),
+      ), ','),
       $._rcb_symbol,
     ),
 
     struct_field: $ => seq(
-      field('name',$.identifier),
+      field('name', $.identifier),
       $._typedef_symbol,
       field('type', $._type),
     ),
