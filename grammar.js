@@ -269,9 +269,20 @@ module.exports = grammar({
     struct_definition: $ => seq(
       'struct',
       field('name', $.identifier),
+      optional(field('type_parameters',
+        seq(
+          '<',
+          sep1(
+            field('type_parameter', $.identifier),
+            ',',
+          ),
+          '>'
+        ),
+      )),
       $._lcb_symbol,
       sep1(choice(
         $.struct_field,
+        $.function_definition,
       ), ','),
       $._rcb_symbol,
     ),
@@ -281,6 +292,7 @@ module.exports = grammar({
       $._typedef_symbol,
       field('type', $._type),
     ),
+
 
     block: $ => seq(
       $._lcb_symbol,
