@@ -41,3 +41,42 @@ struct pizza {
 		(struct_field
 			(identifier)
 			(type_bool))))
+
+===
+Struct parametrized by types
+===
+
+struct identity<T> {
+	field : T
+}
+
+---
+(source_file
+	(struct_definition
+		(identifier)
+		(identifier)
+		(struct_field
+			(identifier)
+			(identifier))))
+
+===
+Multiple type parameters
+===
+
+struct Pair<A, B> {
+	fst : A,
+	snd : B
+}
+
+---
+(source_file
+	(struct_definition
+		(identifier)
+		(identifier)
+		(identifier)
+		(struct_field
+			(identifier)
+			(identifier))
+		(struct_field
+			(identifier)
+			(identifier))))
