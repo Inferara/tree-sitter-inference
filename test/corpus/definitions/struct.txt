@@ -80,3 +80,33 @@ struct Pair<A, B> {
 		(struct_field
 			(identifier)
 			(identifier))))
+
+===
+Struct with fields and methods
+===
+
+struct identity<T> {
+  field : T,
+  fn getField() -> T {
+    return field;
+  }
+}
+
+---
+
+(source_file
+	(struct_definition
+		(identifier)
+		(identifier)
+		(struct_field
+			(identifier)
+			(identifier))
+    (function_definition
+      (function_keyword)
+      (identifier)
+      (argument_list)
+      (rightarrow_operator)
+      (identifier)
+      (block
+        (return_statement
+          (identifier))))))
