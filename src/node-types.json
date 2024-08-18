@@ -172,10 +172,6 @@
             "named": true
           },
           {
-            "type": "struct_expression",
-            "named": true
-          },
-          {
             "type": "typeof_expression",
             "named": true
           },
@@ -248,10 +244,6 @@
           "named": true
         },
         {
-          "type": "struct_expression",
-          "named": true
-        },
-        {
           "type": "typeof_expression",
           "named": true
         },
@@ -320,10 +312,6 @@
         },
         {
           "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "struct_expression",
           "named": true
         },
         {
@@ -428,10 +416,6 @@
             "named": true
           },
           {
-            "type": "struct_expression",
-            "named": true
-          },
-          {
             "type": "typeof_expression",
             "named": true
           },
@@ -511,10 +495,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "struct_expression",
             "named": true
           },
           {
@@ -639,10 +619,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "struct_expression",
             "named": true
           },
           {
@@ -831,10 +807,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "struct_expression",
             "named": true
           },
           {
@@ -1190,10 +1162,6 @@
             "named": true
           },
           {
-            "type": "struct_expression",
-            "named": true
-          },
-          {
             "type": "typeof_expression",
             "named": true
           },
@@ -1268,10 +1236,6 @@
             "named": true
           },
           {
-            "type": "struct_expression",
-            "named": true
-          },
-          {
             "type": "typeof_expression",
             "named": true
           },
@@ -1339,10 +1303,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "struct_expression",
             "named": true
           },
           {
@@ -1415,10 +1375,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "struct_expression",
             "named": true
           },
           {
@@ -1664,10 +1620,6 @@
             "named": true
           },
           {
-            "type": "struct_expression",
-            "named": true
-          },
-          {
             "type": "typeof_expression",
             "named": true
           },
@@ -1766,10 +1718,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "struct_expression",
             "named": true
           },
           {
@@ -1894,10 +1842,6 @@
           "named": true
         },
         {
-          "type": "struct_expression",
-          "named": true
-        },
-        {
           "type": "typeof_expression",
           "named": true
         },
@@ -1977,10 +1921,6 @@
         },
         {
           "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "struct_expression",
           "named": true
         },
         {
@@ -2107,10 +2047,6 @@
             "named": true
           },
           {
-            "type": "struct_expression",
-            "named": true
-          },
-          {
             "type": "typeof_expression",
             "named": true
           },
@@ -2174,84 +2110,32 @@
     "type": "struct_definition",
     "named": true,
     "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type_parameter": {
+      "field": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "identifier",
+            "type": "struct_field",
             "named": true
           }
         ]
       },
-      "type_parameters": {
+      "method": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "<",
-            "named": false
-          },
-          {
-            "type": ">",
-            "named": false
-          },
-          {
-            "type": "identifier",
+            "type": "function_definition",
             "named": true
           }
         ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "function_definition",
-          "named": true
-        },
-        {
-          "type": "struct_field",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "struct_expression",
-    "named": true,
-    "fields": {
+      },
       "struct_name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type_list": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_argument_list",
             "named": true
           }
         ]
@@ -2739,10 +2623,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "struct_expression",
             "named": true
           },
           {

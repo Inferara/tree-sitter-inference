@@ -3,7 +3,7 @@ Basic struct definition
 ===
 
 struct pizza {
-	toppings : [PizzaTopping; 5]
+	toppings : [PizzaTopping; 5];
 }
 
 ---
@@ -21,9 +21,9 @@ Structs with multiple fields
 ===
 
 struct pizza {
-	toppings : [PizzaTopping; 5],
-	numSlices : i32,
-	thinCrust : bool
+	toppings : [PizzaTopping; 5];
+	numSlices : i32;
+	thinCrust : bool;
 }
 
 ---
@@ -43,36 +43,33 @@ struct pizza {
 			(type_bool))))
 
 ===
-Struct parametrized by types
+Struct with T as type
 ===
 
-struct identity<T> {
-	field : T
+struct identity {
+	field : T;
 }
 
 ---
 (source_file
 	(struct_definition
-		(identifier)
 		(identifier)
 		(struct_field
 			(identifier)
 			(identifier))))
 
 ===
-Multiple type parameters
+Multiple fields
 ===
 
-struct Pair<A, B> {
-	fst : A,
-	snd : B
+struct Pair {
+	fst : A;
+	snd : B;
 }
 
 ---
 (source_file
 	(struct_definition
-		(identifier)
-		(identifier)
 		(identifier)
 		(struct_field
 			(identifier)
@@ -85,8 +82,8 @@ struct Pair<A, B> {
 Struct with fields and methods
 ===
 
-struct identity<T> {
-  field : T,
+struct identity {
+  field : T;
   fn getField() -> T {
     return field;
   }
@@ -96,7 +93,6 @@ struct identity<T> {
 
 (source_file
 	(struct_definition
-		(identifier)
 		(identifier)
 		(struct_field
 			(identifier)

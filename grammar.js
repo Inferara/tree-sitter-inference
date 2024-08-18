@@ -42,12 +42,6 @@ module.exports = grammar({
 
     [$.qualified_name, $.member_access_expression],
     [$.type_unit, $.unit_literal],
-
-    [$.filter_statement, $._reserved_identifier],
-    [$.struct_expression, $._simple_name, $.generic_name],
-    [$.struct_expression, $._simple_name],
-    [$.struct_expression, $.generic_name],
-
   ],
 
   extras: $ => [
@@ -146,14 +140,6 @@ module.exports = grammar({
       $._literal,
       $.array_literal,
       $._expression_statement,
-      $.struct_expression,
-    ),
-
-    struct_expression: $ => seq(
-      field('struct_name', $.identifier),
-      optional(field('type_list', $.type_argument_list)),
-      $._lcb_symbol,
-      $._rcb_symbol,
     ),
 
     array_index_access_expression: $ => seq(
@@ -282,22 +268,12 @@ module.exports = grammar({
 
     struct_definition: $ => seq(
       'struct',
-      field('name', $.identifier),
-      optional(field('type_parameters',
-        seq(
-          '<',
-          sep1(
-            field('type_parameter', $.identifier),
-            ',',
-          ),
-          '>',
-        ),
-      )),
+      field('struct_name', $.identifier),
       $._lcb_symbol,
-      sep1(choice(
-        $.struct_field,
-        $.function_definition,
-      ), ','),
+      repeat(choice(
+        seq(field('field', $.struct_field), ';'),
+        field('method', $.function_definition),
+      )),
       $._rcb_symbol,
     ),
 
