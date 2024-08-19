@@ -1,0 +1,108 @@
+===
+Basic struct definition
+===
+
+struct pizza {
+	toppings : [PizzaTopping; 5];
+}
+
+---
+(source_file
+	(struct_definition
+		(identifier)
+		(struct_field
+			(identifier)
+			(type_array
+				(identifier)
+				(number_literal)))))
+
+===
+Structs with multiple fields
+===
+
+struct pizza {
+	toppings : [PizzaTopping; 5];
+	numSlices : i32;
+	thinCrust : bool;
+}
+
+---
+(source_file
+	(struct_definition
+		(identifier)
+		(struct_field
+			(identifier)
+			(type_array
+				(identifier)
+				(number_literal)))
+		(struct_field
+			(identifier)
+			(type_i32))
+		(struct_field
+			(identifier)
+			(type_bool))))
+
+===
+Struct with T as type
+===
+
+struct identity {
+	field : T;
+}
+
+---
+(source_file
+	(struct_definition
+		(identifier)
+		(struct_field
+			(identifier)
+			(identifier))))
+
+===
+Multiple fields
+===
+
+struct Pair {
+	fst : A;
+	snd : B;
+}
+
+---
+(source_file
+	(struct_definition
+		(identifier)
+		(struct_field
+			(identifier)
+			(identifier))
+		(struct_field
+			(identifier)
+			(identifier))))
+
+===
+Struct with fields and methods
+===
+
+struct identity {
+  field : T;
+  fn getField() -> T {
+    return field;
+  }
+}
+
+---
+
+(source_file
+	(struct_definition
+		(identifier)
+		(struct_field
+			(identifier)
+			(identifier))
+    (function_definition
+      (function_keyword)
+      (identifier)
+      (argument_list)
+      (rightarrow_operator)
+      (identifier)
+      (block
+        (return_statement
+          (identifier))))))
