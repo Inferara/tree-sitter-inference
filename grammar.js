@@ -88,8 +88,12 @@ module.exports = grammar({
     ),
 
     _embedded_type: $ => choice(
+      $.type_i8,
+      $.type_i16,
       $.type_i32,
       $.type_i64,
+      $.type_u8,
+      $.type_u16,
       $.type_u32,
       $.type_u64,
       $.type_bool,
@@ -97,8 +101,12 @@ module.exports = grammar({
       $.type_array,
     ),
 
+    type_i8: _ => token('i8'),
+    type_i16: _ => token('i16'),
     type_i32: _ => token('i32'),
     type_i64: _ => token('i64'),
+    type_u8: _ => token('u8'),
+    type_u16: _ => token('u16'),
     type_u32: _ => token('u32'),
     type_u64: _ => token('u64'),
     type_bool: _ => token('bool'),

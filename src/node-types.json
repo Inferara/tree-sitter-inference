@@ -38,6 +38,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -46,7 +50,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -55,6 +67,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -728,6 +744,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -736,7 +756,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -745,6 +773,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -995,6 +1027,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -1003,7 +1039,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -1012,6 +1056,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -1478,6 +1526,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -1486,7 +1538,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -1495,6 +1555,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -1729,6 +1793,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -1737,7 +1805,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -1746,6 +1822,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -2181,6 +2261,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -2189,7 +2273,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -2198,6 +2290,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -2242,6 +2338,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -2250,7 +2350,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -2259,6 +2367,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -2308,6 +2420,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -2316,7 +2432,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -2325,6 +2449,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -2534,6 +2662,10 @@
             "named": true
           },
           {
+            "type": "type_i16",
+            "named": true
+          },
+          {
             "type": "type_i32",
             "named": true
           },
@@ -2542,7 +2674,15 @@
             "named": true
           },
           {
+            "type": "type_i8",
+            "named": true
+          },
+          {
             "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
             "named": true
           },
           {
@@ -2551,6 +2691,10 @@
           },
           {
             "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
             "named": true
           },
           {
@@ -2851,6 +2995,10 @@
     "named": true
   },
   {
+    "type": "type_i16",
+    "named": true
+  },
+  {
     "type": "type_i32",
     "named": true
   },
@@ -2859,11 +3007,23 @@
     "named": true
   },
   {
+    "type": "type_i8",
+    "named": true
+  },
+  {
+    "type": "type_u16",
+    "named": true
+  },
+  {
     "type": "type_u32",
     "named": true
   },
   {
     "type": "type_u64",
+    "named": true
+  },
+  {
+    "type": "type_u8",
     "named": true
   },
   {
