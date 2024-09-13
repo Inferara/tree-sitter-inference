@@ -117,11 +117,27 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "type_i8"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_i16"
+        },
+        {
+          "type": "SYMBOL",
           "name": "type_i32"
         },
         {
           "type": "SYMBOL",
           "name": "type_i64"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_u8"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_u16"
         },
         {
           "type": "SYMBOL",
@@ -145,6 +161,20 @@
         }
       ]
     },
+    "type_i8": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "i8"
+      }
+    },
+    "type_i16": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "i16"
+      }
+    },
     "type_i32": {
       "type": "TOKEN",
       "content": {
@@ -157,6 +187,20 @@
       "content": {
         "type": "STRING",
         "value": "i64"
+      }
+    },
+    "type_u8": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "u8"
+      }
+    },
+    "type_u16": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "u16"
       }
     },
     "type_u32": {
