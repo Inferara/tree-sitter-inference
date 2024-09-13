@@ -5,10 +5,6 @@
 
 Inference grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter) based on Inference Language spec.
 
-## Status
-
-- [ ] Discord
-
 ## Development
 
 For the simplifying development and testing process the number of `npm` scripts is provided.
