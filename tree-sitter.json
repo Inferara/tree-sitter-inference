@@ -1,0 +1,39 @@
+{
+  "grammars": [
+    {
+      "name": "inference",
+      "camelcase": "Inference",
+      "scope": "source.inf",
+      "path": ".",
+      "file-types": [
+        "inf"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "inf"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.22",
+    "license": "MIT",
+    "description": "Inference grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Georgii Plotnikov",
+        "email": "accembler@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/Inferara/tree-sitter-inference.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

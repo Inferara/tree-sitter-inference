@@ -31,14 +31,14 @@
     "t": "tree-sitter test",
     "bt": "npm run b && npm run t",
     "d": "tree-sitter parse debug.inf",
-    "te" : "tree-sitter parse example.inf"
+    "te": "tree-sitter parse example.inf"
   },
   "dependencies": {
     "node-addon-api": "^8.0.0",
-    "node-gyp-build": "^4.8.1"
+    "node-gyp-build": "^4.8.2"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.21.0"
+    "tree-sitter": "^0.22.0"
   },
   "peerDependenciesMeta": {
     "tree_sitter": {
@@ -46,10 +46,10 @@
     }
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
+    "eslint": "9.13.0",
     "eslint-config-google": "^0.14.0",
     "prebuildify": "^6.0.1",
-    "tree-sitter-cli": "^0.22.6"
+    "tree-sitter-cli": "^0.24.3"
   },
   "files": [
     "grammar.js",
@@ -58,18 +58,6 @@
     "bindings/node/*",
     "queries/*",
     "src/**"
-  ],
-  "tree-sitter": [
-    {
-      "scope": "source.inf",
-      "injection-regex": "inf",
-      "file-types": [
-        "inf"
-      ],
-      "highlights": [
-        "queries/highlights.scm"
-      ]
-    }
   ],
   "eslintConfig": {
     "env": {
