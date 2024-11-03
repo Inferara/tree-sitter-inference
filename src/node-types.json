@@ -188,10 +188,6 @@
             "named": true
           },
           {
-            "type": "typeof_expression",
-            "named": true
-          },
-          {
             "type": "unit_literal",
             "named": true
           }
@@ -260,10 +256,6 @@
           "named": true
         },
         {
-          "type": "typeof_expression",
-          "named": true
-        },
-        {
           "type": "unit_literal",
           "named": true
         }
@@ -328,10 +320,6 @@
         },
         {
           "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "typeof_expression",
           "named": true
         },
         {
@@ -432,10 +420,6 @@
             "named": true
           },
           {
-            "type": "typeof_expression",
-            "named": true
-          },
-          {
             "type": "unit_literal",
             "named": true
           }
@@ -511,10 +495,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "typeof_expression",
             "named": true
           },
           {
@@ -635,10 +615,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "typeof_expression",
             "named": true
           },
           {
@@ -846,10 +822,6 @@
             "named": true
           },
           {
-            "type": "typeof_expression",
-            "named": true
-          },
-          {
             "type": "unit_literal",
             "named": true
           }
@@ -961,10 +933,6 @@
         },
         {
           "type": "prefix_unary_expression",
-          "named": true
-        },
-        {
-          "type": "typeof_expression",
           "named": true
         }
       ]
@@ -1266,10 +1234,6 @@
             "named": true
           },
           {
-            "type": "typeof_expression",
-            "named": true
-          },
-          {
             "type": "unit_literal",
             "named": true
           }
@@ -1340,10 +1304,6 @@
             "named": true
           },
           {
-            "type": "typeof_expression",
-            "named": true
-          },
-          {
             "type": "unit_literal",
             "named": true
           },
@@ -1407,10 +1367,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "typeof_expression",
             "named": true
           },
           {
@@ -1479,10 +1435,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "typeof_expression",
             "named": true
           },
           {
@@ -1740,10 +1692,6 @@
             "named": true
           },
           {
-            "type": "typeof_expression",
-            "named": true
-          },
-          {
             "type": "unit_literal",
             "named": true
           }
@@ -1889,10 +1837,6 @@
             "named": true
           },
           {
-            "type": "typeof_expression",
-            "named": true
-          },
-          {
             "type": "unit_literal",
             "named": true
           }
@@ -1978,10 +1922,6 @@
           "named": true
         },
         {
-          "type": "typeof_expression",
-          "named": true
-        },
-        {
           "type": "unit_literal",
           "named": true
         }
@@ -2057,10 +1997,6 @@
         },
         {
           "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "typeof_expression",
           "named": true
         },
         {
@@ -2180,10 +2116,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "typeof_expression",
             "named": true
           },
           {
@@ -2533,24 +2465,30 @@
             "named": true
           }
         ]
-      },
-      "typeof_expression": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "typeof_expression",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "assign_operator",
+          "named": true
+        },
+        {
+          "type": "generic_name",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "qualified_name",
+          "named": true
+        },
+        {
+          "type": "type_qualified_name",
           "named": true
         }
       ]
@@ -2600,34 +2538,6 @@
     "type": "type_unit",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "typeof_expression",
-    "named": true,
-    "fields": {
-      "typeref": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "generic_name",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "qualified_name",
-            "named": true
-          },
-          {
-            "type": "type_qualified_name",
-            "named": true
-          }
-        ]
-      }
-    }
   },
   {
     "type": "unit_literal",
@@ -2824,10 +2734,6 @@
           },
           {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "typeof_expression",
             "named": true
           },
           {
@@ -3086,10 +2992,6 @@
   {
     "type": "type_u8",
     "named": true
-  },
-  {
-    "type": "typeof",
-    "named": false
   },
   {
     "type": "unary_not",

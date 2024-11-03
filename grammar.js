@@ -200,13 +200,6 @@ module.exports = grammar({
       $._expression,
     )),
 
-    typeof_expression: $ => seq(
-      'typeof',
-      '(',
-      field('typeref', $._name),
-      ')',
-    ),
-
     binary_expression: $ => choice(
       ...[
         [$.pow_operator, PRECEDENCE.POW],
@@ -245,7 +238,7 @@ module.exports = grammar({
       'type',
       field('name', $.identifier),
       $.assign_operator,
-      field('typeof_expression', $.typeof_expression),
+      $._name,
       $._terminal_symbol,
     ),
 
@@ -398,7 +391,6 @@ module.exports = grammar({
       $.function_call_expression,
       $.prefix_unary_expression,
       $.parenthesized_expression,
-      $.typeof_expression,
     ),
 
     return_statement: $ => seq(

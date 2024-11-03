@@ -76,3 +76,10 @@ context Definitions {
     type Address = u32;
 }
 ---
+    (source_file
+      (context_definition
+        (identifier)
+        (type_definition_statement
+          (identifier)
+          (assign_operator)
+          (identifier))))

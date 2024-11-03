@@ -617,31 +617,6 @@
         ]
       }
     },
-    "typeof_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "typeof"
-        },
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "FIELD",
-          "name": "typeref",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_name"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
     "binary_expression": {
       "type": "CHOICE",
       "members": [
@@ -1170,12 +1145,8 @@
           "name": "assign_operator"
         },
         {
-          "type": "FIELD",
-          "name": "typeof_expression",
-          "content": {
-            "type": "SYMBOL",
-            "name": "typeof_expression"
-          }
+          "type": "SYMBOL",
+          "name": "_name"
         },
         {
           "type": "SYMBOL",
@@ -2077,10 +2048,6 @@
         {
           "type": "SYMBOL",
           "name": "parenthesized_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "typeof_expression"
         }
       ]
     },

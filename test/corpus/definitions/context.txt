@@ -38,16 +38,14 @@ Type definition
 ===
 
 context some_context {
- type sf = typeof(sorting_function);
+ type sf = sorting_function;
 }
 
 ---
-
     (source_file
       (context_definition
         (identifier)
         (type_definition_statement
           (identifier)
           (assign_operator)
-          (typeof_expression
-            (identifier)))))
+          (identifier))))
