@@ -1,0 +1,56 @@
+===
+12.2 Examples
+===
+
+context Constants {
+    const a: i32 = 10;
+    const b: bool = true;
+    const c: u32 = 0;
+
+    fn define_local_constants() {
+        const d: i32 = 10;
+        const e: bool = true;
+        const f: u32 = 0;
+    }
+
+}
+
+---
+    (source_file
+      (context_definition
+        (identifier)
+        (constant_definition
+          (identifier)
+          (type_i32)
+          (assign_operator)
+          (number_literal))
+        (constant_definition
+          (identifier)
+          (type_bool)
+          (assign_operator)
+          (bool_literal))
+        (constant_definition
+          (identifier)
+          (type_u32)
+          (assign_operator)
+          (number_literal))
+        (function_definition
+          (function_keyword)
+          (identifier)
+          (argument_list)
+          (block
+            (constant_definition
+              (identifier)
+              (type_i32)
+              (assign_operator)
+              (number_literal))
+            (constant_definition
+              (identifier)
+              (type_bool)
+              (assign_operator)
+              (bool_literal))
+            (constant_definition
+              (identifier)
+              (type_u32)
+              (assign_operator)
+              (number_literal))))))

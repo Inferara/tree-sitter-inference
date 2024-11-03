@@ -1,1 +1,17 @@
-const arr : [i32;3] = [1,2,3];
+context BasicConcepts {
+
+    external fn sum(a: i32, b: i32) -> i32;
+    external fn sub(i32, i32) -> i32;
+
+    total fn sum_sub_spec() {
+        let undef a: i32;
+        let undef b: i32;
+        assert(sum(a, b) == a + b);
+        assert(sub(a, b) == a - b);
+    }
+
+    fn proof() {
+        verify sum_sub_spec();
+    }
+
+}

@@ -59,6 +59,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "constant_definition"
+        },
+        {
+          "type": "SYMBOL",
           "name": "type_definition_statement"
         },
         {
@@ -1529,8 +1533,17 @@
               "type": "FIELD",
               "name": "argument",
               "content": {
-                "type": "SYMBOL",
-                "name": "_name"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_type"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "argument_declaration"
+                  }
+                ]
               }
             },
             {
@@ -1546,8 +1559,17 @@
                     "type": "FIELD",
                     "name": "argument",
                     "content": {
-                      "type": "SYMBOL",
-                      "name": "_name"
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "_type"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "argument_declaration"
+                        }
+                      ]
                     }
                   }
                 ]

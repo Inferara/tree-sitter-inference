@@ -1,0 +1,121 @@
+===
+5.2 Specification Is Not a Program
+===
+
+context BasicConcepts {
+
+    external fn sum(a: i32, b: i32) -> i32;
+    external fn sub(i32, i32) -> i32;
+
+    total fn sum_sub_spec() {
+        let undef a: i32;
+        let undef b: i32;
+        assert(sum(a, b) == a + b);
+        assert(sub(a, b) == a - b);
+    }
+
+    fn proof() {
+        verify sum_sub_spec();
+    }
+
+}
+
+---
+  (source_file
+      (context_definition
+        (identifier)
+        (external_function_definition
+          (function_keyword)
+          (identifier)
+          (argument_declaration
+            (identifier)
+            (type_i32))
+          (argument_declaration
+            (identifier)
+            (type_i32))
+          (rightarrow_operator)
+          (type_i32))
+        (external_function_definition
+          (function_keyword)
+          (identifier)
+          (type_i32)
+          (type_i32)
+          (rightarrow_operator)
+          (type_i32))
+        (function_definition
+          (total_keyword)
+          (function_keyword)
+          (identifier)
+          (argument_list)
+          (block
+            (variable_definition_statement
+              (undef_keyword)
+              (identifier)
+              (type_i32))
+            (variable_definition_statement
+              (undef_keyword)
+              (identifier)
+              (type_i32))
+            (assert_statement
+              (parenthesized_expression
+                (binary_expression
+                  (function_call_expression
+                    (identifier)
+                    (identifier)
+                    (identifier))
+                  (equals_operator)
+                  (binary_expression
+                    (identifier)
+                    (add_operator)
+                    (identifier)))))
+            (assert_statement
+              (parenthesized_expression
+                (binary_expression
+                  (function_call_expression
+                    (identifier)
+                    (identifier)
+                    (identifier))
+                  (equals_operator)
+                  (binary_expression
+                    (identifier)
+                    (sub_operator)
+                    (identifier)))))))
+        (function_definition
+          (function_keyword)
+          (identifier)
+          (argument_list)
+          (block
+            (verify_statement
+              (function_call_expression
+                (identifier)))))))
+
+===
+5.4 Non-Deterministic Execution
+===
+
+total fn example_spec() {
+    let undef x: i32;
+    assert(x + 1 > x);
+}
+
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (type_i32))
+          (assert_statement
+            (parenthesized_expression
+              (binary_expression
+                (binary_expression
+                  (identifier)
+                  (add_operator)
+                  (number_literal))
+                (greater_operator)
+                (identifier)))))))
