@@ -21,25 +21,27 @@ context BasicConcepts {
 }
 
 ---
-  (source_file
+    (source_file
       (context_definition
         (identifier)
         (external_function_definition
           (function_keyword)
           (identifier)
-          (argument_declaration
-            (identifier)
-            (type_i32))
-          (argument_declaration
-            (identifier)
-            (type_i32))
+          (argument_list
+            (argument_declaration
+              (identifier)
+              (type_i32))
+            (argument_declaration
+              (identifier)
+              (type_i32)))
           (rightarrow_operator)
           (type_i32))
         (external_function_definition
           (function_keyword)
           (identifier)
-          (type_i32)
-          (type_i32)
+          (argument_list
+            (type_i32)
+            (type_i32))
           (rightarrow_operator)
           (type_i32))
         (function_definition

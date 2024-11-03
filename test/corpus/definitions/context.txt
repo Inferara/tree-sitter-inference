@@ -21,15 +21,15 @@ context some_context {
 }
 
 ---
-
-(source_file
+    (source_file
       (context_definition
         (identifier)
         (external_function_definition
           (function_keyword)
           (identifier)
-          (identifier)
-          (identifier)
+          (argument_list
+            (identifier)
+            (identifier))
           (rightarrow_operator)
           (identifier))))
 

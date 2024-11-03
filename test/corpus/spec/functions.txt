@@ -60,11 +60,12 @@ context Hasher {
         (total_keyword)
         (function_keyword)
         (identifier)
-        (argument_declaration
-          (identifier)
-          (type_array
-            (type_u8)
-            (number_literal)))
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type_array
+              (type_u8)
+              (number_literal))))
         (rightarrow_operator)
         (type_array
           (type_u8)
@@ -135,6 +136,7 @@ context Hasher {
               (function_call_expression
                 (identifier)))))))
 
+
 ===
 11.3.2 Examples (High-order functions)
 ===
@@ -155,3 +157,115 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
     }
 }
 ---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type_array
+              (type_i32)
+              (number_literal)))
+          (argument_declaration
+            (identifier)
+            (type_fn
+              (argument_list
+                (argument_declaration
+                  (identifier)
+                  (type_i32))
+                (argument_declaration
+                  (identifier)
+                  (type_i32)))
+              (type_i32))))
+        (rightarrow_operator)
+        (type_unit)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (loop_statement
+            (identifier)
+            (block
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (binary_expression
+                    (identifier)
+                    (add_operator)
+                    (number_literal))))
+              (variable_definition_statement
+                (identifier)
+                (type_i32)
+                (assign_operator)
+                (number_literal))
+              (loop_statement
+                (binary_expression
+                  (binary_expression
+                    (identifier)
+                    (sub_operator)
+                    (identifier))
+                  (sub_operator)
+                  (number_literal))
+                (block
+                  (expression_statement
+                    (assign_expression
+                      (identifier)
+                      (assign_operator)
+                      (binary_expression
+                        (identifier)
+                        (add_operator)
+                        (number_literal))))
+                  (if_statement
+                    (binary_expression
+                      (function_call_expression
+                        (identifier)
+                        (array_index_access_expression
+                          (identifier)
+                          (identifier))
+                        (array_index_access_expression
+                          (identifier)
+                          (binary_expression
+                            (identifier)
+                            (add_operator)
+                            (number_literal))))
+                      (greater_operator)
+                      (number_literal))
+                    (block
+                      (variable_definition_statement
+                        (identifier)
+                        (type_i32)
+                        (assign_operator)
+                        (array_index_access_expression
+                          (identifier)
+                          (identifier)))
+                      (expression_statement
+                        (assign_expression
+                          (array_index_access_expression
+                            (identifier)
+                            (identifier))
+                          (assign_operator)
+                          (array_index_access_expression
+                            (identifier)
+                            (binary_expression
+                              (identifier)
+                              (add_operator)
+                              (number_literal)))))
+                      (expression_statement
+                        (assign_expression
+                          (array_index_access_expression
+                            (identifier)
+                            (binary_expression
+                              (identifier)
+                              (add_operator)
+                              (number_literal)))
+                          (assign_operator)
+                          (identifier))))))))))))

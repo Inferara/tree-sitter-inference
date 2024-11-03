@@ -67,7 +67,7 @@ module.exports = grammar({
       $.expression_statement,
       $.return_statement,
       $.filter_statement,
-      $.for_statement,
+      $.loop_statement,
       $.if_statement,
       $.variable_definition_statement,
       $.constant_definition,
@@ -86,8 +86,8 @@ module.exports = grammar({
     ),
 
     _type: $ => choice(
-      $._name,
       $._embedded_type,
+      $._name,
     ),
 
     _embedded_type: $ => choice(
@@ -245,6 +245,7 @@ module.exports = grammar({
     variable_definition_statement: $ => seq(
       'let',
       optional(field('undef', $.undef_keyword)),
+      optional(field('mut', $.mut_keyword)),
       field('name', $.identifier),
       $._typedef_symbol,
       field('type', $._type),
@@ -303,7 +304,6 @@ module.exports = grammar({
       field('type', $._type),
     ),
 
-
     block: $ => seq(
       $._lcb_symbol,
       repeat($._statement),
@@ -324,9 +324,7 @@ module.exports = grammar({
       optional($.total_keyword),
       $.function_keyword,
       field('name', $.identifier),
-      $._lrb_symbol,
-      sep1(field('argument', choice($._type, $.argument_declaration)), $._comma_symbol),
-      $._rrb_symbol,
+      field('argument_list', $.argument_list),
       optional(seq($.rightarrow_operator, field('returns', $._type))),
       ';',
     ),
@@ -362,23 +360,10 @@ module.exports = grammar({
       optional(seq('else', field('else_arm', $.block))),
     )),
 
-    for_statement: $ => seq(
-      'for',
-      '(',
-      field('initializer', optional(
-        choice(
-          $.variable_definition_statement,
-          seq(
-            sep1($._expression, $._comma_symbol),
-            ';',
-          ),
-        ),
-      )),
-      field('condition', optional($._expression)),
-      ';',
-      field('update', optional($._expression)),
-      ')',
-      field('body', $._statement),
+    loop_statement: $ => seq(
+      'loop',
+      optional(field('condition', $._expression)),
+      field('body', $.block),
     ),
 
     use_directive: $ => seq(
@@ -427,6 +412,7 @@ module.exports = grammar({
     function_keyword: $ => 'fn',
     total_keyword: $ => 'total',
     undef_keyword: $ => 'undef',
+    mut_keyword: $ => 'mut',
 
     unary_not: _ => '!',
 
