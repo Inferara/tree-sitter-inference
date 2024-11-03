@@ -163,6 +163,10 @@
         {
           "type": "SYMBOL",
           "name": "type_array"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_fn"
         }
       ]
     },
@@ -279,6 +283,57 @@
         {
           "type": "STRING",
           "value": "]"
+        }
+      ]
+    },
+    "type_fn": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PREC",
+          "value": 1500,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "fn"
+              },
+              {
+                "type": "FIELD",
+                "name": "arguments",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "argument_list"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "->"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "returns",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_type"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -1311,7 +1366,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_name"
+          "name": "_type"
         },
         {
           "type": "SYMBOL",
@@ -1765,8 +1820,21 @@
                   "type": "FIELD",
                   "name": "argument",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "argument_declaration"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "argument_declaration"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "_"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_type"
+                      }
+                    ]
                   }
                 },
                 {
@@ -1782,8 +1850,21 @@
                         "type": "FIELD",
                         "name": "argument",
                         "content": {
-                          "type": "SYMBOL",
-                          "name": "argument_declaration"
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "argument_declaration"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "_"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "_type"
+                            }
+                          ]
                         }
                       }
                     ]

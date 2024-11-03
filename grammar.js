@@ -102,6 +102,7 @@ module.exports = grammar({
       $.type_bool,
       $.type_unit,
       $.type_array,
+      $.type_fn,
     ),
 
     type_i8: _ => token('i8'),
@@ -124,6 +125,16 @@ module.exports = grammar({
         ),
       ),
       ']',
+    ),
+    type_fn: $ => seq(
+      prec(
+        PRECEDENCE.FUNC_CALL,
+        seq(
+          'fn',
+          field('arguments', $.argument_list),
+        ),
+      ),
+      optional(seq('->', field('returns', $._type))),
     ),
 
     _literal: $ => choice(
@@ -245,7 +256,7 @@ module.exports = grammar({
       'type',
       field('name', $.identifier),
       $.assign_operator,
-      $._name,
+      $._type,
       $._terminal_symbol,
     ),
 
@@ -322,7 +333,14 @@ module.exports = grammar({
 
     argument_list: $ => seq(
       $._lrb_symbol,
-      optional(sep1(field('argument', $.argument_declaration), $._comma_symbol)),
+      optional(
+        sep1(
+          field('argument', 
+            choice($.argument_declaration, '_', $._type)
+          ),
+          $._comma_symbol
+        )
+      ),
       $._rrb_symbol,
     ),
 
