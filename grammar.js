@@ -13,19 +13,21 @@ function sep1(rule, separator) {
 }
 
 const PRECEDENCE = {
-  DOT: 1000,
-  FUNC_CALL: 900,
-  UNARY: 800,
+  DOT: 2000,
+  FUNC_CALL: 1500,
+  UNARY: 1000,
 
-  POW: 600,
-  MUL: 590,
-  ADD: 580,
-  COMPARE: 570,
-  EQUALS: 560,
-  AND: 550,
-  OR: 540,
-  AND: 530,
-  OR: 520,
+  POW: 990,
+  MUL: 980,
+  ADD: 970,
+  SHIFT: 800,
+  COMPARE: 700,
+  EQUALS: 600,
+  AND: 590,
+  XOR: 580,
+  OR: 570,
+  LOGICAL_AND: 490,
+  LOGICAL_OR: 480,
 
   EXPRESSION: 300,
 };
@@ -203,8 +205,13 @@ module.exports = grammar({
     binary_expression: $ => choice(
       ...[
         [$.pow_operator, PRECEDENCE.POW],
-        [$.and_operator, PRECEDENCE.AND],
-        [$.or_operator, PRECEDENCE.OR],
+        [$.and_operator, PRECEDENCE.LOGICAL_AND],
+        [$.or_operator, PRECEDENCE.LOGICAL_OR],
+        [$.bit_and_operator, PRECEDENCE.AND],
+        [$.bit_or_operator, PRECEDENCE.OR],
+        [$.bit_xor_operator, PRECEDENCE.XOR],
+        [$.shift_left_operator, PRECEDENCE.SHIFT],
+        [$.shift_right_operator, PRECEDENCE.SHIFT],
         [$.add_operator, PRECEDENCE.ADD],
         [$.sub_operator, PRECEDENCE.ADD],
         [$.mul_operator, PRECEDENCE.MUL],
@@ -413,6 +420,12 @@ module.exports = grammar({
 
     and_operator: _ => '&&',
     or_operator: _ => '||',
+
+    shift_left_operator: _ => '<<',
+    shift_right_operator: _ => '>>',
+    bit_and_operator: _ => '&',
+    bit_or_operator: _ => '|',
+    bit_xor_operator: _ => '^',
 
     less_operator: _ => '<',
     greater_operator: _ => '>',

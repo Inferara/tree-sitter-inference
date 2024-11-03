@@ -83,3 +83,166 @@ context Definitions {
           (identifier)
           (assign_operator)
           (identifier))))
+
+===
+10.5.2 Examples (Context)
+===
+context AuctionSpec {  
+    const MAX_BID: u64 = 1000;
+    const MIN_BID: u64 = 100;
+    
+    struct Bid {
+      bidder: Address;
+      amount: u64;
+    }
+    
+    enum AuctionState {
+      Open,
+      Closed
+    }
+    
+    total fn is_valid_bid(bid: Bid) -> bool {
+      return bid.amount >= MIN_BID && bid.amount <= MAX_BID;
+    }
+  
+    total fn is_auction_open(state: AuctionState) -> bool {
+      return state == AuctionState::Open;
+    }
+}
+---
+    (source_file
+      (context_definition
+        (identifier)
+        (constant_definition
+          (identifier)
+          (type_u64)
+          (assign_operator)
+          (number_literal))
+        (constant_definition
+          (identifier)
+          (type_u64)
+          (assign_operator)
+          (number_literal))
+        (struct_definition
+          (identifier)
+          (struct_field
+            (identifier)
+            (identifier))
+          (struct_field
+            (identifier)
+            (type_u64)))
+        (enum_definition
+          (identifier)
+          (identifier)
+          (identifier))
+        (function_definition
+          (total_keyword)
+          (function_keyword)
+          (identifier)
+          (argument_list
+            (argument_declaration
+              (identifier)
+              (identifier)))
+          (rightarrow_operator)
+          (type_bool)
+          (block
+            (return_statement
+              (binary_expression
+                (binary_expression
+                  (member_access_expression
+                    (identifier)
+                    (attribute_access_operator)
+                    (identifier))
+                  (greater_equal_operator)
+                  (identifier))
+                (and_operator)
+                (binary_expression
+                  (member_access_expression
+                    (identifier)
+                    (attribute_access_operator)
+                    (identifier))
+                  (less_equal_operator)
+                  (identifier))))))
+        (function_definition
+          (total_keyword)
+          (function_keyword)
+          (identifier)
+          (argument_list
+            (argument_declaration
+              (identifier)
+              (identifier)))
+          (rightarrow_operator)
+          (type_bool)
+          (block
+            (return_statement
+              (binary_expression
+                (identifier)
+                (equals_operator)
+                (member_access_expression
+                  (identifier)
+                  (expand_operator)
+                  (identifier))))))))
+
+===
+10.6.2 Examples (Enum)
+===
+enum Arch {
+  WASM,
+  EVM
+}
+
+enum ContextType {
+  Program,
+  Contract
+}
+---
+    (source_file
+      (enum_definition
+        (identifier)
+        (identifier)
+        (identifier))
+      (enum_definition
+        (identifier)
+        (identifier)
+        (identifier)))
+
+===
+10.7.2 Examples (Struct)
+===
+struct Account {
+  address: Address;
+  balance: u64;
+
+  total fn can_withdraw(amount: u64) -> bool {
+    return ctx.balance >= amount;
+  }
+}
+---
+    (source_file
+      (struct_definition
+        (identifier)
+        (struct_field
+          (identifier)
+          (identifier))
+        (struct_field
+          (identifier)
+          (type_u64))
+        (function_definition
+          (total_keyword)
+          (function_keyword)
+          (identifier)
+          (argument_list
+            (argument_declaration
+              (identifier)
+              (type_u64)))
+          (rightarrow_operator)
+          (type_bool)
+          (block
+            (return_statement
+              (binary_expression
+                (member_access_expression
+                  (identifier)
+                  (attribute_access_operator)
+                  (identifier))
+                (greater_equal_operator)
+                (identifier)))))))

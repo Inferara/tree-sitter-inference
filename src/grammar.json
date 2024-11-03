@@ -397,7 +397,7 @@
     },
     "member_access_expression": {
       "type": "PREC",
-      "value": 1000,
+      "value": 2000,
       "content": {
         "type": "SEQ",
         "members": [
@@ -477,7 +477,7 @@
     },
     "function_call_expression": {
       "type": "PREC",
-      "value": 900,
+      "value": 1500,
       "content": {
         "type": "SEQ",
         "members": [
@@ -560,7 +560,7 @@
     },
     "verify_statement": {
       "type": "PREC_RIGHT",
-      "value": 800,
+      "value": 1000,
       "content": {
         "type": "SEQ",
         "members": [
@@ -598,7 +598,7 @@
     },
     "prefix_unary_expression": {
       "type": "PREC",
-      "value": 800,
+      "value": 1000,
       "content": {
         "type": "SEQ",
         "members": [
@@ -622,7 +622,7 @@
       "members": [
         {
           "type": "PREC_LEFT",
-          "value": 600,
+          "value": 990,
           "content": {
             "type": "SEQ",
             "members": [
@@ -655,7 +655,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 530,
+          "value": 490,
           "content": {
             "type": "SEQ",
             "members": [
@@ -688,7 +688,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 520,
+          "value": 480,
           "content": {
             "type": "SEQ",
             "members": [
@@ -721,7 +721,172 @@
         },
         {
           "type": "PREC_LEFT",
+          "value": 590,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "bit_and_operator"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 570,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "bit_or_operator"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
           "value": 580,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "bit_xor_operator"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 800,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "shift_left_operator"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 800,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "shift_right_operator"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 970,
           "content": {
             "type": "SEQ",
             "members": [
@@ -754,7 +919,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 580,
+          "value": 970,
           "content": {
             "type": "SEQ",
             "members": [
@@ -787,7 +952,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 590,
+          "value": 980,
           "content": {
             "type": "SEQ",
             "members": [
@@ -820,7 +985,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 590,
+          "value": 980,
           "content": {
             "type": "SEQ",
             "members": [
@@ -853,7 +1018,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 570,
+          "value": 700,
           "content": {
             "type": "SEQ",
             "members": [
@@ -886,7 +1051,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 570,
+          "value": 700,
           "content": {
             "type": "SEQ",
             "members": [
@@ -919,7 +1084,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 560,
+          "value": 600,
           "content": {
             "type": "SEQ",
             "members": [
@@ -952,7 +1117,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 560,
+          "value": 600,
           "content": {
             "type": "SEQ",
             "members": [
@@ -985,7 +1150,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 570,
+          "value": 700,
           "content": {
             "type": "SEQ",
             "members": [
@@ -1018,7 +1183,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 570,
+          "value": 700,
           "content": {
             "type": "SEQ",
             "members": [
@@ -2116,6 +2281,26 @@
       "type": "STRING",
       "value": "||"
     },
+    "shift_left_operator": {
+      "type": "STRING",
+      "value": "<<"
+    },
+    "shift_right_operator": {
+      "type": "STRING",
+      "value": ">>"
+    },
+    "bit_and_operator": {
+      "type": "STRING",
+      "value": "&"
+    },
+    "bit_or_operator": {
+      "type": "STRING",
+      "value": "|"
+    },
+    "bit_xor_operator": {
+      "type": "STRING",
+      "value": "^"
+    },
     "less_operator": {
       "type": "STRING",
       "value": "<"
@@ -2370,7 +2555,7 @@
     },
     "qualified_name": {
       "type": "PREC",
-      "value": 1000,
+      "value": 2000,
       "content": {
         "type": "SEQ",
         "members": [

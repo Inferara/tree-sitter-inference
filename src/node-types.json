@@ -516,6 +516,18 @@
             "named": true
           },
           {
+            "type": "bit_and_operator",
+            "named": true
+          },
+          {
+            "type": "bit_or_operator",
+            "named": true
+          },
+          {
+            "type": "bit_xor_operator",
+            "named": true
+          },
+          {
             "type": "equals_operator",
             "named": true
           },
@@ -553,6 +565,14 @@
           },
           {
             "type": "pow_operator",
+            "named": true
+          },
+          {
+            "type": "shift_left_operator",
+            "named": true
+          },
+          {
+            "type": "shift_right_operator",
             "named": true
           },
           {
@@ -2838,6 +2858,18 @@
     "named": true
   },
   {
+    "type": "bit_and_operator",
+    "named": true
+  },
+  {
+    "type": "bit_or_operator",
+    "named": true
+  },
+  {
+    "type": "bit_xor_operator",
+    "named": true
+  },
+  {
     "type": "const",
     "named": false
   },
@@ -2939,6 +2971,14 @@
   },
   {
     "type": "rightarrow_operator",
+    "named": true
+  },
+  {
+    "type": "shift_left_operator",
+    "named": true
+  },
+  {
+    "type": "shift_right_operator",
     "named": true
   },
   {
