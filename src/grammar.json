@@ -1920,6 +1920,39 @@
                 "members": [
                   {
                     "type": "STRING",
+                    "value": "else if"
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "else_if_condition",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_expression"
+                    }
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "else_if_arm",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "block"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
                     "value": "else"
                   },
                   {

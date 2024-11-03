@@ -1,0 +1,88 @@
+===
+General description code fragments
+===
+
+total fn main() {
+    let undef a: i32;
+
+    let undef x: i32;
+    assert(x + 1 > x);
+
+    let undef user_input: bool;
+
+    if user_input {
+        /// Handle true case
+    } else {
+        /// Handle false case
+    }
+
+    let undef mut choice: i32;
+    choice = choice % 3;
+    if (choice == 0) {
+        /// Handle case 0
+    } else if (choice == 1) {
+        /// Handle case 1
+    } else {
+        /// Handle case 2
+    }
+}
+---
+   (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (type_i32))
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (type_i32))
+          (assert_statement
+            (parenthesized_expression
+              (binary_expression
+                (binary_expression
+                  (identifier)
+                  (add_operator)
+                  (number_literal))
+                (greater_operator)
+                (identifier))))
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (type_bool))
+          (if_statement
+            (identifier)
+            (block)
+            (block))
+          (variable_definition_statement
+            (undef_keyword)
+            (mut_keyword)
+            (identifier)
+            (type_i32))
+          (expression_statement
+            (assign_expression
+              (identifier)
+              (assign_operator)
+              (binary_expression
+                (identifier)
+                (mod_operator)
+                (number_literal))))
+          (if_statement
+            (parenthesized_expression
+              (binary_expression
+                (identifier)
+                (equals_operator)
+                (number_literal)))
+            (block)
+            (parenthesized_expression
+              (binary_expression
+                (identifier)
+                (equals_operator)
+                (number_literal)))
+            (block)
+            (block)))))

@@ -357,6 +357,7 @@ module.exports = grammar({
       'if',
       field('condition', $._expression),
       field('if_arm', $.block),
+      optional(seq('else if', field('else_if_condition', $._expression), field('else_if_arm', $.block))),
       optional(seq('else', field('else_arm', $.block))),
     )),
 
