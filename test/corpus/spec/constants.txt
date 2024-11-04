@@ -1,7 +1,6 @@
 ===
 12.2 Examples
 ===
-
 context Constants {
     const a: i32 = 10;
     const b: bool = true;
@@ -12,9 +11,7 @@ context Constants {
         const e: bool = true;
         const f: u32 = 0;
     }
-
 }
-
 ---
     (source_file
       (context_definition

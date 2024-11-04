@@ -1,11 +1,9 @@
 ===
 10.1.2 Examples (Constants)
 ===
-
 context Definitions {
     const MAX_SIZE: u32 = 100;
 }
-
 ---
 (source_file
       (context_definition
@@ -19,11 +17,9 @@ context Definitions {
 ===
 10.2.2 Examples (Function)
 ===
-
 total fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
-
 ---
     (source_file
       (function_definition
@@ -49,7 +45,6 @@ total fn sum(a: u32, b: u32) -> u32 {
 ===
 10.3.2 Examples (External function)
 ===
-
 context Definitions {
     external fn external_function(a: u32, b: u32) -> u32;
 }

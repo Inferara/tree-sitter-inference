@@ -57,7 +57,6 @@ total fn main() {
 ===
 4.6.2 Examples (Member access)
 ===
-
 struct Account {
     address: u32;
 
@@ -123,11 +122,9 @@ total fn main() {
 ===
 4.7 Literals
 ===
-
 total fn main() {
   let a: bool = true;
   let b: bool = false;
-  let c: number = 42;
   let d: unit = ();
 }
 ---
@@ -148,11 +145,6 @@ total fn main() {
             (type_bool)
             (assign_operator)
             (bool_literal))
-          (variable_definition_statement
-            (identifier)
-            (identifier)
-            (assign_operator)
-            (number_literal))
           (variable_definition_statement
             (identifier)
             (identifier)

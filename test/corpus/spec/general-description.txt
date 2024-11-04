@@ -1,7 +1,6 @@
 ===
 General description code fragments
 ===
-
 total fn main() {
     let undef a: i32;
 

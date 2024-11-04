@@ -1,7 +1,6 @@
 ===
 5.2 Specification Is Not a Program
 ===
-
 context BasicConcepts {
 
     external fn sum(a: i32, b: i32) -> i32;
@@ -19,7 +18,6 @@ context BasicConcepts {
     }
 
 }
-
 ---
     (source_file
       (context_definition
@@ -94,12 +92,10 @@ context BasicConcepts {
 ===
 5.4 Non-Deterministic Execution
 ===
-
 total fn example_spec() {
     let undef x: i32;
     assert(x + 1 > x);
 }
-
 ---
     (source_file
       (function_definition

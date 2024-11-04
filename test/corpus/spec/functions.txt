@@ -273,7 +273,6 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
 ===
 11.3.2 Examples (High-order functions 2)
 ===
-
 use { hash } from "./cryptography.0.wasm";
 
 context HashContext {
@@ -391,8 +390,6 @@ context HashContext {
 ===
 11.3.2 Examples (High-order functions 3)
 ===
-
-
 total fn add(a: i32, b: i32) -> i32 {
     return a + b;
 }
