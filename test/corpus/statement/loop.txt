@@ -1,0 +1,154 @@
+===
+Base loop statement
+===
+
+fn main() {
+    loop true {
+        println("hello");
+    }
+}
+
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (loop_statement
+            (bool_literal)
+            (block
+              (expression_statement
+                (function_call_expression
+                  (identifier)
+                  (string_literal))))))))
+
+===
+Loop statement without a condition
+===
+
+fn main() {
+    loop {
+        println("hello");
+    }
+}
+
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (loop_statement
+            (block
+              (expression_statement
+                (function_call_expression
+                  (identifier)
+                  (string_literal))))))))
+
+
+===
+Loop statement with expression
+===
+
+fn main() {
+  let mut i : i32 = -10;
+  loop i {
+      i = i + 1;
+      println("test");
+    }
+}
+
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (mut_keyword)
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (loop_statement
+            (identifier)
+            (block
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (binary_expression
+                    (identifier)
+                    (add_operator)
+                    (number_literal))))
+              (expression_statement
+                (function_call_expression
+                  (identifier)
+                  (string_literal))))))))
+
+===
+Iterating through array
+===
+
+fn sum_all(xs: [i32; 10]) -> i32 {
+  let pos : i32 = 0;
+  let mut accumulator: i32 = 0;
+  loop 10 {
+    accumulator = accumulator + xs[pos];
+    pos = pos + 1;
+  }
+  return accumulator;
+}
+
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type_array
+              (type_i32)
+              (number_literal))))
+        (rightarrow_operator)
+        (type_i32)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (variable_definition_statement
+            (mut_keyword)
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (loop_statement
+            (number_literal)
+            (block
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (binary_expression
+                    (identifier)
+                    (add_operator)
+                    (array_index_access_expression
+                      (identifier)
+                      (identifier)))))
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (binary_expression
+                    (identifier)
+                    (add_operator)
+                    (number_literal))))))
+          (return_statement
+            (identifier)))))
+

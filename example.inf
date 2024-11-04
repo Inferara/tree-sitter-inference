@@ -7,7 +7,7 @@ use { sorting_function } from "./sort.rs";
 context sort_function_context {
 
   external fn sorting_function (Address, Address) -> Address;
-  type sf = typeof(sorting_function);
+  type sf = sorting_function;
 
   fn constructor() -> some_context {
     ctx.type = ContextType::Program;

@@ -21,15 +21,15 @@ context some_context {
 }
 
 ---
-
-(source_file
+    (source_file
       (context_definition
         (identifier)
         (external_function_definition
           (function_keyword)
           (identifier)
-          (identifier)
-          (identifier)
+          (argument_list
+            (identifier)
+            (identifier))
           (rightarrow_operator)
           (identifier))))
 
@@ -38,16 +38,14 @@ Type definition
 ===
 
 context some_context {
- type sf = typeof(sorting_function);
+ type sf = sorting_function;
 }
 
 ---
-
     (source_file
       (context_definition
         (identifier)
         (type_definition_statement
           (identifier)
           (assign_operator)
-          (typeof_expression
-            (identifier)))))
+          (identifier))))

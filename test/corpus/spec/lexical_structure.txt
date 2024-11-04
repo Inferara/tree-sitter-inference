@@ -1,0 +1,263 @@
+===
+4.3.2 Examples (Identifiers)
+===
+total fn main() {
+    let a: u32 = 42;
+    let _ident : i64 = 42;
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (number_literal))
+          (variable_definition_statement
+            (identifier)
+            (type_i64)
+            (assign_operator)
+            (number_literal)))))
+
+===
+4.5.2 Examples (Qualified identifiers)
+===
+total fn main() {
+    let a: context::AuctionSpec = context::AuctionSpec::new();
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_qualified_name
+              (identifier)
+              (expand_operator)
+              (identifier))
+            (assign_operator)
+            (function_call_expression
+              (member_access_expression
+                (member_access_expression
+                  (identifier)
+                  (expand_operator)
+                  (identifier))
+                (expand_operator)
+                (identifier)))))))
+
+===
+4.6.2 Examples (Member access)
+===
+struct Account {
+    address: u32;
+
+    fn new(addr: u32) -> Account {
+        ctx.address = addr;
+    }
+}
+
+total fn main() {
+    let a: Account = Account::new(42);
+    let b: u32 = a.address;
+}
+---
+    (source_file
+      (struct_definition
+        (identifier)
+        (struct_field
+          (identifier)
+          (type_u32))
+        (function_definition
+          (function_keyword)
+          (identifier)
+          (argument_list
+            (argument_declaration
+              (identifier)
+              (type_u32)))
+          (rightarrow_operator)
+          (identifier)
+          (block
+            (expression_statement
+              (assign_expression
+                (member_access_expression
+                  (identifier)
+                  (attribute_access_operator)
+                  (identifier))
+                (assign_operator)
+                (identifier))))))
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (identifier)
+            (assign_operator)
+            (function_call_expression
+              (member_access_expression
+                (identifier)
+                (expand_operator)
+                (identifier))
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))))))
+
+===
+4.7 Literals
+===
+total fn main() {
+  let a: bool = true;
+  let b: bool = false;
+  let d: unit = ();
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (bool_literal))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (bool_literal))
+          (variable_definition_statement
+            (identifier)
+            (identifier)
+            (assign_operator)
+            (unit_literal)))))
+
+===
+4.8.2 Examples (Right arrow)
+===
+total fn add(a: u32, b: u32) -> u32 {
+    return a + b;
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type_u32))
+          (argument_declaration
+            (identifier)
+            (type_u32)))
+        (rightarrow_operator)
+        (type_u32)
+        (block
+          (return_statement
+            (binary_expression
+              (identifier)
+              (add_operator)
+              (identifier))))))
+
+===
+4.10 Braces
+===
+fn curly_braces_example() {
+    /// code block
+}
+
+fn block_braces_example(a: u32, b: u32) -> u32 {
+    return a + b;
+}
+
+fn square_braces_example() {
+  let a: () = ();
+  let b: [u32; 3] = [1, 2, 3];
+  let c: u32 = a[0];
+}
+
+fn triangular_braces_example<T>(a: T) {
+    /// code block
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block))
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type_u32))
+          (argument_declaration
+            (identifier)
+            (type_u32)))
+        (rightarrow_operator)
+        (type_u32)
+        (block
+          (return_statement
+            (binary_expression
+              (identifier)
+              (add_operator)
+              (identifier)))))
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_unit)
+            (assign_operator)
+            (unit_literal))
+          (variable_definition_statement
+            (identifier)
+            (type_array
+              (type_u32)
+              (number_literal))
+            (assign_operator)
+            (array_literal
+              (number_literal)
+              (number_literal)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (array_index_access_expression
+              (identifier)
+              (number_literal)))))
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (type_argument_list
+          (identifier))
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (identifier)))
+        (block)))

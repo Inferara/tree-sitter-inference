@@ -1,0 +1,29 @@
+===
+13.1.2 Examples (Use directive)
+===
+use inference::std::algorithms::sort;
+use { sort, hash } from "./sort.0.wasm";
+use inference::std::algorithms::{sort, hash};
+---
+    (source_file
+      (use_directive
+        (identifier)
+        (expand_operator)
+        (identifier)
+        (expand_operator)
+        (identifier)
+        (expand_operator)
+        (identifier))
+      (use_directive
+        (identifier)
+        (identifier)
+        (string_literal))
+      (use_directive
+        (identifier)
+        (expand_operator)
+        (identifier)
+        (expand_operator)
+        (identifier)
+        (expand_operator)
+        (identifier)
+        (identifier)))

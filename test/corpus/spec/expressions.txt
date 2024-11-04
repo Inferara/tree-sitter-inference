@@ -1,0 +1,380 @@
+===
+8.1.2 Examples (Assign)
+===
+total fn example() -> u32 {
+  let a: u32 = 42;
+  let b: u32 = a;
+  return b;
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_u32)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (number_literal))
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (identifier))
+          (return_statement
+            (identifier)))))
+
+===
+8.2.2 Examples (Member access)
+===
+struct Account {
+  address: Address;
+  balance: u64;
+}
+
+total fn get_balance(account: Account) -> u64 {
+  return account.balance;
+}
+---
+    (source_file
+      (struct_definition
+        (identifier)
+        (struct_field
+          (identifier)
+          (identifier))
+        (struct_field
+          (identifier)
+          (type_u64)))
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (identifier)))
+        (rightarrow_operator)
+        (type_u64)
+        (block
+          (return_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))))))
+
+===
+8.3.2 Examples (Index Access)
+===
+total fn get_element(arr: [u32; 10], index: u32) -> u32 {
+  return arr[index];
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type_array
+              (type_u32)
+              (number_literal)))
+          (argument_declaration
+            (identifier)
+            (type_u32)))
+        (rightarrow_operator)
+        (type_u32)
+        (block
+          (return_statement
+            (array_index_access_expression
+              (identifier)
+              (identifier))))))
+
+===
+8.4.2 Examples (Function Call)
+===
+total fn sum(a: u32, b: u32) -> u32 {
+  return a + b;
+}
+
+total fn example() -> u32 {
+  return sum(1, 2);
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type_u32))
+          (argument_declaration
+            (identifier)
+            (type_u32)))
+        (rightarrow_operator)
+        (type_u32)
+        (block
+          (return_statement
+            (binary_expression
+              (identifier)
+              (add_operator)
+              (identifier)))))
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_u32)
+        (block
+          (return_statement
+            (function_call_expression
+              (identifier)
+              (number_literal)
+              (number_literal))))))
+
+===
+8.5.2 Examples (Paranthesized)
+===
+total fn example() -> u32 {
+  return (1 + 2) * 3;
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_u32)
+        (block
+          (return_statement
+            (binary_expression
+              (parenthesized_expression
+                (binary_expression
+                  (number_literal)
+                  (add_operator)
+                  (number_literal)))
+              (mul_operator)
+              (number_literal))))))
+
+===
+8.6.2 Examples (Unary Operators)
+===
+total fn example() -> i32 {
+  let a: i32 = -42;
+  return a;
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_i32)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (return_statement
+            (identifier)))))
+
+===
+8.7.2 Examples (Binary Operators)
+===
+total fn example() -> u32 {
+  let a: i32 = 2 ** 5;
+  let b: i32 = 7 * 8;
+  let c: i32 = 10 % 3;
+  let d: i32 = 2 + 4;
+  let e: i32 = 5 - 3;
+  let f: bool = 5 < 3;
+  let g: bool = 5 <= 3;
+  let h: bool = 5 == 3;
+  let i: bool = 5 != 3;
+  let j: bool = 5 > 3;
+  let k: bool = 5 >= 3;
+  let l: bool = true && false;
+  let m: bool = true || false;
+  let n: i32 = 5 << 2;
+  let o: i32 = 5 >> 2;
+  let p: i32 = 5 ^ 2;
+  let q: i32 = 5 | 2;
+  let r: i32 = 5 & 2;
+  return 1 + 2 * 3;
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_u32)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (pow_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (mul_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (mod_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (add_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (sub_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (less_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (less_equal_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (equals_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (not_equals_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (greater_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (greater_equal_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (binary_expression
+              (bool_literal)
+              (and_operator)
+              (bool_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (binary_expression
+              (bool_literal)
+              (or_operator)
+              (bool_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (shift_left_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (shift_right_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (bit_xor_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (bit_or_operator)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (bit_and_operator)
+              (number_literal)))
+          (return_statement
+            (binary_expression
+              (number_literal)
+              (add_operator)
+              (binary_expression
+                (number_literal)
+                (mul_operator)
+                (number_literal)))))))
