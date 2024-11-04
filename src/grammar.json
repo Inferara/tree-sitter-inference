@@ -273,8 +273,17 @@
                   "type": "FIELD",
                   "name": "length",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "number_literal"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "number_literal"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_name"
+                      }
+                    ]
                   }
                 }
               ]
@@ -1914,6 +1923,22 @@
     "argument_declaration": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "mut",
+              "content": {
+                "type": "SYMBOL",
+                "name": "mut_keyword"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "FIELD",
           "name": "name",

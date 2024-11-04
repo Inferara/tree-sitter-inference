@@ -122,7 +122,7 @@ module.exports = grammar({
       optional(
         seq(
           ';',
-          field('length', $.number_literal),
+          field('length', choice($.number_literal, $._name)),
         ),
       ),
       ']',
@@ -350,6 +350,7 @@ module.exports = grammar({
     ),
 
     argument_declaration: $ => seq(
+      optional(field('mut', $.mut_keyword)),
       field('name', $.identifier),
       $._typedef_symbol,
       field('type', $._type),

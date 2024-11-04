@@ -1,0 +1,231 @@
+===
+7.2.1.2 Examples (Local variables)
+===
+total fn foo() {
+    let a: i32 = 42;
+    let b: bool = true;
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (bool_literal)))))
+
+===
+7.2.2.2 Examples (Array elements)
+===
+total fn foo() {
+    let a: [i32; 3] = [1, 2, 3];
+    let b: [bool; 2] = [true, false];
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_array
+              (type_i32)
+              (number_literal))
+            (assign_operator)
+            (array_literal
+              (number_literal)
+              (number_literal)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_array
+              (type_bool)
+              (number_literal))
+            (assign_operator)
+            (array_literal
+              (bool_literal)
+              (bool_literal))))))
+
+===
+7.3.2 Examples (Default values)
+===
+total fn foo() {
+    let undef len: u32;
+    let undef arr: [i32; len];
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (type_u32))
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (type_array
+              (type_i32)
+              (identifier))))))
+
+===
+7.4.2.2 Examples (Block statement)
+===
+total fn foo() {
+    let a: i32 = 42;
+
+    let mut b: bool = true;
+    let mut i: i32 = 10;
+    let mut acc: i32 = 0; 
+
+    loop i {
+        i = i + 1;
+        b = i % 2 == 0;
+        if b {        
+            let c: i32 = a * 2;
+            acc = acc + c;
+        }
+    }
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (variable_definition_statement
+            (mut_keyword)
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (bool_literal))
+          (variable_definition_statement
+            (mut_keyword)
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (variable_definition_statement
+            (mut_keyword)
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (loop_statement
+            (identifier)
+            (block
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (binary_expression
+                    (identifier)
+                    (add_operator)
+                    (number_literal))))
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (binary_expression
+                    (binary_expression
+                      (identifier)
+                      (mod_operator)
+                      (number_literal))
+                    (equals_operator)
+                    (number_literal))))
+              (if_statement
+                (identifier)
+                (block
+                  (variable_definition_statement
+                    (identifier)
+                    (type_i32)
+                    (assign_operator)
+                    (binary_expression
+                      (identifier)
+                      (mul_operator)
+                      (number_literal)))
+                  (expression_statement
+                    (assign_expression
+                      (identifier)
+                      (assign_operator)
+                      (binary_expression
+                        (identifier)
+                        (add_operator)
+                        (identifier)))))))))))
+
+===
+7.4.3.2 Examples (Loop statement)
+===
+total fn inverse_bool_array(mut bool_arr: [bool; 10]) {
+    let mut i: i32 = 0;
+    loop 10 {
+        bool_arr[i] = !bool_arr[i];
+        i = i + 1;
+    }
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (mut_keyword)
+            (identifier)
+            (type_array
+              (type_bool)
+              (number_literal))))
+        (block
+          (variable_definition_statement
+            (mut_keyword)
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (loop_statement
+            (number_literal)
+            (block
+              (expression_statement
+                (assign_expression
+                  (array_index_access_expression
+                    (identifier)
+                    (identifier))
+                  (assign_operator)
+                  (array_index_access_expression
+                    (prefix_unary_expression
+                      (unary_not)
+                      (identifier))
+                    (identifier))))
+              (expression_statement
+                (assign_expression
+                  (identifier)
+                  (assign_operator)
+                  (binary_expression
+                    (identifier)
+                    (add_operator)
+                    (number_literal)))))))))
