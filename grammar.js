@@ -314,6 +314,7 @@ module.exports = grammar({
       optional($.total_keyword),
       $.function_keyword,
       field('name', $.identifier),
+      optional(field('type_parameters', $.type_argument_list)),
       field('argument_list', $.argument_list),
       optional(seq($.rightarrow_operator, field('returns', $._type))),
       field('body', $.block),
