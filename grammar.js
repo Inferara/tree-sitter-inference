@@ -74,6 +74,7 @@ module.exports = grammar({
       $.type_definition_statement,
       $.assert_statement,
       $.verify_statement,
+      $.break_statement,
     ),
 
     _definition: $ => choice(
@@ -198,9 +199,14 @@ module.exports = grammar({
 
     verify_statement: $ => prec.right(PRECEDENCE.UNARY, seq(
       'verify',
-      $.function_call_expression,
+      choice(
+        $.function_call_expression,
+        seq(optional($.total_keyword), $.block),
+      ),
       $._terminal_symbol,
     )),
+
+    break_statement: $ => prec.left(seq('break', $._terminal_symbol)),
 
     parenthesized_expression: $ => seq(
       '(',

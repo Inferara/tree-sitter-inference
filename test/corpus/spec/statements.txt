@@ -1,0 +1,372 @@
+===
+9.1.2 Examples (Block)
+===
+fn foo() {
+    /// This is the function body block
+}
+
+fn bar() {
+    let flag: bool = true;
+    if flag {
+        /// This is the 'if' block
+    } else {
+        /// This is the 'else' block
+    }
+
+    let i: i32 = 10;
+    loop i {
+        /// This is the loop block
+    }
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block))
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (bool_literal))
+          (if_statement
+            (identifier)
+            (block)
+            (block))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (loop_statement
+            (identifier)
+            (block)))))
+
+===
+9.2.2 Examples (Return)
+===
+fn foo() -> i32 {
+    let res: i32 = 0;
+    return res;
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_i32)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (return_statement
+            (identifier)))))
+
+===
+9.3.2 Examples (Filter)
+===
+total fn foo(i: i32) -> () {
+
+    filter {
+        assert i > 0;
+    }
+
+    /// This is equivalent to:
+    if !(i > 0) {
+        /// Terminate the function or handle the case accordingly
+        return ();
+    }
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (type_i32)))
+        (rightarrow_operator)
+        (type_unit)
+        (block
+          (filter_statement
+            (block
+              (assert_statement
+                (binary_expression
+                  (identifier)
+                  (greater_operator)
+                  (number_literal)))))
+          (if_statement
+            (prefix_unary_expression
+              (unary_not)
+              (parenthesized_expression
+                (binary_expression
+                  (identifier)
+                  (greater_operator)
+                  (number_literal))))
+            (block
+              (return_statement
+                (unit_literal)))))))
+
+===
+9.4.2 Examples (Loop)
+===
+fn loop_example() {
+    loop 10 {
+        /// This block will be executed 10 times
+    }
+
+    loop 0 {
+        /// This block will not be executed
+    }
+
+    let i: i32 = 10;
+    loop i {
+        /// This block will be executed 10 times
+        /// Modifying 'i' inside the loop is not allowed
+    }
+}
+
+total fn infinite_loop_example() {
+    filter {
+        loop () {
+            /// Infinite loop body
+            break;
+        }
+    }
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (loop_statement
+            (number_literal)
+            (block))
+          (loop_statement
+            (number_literal)
+            (block))
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (loop_statement
+            (identifier)
+            (block))))
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (filter_statement
+            (block
+              (loop_statement
+                (unit_literal)
+                (block
+                  (break_statement))))))))
+
+===
+9.5.2 Examples (If)
+===
+fn foo() {
+    let flag: bool = true;
+    if flag {
+        /// This block will be executed
+    } else {
+        /// This block will not be executed
+    }
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_bool)
+            (assign_operator)
+            (bool_literal))
+          (if_statement
+            (identifier)
+            (block)
+            (block)))))
+
+===
+9.6.3 Examples (Undef)
+===
+total fn foo() {
+    let x: i32 = 10;
+    let undef y: i32;
+    /// 'y' can be any possible i32 value
+}
+---
+    (source_file
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_i32)
+            (assign_operator)
+            (number_literal))
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (type_i32)))))
+
+===
+9.7.2 Examples (Type definition)
+===
+type Address = u32;
+---
+    (source_file
+      (type_definition_statement
+        (identifier)
+        (assign_operator)
+        (type_u32)))
+
+===
+9.82 Examples (Assert)
+===
+fn foo() {
+    let flag: u32 = 0;
+    assert(flag <= 0);
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (number_literal))
+          (assert_statement
+            (parenthesized_expression
+              (binary_expression
+                (identifier)
+                (less_equal_operator)
+                (number_literal)))))))
+
+===
+9.9.2 Examples (Verify)
+===
+external fn predicate(x: SomeType) -> bool;
+
+fn proof() {
+    verify total {
+        let undef x: SomeType;
+        filter {
+            assert predicate(x);
+        }
+        assert predicate(x);
+    };
+}
+
+external fn predicate(x: SomeType) -> bool;
+
+total fn implies() {
+    let undef x: SomeType;
+    filter {
+        assert predicate(x);
+    }
+    assert predicate(x);
+}
+
+fn proof() {
+    verify implies();
+}
+---
+    (source_file
+      (external_function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (identifier)))
+        (rightarrow_operator)
+        (type_bool))
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (verify_statement
+            (total_keyword)
+            (block
+              (variable_definition_statement
+                (undef_keyword)
+                (identifier)
+                (identifier))
+              (filter_statement
+                (block
+                  (assert_statement
+                    (function_call_expression
+                      (identifier)
+                      (identifier)))))
+              (assert_statement
+                (function_call_expression
+                  (identifier)
+                  (identifier)))))))
+      (external_function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (identifier)))
+        (rightarrow_operator)
+        (type_bool))
+      (function_definition
+        (total_keyword)
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (undef_keyword)
+            (identifier)
+            (identifier))
+          (filter_statement
+            (block
+              (assert_statement
+                (function_call_expression
+                  (identifier)
+                  (identifier)))))
+          (assert_statement
+            (function_call_expression
+              (identifier)
+              (identifier)))))
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (verify_statement
+            (function_call_expression
+              (identifier))))))
+

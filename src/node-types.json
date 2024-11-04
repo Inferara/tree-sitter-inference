@@ -734,6 +734,10 @@
           "named": true
         },
         {
+          "type": "break_statement",
+          "named": true
+        },
+        {
           "type": "constant_definition",
           "named": true
         },
@@ -774,6 +778,11 @@
   },
   {
     "type": "bool_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "break_statement",
     "named": true,
     "fields": {}
   },
@@ -2883,11 +2892,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "block",
+          "named": true
+        },
+        {
           "type": "function_call_expression",
+          "named": true
+        },
+        {
+          "type": "total_keyword",
           "named": true
         }
       ]
@@ -2980,6 +2997,10 @@
   {
     "type": "bit_xor_operator",
     "named": true
+  },
+  {
+    "type": "break",
+    "named": false
   },
   {
     "type": "const",
