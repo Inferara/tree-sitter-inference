@@ -955,52 +955,6 @@
     }
   },
   {
-    "type": "context_definition",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "constant_definition",
-          "named": true
-        },
-        {
-          "type": "enum_definition",
-          "named": true
-        },
-        {
-          "type": "external_function_definition",
-          "named": true
-        },
-        {
-          "type": "function_definition",
-          "named": true
-        },
-        {
-          "type": "struct_definition",
-          "named": true
-        },
-        {
-          "type": "type_definition_statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "enum_definition",
     "named": true,
     "fields": {
@@ -2123,7 +2077,57 @@
           "named": true
         },
         {
-          "type": "context_definition",
+          "type": "enum_definition",
+          "named": true
+        },
+        {
+          "type": "external_function_definition",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "spec_definition",
+          "named": true
+        },
+        {
+          "type": "struct_definition",
+          "named": true
+        },
+        {
+          "type": "type_definition_statement",
+          "named": true
+        },
+        {
+          "type": "use_directive",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "spec_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "constant_definition",
           "named": true
         },
         {
@@ -2144,10 +2148,6 @@
         },
         {
           "type": "type_definition_statement",
-          "named": true
-        },
-        {
-          "type": "use_directive",
           "named": true
         }
       ]
@@ -3037,14 +3037,6 @@
     "named": false
   },
   {
-    "type": "context",
-    "named": false
-  },
-  {
-    "type": "ctx",
-    "named": false
-  },
-  {
     "type": "else",
     "named": false
   },
@@ -3137,12 +3129,20 @@
     "named": false
   },
   {
+    "type": "self",
+    "named": false
+  },
+  {
     "type": "shift_left_operator",
     "named": true
   },
   {
     "type": "shift_right_operator",
     "named": true
+  },
+  {
+    "type": "spec",
+    "named": false
   },
   {
     "type": "struct",

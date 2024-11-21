@@ -1,8 +1,8 @@
 ===
-Context assign
+spec assign
 ===
-fn context_assign() -> () {
-    ctx.type = ABC;
+fn spec_assign() -> () {
+    self.type = ABC;
 }
 
 ---
@@ -28,7 +28,7 @@ Assign expression from function call
 ===
 
 fn assign_from_fn_call() -> () {
-    ctx.type = get_type();
+    self.type = get_type();
 }
 ---
     (source_file
@@ -95,12 +95,12 @@ fn fn_call_with_multiple_params() -> () {
                 (string_literal)))))))
 
 ===
-Context constructor with various binary expressions
+spec constructor with various binary expressions
 ===
-fn constructor() -> some_context {
-    ctx.type = ContextType::Program;
-    ctx.arh = Arch::WASM;
-    ctx.max_curr_mem = 2 ** 16;
+fn constructor() -> some_spec {
+    self.type = specType::Program;
+    self.arh = Arch::WASM;
+    self.max_curr_mem = 2 ** 16;
 }
 ---
     (source_file
@@ -148,8 +148,8 @@ fn constructor() -> some_context {
 ===
 Create and assign Array<u32> without parameters
 ===
-fn constructor() -> some_context {
-    ctx.mem = Array<u32>::new();
+fn constructor() -> some_spec {
+    self.mem = Array<u32>::new();
 }
 ---
     (source_file
@@ -179,8 +179,8 @@ fn constructor() -> some_context {
 ===
 Create and assign Array<i64> with one parameter
 ===
-fn constructor() -> some_context {
-    ctx.mem = Array<i64>::new(10);
+fn constructor() -> some_spec {
+    self.mem = Array<i64>::new(10);
 }
 ---
     (source_file
@@ -211,8 +211,8 @@ fn constructor() -> some_context {
 ===
 Create and assign Array<u64> with multiple parameters
 ===
-fn constructor() -> some_context {
-    ctx.mem = Array<u64>::new(10, a, false, get_name("abc"), "str", Array<i32>::new(10 * 2));
+fn constructor() -> some_spec {
+    self.mem = Array<u64>::new(10, a, false, get_name("abc"), "str", Array<i32>::new(10 * 2));
 }
 ---
     (source_file
@@ -263,7 +263,7 @@ Compound binary expression with parenthesized expression
 ===
 
 fn valid_Address(a: Address) -> Address {
-    assert (a < ctx.max_curr_mem && (a % 4));
+    assert (a < self.max_curr_mem && (a % 4));
     return a;
 }
 
@@ -303,7 +303,7 @@ Binary and unary mix
 ===
 
 fn valid_Address(a: Address) -> Address {
-    assert (a < ctx.max_curr_mem && !(a % 4) && !a);
+    assert (a < self.max_curr_mem && !(a % 4) && !a);
     return a;
 }
 

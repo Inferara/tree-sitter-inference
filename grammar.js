@@ -55,7 +55,7 @@ module.exports = grammar({
     source_file: $ => repeat(
       choice(
         $.use_directive,
-        $.context_definition,
+        $.spec_definition,
         $._definition,
       ),
     ),
@@ -277,8 +277,8 @@ module.exports = grammar({
       $._terminal_symbol,
     ),
 
-    context_definition: $ => seq(
-      'context',
+    spec_definition: $ => seq(
+      'spec',
       field('name', $.identifier),
       $._lcb_symbol,
       repeat($._definition),
@@ -529,7 +529,7 @@ module.exports = grammar({
       'proof',
       'filter',
       'type',
-      'ctx',
+      'self',
     ),
 
     _identifier: _ => /\w*[_a-zA-Z]\w*/,

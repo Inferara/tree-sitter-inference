@@ -1,7 +1,7 @@
 ===
 5.2 Specification Is Not a Program
 ===
-context BasicConcepts {
+spec BasicConcepts {
 
     external fn sum(a: i32, b: i32) -> i32;
     external fn sub(i32, i32) -> i32;
@@ -20,7 +20,7 @@ context BasicConcepts {
 }
 ---
     (source_file
-      (context_definition
+      (spec_definition
         (identifier)
         (external_function_definition
           (function_keyword)

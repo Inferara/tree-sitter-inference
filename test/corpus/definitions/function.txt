@@ -120,7 +120,7 @@ fn func() -> bool {
 ===
 Function with return identifier
 ===
-fn constructor() -> some_context {
+fn constructor() -> some_spec {
 }
 ---
 (source_file

@@ -13,7 +13,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "context_definition"
+            "name": "spec_definition"
           },
           {
             "type": "SYMBOL",
@@ -1491,12 +1491,12 @@
         }
       ]
     },
-    "context_definition": {
+    "spec_definition": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "context"
+          "value": "spec"
         },
         {
           "type": "FIELD",
@@ -2766,7 +2766,7 @@
         },
         {
           "type": "STRING",
-          "value": "ctx"
+          "value": "self"
         }
       ]
     },

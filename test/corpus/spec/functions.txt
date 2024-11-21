@@ -5,8 +5,8 @@ total fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 
-context Bridge {
-  /// Context-specific functions
+spec Bridge {
+  /// spec-specific functions
 }
 ---
     (source_file
@@ -29,7 +29,7 @@ context Bridge {
               (identifier)
               (add_operator)
               (identifier)))))
-      (context_definition
+      (spec_definition
         (identifier)))
 
 ===
@@ -37,7 +37,7 @@ context Bridge {
 ===
 external total fn hash(b: [u8;100]) -> [u8;32];
 
-context Hasher {
+spec Hasher {
     total fn hash_verifier() {
         let undef data1: [u8;100];
         let result_1: [u8;32] = hash(data1);
@@ -70,7 +70,7 @@ context Hasher {
         (type_array
           (type_u8)
           (number_literal)))
-      (context_definition
+      (spec_definition
         (identifier)
         (function_definition
           (total_keyword)
@@ -275,7 +275,7 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
 ===
 use { hash } from "./cryptography.0.wasm";
 
-context HashContext {
+spec Hashspec {
 
     type HashFunction = fn([u8; 100]) -> [u8; 32];
 
@@ -301,7 +301,7 @@ context HashContext {
       (use_directive
         (identifier)
         (string_literal))
-      (context_definition
+      (spec_definition
         (identifier)
         (type_definition_statement
           (identifier)

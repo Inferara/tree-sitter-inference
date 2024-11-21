@@ -28,7 +28,7 @@ total fn main() {
 4.5.2 Examples (Qualified identifiers)
 ===
 total fn main() {
-    let a: context::AuctionSpec = context::AuctionSpec::new();
+    let a: spec::AuctionSpec = spec::AuctionSpec::new();
 }
 ---
     (source_file
@@ -61,7 +61,7 @@ struct Account {
     address: u32;
 
     fn new(addr: u32) -> Account {
-        ctx.address = addr;
+        self.address = addr;
     }
 }
 
