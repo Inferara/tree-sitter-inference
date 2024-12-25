@@ -31,11 +31,11 @@ spec sort_function_spec {
     return res;
   }
 
-  total fn preserving_count(func : sf) {
+  fn preserving_count(func : sf) {
     let a: Address;
     let b: Address;
 
-    filter {
+    assume {
       a = valid_Address(i32::all());
       b = valid_Address(i32::all());
       assert a <= b;
@@ -50,13 +50,13 @@ spec sort_function_spec {
     assert before == after;
   }
 
-  total fn procuring_sorted(func: sf) {
+  fn procuring_sorted(func: sf) {
     let a: Address;
     let b: Address;
     let a0: Address;
     let b0: Address;
 
-    filter {
+    assume {
       a = valid_Address(i32::all());
       b = valid_Address(i32::all());
       assert a <= b;
@@ -64,7 +64,7 @@ spec sort_function_spec {
 
     func(a, b);
 
-    filter {
+    assume {
       a0 = valid_Address(i32::all());
       b0 = valid_Address(i32::all());
 
@@ -76,13 +76,13 @@ spec sort_function_spec {
     assert self.mem.at(a0) <= self.mem.at(b0);
   }
 
-  total fn no_side_effects(func : sf) {
+  fn no_side_effects(func : sf) {
     let a: Address;
     let b: Address;
 
     let c0: Address;
 
-    filter {
+    assume {
       a = valid_Address(i32::all());
       b = valid_Address(i32::all());
       c = valid_Address(i32::all());
@@ -97,9 +97,9 @@ spec sort_function_spec {
     assert before == after;
   }
 
-  fn proof() -> () {
-    verify preserving_count(sort);
-    verify procuring_sorted(sort);
+  fn proof() -> () forall {
+    preserving_count(sort);
+    procuring_sorted(sort);
   }
 
 }

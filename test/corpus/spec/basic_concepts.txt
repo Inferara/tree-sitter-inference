@@ -6,15 +6,15 @@ spec BasicConcepts {
     external fn sum(a: i32, b: i32) -> i32;
     external fn sub(i32, i32) -> i32;
 
-    total fn sum_sub_spec() {
-        let undef a: i32;
-        let undef b: i32;
+    fn sum_sub_spec() forall {
+        let a: i32 = @;
+        let b: i32 = @;
         assert(sum(a, b) == a + b);
         assert(sub(a, b) == a - b);
     }
 
     fn proof() {
-        verify sum_sub_spec();
+        sum_sub_spec();
     }
 
 }
@@ -43,19 +43,21 @@ spec BasicConcepts {
           (rightarrow_operator)
           (type_i32))
         (function_definition
-          (total_keyword)
           (function_keyword)
           (identifier)
           (argument_list)
+          (forall_keyword)
           (block
             (variable_definition_statement
-              (undef_keyword)
               (identifier)
-              (type_i32))
+              (type_i32)
+              (assign_operator)
+              (uzumaki_keyword))
             (variable_definition_statement
-              (undef_keyword)
               (identifier)
-              (type_i32))
+              (type_i32)
+              (assign_operator)
+              (uzumaki_keyword))
             (assert_statement
               (parenthesized_expression
                 (binary_expression
@@ -85,16 +87,21 @@ spec BasicConcepts {
           (identifier)
           (argument_list)
           (block
-            (verify_statement
+            (expression_statement
               (function_call_expression
                 (identifier)))))))
-
 ===
 5.4 Non-Deterministic Execution
 ===
-total fn example_spec() {
-    let undef x: i32;
-    assert(x + 1 > x);
+fn foo() {
+    assume {
+        let x: u32 = @;
+        forall {
+            let y: u32 = @;
+            foobar(param1 : @, param2: 5);
+            ///<do some checking for x and y>
+        }
+    }
 }
 ---
     (source_file

@@ -1,13 +1,12 @@
 ===
 6.1.2 Examples (Unit)
 ===
-total fn foo() {
+fn foo() {
     let a: () = ();
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -21,14 +20,13 @@ total fn foo() {
 ===
 6.2.1.2 Examples (Boolean)
 ===
-total fn foo() {
+fn foo() {
     let a: bool = true;
     let b: bool = (1 == 2); /// false
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -51,7 +49,7 @@ total fn foo() {
 ===
 6.2.2.2 Examples (Integers)
 ===
-total fn foo() {
+fn foo() {
     let a: i8 = (2 ** 7) - 1;       /// 127
     let b: i16 = (2 ** 15) - 1;     /// 32,767
     let c: i32 = (2 ** 31) - 1;     /// 2,147,483,647
@@ -60,7 +58,6 @@ total fn foo() {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -117,7 +114,7 @@ total fn foo() {
 ===
 6.2.3.2 Examples (Unsigned Integers)
 ===
-total fn foo() {
+fn foo() {
     let a: u8 = (2 ** 8) - 1;       /// 255
     let b: u16 = (2 ** 16) - 1;     /// 65,535
     let c: u32 = (2 ** 32) - 1;     /// 4,294,967,295
@@ -126,7 +123,6 @@ total fn foo() {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -182,13 +178,12 @@ total fn foo() {
 ===
 6.3.2 Examples (Array)
 ===
-total fn foo() {
+fn foo() {
     let a: [i32; 3] = [1, 2, 3];
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)

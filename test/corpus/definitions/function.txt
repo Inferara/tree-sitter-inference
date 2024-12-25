@@ -160,15 +160,14 @@ fn add(a : i32, b : i32) -> i32 {
               (identifier))))))
 
 ===
-Total function definition
+Function with forall body
 ===
-total fn add(a : i32, b : i32) -> i32 {
+fn add(a : i32, b : i32) -> i32 forall {
     return a + b;
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -180,6 +179,7 @@ total fn add(a : i32, b : i32) -> i32 {
             (type_i32)))
         (rightarrow_operator)
         (type_i32)
+        (forall_keyword)
         (block
           (return_statement
             (binary_expression
@@ -188,11 +188,11 @@ total fn add(a : i32, b : i32) -> i32 {
               (identifier))))))
 
 ===
-Function with filter block
+Function with assume block
 ===
 
-total fn procuring_sorted(func: sf) -> () {
-    filter {
+fn procuring_sorted(func: sf) -> () forall {
+    assume {
       a = valid_Address();
       b = valid_Address();
       assert(a <= b);
@@ -202,7 +202,6 @@ total fn procuring_sorted(func: sf) -> () {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -211,8 +210,9 @@ total fn procuring_sorted(func: sf) -> () {
             (identifier)))
         (rightarrow_operator)
         (type_unit)
+        (forall_keyword)
         (block
-          (filter_statement
+          (assume_statement
             (block
               (expression_statement
                 (assign_expression

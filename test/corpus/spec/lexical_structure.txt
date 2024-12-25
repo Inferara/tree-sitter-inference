@@ -1,14 +1,13 @@
 ===
 4.3.2 Examples (Identifiers)
 ===
-total fn main() {
+fn main() {
     let a: u32 = 42;
     let _ident : i64 = 42;
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -27,13 +26,12 @@ total fn main() {
 ===
 4.5.2 Examples (Qualified identifiers)
 ===
-total fn main() {
+fn main() {
     let a: spec::AuctionSpec = spec::AuctionSpec::new();
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -65,7 +63,7 @@ struct Account {
     }
 }
 
-total fn main() {
+fn main() {
     let a: Account = Account::new(42);
     let b: u32 = a.address;
 }
@@ -95,7 +93,6 @@ total fn main() {
                 (assign_operator)
                 (identifier))))))
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -122,7 +119,7 @@ total fn main() {
 ===
 4.7 Literals
 ===
-total fn main() {
+fn main() {
   let a: bool = true;
   let b: bool = false;
   let d: unit = ();
@@ -130,7 +127,6 @@ total fn main() {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -154,13 +150,12 @@ total fn main() {
 ===
 4.8.2 Examples (Right arrow)
 ===
-total fn add(a: u32, b: u32) -> u32 {
+fn add(a: u32, b: u32) -> u32 {
     return a + b;
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -197,6 +192,10 @@ fn square_braces_example() {
 }
 
 fn triangular_braces_example<T>(a: T) {
+    /// code block
+}
+
+fn foo<T>(a: T) {
     /// code block
 }
 ---
@@ -251,6 +250,16 @@ fn triangular_braces_example<T>(a: T) {
             (array_index_access_expression
               (identifier)
               (number_literal)))))
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (type_argument_list
+          (identifier))
+        (argument_list
+          (argument_declaration
+            (identifier)
+            (identifier)))
+                (block))
       (function_definition
         (function_keyword)
         (identifier)

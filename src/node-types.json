@@ -272,6 +272,10 @@
           {
             "type": "unit_literal",
             "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
+            "named": true
           }
         ]
       }
@@ -340,6 +344,10 @@
         {
           "type": "unit_literal",
           "named": true
+        },
+        {
+          "type": "uzumaki_keyword",
+          "named": true
         }
       ]
     }
@@ -406,6 +414,10 @@
         },
         {
           "type": "unit_literal",
+          "named": true
+        },
+        {
+          "type": "uzumaki_keyword",
           "named": true
         }
       ]
@@ -504,6 +516,10 @@
           {
             "type": "unit_literal",
             "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
+            "named": true
           }
         ]
       }
@@ -514,6 +530,21 @@
       "types": [
         {
           "type": "assign_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assume_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
           "named": true
         }
       ]
@@ -581,6 +612,10 @@
           },
           {
             "type": "unit_literal",
+            "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
             "named": true
           }
         ]
@@ -722,6 +757,10 @@
           {
             "type": "unit_literal",
             "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
+            "named": true
           }
         ]
       }
@@ -740,6 +779,10 @@
           "named": true
         },
         {
+          "type": "assume_statement",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
@@ -752,11 +795,15 @@
           "named": true
         },
         {
+          "type": "exists_statement",
+          "named": true
+        },
+        {
           "type": "expression_statement",
           "named": true
         },
         {
-          "type": "filter_statement",
+          "type": "forall_statement",
           "named": true
         },
         {
@@ -777,10 +824,6 @@
         },
         {
           "type": "variable_definition_statement",
-          "named": true
-        },
-        {
-          "type": "verify_statement",
           "named": true
         }
       ]
@@ -939,6 +982,10 @@
           {
             "type": "unit_literal",
             "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
+            "named": true
           }
         ]
       }
@@ -978,6 +1025,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "exists_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1107,30 +1169,34 @@
       "required": true,
       "types": [
         {
+          "type": "forall_keyword",
+          "named": true
+        },
+        {
           "type": "function_keyword",
           "named": true
         },
         {
           "type": "rightarrow_operator",
           "named": true
-        },
-        {
-          "type": "total_keyword",
-          "named": true
         }
       ]
     }
   },
   {
-    "type": "filter_statement",
+    "type": "forall_statement",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "block",
+          "named": true
+        },
+        {
+          "type": "forall_keyword",
           "named": true
         }
       ]
@@ -1198,6 +1264,10 @@
           },
           {
             "type": "unit_literal",
+            "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
             "named": true
           }
         ]
@@ -1354,15 +1424,15 @@
       "required": true,
       "types": [
         {
+          "type": "forall_keyword",
+          "named": true
+        },
+        {
           "type": "function_keyword",
           "named": true
         },
         {
           "type": "rightarrow_operator",
-          "named": true
-        },
-        {
-          "type": "total_keyword",
           "named": true
         }
       ]
@@ -1472,6 +1542,10 @@
           {
             "type": "unit_literal",
             "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
+            "named": true
           }
         ]
       },
@@ -1553,6 +1627,10 @@
           },
           {
             "type": "unit_literal",
+            "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
             "named": true
           }
         ]
@@ -1646,6 +1724,10 @@
           },
           {
             "type": "unit_literal",
+            "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
             "named": true
           }
         ]
@@ -1771,6 +1853,10 @@
           {
             "type": "unit_literal",
             "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
+            "named": true
           }
         ]
       },
@@ -1856,6 +1942,10 @@
         {
           "type": "unit_literal",
           "named": true
+        },
+        {
+          "type": "uzumaki_keyword",
+          "named": true
         }
       ]
     }
@@ -1933,6 +2023,10 @@
         },
         {
           "type": "unit_literal",
+          "named": true
+        },
+        {
+          "type": "uzumaki_keyword",
           "named": true
         }
       ]
@@ -2052,6 +2146,10 @@
           },
           {
             "type": "unit_literal",
+            "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
             "named": true
           }
         ]
@@ -2829,16 +2927,6 @@
           }
         ]
       },
-      "undef": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "undef_keyword",
-            "named": true
-          }
-        ]
-      },
       "value": {
         "multiple": false,
         "required": false,
@@ -2898,6 +2986,10 @@
           {
             "type": "unit_literal",
             "named": true
+          },
+          {
+            "type": "uzumaki_keyword",
+            "named": true
           }
         ]
       }
@@ -2908,29 +3000,6 @@
       "types": [
         {
           "type": "assign_operator",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "verify_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "function_call_expression",
-          "named": true
-        },
-        {
-          "type": "total_keyword",
           "named": true
         }
       ]
@@ -3009,6 +3078,10 @@
     "named": true
   },
   {
+    "type": "assume",
+    "named": false
+  },
+  {
     "type": "attribute_access_operator",
     "named": true
   },
@@ -3053,6 +3126,10 @@
     "named": true
   },
   {
+    "type": "exists",
+    "named": false
+  },
+  {
     "type": "expand_operator",
     "named": true
   },
@@ -3065,12 +3142,12 @@
     "named": false
   },
   {
-    "type": "filter",
+    "type": "fn",
     "named": false
   },
   {
-    "type": "fn",
-    "named": false
+    "type": "forall_keyword",
+    "named": true
   },
   {
     "type": "from",
@@ -3149,10 +3226,6 @@
     "named": false
   },
   {
-    "type": "total_keyword",
-    "named": true
-  },
-  {
     "type": "true",
     "named": false
   },
@@ -3201,16 +3274,12 @@
     "named": true
   },
   {
-    "type": "undef_keyword",
-    "named": true
-  },
-  {
     "type": "use",
     "named": false
   },
   {
-    "type": "verify",
-    "named": false
+    "type": "uzumaki_keyword",
+    "named": true
   },
   {
     "type": "{",

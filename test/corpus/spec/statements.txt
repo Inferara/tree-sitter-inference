@@ -75,9 +75,9 @@ fn foo() -> i32 {
 ===
 9.3.2 Examples (Filter)
 ===
-total fn foo(i: i32) -> () {
+fn foo(i: i32) -> () forall {
 
-    filter {
+    assume {
         assert i > 0;
     }
 
@@ -90,7 +90,6 @@ total fn foo(i: i32) -> () {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -99,8 +98,9 @@ total fn foo(i: i32) -> () {
             (type_i32)))
         (rightarrow_operator)
         (type_unit)
+        (forall_keyword)
         (block
-          (filter_statement
+          (assume_statement
             (block
               (assert_statement
                 (binary_expression
@@ -138,8 +138,8 @@ fn loop_example() {
     }
 }
 
-total fn infinite_loop_example() {
-    filter {
+fn infinite_loop_example() forall {
+    assume {
         loop () {
             /// Infinite loop body
             break;
@@ -168,12 +168,12 @@ total fn infinite_loop_example() {
             (identifier)
             (block))))
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
+        (forall_keyword)
         (block
-          (filter_statement
+          (assume_statement
             (block
               (loop_statement
                 (unit_literal)
@@ -209,17 +209,16 @@ fn foo() {
             (block)))))
 
 ===
-9.6.3 Examples (Undef)
+9.6.3 Examples (Uzumaki)
 ===
-total fn foo() {
+fn foo() {
     let x: i32 = 10;
-    let undef y: i32;
+    let y: i32 = @;
     /// 'y' can be any possible i32 value
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -230,9 +229,11 @@ total fn foo() {
             (assign_operator)
             (number_literal))
           (variable_definition_statement
-            (undef_keyword)
             (identifier)
-            (type_i32)))))
+            (type_i32)
+            (assign_operator)
+            (uzumaki_keyword)
+            ))))
 
 ===
 9.7.2 Examples (Type definition)
@@ -272,101 +273,12 @@ fn foo() {
                 (number_literal)))))))
 
 ===
-9.9.2 Examples (Verify)
+9.9.2 Examples (type)
 ===
-external fn predicate(x: SomeType) -> bool;
-
-fn proof() {
-    verify total {
-        let undef x: SomeType;
-        filter {
-            assert predicate(x);
-        }
-        assert predicate(x);
-    };
-}
-
-external fn predicate(x: SomeType) -> bool;
-
-total fn implies() {
-    let undef x: SomeType;
-    filter {
-        assert predicate(x);
-    }
-    assert predicate(x);
-}
-
-fn proof() {
-    verify implies();
-}
+type Address = u32;
 ---
     (source_file
-      (external_function_definition
-        (function_keyword)
+      (type_definition_statement
         (identifier)
-        (argument_list
-          (argument_declaration
-            (identifier)
-            (identifier)))
-        (rightarrow_operator)
-        (type_bool))
-      (function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list)
-        (block
-          (verify_statement
-            (total_keyword)
-            (block
-              (variable_definition_statement
-                (undef_keyword)
-                (identifier)
-                (identifier))
-              (filter_statement
-                (block
-                  (assert_statement
-                    (function_call_expression
-                      (identifier)
-                      (identifier)))))
-              (assert_statement
-                (function_call_expression
-                  (identifier)
-                  (identifier)))))))
-      (external_function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list
-          (argument_declaration
-            (identifier)
-            (identifier)))
-        (rightarrow_operator)
-        (type_bool))
-      (function_definition
-        (total_keyword)
-        (function_keyword)
-        (identifier)
-        (argument_list)
-        (block
-          (variable_definition_statement
-            (undef_keyword)
-            (identifier)
-            (identifier))
-          (filter_statement
-            (block
-              (assert_statement
-                (function_call_expression
-                  (identifier)
-                  (identifier)))))
-          (assert_statement
-            (function_call_expression
-              (identifier)
-              (identifier)))))
-      (function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list)
-        (block
-          (verify_statement
-            (function_call_expression
-              (identifier))))))
-
+        (assign_operator)
+        (type_u32)))
