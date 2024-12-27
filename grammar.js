@@ -69,6 +69,7 @@ module.exports = grammar({
       $.assume_statement,
       $.forall_statement,
       $.exists_statement,
+      $.unique_statement,
       $.loop_statement,
       $.if_statement,
       $.variable_definition_statement,
@@ -362,6 +363,11 @@ module.exports = grammar({
       'exists',
       $.block,
     ),
+    
+    unique_statement: $ => seq(
+      'unique',
+      $.block,
+    ),
 
     if_statement: $ => prec.right(seq(
       'if',
@@ -529,9 +535,6 @@ module.exports = grammar({
     _reserved_identifier: _ => choice(
       'constructor',
       'proof',
-      'assume',
-      'type',
-      'self',
       'uzumaki',
     ),
 

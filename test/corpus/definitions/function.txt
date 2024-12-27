@@ -190,7 +190,6 @@ fn add(a : i32, b : i32) -> i32 forall {
 ===
 Function with assume block
 ===
-
 fn procuring_sorted(func: sf) -> () forall {
     assume {
       a = valid_Address();
@@ -198,7 +197,6 @@ fn procuring_sorted(func: sf) -> () forall {
       assert(a <= b);
     }
 }
-
 ---
     (source_file
       (function_definition
@@ -236,7 +234,6 @@ fn procuring_sorted(func: sf) -> () forall {
 ===
 Function that returns a unit literal
 ===
-
 fn func() -> () {
     return ();
 }
@@ -273,3 +270,27 @@ fn concatInts(xss : [[i64]]) -> [i64] {
     (type_array
       (type_i64))
     (block)))
+===
+Function with unique block
+===
+fn func() -> () {
+    unique {
+        let a: i32 = 0;
+    }
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (rightarrow_operator)
+        (type_unit)
+        (block
+          (unique_statement
+            (block
+              (variable_definition_statement
+                (identifier)
+                (type_i32)
+                (assign_operator)
+                (number_literal)))))))

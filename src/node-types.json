@@ -823,6 +823,10 @@
           "named": true
         },
         {
+          "type": "unique_statement",
+          "named": true
+        },
+        {
           "type": "variable_definition_statement",
           "named": true
         }
@@ -2795,6 +2799,21 @@
     "fields": {}
   },
   {
+    "type": "unique_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "unit_literal",
     "named": true,
     "fields": {}
@@ -3218,10 +3237,6 @@
     "named": false
   },
   {
-    "type": "self",
-    "named": false
-  },
-  {
     "type": "shift_left_operator",
     "named": true
   },
@@ -3284,6 +3299,10 @@
   {
     "type": "unary_not",
     "named": true
+  },
+  {
+    "type": "unique",
+    "named": false
   },
   {
     "type": "use",

@@ -55,6 +55,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "unique_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "loop_statement"
         },
         {
@@ -1997,6 +2001,19 @@
         }
       ]
     },
+    "unique_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "unique"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
     "if_statement": {
       "type": "PREC_RIGHT",
       "value": 0,
@@ -2778,18 +2795,6 @@
         {
           "type": "STRING",
           "value": "proof"
-        },
-        {
-          "type": "STRING",
-          "value": "assume"
-        },
-        {
-          "type": "STRING",
-          "value": "type"
-        },
-        {
-          "type": "STRING",
-          "value": "self"
         },
         {
           "type": "STRING",
