@@ -23,9 +23,14 @@ spec sort_function_spec {
 
   fn count_values(a: Address, b: Address, val : i32) -> u32 {
     let res : u32 = 0;
-    for (let i : Address = a; i <= b; i.next()) {
+    let i: u32 = a;
+    loop {
       if (self.mem.at(i) == val) {
         res = res + 1;
+      }
+
+      if i < b {
+        i = i.next();
       }
     }
     return res;

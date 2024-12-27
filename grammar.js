@@ -189,7 +189,7 @@ module.exports = grammar({
     function_call_expression: $ => prec(PRECEDENCE.FUNC_CALL, seq(
       field('function', $._lval_expression),
       '(',
-      optional(sep1(field('argument', $._expression), ',')),
+      optional(sep1(field('argument', seq(optional(seq($._name, ':')), $._expression)), ',')),
       ')',
     )),
 
@@ -332,7 +332,7 @@ module.exports = grammar({
       $._lrb_symbol,
       optional(
         sep1(
-          field('argument', 
+          field('argument',
             choice($.argument_declaration, '_', $._type)
           ),
           $._comma_symbol

@@ -1211,6 +1211,10 @@
         "required": false,
         "types": [
           {
+            "type": ":",
+            "named": false
+          },
+          {
             "type": "array_index_access_expression",
             "named": true
           },
@@ -1259,7 +1263,15 @@
             "named": true
           },
           {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
             "named": true
           },
           {

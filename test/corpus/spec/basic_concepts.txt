@@ -106,21 +106,29 @@ fn foo() {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
         (block
-          (variable_definition_statement
-            (undef_keyword)
-            (identifier)
-            (type_i32))
-          (assert_statement
-            (parenthesized_expression
-              (binary_expression
-                (binary_expression
-                  (identifier)
-                  (add_operator)
-                  (number_literal))
-                (greater_operator)
-                (identifier)))))))
+          (assume_statement
+            (block
+              (variable_definition_statement
+                (identifier)
+                (type_u32)
+                (assign_operator)
+                (uzumaki_keyword))
+              (forall_statement
+                (forall_keyword)
+                (block
+                  (variable_definition_statement
+                    (identifier)
+                    (type_u32)
+                    (assign_operator)
+                    (uzumaki_keyword))
+                  (expression_statement
+                    (function_call_expression
+                      (identifier)
+                      (identifier)
+                      (uzumaki_keyword)
+                      (identifier)
+                      (number_literal))))))))))

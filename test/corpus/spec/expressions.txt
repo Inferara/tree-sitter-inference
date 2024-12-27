@@ -109,7 +109,6 @@ fn example() -> u32 {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -121,6 +120,7 @@ fn example() -> u32 {
             (type_u32)))
         (rightarrow_operator)
         (type_u32)
+        (forall_keyword)
         (block
           (return_statement
             (binary_expression
@@ -128,19 +128,45 @@ fn example() -> u32 {
               (add_operator)
               (identifier)))))
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
         (rightarrow_operator)
         (type_u32)
         (block
-          (return_statement
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
             (function_call_expression
               (identifier)
               (number_literal)
-              (number_literal))))))
-
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (function_call_expression
+              (identifier)
+              (identifier)
+              (number_literal)
+              (identifier)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (function_call_expression
+              (identifier)
+              (uzumaki_keyword)
+              (uzumaki_keyword)))
+          (return_statement
+            (function_call_expression
+              (identifier)
+              (identifier)
+              (uzumaki_keyword)
+              (identifier)
+              (uzumaki_keyword))))))
 ===
 8.5.2 Examples (Paranthesized)
 ===
