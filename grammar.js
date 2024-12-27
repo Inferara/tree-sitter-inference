@@ -532,6 +532,7 @@ module.exports = grammar({
       'assume',
       'type',
       'self',
+      'uzumaki',
     ),
 
     _identifier: _ => /\w*[_a-zA-Z]\w*/,

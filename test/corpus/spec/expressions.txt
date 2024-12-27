@@ -96,7 +96,7 @@ fn get_element(arr: [u32; 10], index: u32) -> u32 {
 ===
 8.4.2 Examples (Function Call)
 ===
-fn sum(a: u32, b: u32) -> u32 forall {
+fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 
@@ -120,7 +120,6 @@ fn example() -> u32 {
             (type_u32)))
         (rightarrow_operator)
         (type_u32)
-        (forall_keyword)
         (block
           (return_statement
             (binary_expression

@@ -1,7 +1,7 @@
 ===
 11.1.3 Examples (Function definitions)
 ===
-fn sum(a: u32, b: u32) -> u32 forall {
+fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 
@@ -22,7 +22,6 @@ spec Bridge {
             (type_u32)))
         (rightarrow_operator)
         (type_u32)
-        (forall_keyword)
         (block
           (return_statement
             (binary_expression

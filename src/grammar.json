@@ -2790,6 +2790,10 @@
         {
           "type": "STRING",
           "value": "self"
+        },
+        {
+          "type": "STRING",
+          "value": "uzumaki"
         }
       ]
     },

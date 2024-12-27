@@ -3290,6 +3290,10 @@
     "named": false
   },
   {
+    "type": "uzumaki",
+    "named": false
+  },
+  {
     "type": "uzumaki_keyword",
     "named": true
   },

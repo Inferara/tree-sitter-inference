@@ -30,8 +30,7 @@
     "b": "tree-sitter generate",
     "t": "tree-sitter test",
     "bt": "npm run b && npm run t",
-    "d": "tree-sitter parse debug.inf",
-    "te": "tree-sitter parse example.inf"
+    "d": "tree-sitter parse debug.inf"
   },
   "dependencies": {
     "node-addon-api": "8.3.0",
