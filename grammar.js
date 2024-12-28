@@ -66,14 +66,16 @@ module.exports = grammar({
       $.block,
       $.expression_statement,
       $.return_statement,
-      $.filter_statement,
+      $.assume_statement,
+      $.forall_statement,
+      $.exists_statement,
+      $.unique_statement,
       $.loop_statement,
       $.if_statement,
       $.variable_definition_statement,
       $.constant_definition,
       $.type_definition_statement,
       $.assert_statement,
-      $.verify_statement,
       $.break_statement,
     ),
 
@@ -163,6 +165,7 @@ module.exports = grammar({
       $._literal,
       $.array_literal,
       $._expression_statement,
+      $.uzumaki_keyword
     ),
 
     array_index_access_expression: $ => seq(
@@ -187,7 +190,7 @@ module.exports = grammar({
     function_call_expression: $ => prec(PRECEDENCE.FUNC_CALL, seq(
       field('function', $._lval_expression),
       '(',
-      optional(sep1(field('argument', $._expression), ',')),
+      optional(sep1(field('argument', seq(optional(seq($._name, ':')), $._expression)), ',')),
       ')',
     )),
 
@@ -196,15 +199,6 @@ module.exports = grammar({
       $._expression,
       $._terminal_symbol,
     ),
-
-    verify_statement: $ => prec.right(PRECEDENCE.UNARY, seq(
-      'verify',
-      choice(
-        $.function_call_expression,
-        seq(optional($.total_keyword), $.block),
-      ),
-      $._terminal_symbol,
-    )),
 
     break_statement: $ => prec.left(seq('break', $._terminal_symbol)),
 
@@ -250,7 +244,6 @@ module.exports = grammar({
 
     variable_definition_statement: $ => seq(
       'let',
-      optional(field('undef', $.undef_keyword)),
       optional(field('mut', $.mut_keyword)),
       field('name', $.identifier),
       $._typedef_symbol,
@@ -317,18 +310,18 @@ module.exports = grammar({
     ),
 
     function_definition: $ => seq(
-      optional($.total_keyword),
       $.function_keyword,
       field('name', $.identifier),
       optional(field('type_parameters', $.type_argument_list)),
       field('argument_list', $.argument_list),
       optional(seq($.rightarrow_operator, field('returns', $._type))),
+      optional($.forall_keyword),
       field('body', $.block),
     ),
 
     external_function_definition: $ => seq(
       'external',
-      optional($.total_keyword),
+      optional($.forall_keyword),
       $.function_keyword,
       field('name', $.identifier),
       field('argument_list', $.argument_list),
@@ -340,7 +333,7 @@ module.exports = grammar({
       $._lrb_symbol,
       optional(
         sep1(
-          field('argument', 
+          field('argument',
             choice($.argument_declaration, '_', $._type)
           ),
           $._comma_symbol
@@ -356,8 +349,23 @@ module.exports = grammar({
       field('type', $._type),
     ),
 
-    filter_statement: $ => seq(
-      'filter',
+    assume_statement: $ => seq(
+      'assume',
+      $.block,
+    ),
+
+    forall_statement: $ => seq(
+      $.forall_keyword,
+      $.block,
+    ),
+
+    exists_statement: $ => seq(
+      'exists',
+      $.block,
+    ),
+    
+    unique_statement: $ => seq(
+      'unique',
       $.block,
     ),
 
@@ -419,8 +427,8 @@ module.exports = grammar({
     ),
 
     function_keyword: $ => 'fn',
-    total_keyword: $ => 'total',
-    undef_keyword: $ => 'undef',
+    forall_keyword: $ => 'forall',
+    uzumaki_keyword: $ => '@',
     mut_keyword: $ => 'mut',
 
     unary_not: _ => '!',
@@ -527,9 +535,7 @@ module.exports = grammar({
     _reserved_identifier: _ => choice(
       'constructor',
       'proof',
-      'filter',
-      'type',
-      'self',
+      'uzumaki',
     ),
 
     _identifier: _ => /\w*[_a-zA-Z]\w*/,

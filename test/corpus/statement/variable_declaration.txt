@@ -22,11 +22,11 @@ fn proof() -> () {
             (number_literal)))))
 
 ===
-Undef variable declaration
+Uzumaki variable declaration
 ===
 
 fn proof() -> () {
-    let undef a: i32;
+    let a: i32 = @;
 }
 
 ---
@@ -39,6 +39,7 @@ fn proof() -> () {
         (type_unit)
         (block
           (variable_definition_statement
-            (undef_keyword)
             (identifier)
-            (type_i32)))))
+            (type_i32)
+            (assign_operator)
+            (uzumaki_keyword)))))

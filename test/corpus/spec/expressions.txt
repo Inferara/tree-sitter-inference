@@ -1,7 +1,7 @@
 ===
 8.1.2 Examples (Assign)
 ===
-total fn example() -> u32 {
+fn example() -> u32 {
   let a: u32 = 42;
   let b: u32 = a;
   return b;
@@ -9,7 +9,6 @@ total fn example() -> u32 {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -37,7 +36,7 @@ struct Account {
   balance: u64;
 }
 
-total fn get_balance(account: Account) -> u64 {
+fn get_balance(account: Account) -> u64 {
   return account.balance;
 }
 ---
@@ -51,7 +50,6 @@ total fn get_balance(account: Account) -> u64 {
           (identifier)
           (type_u64)))
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -70,13 +68,12 @@ total fn get_balance(account: Account) -> u64 {
 ===
 8.3.2 Examples (Index Access)
 ===
-total fn get_element(arr: [u32; 10], index: u32) -> u32 {
+fn get_element(arr: [u32; 10], index: u32) -> u32 {
   return arr[index];
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -99,17 +96,19 @@ total fn get_element(arr: [u32; 10], index: u32) -> u32 {
 ===
 8.4.2 Examples (Function Call)
 ===
-total fn sum(a: u32, b: u32) -> u32 {
+fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 
-total fn example() -> u32 {
-  return sum(1, 2);
+fn example() -> u32 {
+  let x: u32 = sum(1, 2);
+  let y: u32 = sum(a: 1, b: 2);
+  let z: u32 = sum(@, @);
+  return sum(a: @, b: @);
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -128,29 +127,54 @@ total fn example() -> u32 {
               (add_operator)
               (identifier)))))
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
         (rightarrow_operator)
         (type_u32)
         (block
-          (return_statement
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
             (function_call_expression
               (identifier)
               (number_literal)
-              (number_literal))))))
-
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (function_call_expression
+              (identifier)
+              (identifier)
+              (number_literal)
+              (identifier)
+              (number_literal)))
+          (variable_definition_statement
+            (identifier)
+            (type_u32)
+            (assign_operator)
+            (function_call_expression
+              (identifier)
+              (uzumaki_keyword)
+              (uzumaki_keyword)))
+          (return_statement
+            (function_call_expression
+              (identifier)
+              (identifier)
+              (uzumaki_keyword)
+              (identifier)
+              (uzumaki_keyword))))))
 ===
 8.5.2 Examples (Paranthesized)
 ===
-total fn example() -> u32 {
+fn example() -> u32 {
   return (1 + 2) * 3;
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -170,14 +194,13 @@ total fn example() -> u32 {
 ===
 8.6.2 Examples (Unary Operators)
 ===
-total fn example() -> i32 {
+fn example() -> i32 {
   let a: i32 = -42;
   return a;
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -195,7 +218,7 @@ total fn example() -> i32 {
 ===
 8.7.2 Examples (Binary Operators)
 ===
-total fn example() -> u32 {
+fn example() -> u32 {
   let a: i32 = 2 ** 5;
   let b: i32 = 7 * 8;
   let c: i32 = 10 % 3;
@@ -219,7 +242,6 @@ total fn example() -> u32 {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)

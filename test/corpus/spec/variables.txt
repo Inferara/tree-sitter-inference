@@ -1,14 +1,13 @@
 ===
 7.2.1.2 Examples (Local variables)
 ===
-total fn foo() {
+fn foo() {
     let a: i32 = 42;
     let b: bool = true;
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -27,14 +26,13 @@ total fn foo() {
 ===
 7.2.2.2 Examples (Array elements)
 ===
-total fn foo() {
+fn foo() {
     let a: [i32; 3] = [1, 2, 3];
     let b: [bool; 2] = [true, false];
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -60,35 +58,37 @@ total fn foo() {
               (bool_literal))))))
 
 ===
-7.3.2 Examples (Default values)
+7.3.2 Examples (uzumaki values)
 ===
-total fn foo() {
-    let undef len: u32;
-    let undef arr: [i32; len];
+fn foo() {
+    let len: u32 = @;
+    let arr: [i32; len] = @;
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
-            (undef_keyword)
             (identifier)
-            (type_u32))
+            (type_u32)
+            (assign_operator)
+            (uzumaki_keyword))
           (variable_definition_statement
-            (undef_keyword)
             (identifier)
             (type_array
               (type_i32)
-              (identifier))))))
+              (identifier))
+            (assign_operator)
+            (uzumaki_keyword)))))
+
 
 ===
 7.4.2.2 Examples (Block statement)
 ===
-total fn foo() {
+fn foo() {
     let a: i32 = 42;
 
     let mut b: bool = true;
@@ -107,7 +107,6 @@ total fn foo() {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list)
@@ -180,7 +179,7 @@ total fn foo() {
 ===
 7.4.3.2 Examples (Loop statement)
 ===
-total fn inverse_bool_array(mut bool_arr: [bool; 10]) {
+fn inverse_bool_array(mut bool_arr: [bool; 10]) {
     let mut i: i32 = 0;
     loop 10 {
         bool_arr[i] = !bool_arr[i];
@@ -190,7 +189,6 @@ total fn inverse_bool_array(mut bool_arr: [bool; 10]) {
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list

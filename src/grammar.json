@@ -43,7 +43,19 @@
         },
         {
           "type": "SYMBOL",
-          "name": "filter_statement"
+          "name": "assume_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "forall_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "exists_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unique_statement"
         },
         {
           "type": "SYMBOL",
@@ -68,10 +80,6 @@
         {
           "type": "SYMBOL",
           "name": "assert_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "verify_statement"
         },
         {
           "type": "SYMBOL",
@@ -431,6 +439,10 @@
         {
           "type": "SYMBOL",
           "name": "_expression_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "uzumaki_keyword"
         }
       ]
     },
@@ -571,8 +583,34 @@
                     "type": "FIELD",
                     "name": "argument",
                     "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SEQ",
+                              "members": [
+                                {
+                                  "type": "SYMBOL",
+                                  "name": "_name"
+                                },
+                                {
+                                  "type": "STRING",
+                                  "value": ":"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "BLANK"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "_expression"
+                        }
+                      ]
                     }
                   },
                   {
@@ -588,8 +626,34 @@
                           "type": "FIELD",
                           "name": "argument",
                           "content": {
-                            "type": "SYMBOL",
-                            "name": "_expression"
+                            "type": "SEQ",
+                            "members": [
+                              {
+                                "type": "CHOICE",
+                                "members": [
+                                  {
+                                    "type": "SEQ",
+                                    "members": [
+                                      {
+                                        "type": "SYMBOL",
+                                        "name": "_name"
+                                      },
+                                      {
+                                        "type": "STRING",
+                                        "value": ":"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "BLANK"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "_expression"
+                              }
+                            ]
                           }
                         }
                       ]
@@ -625,53 +689,6 @@
           "name": "_terminal_symbol"
         }
       ]
-    },
-    "verify_statement": {
-      "type": "PREC_RIGHT",
-      "value": 1000,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "verify"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "function_call_expression"
-              },
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "total_keyword"
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "block"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_terminal_symbol"
-          }
-        ]
-      }
     },
     "break_statement": {
       "type": "PREC_LEFT",
@@ -1339,22 +1356,6 @@
           "members": [
             {
               "type": "FIELD",
-              "name": "undef",
-              "content": {
-                "type": "SYMBOL",
-                "name": "undef_keyword"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
               "name": "mut",
               "content": {
                 "type": "SYMBOL",
@@ -1688,18 +1689,6 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "total_keyword"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "SYMBOL",
           "name": "function_keyword"
         },
@@ -1761,6 +1750,18 @@
           ]
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "forall_keyword"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "FIELD",
           "name": "body",
           "content": {
@@ -1782,7 +1783,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "total_keyword"
+              "name": "forall_keyword"
             },
             {
               "type": "BLANK"
@@ -1961,12 +1962,51 @@
         }
       ]
     },
-    "filter_statement": {
+    "assume_statement": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "filter"
+          "value": "assume"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
+    "forall_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "forall_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
+    "exists_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "exists"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
+    "unique_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "unique"
         },
         {
           "type": "SYMBOL",
@@ -2325,13 +2365,13 @@
       "type": "STRING",
       "value": "fn"
     },
-    "total_keyword": {
+    "forall_keyword": {
       "type": "STRING",
-      "value": "total"
+      "value": "forall"
     },
-    "undef_keyword": {
+    "uzumaki_keyword": {
       "type": "STRING",
-      "value": "undef"
+      "value": "@"
     },
     "mut_keyword": {
       "type": "STRING",
@@ -2758,15 +2798,7 @@
         },
         {
           "type": "STRING",
-          "value": "filter"
-        },
-        {
-          "type": "STRING",
-          "value": "type"
-        },
-        {
-          "type": "STRING",
-          "value": "self"
+          "value": "uzumaki"
         }
       ]
     },

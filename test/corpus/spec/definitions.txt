@@ -17,13 +17,12 @@ spec Definitions {
 ===
 10.2.2 Examples (Function)
 ===
-total fn sum(a: u32, b: u32) -> u32 {
+fn sum(a: u32, b: u32) -> u32 {
   return a + b;
 }
 ---
     (source_file
       (function_definition
-        (total_keyword)
         (function_keyword)
         (identifier)
         (argument_list
@@ -86,22 +85,22 @@ spec Definitions {
 spec AuctionSpec {  
     const MAX_BID: u64 = 1000;
     const MIN_BID: u64 = 100;
-    
+
     struct Bid {
       bidder: Address;
       amount: u64;
     }
-    
+
     enum AuctionState {
       Open,
       Closed
     }
-    
-    total fn is_valid_bid(bid: Bid) -> bool {
+
+    fn is_valid_bid(bid: Bid) -> bool {
       return bid.amount >= MIN_BID && bid.amount <= MAX_BID;
     }
-  
-    total fn is_auction_open(state: AuctionState) -> bool {
+
+    fn is_auction_open(state: AuctionState) -> bool {
       return state == AuctionState::Open;
     }
 }
@@ -132,7 +131,6 @@ spec AuctionSpec {
           (identifier)
           (identifier))
         (function_definition
-          (total_keyword)
           (function_keyword)
           (identifier)
           (argument_list
@@ -160,7 +158,6 @@ spec AuctionSpec {
                   (less_equal_operator)
                   (identifier))))))
         (function_definition
-          (total_keyword)
           (function_keyword)
           (identifier)
           (argument_list
@@ -209,7 +206,7 @@ struct Account {
   address: Address;
   balance: u64;
 
-  total fn can_withdraw(amount: u64) -> bool {
+  fn can_withdraw(amount: u64) -> bool {
     return self.balance >= amount;
   }
 }
@@ -224,7 +221,6 @@ struct Account {
           (identifier)
           (type_u64))
         (function_definition
-          (total_keyword)
           (function_keyword)
           (identifier)
           (argument_list
