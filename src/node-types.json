@@ -1264,15 +1264,7 @@
             "named": true
           },
           {
-            "type": "qualified_name",
-            "named": true
-          },
-          {
             "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "type_qualified_name",
             "named": true
           },
           {
@@ -1281,6 +1273,28 @@
           },
           {
             "type": "uzumaki_keyword",
+            "named": true
+          }
+        ]
+      },
+      "argument_name": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
             "named": true
           }
         ]

@@ -592,8 +592,12 @@
                               "type": "SEQ",
                               "members": [
                                 {
-                                  "type": "SYMBOL",
-                                  "name": "_name"
+                                  "type": "FIELD",
+                                  "name": "argument_name",
+                                  "content": {
+                                    "type": "SYMBOL",
+                                    "name": "_name"
+                                  }
                                 },
                                 {
                                   "type": "STRING",
@@ -635,8 +639,12 @@
                                     "type": "SEQ",
                                     "members": [
                                       {
-                                        "type": "SYMBOL",
-                                        "name": "_name"
+                                        "type": "FIELD",
+                                        "name": "argument_name",
+                                        "content": {
+                                          "type": "SYMBOL",
+                                          "name": "_name"
+                                        }
                                       },
                                       {
                                         "type": "STRING",
