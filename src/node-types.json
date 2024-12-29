@@ -1212,10 +1212,6 @@
         "required": false,
         "types": [
           {
-            "type": ":",
-            "named": false
-          },
-          {
             "type": "array_index_access_expression",
             "named": true
           },

@@ -580,42 +580,42 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "FIELD",
-                    "name": "argument",
-                    "content": {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SEQ",
-                              "members": [
-                                {
-                                  "type": "FIELD",
-                                  "name": "argument_name",
-                                  "content": {
-                                    "type": "SYMBOL",
-                                    "name": "_name"
-                                  }
-                                },
-                                {
-                                  "type": "STRING",
-                                  "value": ":"
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SEQ",
+                            "members": [
+                              {
+                                "type": "FIELD",
+                                "name": "argument_name",
+                                "content": {
+                                  "type": "SYMBOL",
+                                  "name": "_name"
                                 }
-                              ]
-                            },
-                            {
-                              "type": "BLANK"
-                            }
-                          ]
-                        },
-                        {
+                              },
+                              {
+                                "type": "STRING",
+                                "value": ":"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "FIELD",
+                        "name": "argument",
+                        "content": {
                           "type": "SYMBOL",
                           "name": "_expression"
                         }
-                      ]
-                    }
+                      }
+                    ]
                   },
                   {
                     "type": "REPEAT",
@@ -627,42 +627,42 @@
                           "value": ","
                         },
                         {
-                          "type": "FIELD",
-                          "name": "argument",
-                          "content": {
-                            "type": "SEQ",
-                            "members": [
-                              {
-                                "type": "CHOICE",
-                                "members": [
-                                  {
-                                    "type": "SEQ",
-                                    "members": [
-                                      {
-                                        "type": "FIELD",
-                                        "name": "argument_name",
-                                        "content": {
-                                          "type": "SYMBOL",
-                                          "name": "_name"
-                                        }
-                                      },
-                                      {
-                                        "type": "STRING",
-                                        "value": ":"
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "CHOICE",
+                              "members": [
+                                {
+                                  "type": "SEQ",
+                                  "members": [
+                                    {
+                                      "type": "FIELD",
+                                      "name": "argument_name",
+                                      "content": {
+                                        "type": "SYMBOL",
+                                        "name": "_name"
                                       }
-                                    ]
-                                  },
-                                  {
-                                    "type": "BLANK"
-                                  }
-                                ]
-                              },
-                              {
+                                    },
+                                    {
+                                      "type": "STRING",
+                                      "value": ":"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "BLANK"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "FIELD",
+                              "name": "argument",
+                              "content": {
                                 "type": "SYMBOL",
                                 "name": "_expression"
                               }
-                            ]
-                          }
+                            }
+                          ]
                         }
                       ]
                     }

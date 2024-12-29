@@ -1277,11 +1277,11 @@ static const TSFieldMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
   [64] = {.index = 141, .length = 4},
   [65] = {.index = 145, .length = 3},
   [66] = {.index = 148, .length = 4},
-  [67] = {.index = 152, .length = 4},
-  [68] = {.index = 156, .length = 3},
-  [69] = {.index = 159, .length = 6},
-  [70] = {.index = 165, .length = 4},
-  [71] = {.index = 169, .length = 5},
+  [67] = {.index = 152, .length = 3},
+  [68] = {.index = 155, .length = 2},
+  [69] = {.index = 157, .length = 5},
+  [70] = {.index = 162, .length = 4},
+  [71] = {.index = 166, .length = 5},
 };
 
 static const TSFieldMapEntry ts_field_map_entries[] = {
@@ -1504,27 +1504,24 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_else_if_condition, 4},
     {field_if_arm, 2},
   [152] =
-    {field_argument, 3},
     {field_argument, 4},
     {field_argument_name, 2},
     {field_function, 0},
-  [156] =
-    {field_argument, 2},
+  [155] =
     {field_argument, 3},
     {field_argument_name, 1},
-  [159] =
-    {field_argument, 3},
+  [157] =
     {field_argument, 4},
     {field_argument, 5, .inherited = true},
     {field_argument_name, 2},
     {field_argument_name, 5, .inherited = true},
     {field_function, 0},
-  [165] =
+  [162] =
     {field_mut, 1},
     {field_name, 2},
     {field_type, 4},
     {field_value, 6},
-  [169] =
+  [166] =
     {field_condition, 1},
     {field_else_arm, 7},
     {field_else_if_arm, 5},
