@@ -256,7 +256,7 @@ module.exports = grammar({
       'type',
       field('name', $.identifier),
       $.assign_operator,
-      $._type,
+      field('type', $._type),
       $._terminal_symbol,
     ),
 
@@ -305,7 +305,7 @@ module.exports = grammar({
 
     block: $ => seq(
       $._lcb_symbol,
-      repeat($._statement),
+      repeat(field('statement', $._statement)),
       $._rcb_symbol,
     ),
 
@@ -321,7 +321,6 @@ module.exports = grammar({
 
     external_function_definition: $ => seq(
       'external',
-      optional($.forall_keyword),
       $.function_keyword,
       field('name', $.identifier),
       field('argument_list', $.argument_list),
