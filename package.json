@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-inference",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "Inference grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",

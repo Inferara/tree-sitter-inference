@@ -353,22 +353,22 @@ module.exports = grammar({
 
     assume_block: $ => seq(
       'assume',
-      $.block,
+      field('body', $.block),
     ),
 
     forall_block: $ => seq(
       $.forall_keyword,
-      $.block,
+      field('body', $.block),
     ),
 
     exists_block: $ => seq(
       'exists',
-      $.block,
+      field('body', $.block),
     ),
     
     unique_block: $ => seq(
       'unique',
-      $.block,
+      field('body', $.block),
     ),
 
     if_statement: $ => prec.right(seq(
