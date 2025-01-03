@@ -179,14 +179,14 @@ fn add(a : i32, b : i32) -> i32 forall {
             (type_i32)))
         (rightarrow_operator)
         (type_i32)
-        (forall_keyword)
-        (block
-          (return_statement
-            (binary_expression
-              (identifier)
-              (add_operator)
-              (identifier))))))
-
+        (forall_block
+          (forall_keyword)
+          (block
+            (return_statement
+              (binary_expression
+                (identifier)
+                (add_operator)
+                (identifier)))))))
 ===
 Function with assume block
 ===
@@ -208,29 +208,29 @@ fn procuring_sorted(func: sf) -> () forall {
             (identifier)))
         (rightarrow_operator)
         (type_unit)
-        (forall_keyword)
-        (block
-          (assume_statement
-            (block
-              (expression_statement
-                (assign_expression
-                  (identifier)
-                  (assign_operator)
-                  (function_call_expression
-                    (identifier))))
-              (expression_statement
-                (assign_expression
-                  (identifier)
-                  (assign_operator)
-                  (function_call_expression
-                    (identifier))))
-              (assert_statement
-                (parenthesized_expression
-                  (binary_expression
+        (forall_block
+          (forall_keyword)
+          (block
+            (assume_block
+              (block
+                (expression_statement
+                  (assign_expression
                     (identifier)
-                    (less_equal_operator)
-                    (identifier)))))))))
-
+                    (assign_operator)
+                    (function_call_expression
+                      (identifier))))
+                (expression_statement
+                  (assign_expression
+                    (identifier)
+                    (assign_operator)
+                    (function_call_expression
+                      (identifier))))
+                (assert_statement
+                  (parenthesized_expression
+                    (binary_expression
+                      (identifier)
+                      (less_equal_operator)
+                      (identifier))))))))))
 ===
 Function that returns a unit literal
 ===
@@ -287,7 +287,7 @@ fn func() -> () {
         (rightarrow_operator)
         (type_unit)
         (block
-          (unique_statement
+          (unique_block
             (block
               (variable_definition_statement
                 (identifier)

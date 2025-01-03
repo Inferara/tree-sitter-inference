@@ -63,13 +63,9 @@ module.exports = grammar({
     word: $ => $.identifier,
 
     _statement: $ => choice(
-      $.block,
+      $._block,
       $.expression_statement,
       $.return_statement,
-      $.assume_statement,
-      $.forall_statement,
-      $.exists_statement,
-      $.unique_statement,
       $.loop_statement,
       $.if_statement,
       $.variable_definition_statement,
@@ -166,6 +162,14 @@ module.exports = grammar({
       $.array_literal,
       $._expression_statement,
       $.uzumaki_keyword
+    ),
+
+    _block: $ => choice(
+      $.block,
+      $.assume_block,
+      $.forall_block,
+      $.exists_block,
+      $.unique_block,
     ),
 
     array_index_access_expression: $ => seq(
@@ -315,8 +319,7 @@ module.exports = grammar({
       optional(field('type_parameters', $.type_argument_list)),
       field('argument_list', $.argument_list),
       optional(seq($.rightarrow_operator, field('returns', $._type))),
-      optional($.forall_keyword),
-      field('body', $.block),
+      field('body', $._block),
     ),
 
     external_function_definition: $ => seq(
@@ -348,22 +351,22 @@ module.exports = grammar({
       field('type', $._type),
     ),
 
-    assume_statement: $ => seq(
+    assume_block: $ => seq(
       'assume',
       $.block,
     ),
 
-    forall_statement: $ => seq(
+    forall_block: $ => seq(
       $.forall_keyword,
       $.block,
     ),
 
-    exists_statement: $ => seq(
+    exists_block: $ => seq(
       'exists',
       $.block,
     ),
     
-    unique_statement: $ => seq(
+    unique_block: $ => seq(
       'unique',
       $.block,
     ),
@@ -371,15 +374,15 @@ module.exports = grammar({
     if_statement: $ => prec.right(seq(
       'if',
       field('condition', $._expression),
-      field('if_arm', $.block),
-      optional(seq('else if', field('else_if_condition', $._expression), field('else_if_arm', $.block))),
-      optional(seq('else', field('else_arm', $.block))),
+      field('if_arm', $._block),
+      optional(seq('else if', field('else_if_condition', $._expression), field('else_if_arm', $._block))),
+      optional(seq('else', field('else_arm', $._block))),
     )),
 
     loop_statement: $ => seq(
       'loop',
       optional(field('condition', $._expression)),
-      field('body', $.block),
+      field('body', $._block),
     ),
 
     use_directive: $ => seq(

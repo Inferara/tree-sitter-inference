@@ -536,7 +536,7 @@
     }
   },
   {
-    "type": "assume_statement",
+    "type": "assume_block",
     "named": true,
     "fields": {},
     "children": {
@@ -779,7 +779,7 @@
             "named": true
           },
           {
-            "type": "assume_statement",
+            "type": "assume_block",
             "named": true
           },
           {
@@ -795,7 +795,7 @@
             "named": true
           },
           {
-            "type": "exists_statement",
+            "type": "exists_block",
             "named": true
           },
           {
@@ -803,7 +803,7 @@
             "named": true
           },
           {
-            "type": "forall_statement",
+            "type": "forall_block",
             "named": true
           },
           {
@@ -823,7 +823,7 @@
             "named": true
           },
           {
-            "type": "unique_statement",
+            "type": "unique_block",
             "named": true
           },
           {
@@ -1033,7 +1033,7 @@
     }
   },
   {
-    "type": "exists_statement",
+    "type": "exists_block",
     "named": true,
     "fields": {},
     "children": {
@@ -1185,7 +1185,7 @@
     }
   },
   {
-    "type": "forall_statement",
+    "type": "forall_block",
     "named": true,
     "fields": {},
     "children": {
@@ -1346,7 +1346,23 @@
         "required": true,
         "types": [
           {
+            "type": "assume_block",
+            "named": true
+          },
+          {
             "type": "block",
+            "named": true
+          },
+          {
+            "type": "exists_block",
+            "named": true
+          },
+          {
+            "type": "forall_block",
+            "named": true
+          },
+          {
+            "type": "unique_block",
             "named": true
           }
         ]
@@ -1446,10 +1462,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "forall_keyword",
-          "named": true
-        },
         {
           "type": "function_keyword",
           "named": true
@@ -1577,7 +1589,23 @@
         "required": false,
         "types": [
           {
+            "type": "assume_block",
+            "named": true
+          },
+          {
             "type": "block",
+            "named": true
+          },
+          {
+            "type": "exists_block",
+            "named": true
+          },
+          {
+            "type": "forall_block",
+            "named": true
+          },
+          {
+            "type": "unique_block",
             "named": true
           }
         ]
@@ -1587,7 +1615,23 @@
         "required": false,
         "types": [
           {
+            "type": "assume_block",
+            "named": true
+          },
+          {
             "type": "block",
+            "named": true
+          },
+          {
+            "type": "exists_block",
+            "named": true
+          },
+          {
+            "type": "forall_block",
+            "named": true
+          },
+          {
+            "type": "unique_block",
             "named": true
           }
         ]
@@ -1663,7 +1707,23 @@
         "required": true,
         "types": [
           {
+            "type": "assume_block",
+            "named": true
+          },
+          {
             "type": "block",
+            "named": true
+          },
+          {
+            "type": "exists_block",
+            "named": true
+          },
+          {
+            "type": "forall_block",
+            "named": true
+          },
+          {
+            "type": "unique_block",
             "named": true
           }
         ]
@@ -1684,7 +1744,23 @@
         "required": true,
         "types": [
           {
+            "type": "assume_block",
+            "named": true
+          },
+          {
             "type": "block",
+            "named": true
+          },
+          {
+            "type": "exists_block",
+            "named": true
+          },
+          {
+            "type": "forall_block",
+            "named": true
+          },
+          {
+            "type": "unique_block",
             "named": true
           }
         ]
@@ -2812,7 +2888,7 @@
     "fields": {}
   },
   {
-    "type": "unique_statement",
+    "type": "unique_block",
     "named": true,
     "fields": {},
     "children": {

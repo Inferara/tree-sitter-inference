@@ -31,7 +31,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "block"
+          "name": "_block"
         },
         {
           "type": "SYMBOL",
@@ -40,22 +40,6 @@
         {
           "type": "SYMBOL",
           "name": "return_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assume_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "forall_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "exists_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "unique_statement"
         },
         {
           "type": "SYMBOL",
@@ -443,6 +427,31 @@
         {
           "type": "SYMBOL",
           "name": "uzumaki_keyword"
+        }
+      ]
+    },
+    "_block": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assume_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "forall_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "exists_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unique_block"
         }
       ]
     },
@@ -1766,23 +1775,11 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "forall_keyword"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "FIELD",
           "name": "body",
           "content": {
             "type": "SYMBOL",
-            "name": "block"
+            "name": "_block"
           }
         }
       ]
@@ -1966,7 +1963,7 @@
         }
       ]
     },
-    "assume_statement": {
+    "assume_block": {
       "type": "SEQ",
       "members": [
         {
@@ -1979,7 +1976,7 @@
         }
       ]
     },
-    "forall_statement": {
+    "forall_block": {
       "type": "SEQ",
       "members": [
         {
@@ -1992,7 +1989,7 @@
         }
       ]
     },
-    "exists_statement": {
+    "exists_block": {
       "type": "SEQ",
       "members": [
         {
@@ -2005,7 +2002,7 @@
         }
       ]
     },
-    "unique_statement": {
+    "unique_block": {
       "type": "SEQ",
       "members": [
         {
@@ -2041,7 +2038,7 @@
             "name": "if_arm",
             "content": {
               "type": "SYMBOL",
-              "name": "block"
+              "name": "_block"
             }
           },
           {
@@ -2067,7 +2064,7 @@
                     "name": "else_if_arm",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "block"
+                      "name": "_block"
                     }
                   }
                 ]
@@ -2092,7 +2089,7 @@
                     "name": "else_arm",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "block"
+                      "name": "_block"
                     }
                   }
                 ]
@@ -2133,7 +2130,7 @@
           "name": "body",
           "content": {
             "type": "SYMBOL",
-            "name": "block"
+            "name": "_block"
           }
         }
       ]

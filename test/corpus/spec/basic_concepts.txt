@@ -46,42 +46,43 @@ spec BasicConcepts {
           (function_keyword)
           (identifier)
           (argument_list)
-          (forall_keyword)
-          (block
-            (variable_definition_statement
-              (identifier)
-              (type_i32)
-              (assign_operator)
-              (uzumaki_keyword))
-            (variable_definition_statement
-              (identifier)
-              (type_i32)
-              (assign_operator)
-              (uzumaki_keyword))
-            (assert_statement
-              (parenthesized_expression
-                (binary_expression
-                  (function_call_expression
-                    (identifier)
-                    (identifier)
-                    (identifier))
-                  (equals_operator)
+          (forall_block
+            (forall_keyword)
+            (block
+              (variable_definition_statement
+                (identifier)
+                (type_i32)
+                (assign_operator)
+                (uzumaki_keyword))
+              (variable_definition_statement
+                (identifier)
+                (type_i32)
+                (assign_operator)
+                (uzumaki_keyword))
+              (assert_statement
+                (parenthesized_expression
                   (binary_expression
-                    (identifier)
-                    (add_operator)
-                    (identifier)))))
-            (assert_statement
-              (parenthesized_expression
-                (binary_expression
-                  (function_call_expression
-                    (identifier)
-                    (identifier)
-                    (identifier))
-                  (equals_operator)
+                    (function_call_expression
+                      (identifier)
+                      (identifier)
+                      (identifier))
+                    (equals_operator)
+                    (binary_expression
+                      (identifier)
+                      (add_operator)
+                      (identifier)))))
+              (assert_statement
+                (parenthesized_expression
                   (binary_expression
-                    (identifier)
-                    (sub_operator)
-                    (identifier)))))))
+                    (function_call_expression
+                      (identifier)
+                      (identifier)
+                      (identifier))
+                    (equals_operator)
+                    (binary_expression
+                      (identifier)
+                      (sub_operator)
+                      (identifier))))))))
         (function_definition
           (function_keyword)
           (identifier)
@@ -110,14 +111,14 @@ fn foo() {
         (identifier)
         (argument_list)
         (block
-          (assume_statement
+          (assume_block
             (block
               (variable_definition_statement
                 (identifier)
                 (type_u32)
                 (assign_operator)
                 (uzumaki_keyword))
-              (forall_statement
+              (forall_block
                 (forall_keyword)
                 (block
                   (variable_definition_statement

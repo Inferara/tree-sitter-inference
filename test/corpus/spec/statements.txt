@@ -98,27 +98,27 @@ fn foo(i: i32) -> () forall {
             (type_i32)))
         (rightarrow_operator)
         (type_unit)
-        (forall_keyword)
-        (block
-          (assume_statement
-            (block
-              (assert_statement
-                (binary_expression
-                  (identifier)
-                  (greater_operator)
-                  (number_literal)))))
-          (if_statement
-            (prefix_unary_expression
-              (unary_not)
-              (parenthesized_expression
-                (binary_expression
-                  (identifier)
-                  (greater_operator)
-                  (number_literal))))
-            (block
-              (return_statement
-                (unit_literal)))))))
-
+        (forall_block
+          (forall_keyword)
+          (block
+            (assume_block
+              (block
+                (assert_statement
+                  (binary_expression
+                    (identifier)
+                    (greater_operator)
+                    (number_literal)))))
+            (if_statement
+              (prefix_unary_expression
+                (unary_not)
+                (parenthesized_expression
+                  (binary_expression
+                    (identifier)
+                    (greater_operator)
+                    (number_literal))))
+              (block
+                (return_statement
+                  (unit_literal))))))))
 ===
 9.4.2 Examples (Loop)
 ===
@@ -171,15 +171,15 @@ fn infinite_loop_example() forall {
         (function_keyword)
         (identifier)
         (argument_list)
-        (forall_keyword)
-        (block
-          (assume_statement
-            (block
-              (loop_statement
-                (unit_literal)
-                (block
-                  (break_statement))))))))
-
+        (forall_block
+          (forall_keyword)
+          (block
+            (assume_block
+              (block
+                (loop_statement
+                  (unit_literal)
+                  (block
+                    (break_statement)))))))))
 ===
 9.5.2 Examples (If)
 ===

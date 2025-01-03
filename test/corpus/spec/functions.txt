@@ -74,59 +74,60 @@ spec Hasher {
           (function_keyword)
           (identifier)
           (argument_list)
-          (forall_keyword)
-          (block
-            (variable_definition_statement
-              (identifier)
-              (type_array
-                (type_u8)
-                (number_literal))
-              (assign_operator)
-              (uzumaki_keyword))
-            (variable_definition_statement
-              (identifier)
-              (type_array
-                (type_u8)
-                (number_literal))
-              (assign_operator)
-              (function_call_expression
+          (forall_block
+            (forall_keyword)
+            (block
+              (variable_definition_statement
                 (identifier)
-                (identifier)))
-            (variable_definition_statement
-              (identifier)
-              (type_array
-                (type_u8)
-                (number_literal))
-              (assign_operator)
-              (uzumaki_keyword))
-            (variable_definition_statement
-              (identifier)
-              (type_array
-                (type_u8)
-                (number_literal))
-              (assign_operator)
-              (function_call_expression
+                (type_array
+                  (type_u8)
+                  (number_literal))
+                (assign_operator)
+                (uzumaki_keyword))
+              (variable_definition_statement
                 (identifier)
-                (identifier)))
-            (if_statement
-              (binary_expression
+                (type_array
+                  (type_u8)
+                  (number_literal))
+                (assign_operator)
+                (function_call_expression
+                  (identifier)
+                  (identifier)))
+              (variable_definition_statement
                 (identifier)
-                (equals_operator)
-                (identifier))
-              (block
-                (assert_statement
-                  (parenthesized_expression
-                    (binary_expression
-                      (identifier)
-                      (equals_operator)
-                      (identifier)))))
-              (block
-                (assert_statement
-                  (parenthesized_expression
-                    (binary_expression
-                      (identifier)
-                      (not_equals_operator)
-                      (identifier))))))))
+                (type_array
+                  (type_u8)
+                  (number_literal))
+                (assign_operator)
+                (uzumaki_keyword))
+              (variable_definition_statement
+                (identifier)
+                (type_array
+                  (type_u8)
+                  (number_literal))
+                (assign_operator)
+                (function_call_expression
+                  (identifier)
+                  (identifier)))
+              (if_statement
+                (binary_expression
+                  (identifier)
+                  (equals_operator)
+                  (identifier))
+                (block
+                  (assert_statement
+                    (parenthesized_expression
+                      (binary_expression
+                        (identifier)
+                        (equals_operator)
+                        (identifier)))))
+                (block
+                  (assert_statement
+                    (parenthesized_expression
+                      (binary_expression
+                        (identifier)
+                        (not_equals_operator)
+                        (identifier)))))))))
         (function_definition
           (function_keyword)
           (identifier)
@@ -378,12 +379,13 @@ spec HashContext {
           (argument_list)
           (rightarrow_operator)
           (type_unit)
-          (forall_keyword)
-          (block
-            (expression_statement
-              (function_call_expression
-                (identifier)
-                (identifier)))))))
+          (forall_block
+            (forall_keyword)
+            (block
+              (expression_statement
+                (function_call_expression
+                  (identifier)
+                  (identifier))))))))
 ===
 11.3.2 Examples (High-order functions 3)
 ===

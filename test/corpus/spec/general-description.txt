@@ -25,7 +25,7 @@ fn main() {
         (identifier)
         (argument_list)
         (block
-          (forall_statement
+          (forall_block
             (forall_keyword)
             (block
               (variable_definition_statement
@@ -76,7 +76,7 @@ fn main() {
         (identifier)
         (argument_list)
         (block
-          (exists_statement
+          (exists_block
             (block
               (variable_definition_statement
                 (identifier)
@@ -129,7 +129,7 @@ fn main() {
         (identifier)
         (argument_list)
         (block
-          (forall_statement
+          (forall_block
             (forall_keyword)
             (block
               (variable_definition_statement
@@ -137,7 +137,7 @@ fn main() {
                 (type_u32)
                 (assign_operator)
                 (uzumaki_keyword))
-              (assume_statement
+              (assume_block
                 (block
                   (expression_statement
                     (function_call_expression
