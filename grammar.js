@@ -336,7 +336,7 @@ module.exports = grammar({
       optional(
         sep1(
           field('argument',
-            choice($.argument_declaration, '_', $._type)
+            choice($.argument_declaration, '_', $.self_reference, $._type)
           ),
           $._comma_symbol
         )
@@ -349,6 +349,11 @@ module.exports = grammar({
       field('name', $.identifier),
       $._typedef_symbol,
       field('type', $._type),
+    ),
+
+    self_reference: $ => seq(
+      optional(field('mut', $.mut_keyword)),
+      'self'
     ),
 
     assume_block: $ => seq(

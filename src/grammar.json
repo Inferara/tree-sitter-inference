@@ -1871,6 +1871,10 @@
                       },
                       {
                         "type": "SYMBOL",
+                        "name": "self_reference"
+                      },
+                      {
+                        "type": "SYMBOL",
                         "name": "_type"
                       }
                     ]
@@ -1898,6 +1902,10 @@
                             {
                               "type": "STRING",
                               "value": "_"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "self_reference"
                             },
                             {
                               "type": "SYMBOL",
@@ -1960,6 +1968,31 @@
             "type": "SYMBOL",
             "name": "_type"
           }
+        }
+      ]
+    },
+    "self_reference": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "mut",
+              "content": {
+                "type": "SYMBOL",
+                "name": "mut_keyword"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "self"
         }
       ]
     },

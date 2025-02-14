@@ -124,6 +124,10 @@
             "named": true
           },
           {
+            "type": "self_reference",
+            "named": true
+          },
+          {
             "type": "type_array",
             "named": true
           },
@@ -2270,6 +2274,22 @@
     "fields": {}
   },
   {
+    "type": "self_reference",
+    "named": true,
+    "fields": {
+      "mut": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "mut_keyword",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -3333,6 +3353,10 @@
   },
   {
     "type": "return",
+    "named": false
+  },
+  {
+    "type": "self",
     "named": false
   },
   {
