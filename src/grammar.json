@@ -1866,12 +1866,12 @@
                         "name": "argument_declaration"
                       },
                       {
-                        "type": "STRING",
-                        "value": "_"
+                        "type": "SYMBOL",
+                        "name": "self_reference"
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "self_reference"
+                        "name": "ignore_argument"
                       },
                       {
                         "type": "SYMBOL",
@@ -1900,12 +1900,12 @@
                               "name": "argument_declaration"
                             },
                             {
-                              "type": "STRING",
-                              "value": "_"
+                              "type": "SYMBOL",
+                              "name": "self_reference"
                             },
                             {
                               "type": "SYMBOL",
-                              "name": "self_reference"
+                              "name": "ignore_argument"
                             },
                             {
                               "type": "SYMBOL",
@@ -1993,6 +1993,27 @@
         {
           "type": "STRING",
           "value": "self"
+        }
+      ]
+    },
+    "ignore_argument": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "_"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_typedef_symbol"
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type"
+          }
         }
       ]
     },

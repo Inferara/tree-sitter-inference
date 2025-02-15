@@ -104,10 +104,6 @@
         "required": false,
         "types": [
           {
-            "type": "_",
-            "named": false
-          },
-          {
             "type": "argument_declaration",
             "named": true
           },
@@ -117,6 +113,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "ignore_argument",
             "named": true
           },
           {
@@ -1737,6 +1737,82 @@
           },
           {
             "type": "unique_block",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ignore_argument",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_array",
+            "named": true
+          },
+          {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_fn",
+            "named": true
+          },
+          {
+            "type": "type_i16",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
+            "type": "type_i8",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
+            "named": true
+          },
+          {
+            "type": "type_unit",
             "named": true
           }
         ]
