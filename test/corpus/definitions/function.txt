@@ -294,3 +294,41 @@ fn func() -> () {
                 (type_i32)
                 (assign_operator)
                 (number_literal)))))))
+
+
+===
+function that ignores a parameter
+===
+
+fn ignore_first(_: i32, x : i32) -> i32 {
+  return x;
+}
+
+---
+
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (argument_list
+      (ignore_argument
+        (type_i32))
+      (argument_declaration
+        (identifier)
+        (type_i32)))
+    (rightarrow_operator)
+    (type_i32)
+    (block
+      (return_statement
+        (identifier)))))
+
+===
+Plain underscore should not be allowed
+:error
+===
+
+fn ignore_first(_, x : i32) -> i32 {
+  return x;
+}
+
+---
