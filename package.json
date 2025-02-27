@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Inferara/tree-sitter-inference#readme",
   "scripts": {
     "install": "node-gyp-build",
+    "try": "tree-sitter playground",
     "prebuildify": "prebuildify --napi --strip",
     "lint": "eslint grammar.js",
     "bump_version": "./bump_version.sh",
