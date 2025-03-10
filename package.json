@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Inferara/tree-sitter-inference#readme",
   "scripts": {
     "install": "node-gyp-build",
+    "build": "tree-sitter build --wasm",
     "prebuildify": "prebuildify --napi --strip",
     "lint": "eslint grammar.js",
     "bump_version": "./bump_version.sh",
@@ -34,11 +35,11 @@
     "te": "tree-sitter parse example.inf"
   },
   "dependencies": {
-    "node-addon-api": "8.3.0",
+    "node-addon-api": "8.3.1",
     "node-gyp-build": "4.8.4"
   },
   "peerDependencies": {
-    "tree-sitter": "0.22.1"
+    "tree-sitter": "0.22.4"
   },
   "peerDependenciesMeta": {
     "tree_sitter": {
@@ -46,17 +47,27 @@
     }
   },
   "devDependencies": {
-    "eslint": "9.17.0",
+    "eslint": "9.22.0",
     "eslint-config-google": "^0.14.0",
     "prebuildify": "^6.0.1",
-    "tree-sitter-cli": "0.24.5"
+    "tree-sitter-cli": "0.25.3"
   },
   "files": [
     "grammar.js",
     "binding.gyp",
+    "tree-sitter.json",
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
-    "src/**"
+    "src/**",
+    "*.wasm"
+  ],
+  "tree-sitter": [
+    {
+      "scope": "source.inf",
+      "file-types": [
+        "inf"
+      ]
+    }
   ]
 }
