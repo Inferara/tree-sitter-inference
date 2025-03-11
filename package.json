@@ -30,6 +30,7 @@
   "scripts": {
     "install": "node-gyp-build",
     "build": "tree-sitter build --wasm",
+    "try": "tree-sitter playground",
     "prebuildify": "prebuildify --napi --strip",
     "lint": "eslint grammar.js",
     "bump_version": "./bump_version.sh",
