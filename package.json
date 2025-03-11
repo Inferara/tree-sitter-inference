@@ -1,13 +1,18 @@
 {
   "name": "tree-sitter-inference",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "Inference grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
   "author": "Georgii Plotnikov <accembler@gmail.com>",
   "license": "MIT",
   "contributors": [],
-  "maintainers": [],
+  "maintainers": [
+    {
+      "name": "city-high-rider",
+      "url": "https://github.com/city-high-rider"
+    }
+  ],
   "keywords": [
     "incremental",
     "parsing",
