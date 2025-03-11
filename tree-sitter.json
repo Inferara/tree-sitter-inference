@@ -15,7 +15,7 @@
     }
   ],
   "metadata": {
-    "version": "0.0.22",
+    "version": "0.0.29",
     "license": "MIT",
     "description": "Inference grammar for tree-sitter",
     "authors": [

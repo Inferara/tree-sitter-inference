@@ -1866,8 +1866,12 @@
                         "name": "argument_declaration"
                       },
                       {
-                        "type": "STRING",
-                        "value": "_"
+                        "type": "SYMBOL",
+                        "name": "self_reference"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "ignore_argument"
                       },
                       {
                         "type": "SYMBOL",
@@ -1896,8 +1900,12 @@
                               "name": "argument_declaration"
                             },
                             {
-                              "type": "STRING",
-                              "value": "_"
+                              "type": "SYMBOL",
+                              "name": "self_reference"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "ignore_argument"
                             },
                             {
                               "type": "SYMBOL",
@@ -1948,6 +1956,52 @@
             "type": "SYMBOL",
             "name": "identifier"
           }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_typedef_symbol"
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type"
+          }
+        }
+      ]
+    },
+    "self_reference": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "mut",
+              "content": {
+                "type": "SYMBOL",
+                "name": "mut_keyword"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "self"
+        }
+      ]
+    },
+    "ignore_argument": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "_"
         },
         {
           "type": "SYMBOL",
