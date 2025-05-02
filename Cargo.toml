@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-inference"
 description = "Inference grammar for tree-sitter"
-version = "0.0.29"
+version = "0.0.30"
 authors = [
     "Georgii Plotnikov <accembler@gmail.com>"
 ]

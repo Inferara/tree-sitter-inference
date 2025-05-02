@@ -191,10 +191,11 @@ module.exports = grammar({
       field('right', $._expression),
     )),
 
-    function_call_expression: $ => prec(PRECEDENCE.FUNC_CALL, seq(
+    function_call_expression: $ => prec.dynamic(PRECEDENCE.FUNC_CALL, seq(
       field('function', $._lval_expression),
+      optional(field('type_parameters', alias($.type_argument_list, $.type_parameters))),
       '(',
-      optional(sep1(seq(optional(seq(field('argument_name', $._name), ':')), field('argument',$._expression)), ',')),
+      optional(sep1(seq(optional(seq(field('argument_name', $._name), ':')), field('argument', $._expression)), ',')),
       ')',
     )),
 
@@ -316,7 +317,7 @@ module.exports = grammar({
     function_definition: $ => seq(
       $.function_keyword,
       field('name', $.identifier),
-      optional(field('type_parameters', $.type_argument_list)),
+      optional(field('type_parameters', $.type_argument_list_definition)),
       field('argument_list', $.argument_list),
       optional(seq($.rightarrow_operator, field('returns', $._type))),
       field('body', $._block),
@@ -386,7 +387,7 @@ module.exports = grammar({
       'if',
       field('condition', $._expression),
       field('if_arm', $._block),
-      optional(seq('else if', field('else_if_condition', $._expression), field('else_if_arm', $._block))),
+      repeat(seq('else if', field('else_if_condition', $._expression), field('else_if_arm', $._block))),
       optional(seq('else', field('else_arm', $._block))),
     )),
 
@@ -439,10 +440,10 @@ module.exports = grammar({
       $._terminal_symbol,
     ),
 
-    function_keyword: $ => 'fn',
-    forall_keyword: $ => 'forall',
-    uzumaki_keyword: $ => '@',
-    mut_keyword: $ => 'mut',
+    function_keyword: _ => 'fn',
+    forall_keyword: _ => 'forall',
+    uzumaki_keyword: _ => '@',
+    mut_keyword: _ => 'mut',
 
     unary_not: _ => '!',
 
@@ -535,6 +536,15 @@ module.exports = grammar({
     )),
 
     generic_name: $ => seq(field('base_type', $.identifier), $.type_argument_list),
+
+    type_argument_list_definition: $ => seq(
+      '<',
+      choice(
+        repeat(','),
+        sep1(field('type', $.identifier), $._comma_symbol),
+      ),
+      '>',
+    ),
 
     type_argument_list: $ => seq(
       '<',

@@ -1337,6 +1337,16 @@
             "named": true
           }
         ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_parameters",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -1465,7 +1475,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_argument_list",
+            "type": "type_argument_list_definition",
             "named": true
           }
         ]
@@ -1624,7 +1634,7 @@
         ]
       },
       "else_if_arm": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -1650,7 +1660,7 @@
         ]
       },
       "else_if_condition": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -2664,6 +2674,22 @@
     }
   },
   {
+    "type": "type_argument_list_definition",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "type_array",
     "named": true,
     "fields": {
@@ -2877,6 +2903,82 @@
       },
       "returns": {
         "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "generic_name",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_array",
+            "named": true
+          },
+          {
+            "type": "type_bool",
+            "named": true
+          },
+          {
+            "type": "type_fn",
+            "named": true
+          },
+          {
+            "type": "type_i16",
+            "named": true
+          },
+          {
+            "type": "type_i32",
+            "named": true
+          },
+          {
+            "type": "type_i64",
+            "named": true
+          },
+          {
+            "type": "type_i8",
+            "named": true
+          },
+          {
+            "type": "type_qualified_name",
+            "named": true
+          },
+          {
+            "type": "type_u16",
+            "named": true
+          },
+          {
+            "type": "type_u32",
+            "named": true
+          },
+          {
+            "type": "type_u64",
+            "named": true
+          },
+          {
+            "type": "type_u8",
+            "named": true
+          },
+          {
+            "type": "type_unit",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "type_parameters",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": true,
         "required": false,
         "types": [
           {

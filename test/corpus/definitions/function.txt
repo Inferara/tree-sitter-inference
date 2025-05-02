@@ -332,3 +332,53 @@ fn ignore_first(_, x : i32) -> i32 {
 }
 
 ---
+
+===
+Generic function with one parameter
+===
+fn func<T>(x: T) -> T {
+    return x;
+}
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (type_argument_list_definition
+      (identifier))
+    (argument_list
+      (argument_declaration
+        (identifier)
+        (identifier)))
+    (rightarrow_operator)
+    (identifier)
+    (block
+      (return_statement
+        (identifier)))))
+
+===
+Generic function with multiple parameters
+===
+fn func<T, U>(x: T, y: U) -> T {
+    return x;
+}
+---
+(source_file
+  (function_definition
+    (function_keyword)
+    (identifier)
+    (type_argument_list_definition
+      (identifier)
+      (identifier))
+    (argument_list
+      (argument_declaration
+        (identifier)
+        (identifier))
+      (argument_declaration
+        (identifier)
+        (identifier)))
+    (rightarrow_operator)
+    (identifier)
+    (block
+      (return_statement
+        (identifier)))))

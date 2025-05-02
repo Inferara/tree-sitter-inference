@@ -1,4 +1,4 @@
-VERSION := 0.0.29
+VERSION := 0.0.30
 
 LANGUAGE_NAME := tree-sitter-Inference
 

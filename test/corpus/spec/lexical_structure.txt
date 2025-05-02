@@ -253,7 +253,7 @@ fn foo<T>(a: T) {
       (function_definition
         (function_keyword)
         (identifier)
-        (type_argument_list
+        (type_argument_list_definition
           (identifier))
         (argument_list
           (argument_declaration
@@ -263,7 +263,7 @@ fn foo<T>(a: T) {
       (function_definition
         (function_keyword)
         (identifier)
-        (type_argument_list
+        (type_argument_list_definition
           (identifier))
         (argument_list
           (argument_declaration

@@ -565,7 +565,7 @@
       }
     },
     "function_call_expression": {
-      "type": "PREC",
+      "type": "PREC_DYNAMIC",
       "value": 1500,
       "content": {
         "type": "SEQ",
@@ -577,6 +577,27 @@
               "type": "SYMBOL",
               "name": "_lval_expression"
             }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "type_parameters",
+                "content": {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "type_argument_list"
+                  },
+                  "named": true,
+                  "value": "type_parameters"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           },
           {
             "type": "STRING",
@@ -1733,7 +1754,7 @@
               "name": "type_parameters",
               "content": {
                 "type": "SYMBOL",
-                "name": "type_argument_list"
+                "name": "type_argument_list_definition"
               }
             },
             {
@@ -2112,37 +2133,32 @@
             }
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "else if"
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "else_if_condition",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
-                    }
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "else_if_arm",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_block"
-                    }
+            "type": "REPEAT",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "else if"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "else_if_condition",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_expression"
                   }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+                },
+                {
+                  "type": "FIELD",
+                  "name": "else_if_arm",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_block"
+                  }
+                }
+              ]
+            }
           },
           {
             "type": "CHOICE",
@@ -2798,6 +2814,64 @@
         }
       ]
     },
+    "type_argument_list_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "STRING",
+                "value": ","
+              }
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "type",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_comma_symbol"
+                      },
+                      {
+                        "type": "FIELD",
+                        "name": "type",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
     "type_argument_list": {
       "type": "SEQ",
       "members": [
@@ -2946,5 +3020,6 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }
