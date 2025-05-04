@@ -213,14 +213,13 @@ fn main() {
             (type_i32)
             (assign_operator)
             (uzumaki_keyword))
-          (expression_statement
-            (assign_expression
+          (assign_statement
+            (identifier)
+            (assign_operator)
+            (binary_expression
               (identifier)
-              (assign_operator)
-              (binary_expression
-                (identifier)
-                (mod_operator)
-                (number_literal))))
+              (mod_operator)
+              (number_literal)))
           (if_statement
             (parenthesized_expression
               (binary_expression

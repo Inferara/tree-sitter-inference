@@ -213,24 +213,23 @@ fn procuring_sorted(func: sf) -> () forall {
           (block
             (assume_block
               (block
-                (expression_statement
-                  (assign_expression
-                    (identifier)
-                    (assign_operator)
-                    (function_call_expression
-                      (identifier))))
-                (expression_statement
-                  (assign_expression
-                    (identifier)
-                    (assign_operator)
-                    (function_call_expression
-                      (identifier))))
+                (assign_statement
+                  (identifier)
+                  (assign_operator)
+                  (function_call_expression
+                    (identifier)))
+                (assign_statement
+                  (identifier)
+                  (assign_operator)
+                  (function_call_expression
+                    (identifier)))
                 (assert_statement
                   (parenthesized_expression
                     (binary_expression
                       (identifier)
                       (less_equal_operator)
                       (identifier))))))))))
+
 ===
 Function that returns a unit literal
 ===

@@ -137,25 +137,23 @@ fn foo() {
           (loop_statement
             (identifier)
             (block
-              (expression_statement
-                (assign_expression
+              (assign_statement
+                (identifier)
+                (assign_operator)
+                (binary_expression
                   (identifier)
-                  (assign_operator)
+                  (add_operator)
+                  (number_literal)))
+              (assign_statement
+                (identifier)
+                (assign_operator)
+                (binary_expression
                   (binary_expression
                     (identifier)
-                    (add_operator)
-                    (number_literal))))
-              (expression_statement
-                (assign_expression
-                  (identifier)
-                  (assign_operator)
-                  (binary_expression
-                    (binary_expression
-                      (identifier)
-                      (mod_operator)
-                      (number_literal))
-                    (equals_operator)
-                    (number_literal))))
+                    (mod_operator)
+                    (number_literal))
+                  (equals_operator)
+                  (number_literal)))
               (if_statement
                 (identifier)
                 (block
@@ -167,14 +165,13 @@ fn foo() {
                       (identifier)
                       (mul_operator)
                       (number_literal)))
-                  (expression_statement
-                    (assign_expression
+                  (assign_statement
+                    (identifier)
+                    (assign_operator)
+                    (binary_expression
                       (identifier)
-                      (assign_operator)
-                      (binary_expression
-                        (identifier)
-                        (add_operator)
-                        (identifier)))))))))))
+                      (add_operator)
+                      (identifier))))))))))
 
 ===
 7.4.3.2 Examples (Loop statement)
@@ -208,22 +205,20 @@ fn inverse_bool_array(mut bool_arr: [bool; 10]) {
           (loop_statement
             (number_literal)
             (block
-              (expression_statement
-                (assign_expression
-                  (array_index_access_expression
-                    (identifier)
-                    (identifier))
-                  (assign_operator)
-                  (array_index_access_expression
-                    (prefix_unary_expression
-                      (unary_not)
-                      (identifier))
-                    (identifier))))
-              (expression_statement
-                (assign_expression
+              (assign_statement
+                (array_index_access_expression
                   (identifier)
-                  (assign_operator)
-                  (binary_expression
+                  (identifier))
+                (assign_operator)
+                (prefix_unary_expression
+                  (unary_not)
+                  (array_index_access_expression
                     (identifier)
-                    (add_operator)
-                    (number_literal)))))))))
+                    (identifier))))
+              (assign_statement
+                (identifier)
+                (assign_operator)
+                (binary_expression
+                  (identifier)
+                  (add_operator)
+                  (number_literal))))))))

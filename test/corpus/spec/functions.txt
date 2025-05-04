@@ -193,14 +193,13 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
           (loop_statement
             (identifier)
             (block
-              (expression_statement
-                (assign_expression
+              (assign_statement
+                (identifier)
+                (assign_operator)
+                (binary_expression
                   (identifier)
-                  (assign_operator)
-                  (binary_expression
-                    (identifier)
-                    (add_operator)
-                    (number_literal))))
+                  (add_operator)
+                  (number_literal)))
               (variable_definition_statement
                 (identifier)
                 (type_i32)
@@ -215,14 +214,13 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
                   (sub_operator)
                   (number_literal))
                 (block
-                  (expression_statement
-                    (assign_expression
+                  (assign_statement
+                    (identifier)
+                    (assign_operator)
+                    (binary_expression
                       (identifier)
-                      (assign_operator)
-                      (binary_expression
-                        (identifier)
-                        (add_operator)
-                        (number_literal))))
+                      (add_operator)
+                      (number_literal)))
                   (if_statement
                     (binary_expression
                       (function_call_expression
@@ -246,28 +244,26 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
                         (array_index_access_expression
                           (identifier)
                           (identifier)))
-                      (expression_statement
-                        (assign_expression
-                          (array_index_access_expression
+                      (assign_statement
+                        (array_index_access_expression
+                          (identifier)
+                          (identifier))
+                        (assign_operator)
+                        (array_index_access_expression
+                          (identifier)
+                          (binary_expression
                             (identifier)
-                            (identifier))
-                          (assign_operator)
-                          (array_index_access_expression
+                            (add_operator)
+                            (number_literal))))
+                      (assign_statement
+                        (array_index_access_expression
+                          (identifier)
+                          (binary_expression
                             (identifier)
-                            (binary_expression
-                              (identifier)
-                              (add_operator)
-                              (number_literal)))))
-                      (expression_statement
-                        (assign_expression
-                          (array_index_access_expression
-                            (identifier)
-                            (binary_expression
-                              (identifier)
-                              (add_operator)
-                              (number_literal)))
-                          (assign_operator)
-                          (identifier))))))))))))
+                            (add_operator)
+                            (number_literal)))
+                        (assign_operator)
+                        (identifier)))))))))))
 
 ===
 11.3.2 Examples (High-order functions 2)

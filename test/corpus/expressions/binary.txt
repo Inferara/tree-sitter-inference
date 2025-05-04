@@ -1,10 +1,9 @@
 ===
-spec assign
+`spec` assign
 ===
 fn spec_assign() -> () {
     self.type = ABC;
 }
-
 ---
     (source_file
       (function_definition
@@ -14,14 +13,13 @@ fn spec_assign() -> () {
         (rightarrow_operator)
         (type_unit)
         (block
-          (expression_statement
-            (assign_expression
-              (member_access_expression
-                (identifier)
-                (attribute_access_operator)
-                (identifier))
-              (assign_operator)
-              (identifier))))))
+          (assign_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))
+            (assign_operator)
+            (identifier)))))
 
 ===
 Assign expression from function call
@@ -39,15 +37,14 @@ fn assign_from_fn_call() -> () {
         (rightarrow_operator)
         (type_unit)
         (block
-          (expression_statement
-            (assign_expression
-              (member_access_expression
-                (identifier)
-                (attribute_access_operator)
-                (identifier))
-              (assign_operator)
-              (function_call_expression
-                (identifier)))))))
+          (assign_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))
+            (assign_operator)
+            (function_call_expression
+              (identifier))))))
 
 ===
 Return function call with one parameter
@@ -95,7 +92,7 @@ fn fn_call_with_multiple_params() -> () {
                 (string_literal)))))))
 
 ===
-spec constructor with various binary expressions
+`spec` constructor with various binary expressions
 ===
 fn constructor() -> some_spec {
     self.type = specType::Program;
@@ -111,39 +108,36 @@ fn constructor() -> some_spec {
         (rightarrow_operator)
         (identifier)
         (block
-          (expression_statement
-            (assign_expression
-              (member_access_expression
-                (identifier)
-                (attribute_access_operator)
-                (identifier))
-              (assign_operator)
-              (member_access_expression
-                (identifier)
-                (expand_operator)
-                (identifier))))
-          (expression_statement
-            (assign_expression
-              (member_access_expression
-                (identifier)
-                (attribute_access_operator)
-                (identifier))
-              (assign_operator)
-              (member_access_expression
-                (identifier)
-                (expand_operator)
-                (identifier))))
-          (expression_statement
-            (assign_expression
-              (member_access_expression
-                (identifier)
-                (attribute_access_operator)
-                (identifier))
-              (assign_operator)
-              (binary_expression
-                (number_literal)
-                (pow_operator)
-                (number_literal)))))))
+          (assign_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))
+            (assign_operator)
+            (member_access_expression
+              (identifier)
+              (expand_operator)
+              (identifier)))
+          (assign_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))
+            (assign_operator)
+            (member_access_expression
+              (identifier)
+              (expand_operator)
+              (identifier)))
+          (assign_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))
+            (assign_operator)
+            (binary_expression
+              (number_literal)
+              (pow_operator)
+              (number_literal))))))
 
 ===
 Create and assign Array<u32> without parameters
@@ -160,21 +154,20 @@ fn constructor() -> some_spec {
         (rightarrow_operator)
         (identifier)
         (block
-          (expression_statement
-            (assign_expression
+          (assign_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))
+            (assign_operator)
+            (function_call_expression
               (member_access_expression
-                (identifier)
-                (attribute_access_operator)
-                (identifier))
-              (assign_operator)
-              (function_call_expression
-                (member_access_expression
-                  (generic_name
-                    (identifier)
-                    (type_argument_list
-                      (type_u32)))
-                  (expand_operator)
-                  (identifier))))))))
+                (generic_name
+                  (identifier)
+                  (type_argument_list
+                    (type_u32)))
+                (expand_operator)
+                (identifier)))))))
 
 ===
 Create and assign Array<i64> with one parameter
@@ -191,22 +184,21 @@ fn constructor() -> some_spec {
         (rightarrow_operator)
         (identifier)
         (block
-          (expression_statement
-            (assign_expression
+          (assign_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))
+            (assign_operator)
+            (function_call_expression
               (member_access_expression
-                (identifier)
-                (attribute_access_operator)
+                (generic_name
+                  (identifier)
+                  (type_argument_list
+                    (type_i64)))
+                (expand_operator)
                 (identifier))
-              (assign_operator)
-              (function_call_expression
-                (member_access_expression
-                  (generic_name
-                    (identifier)
-                    (type_argument_list
-                      (type_i64)))
-                  (expand_operator)
-                  (identifier))
-                (number_literal)))))))
+              (number_literal))))))
 
 ===
 Create and assign Array<u64> with multiple parameters
@@ -223,40 +215,39 @@ fn constructor() -> some_spec {
         (rightarrow_operator)
         (identifier)
         (block
-          (expression_statement
-            (assign_expression
+          (assign_statement
+            (member_access_expression
+              (identifier)
+              (attribute_access_operator)
+              (identifier))
+            (assign_operator)
+            (function_call_expression
               (member_access_expression
-                (identifier)
-                (attribute_access_operator)
+                (generic_name
+                  (identifier)
+                  (type_argument_list
+                    (type_u64)))
+                (expand_operator)
                 (identifier))
-              (assign_operator)
+              (number_literal)
+              (identifier)
+              (bool_literal)
+              (function_call_expression
+                (identifier)
+                (string_literal))
+              (string_literal)
               (function_call_expression
                 (member_access_expression
                   (generic_name
                     (identifier)
                     (type_argument_list
-                      (type_u64)))
+                      (type_i32)))
                   (expand_operator)
                   (identifier))
-                (number_literal)
-                (identifier)
-                (bool_literal)
-                (function_call_expression
-                  (identifier)
-                  (string_literal))
-                (string_literal)
-                (function_call_expression
-                  (member_access_expression
-                    (generic_name
-                      (identifier)
-                      (type_argument_list
-                        (type_i32)))
-                    (expand_operator)
-                    (identifier))
-                  (binary_expression
-                    (number_literal)
-                    (mul_operator)
-                    (number_literal)))))))))
+                (binary_expression
+                  (number_literal)
+                  (mul_operator)
+                  (number_literal))))))))
 
 ===
 Compound binary expression with parenthesized expression

@@ -39,7 +39,6 @@ module.exports = grammar({
     [$._simple_name, $.generic_name],
     [$._simple_name, $.type_qualified_name],
 
-    [$._expression_statement, $._lval_expression],
     [$._lval_expression, $._name],
 
     [$.qualified_name, $.member_access_expression],
@@ -65,6 +64,7 @@ module.exports = grammar({
     _statement: $ => choice(
       $._block,
       $.expression_statement,
+      $.assign_statement,
       $.return_statement,
       $.loop_statement,
       $.if_statement,
@@ -149,18 +149,18 @@ module.exports = grammar({
     )),
 
     _lval_expression: $ => choice(
+      $._simple_name,
       $.member_access_expression,
       $.array_index_access_expression,
-      $._simple_name,
-      $.prefix_unary_expression,
-      $.parenthesized_expression,
     ),
 
     _non_lval_expression: $ => choice(
-      $.binary_expression,
       $._literal,
+      $.binary_expression,
       $.array_literal,
-      $._expression_statement,
+      $.function_call_expression,
+      $.prefix_unary_expression,
+      $.parenthesized_expression,
       $.uzumaki_keyword
     ),
 
@@ -184,13 +184,7 @@ module.exports = grammar({
       choice($.attribute_access_operator, $.expand_operator),
       field('name', $._simple_name),
     )),
-
-    assign_expression: $ => prec.left(seq(
-      field('left', $._lval_expression),
-      $.assign_operator,
-      field('right', $._expression),
-    )),
-
+    
     function_call_expression: $ => prec.dynamic(PRECEDENCE.FUNC_CALL, seq(
       field('function', $._lval_expression),
       optional(field('type_parameters', alias($.type_argument_list, $.type_parameters))),
@@ -199,6 +193,18 @@ module.exports = grammar({
       ')',
     )),
 
+    expression_statement: $ => seq(
+      $._expression,
+      $._terminal_symbol
+    ),
+    
+    assign_statement: $ => prec.left(seq(
+      field('left', $._lval_expression),
+      $.assign_operator,
+      field('right', $._expression),
+      $._terminal_symbol,
+    )),
+    
     assert_statement: $ => seq(
       'assert',
       $._expression,
@@ -420,18 +426,6 @@ module.exports = grammar({
         ),
       ),
       $._terminal_symbol,
-    ),
-
-    expression_statement: $ => seq(
-      $._expression_statement,
-      $._terminal_symbol,
-    ),
-
-    _expression_statement: $ => choice(
-      $.assign_expression,
-      $.function_call_expression,
-      $.prefix_unary_expression,
-      $.parenthesized_expression,
     ),
 
     return_statement: $ => seq(

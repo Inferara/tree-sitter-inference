@@ -39,6 +39,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "assign_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "return_statement"
         },
         {
@@ -385,23 +389,15 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "_simple_name"
+        },
+        {
+          "type": "SYMBOL",
           "name": "member_access_expression"
         },
         {
           "type": "SYMBOL",
           "name": "array_index_access_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_simple_name"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "prefix_unary_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "parenthesized_expression"
         }
       ]
     },
@@ -410,11 +406,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "binary_expression"
+          "name": "_literal"
         },
         {
           "type": "SYMBOL",
-          "name": "_literal"
+          "name": "binary_expression"
         },
         {
           "type": "SYMBOL",
@@ -422,7 +418,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression_statement"
+          "name": "function_call_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "prefix_unary_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parenthesized_expression"
         },
         {
           "type": "SYMBOL",
@@ -530,35 +534,6 @@
             "content": {
               "type": "SYMBOL",
               "name": "_simple_name"
-            }
-          }
-        ]
-      }
-    },
-    "assign_expression": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "left",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_lval_expression"
-            }
-          },
-          {
-            "type": "SYMBOL",
-            "name": "assign_operator"
-          },
-          {
-            "type": "FIELD",
-            "name": "right",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
             }
           }
         ]
@@ -707,6 +682,52 @@
           {
             "type": "STRING",
             "value": ")"
+          }
+        ]
+      }
+    },
+    "expression_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_terminal_symbol"
+        }
+      ]
+    },
+    "assign_statement": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_lval_expression"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "assign_operator"
+          },
+          {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_terminal_symbol"
           }
         ]
       }
@@ -2393,40 +2414,6 @@
         }
       ]
     },
-    "expression_statement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_expression_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_terminal_symbol"
-        }
-      ]
-    },
-    "_expression_statement": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "assign_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function_call_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "prefix_unary_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "parenthesized_expression"
-        }
-      ]
-    },
     "return_statement": {
       "type": "SEQ",
       "members": [
@@ -2999,10 +2986,6 @@
     [
       "_simple_name",
       "type_qualified_name"
-    ],
-    [
-      "_expression_statement",
-      "_lval_expression"
     ],
     [
       "_lval_expression",

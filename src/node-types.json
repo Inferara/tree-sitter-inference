@@ -206,14 +206,6 @@
           {
             "type": "member_access_expression",
             "named": true
-          },
-          {
-            "type": "parenthesized_expression",
-            "named": true
-          },
-          {
-            "type": "prefix_unary_expression",
-            "named": true
           }
         ]
       },
@@ -227,10 +219,6 @@
           },
           {
             "type": "array_literal",
-            "named": true
-          },
-          {
-            "type": "assign_expression",
             "named": true
           },
           {
@@ -302,10 +290,6 @@
           "named": true
         },
         {
-          "type": "assign_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -373,10 +357,6 @@
           "named": true
         },
         {
-          "type": "assign_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -428,7 +408,7 @@
     }
   },
   {
-    "type": "assign_expression",
+    "type": "assign_statement",
     "named": true,
     "fields": {
       "left": {
@@ -450,14 +430,6 @@
           {
             "type": "member_access_expression",
             "named": true
-          },
-          {
-            "type": "parenthesized_expression",
-            "named": true
-          },
-          {
-            "type": "prefix_unary_expression",
-            "named": true
           }
         ]
       },
@@ -471,10 +443,6 @@
           },
           {
             "type": "array_literal",
-            "named": true
-          },
-          {
-            "type": "assign_expression",
             "named": true
           },
           {
@@ -569,10 +537,6 @@
           },
           {
             "type": "array_literal",
-            "named": true
-          },
-          {
-            "type": "assign_expression",
             "named": true
           },
           {
@@ -716,10 +680,6 @@
             "named": true
           },
           {
-            "type": "assign_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -781,6 +741,10 @@
         "types": [
           {
             "type": "assert_statement",
+            "named": true
+          },
+          {
+            "type": "assign_statement",
             "named": true
           },
           {
@@ -946,10 +910,6 @@
             "named": true
           },
           {
-            "type": "assign_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -1062,11 +1022,39 @@
       "required": true,
       "types": [
         {
-          "type": "assign_expression",
+          "type": "array_index_access_expression",
+          "named": true
+        },
+        {
+          "type": "array_literal",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "bool_literal",
           "named": true
         },
         {
           "type": "function_call_expression",
+          "named": true
+        },
+        {
+          "type": "generic_name",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "member_access_expression",
+          "named": true
+        },
+        {
+          "type": "number_literal",
           "named": true
         },
         {
@@ -1075,6 +1063,18 @@
         },
         {
           "type": "prefix_unary_expression",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "unit_literal",
+          "named": true
+        },
+        {
+          "type": "uzumaki_keyword",
           "named": true
         }
       ]
@@ -1233,10 +1233,6 @@
             "named": true
           },
           {
-            "type": "assign_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -1326,14 +1322,6 @@
           },
           {
             "type": "member_access_expression",
-            "named": true
-          },
-          {
-            "type": "parenthesized_expression",
-            "named": true
-          },
-          {
-            "type": "prefix_unary_expression",
             "named": true
           }
         ]
@@ -1554,10 +1542,6 @@
             "named": true
           },
           {
-            "type": "assign_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -1669,10 +1653,6 @@
           },
           {
             "type": "array_literal",
-            "named": true
-          },
-          {
-            "type": "assign_expression",
             "named": true
           },
           {
@@ -1877,10 +1857,6 @@
             "named": true
           },
           {
-            "type": "assign_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -1946,10 +1922,6 @@
           },
           {
             "type": "array_literal",
-            "named": true
-          },
-          {
-            "type": "assign_expression",
             "named": true
           },
           {
@@ -2106,10 +2078,6 @@
           "named": true
         },
         {
-          "type": "assign_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -2173,10 +2141,6 @@
         },
         {
           "type": "array_literal",
-          "named": true
-        },
-        {
-          "type": "assign_expression",
           "named": true
         },
         {
@@ -2296,10 +2260,6 @@
           },
           {
             "type": "array_literal",
-            "named": true
-          },
-          {
-            "type": "assign_expression",
             "named": true
           },
           {
@@ -3265,10 +3225,6 @@
           },
           {
             "type": "array_literal",
-            "named": true
-          },
-          {
-            "type": "assign_expression",
             "named": true
           },
           {

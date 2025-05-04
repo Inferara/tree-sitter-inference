@@ -109,7 +109,7 @@ struct identity {
 
 
 ===
-Struct with methods that take reference to self.
+Struct with methods that take reference to self
 ===
 
 struct Wrapi32 {
@@ -121,49 +121,46 @@ struct Wrapi32 {
 		self.val = self.val + x;
 	}
 }
-
 ---
-
-(source_file
-	(struct_definition
-		(identifier)
-		(struct_field
-			(identifier)
-			(type_i32))
-		(function_definition
-			(function_keyword)
-			(identifier)
-			(argument_list
-				(self_reference))
-			(rightarrow_operator)
-			(type_i32)
-			(block
-				(return_statement
-					(member_access_expression
-						(identifier)
-						(attribute_access_operator)
-						(identifier)))))
-		(function_definition
-			(function_keyword)
-			(identifier)
-			(argument_list
-				(self_reference
-					(mut_keyword))
-				(argument_declaration
-					(identifier)
-					(type_i32)))
-				(block
-					(expression_statement
-						(assign_expression
-							(member_access_expression
-								(identifier)
-								(attribute_access_operator)
-								(identifier))
-							(assign_operator)
-							(binary_expression
-								(member_access_expression
-									(identifier)
-									(attribute_access_operator)
-									(identifier))
-								(add_operator)
-								(identifier))))))))
+    (source_file
+      (struct_definition
+        (identifier)
+        (struct_field
+          (identifier)
+          (type_i32))
+        (function_definition
+          (function_keyword)
+          (identifier)
+          (argument_list
+            (self_reference))
+          (rightarrow_operator)
+          (type_i32)
+          (block
+            (return_statement
+              (member_access_expression
+                (identifier)
+                (attribute_access_operator)
+                (identifier)))))
+        (function_definition
+          (function_keyword)
+          (identifier)
+          (argument_list
+            (self_reference
+              (mut_keyword))
+            (argument_declaration
+              (identifier)
+              (type_i32)))
+          (block
+            (assign_statement
+              (member_access_expression
+                (identifier)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (binary_expression
+                (member_access_expression
+                  (identifier)
+                  (attribute_access_operator)
+                  (identifier))
+                (add_operator)
+                (identifier)))))))

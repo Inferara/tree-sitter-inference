@@ -1,34 +1,4 @@
 ===
-8.1.2 Examples (Assign)
-===
-fn example() -> u32 {
-  let a: u32 = 42;
-  let b: u32 = a;
-  return b;
-}
----
-    (source_file
-      (function_definition
-        (function_keyword)
-        (identifier)
-        (argument_list)
-        (rightarrow_operator)
-        (type_u32)
-        (block
-          (variable_definition_statement
-            (identifier)
-            (type_u32)
-            (assign_operator)
-            (number_literal))
-          (variable_definition_statement
-            (identifier)
-            (type_u32)
-            (assign_operator)
-            (identifier))
-          (return_statement
-            (identifier)))))
-
-===
 8.2.2 Examples (Member access)
 ===
 struct Account {

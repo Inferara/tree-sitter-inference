@@ -84,14 +84,13 @@ fn main() {
           (rightarrow_operator)
           (identifier)
           (block
-            (expression_statement
-              (assign_expression
-                (member_access_expression
-                  (identifier)
-                  (attribute_access_operator)
-                  (identifier))
-                (assign_operator)
-                (identifier))))))
+            (assign_statement
+              (member_access_expression
+                (identifier)
+                (attribute_access_operator)
+                (identifier))
+              (assign_operator)
+              (identifier)))))
       (function_definition
         (function_keyword)
         (identifier)
