@@ -137,6 +137,7 @@ module.exports = grammar({
     ),
 
     _literal: $ => choice(
+      $.array_literal,
       $.bool_literal,
       $.string_literal,
       $.number_literal,
@@ -157,7 +158,6 @@ module.exports = grammar({
     _non_lval_expression: $ => choice(
       $._literal,
       $.binary_expression,
-      $.array_literal,
       $.function_call_expression,
       $.prefix_unary_expression,
       $.parenthesized_expression,
