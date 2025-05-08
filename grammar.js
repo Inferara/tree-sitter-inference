@@ -159,6 +159,7 @@ module.exports = grammar({
       $._literal,
       $.binary_expression,
       $.function_call_expression,
+      $.struct_expression,
       $.prefix_unary_expression,
       $.parenthesized_expression,
       $.uzumaki_keyword
@@ -189,9 +190,18 @@ module.exports = grammar({
       field('function', $._lval_expression),
       optional(field('type_parameters', alias($.type_argument_list, $.type_parameters))),
       '(',
-      optional(sep1(seq(optional(seq(field('argument_name', $._name), ':')), field('argument', $._expression)), ',')),
+      optional(sep1(seq(optional(seq(field('argument_name', $._name), $._typedef_symbol)), field('argument', $._expression)), ',')),
       ')',
     )),
+
+    struct_expression: $ => seq(
+      field('struct_name', $._name),
+      $._lcb_symbol,
+      optional(sep1(
+        seq(field('field_name', $._name), $._typedef_symbol, field('field_value', $._expression)),
+        $._comma_symbol)),
+      $._rcb_symbol,
+    ),
 
     expression_statement: $ => seq(
       $._expression,
@@ -497,10 +507,10 @@ module.exports = grammar({
 
     array_literal: $ => seq(
       '[',
-      sep1(
+      optional(sep1(
         $._expression,
         ',',
-      ),
+      )),
       ']',
     ),
 

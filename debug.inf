@@ -1,10 +1,8 @@
-fn foo() {
-    assume {
-        let x: u32 = @;
-        forall {
-            let y: u32 = @;
-            foobar(param1 : @, param2: 5);
-            ///<do some checking for x and y>
-        }
+fn type_check(exprs : [Expr]) -> () {
+    let env : Binding = Binding { a: "", b: 0, c: [] };
+    let mut i : i32 = 0;
+    loop exprs.len {
+      check_expr(exprs[i], env);
+      i = i + 1;
     }
   }
