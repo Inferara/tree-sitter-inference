@@ -309,11 +309,11 @@ module.exports = grammar({
 
     struct_definition: $ => seq(
       'struct',
-      field('struct_name', $.identifier),
+      field('name', $.identifier),
       $._lcb_symbol,
       repeat(choice(
         seq(field('field', $.struct_field), ';'),
-        field('method', $.function_definition),
+        field('value', $.function_definition),
       )),
       $._rcb_symbol,
     ),

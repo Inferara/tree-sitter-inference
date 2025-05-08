@@ -1754,7 +1754,7 @@
         },
         {
           "type": "FIELD",
-          "name": "struct_name",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -1788,7 +1788,7 @@
               },
               {
                 "type": "FIELD",
-                "name": "method",
+                "name": "value",
                 "content": {
                   "type": "SYMBOL",
                   "name": "function_definition"

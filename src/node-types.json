@@ -2508,22 +2508,22 @@
           }
         ]
       },
-      "method": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "function_definition",
-            "named": true
-          }
-        ]
-      },
-      "struct_name": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_definition",
             "named": true
           }
         ]
