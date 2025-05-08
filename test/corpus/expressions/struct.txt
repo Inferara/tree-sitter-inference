@@ -1,0 +1,29 @@
+===
+Struct expression
+===
+fn main() {
+    let res: Structure = Structure {
+        a: 1,
+        b: [], /// empty array literal
+        c: "" /// empty string literal
+    };
+}
+---
+    (source_file
+      (function_definition
+        (function_keyword)
+        (identifier)
+        (argument_list)
+        (block
+          (variable_definition_statement
+            (identifier)
+            (identifier)
+            (assign_operator)
+            (struct_expression
+              (identifier)
+              (identifier)
+              (number_literal)
+              (identifier)
+              (array_literal)
+              (identifier)
+              (string_literal))))))

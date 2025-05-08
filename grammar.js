@@ -495,7 +495,7 @@ module.exports = grammar({
 
     string_literal: $ => seq(
       '"',
-      $._string_literal_content,
+      optional($._string_literal_content),
       '"',
     ),
 

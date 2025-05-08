@@ -24,7 +24,6 @@ fn spec_assign() -> () {
 ===
 Assign expression from function call
 ===
-
 fn assign_from_fn_call() -> () {
     self.type = get_type();
 }

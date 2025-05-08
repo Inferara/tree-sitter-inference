@@ -2692,8 +2692,16 @@
           "value": "\""
         },
         {
-          "type": "SYMBOL",
-          "name": "_string_literal_content"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
