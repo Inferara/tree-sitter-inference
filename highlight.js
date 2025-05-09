@@ -1,68 +1,66 @@
 #!/usr/bin/env node
 
+// Simple regex-based syntax highlighter for Inference language
 const fs = require('fs');
 const path = require('path');
-const Parser = require('tree-sitter');
-const Inference = require('./index.js');
 
-// Read command-line arguments
 const args = process.argv.slice(2);
-if (args.length < 1) {
-  console.error(`Usage: node ${path.basename(process.argv[1])} <file>`);
+if (args.length !== 1) {
+  console.error(`Usage: node ${path.basename(process.argv[1])} <file.inf>`);
   process.exit(1);
 }
-const filePath = args[0];
-if (!fs.existsSync(filePath)) {
-  console.error(`File not found: ${filePath}`);
+const file = args[0];
+let src;
+try {
+  src = fs.readFileSync(file, 'utf8');
+} catch (e) {
+  console.error(`Error reading file ${file}:`, e.message);
   process.exit(1);
 }
 
-// Load source code
-const source = fs.readFileSync(filePath, 'utf8');
-
-// Setup Tree-sitter parser
-const parser = new Parser();
-parser.setLanguage(Inference);
-const tree = parser.parse(source);
-
-// Load highlight queries
-const Q = Parser.Query;
-const QueryCursor = Parser.QueryCursor;
-const queryText = fs.readFileSync(path.join(__dirname, 'queries', 'highlights.scm'), 'utf8');
-const query = new Q(Inference, queryText);
-const cursor = new QueryCursor();
-const captures = cursor.captures(query, tree.rootNode);
-
-// Utility: escape HTML
-function escapeHtml(str) {
-  return str.replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
+// Escape HTML
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
 }
 
-// Build list of highlight spans
-const spans = captures.map(c => ({
-  start: c.node.startIndex,
-  end: c.node.endIndex,
-  cls: c.name
-}));
-// Sort spans by start, then by length descending
-spans.sort((a, b) => a.start - b.start || b.end - a.end);
+// Define token patterns and classes
+const patterns = [
+  {cls: 'comment',     re: /^\/\/\/.*(?:\r?\n|$)/},
+  {cls: 'string',      re: /^"(?:\\.|[^"\\])*"/},
+  {cls: 'type',        re: /^(?:\b(?:i8|i16|i32|i64|u8|u16|u32|u64|bool)\b|\(\))/},
+  {cls: 'keyword',     re: /^(?:\b(?:fn|forall|exists|assume|unique|loop|if|else|break|return|let|const|type|enum|struct|use|spec|external)\b)/},
+  {cls: 'boolean',     re: /^(?:\b(?:true|false)\b)/},
+  {cls: 'number',      re: /^-?\d+(?:\.\d+)?/},
+  {cls: 'operator',    re: /^(?:->|::|\*\*|==|!=|<=|>=|&&|\|\||<<|>>|[=+\-*/%&|^<>])/},
+  {cls: 'punctuation', re: /^[{}\[\]();,]/},
+  {cls: 'identifier',  re: /^\b[A-Za-z_]\w*\b/},
+  {cls: 'whitespace',  re: /^\s+/},
+  {cls: 'text',        re: /^./}
+];
 
-// Merge spans into HTML
-let result = '';
+// Highlight
+let out = '';
 let pos = 0;
-for (const span of spans) {
-  if (span.start > pos) {
-    result += escapeHtml(source.slice(pos, span.start));
+while (pos < src.length) {
+  let matched = false;
+  for (const {cls, re} of patterns) {
+    const m = re.exec(src.slice(pos));
+    if (!m) continue;
+    const tok = m[0];
+    const esc = escapeHtml(tok);
+    if (cls === 'whitespace' || cls === 'text') {
+      out += esc;
+    } else {
+      out += `<span class="${cls}">${esc}</span>`;
+    }
+    pos += tok.length;
+    matched = true;
+    break;
   }
-  const content = escapeHtml(source.slice(span.start, span.end));
-  result += `<span class="${span.cls}">${content}</span>`;
-  pos = Math.max(pos, span.end);
-}
-if (pos < source.length) {
-  result += escapeHtml(source.slice(pos));
+  if (!matched) { out += escapeHtml(src[pos]); pos++; }
 }
 
-// Output wrapped in <pre><code>
-console.log(`<pre><code>${result}</code></pre>`);
+// Wrap in pre/code
+process.stdout.write('<pre><code>' + out + '</code></pre>');

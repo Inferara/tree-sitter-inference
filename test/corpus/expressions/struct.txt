@@ -25,5 +25,7 @@ fn main() {
               (number_literal)
               (identifier)
               (array_literal)
+              (comment)
               (identifier)
-              (string_literal))))))
+              (string_literal)
+              (comment))))))

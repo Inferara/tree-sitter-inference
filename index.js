@@ -12,11 +12,12 @@ try {
   }
 }
 
-// Use the .language property from the native binding
-const language = binding.language || binding;
-
 // Attach the two properties that tree-sitter-highlight needs
-language.nodeTypeNamesById = Array.isArray(staticData) ? staticData.map(e => e.type) : [];
-language.types = staticData;
+// Expose node type names and types for tree-sitter-highlight (if used)
+binding.nodeTypeNamesById = Array.isArray(staticData) ? staticData.map(e => e.type) : [];
+binding.types = staticData;
+// Prevent tree-sitter JS from re-initializing node subclasses (avoids version checks)
+binding.nodeSubclasses = [];
 
-module.exports = language;
+// Export the binding object (with .language) so tree-sitter JS can unwrap it properly
+module.exports = binding;

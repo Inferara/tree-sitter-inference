@@ -44,7 +44,8 @@ fn foo() {
               (binary_expression
                 (number_literal)
                 (equals_operator)
-                (number_literal)))))))
+                (number_literal))))
+                (comment))))
 
 ===
 6.2.2.2 Examples (Integers)
@@ -74,6 +75,7 @@ fn foo() {
                   (number_literal)))
               (sub_operator)
               (number_literal)))
+          (comment)
           (variable_definition_statement
             (identifier)
             (type_i16)
@@ -86,6 +88,7 @@ fn foo() {
                   (number_literal)))
               (sub_operator)
               (number_literal)))
+          (comment)
           (variable_definition_statement
             (identifier)
             (type_i32)
@@ -98,6 +101,7 @@ fn foo() {
                   (number_literal)))
               (sub_operator)
               (number_literal)))
+          (comment)
           (variable_definition_statement
             (identifier)
             (type_i64)
@@ -109,7 +113,8 @@ fn foo() {
                   (pow_operator)
                   (number_literal)))
               (sub_operator)
-              (number_literal))))))
+              (number_literal)))
+              (comment))))
 
 ===
 6.2.3.2 Examples (Unsigned Integers)
@@ -139,6 +144,7 @@ fn foo() {
                   (number_literal)))
               (sub_operator)
               (number_literal)))
+          (comment)
           (variable_definition_statement
             (identifier)
             (type_u16)
@@ -151,6 +157,7 @@ fn foo() {
                   (number_literal)))
               (sub_operator)
               (number_literal)))
+          (comment)
           (variable_definition_statement
             (identifier)
             (type_u32)
@@ -163,6 +170,7 @@ fn foo() {
                   (number_literal)))
               (sub_operator)
               (number_literal)))
+          (comment)
           (variable_definition_statement
             (identifier)
             (type_u64)
@@ -174,7 +182,8 @@ fn foo() {
                   (pow_operator)
                   (number_literal)))
               (sub_operator)
-              (number_literal))))))
+              (number_literal)))
+          (comment))))
 ===
 6.3.2 Examples (Array)
 ===
