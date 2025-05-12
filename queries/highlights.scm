@@ -2,52 +2,28 @@
 (comment) @comment
 
 ;; punctuation
-(";") @punctuation
-(",") @punctuation
-("{") @punctuation
-("}") @punctuation
-("(") @punctuation
-(")") @punctuation
-("[") @punctuation
-("]") @punctuation
+[  ";" "," "{" "}" "(" ")" "[" "]" ] @punctuation
 
 ;; operators
-("=") @operator
-("->") @operator
-("::") @operator
-("+") @operator
-("-") @operator
-("*") @operator
-("**") @operator
-("%") @operator
-("==") @operator
-("!=") @operator
-("<") @operator
-(">") @operator
-("<=") @operator
-(">=") @operator
-("&&") @operator
-("||") @operator
-("&") @operator
-("|") @operator
-("^") @operator
-("<<") @operator
-(">>") @operator
+[  "=" "->" "::" "+" "-" "*" "**" "%"
+   "==" "!=" "<" ">" "<=" ">="
+   "&&" "||" "&" "|" "^" "<<" ">>"
+] @operator
 
 ;; keywords
-([ "fn" "forall" "exists" "assume" "unique"
+[  "fn" "forall" "exists" "assume" "unique"
    "loop" "if" "else" "break" "return"
    "let" "const" "type" "enum" "struct" "use" "spec" "external"
-]) @keyword
+] @keyword
 
 ;; boolean literals
-([ "true" "false" ]) @boolean
+[  "true" "false" ] @boolean
 
 ;; types
-([ type_i8 type_i16 type_i32 type_i64
+[  type_i8 type_i16 type_i32 type_i64
    type_u8 type_u16 type_u32 type_u64
    type_bool type_unit
-]) @type
+] @type
 
 ;; literals
 (string_literal)        @string

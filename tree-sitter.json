@@ -8,9 +8,6 @@
       "file-types": [
         "inf"
       ],
-      "highlights": [
-        "queries/highlights.scm"
-      ],
       "injection-regex": "inf"
     }
   ],
