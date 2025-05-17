@@ -5,25 +5,52 @@
 [  ";" "," "{" "}" "(" ")" "[" "]" ] @punctuation
 
 ;; operators
-[  "=" "->" "::" "+" "-" "*" "**" "%"
-   "==" "!=" "<" ">" "<=" ">="
-   "&&" "||" "&" "|" "^" "<<" ">>"
-] @operator
+[ "=" "->" "::" "+" "-" "*" "**" "%" "==" "!=" "<" ">" "<=" ">=" "&&" "||" "&" "|" "^" "<<" ">>" ] @operator
+(">") @operator
+("<=") @operator
+(">=") @operator
+("&&") @operator
+("||") @operator
+("&") @operator
+("|") @operator
+("^") @operator
+("<<") @operator
+(">>") @operator
 
 ;; keywords
-[  "fn" "forall" "exists" "assume" "unique"
-   "loop" "if" "else" "break" "return"
-   "let" "const" "type" "enum" "struct" "use" "spec" "external"
-] @keyword
+(function_keyword) @keyword
+(forall_keyword) @keyword
+("exists") @keyword
+("assume") @keyword
+("unique") @keyword
+("loop") @keyword
+("if") @keyword
+("else") @keyword
+("break") @keyword
+("return") @keyword
+("let") @keyword
+("const") @keyword
+("type") @keyword
+("enum") @keyword
+("struct") @keyword
+("use") @keyword
+("spec") @keyword
+("external") @keyword
 
 ;; boolean literals
-[  "true" "false" ] @boolean
+(bool_literal) @boolean
 
 ;; types
-[  type_i8 type_i16 type_i32 type_i64
-   type_u8 type_u16 type_u32 type_u64
-   type_bool type_unit
-] @type
+(type_i8) @type
+(type_i16) @type
+(type_i32) @type
+(type_i64) @type
+(type_u8) @type
+(type_u16) @type
+(type_u32) @type
+(type_u64) @type
+(type_bool) @type
+(type_unit) @type
 
 ;; literals
 (string_literal)        @string
@@ -47,4 +74,4 @@
 (enum_definition
   name: (identifier) @type.definition)
 (struct_definition
-  struct_name: (identifier) @type.definition)
+  name: (identifier) @type.definition)

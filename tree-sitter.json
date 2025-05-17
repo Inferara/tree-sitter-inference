@@ -1,4 +1,4 @@
-{
+{  
   "grammars": [
     {
       "name": "inference",
@@ -8,7 +8,8 @@
       "file-types": [
         "inf"
       ],
-      "injection-regex": "inf"
+      "injection-regex": "inf",
+      "highlights": "queries/highlights.scm"
     }
   ],
   "metadata": {
