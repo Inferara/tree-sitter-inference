@@ -695,7 +695,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "struct_name",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "_name"

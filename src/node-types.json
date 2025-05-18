@@ -2622,7 +2622,7 @@
           }
         ]
       },
-      "struct_name": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [

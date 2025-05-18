@@ -21,7 +21,7 @@
 #define ALIAS_COUNT 1
 #define TOKEN_COUNT 78
 #define EXTERNAL_TOKEN_COUNT 0
-#define FIELD_COUNT 36
+#define FIELD_COUNT 35
 #define MAX_ALIAS_SEQUENCE_LENGTH 9
 #define MAX_RESERVED_WORD_SET_SIZE 0
 #define PRODUCTION_ID_COUNT 81
@@ -1232,11 +1232,10 @@ enum ts_field_identifiers {
   field_right = 29,
   field_segment = 30,
   field_statement = 31,
-  field_struct_name = 32,
-  field_type = 33,
-  field_type_parameters = 34,
-  field_value = 35,
-  field_variant = 36,
+  field_type = 32,
+  field_type_parameters = 33,
+  field_value = 34,
+  field_variant = 35,
 };
 
 static const char * const ts_field_names[] = {
@@ -1272,7 +1271,6 @@ static const char * const ts_field_names[] = {
   [field_right] = "right",
   [field_segment] = "segment",
   [field_statement] = "statement",
-  [field_struct_name] = "struct_name",
   [field_type] = "type",
   [field_type_parameters] = "type_parameters",
   [field_value] = "value",
@@ -1502,7 +1500,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
   [89] =
     {field_function, 0},
   [90] =
-    {field_struct_name, 0},
+    {field_name, 0},
   [91] =
     {field_mut, 0},
     {field_name, 1},
@@ -1599,7 +1597,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
   [162] =
     {field_field_name, 2},
     {field_field_value, 4},
-    {field_struct_name, 0},
+    {field_name, 0},
   [165] =
     {field_argument, 3},
     {field_argument_name, 1},
@@ -1619,7 +1617,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_field_name, 5, .inherited = true},
     {field_field_value, 4},
     {field_field_value, 5, .inherited = true},
-    {field_struct_name, 0},
+    {field_name, 0},
   [181] =
     {field_field_name, 0, .inherited = true},
     {field_field_name, 1, .inherited = true},

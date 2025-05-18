@@ -195,7 +195,7 @@ module.exports = grammar({
     )),
 
     struct_expression: $ => seq(
-      field('struct_name', $._name),
+      field('name', $._name),
       $._lcb_symbol,
       optional(sep1(
         seq(field('field_name', $._name), $._typedef_symbol, field('field_value', $._expression)),
