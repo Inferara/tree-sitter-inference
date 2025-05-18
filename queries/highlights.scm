@@ -56,9 +56,7 @@
 
 ;; Name definitions
 (variable_definition_statement
-  name: (identifier) @variable
-  value: (array_literal (bool_literal) @boolean) @variable.value
-)
+  name: (identifier) @variable)
 (constant_definition
   name: (identifier) @constant)
 (function_definition
@@ -74,3 +72,9 @@
 (member_access_expression
   expression: ( (identifier) @type.definition)
 )
+(function_call_expression
+  function: ( (identifier) @function)
+)
+(qualified_name
+  qualifier: ( (identifier) @type.definition)
+  name: (identifier) @type.definition)
