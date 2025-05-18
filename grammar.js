@@ -47,7 +47,7 @@ module.exports = grammar({
 
   extras: $ => [
     /\s/,
-    $._comment,
+    $.comment,
   ],
 
   rules: {
@@ -159,6 +159,7 @@ module.exports = grammar({
       $._literal,
       $.binary_expression,
       $.function_call_expression,
+      $.struct_expression,
       $.prefix_unary_expression,
       $.parenthesized_expression,
       $.uzumaki_keyword
@@ -189,9 +190,18 @@ module.exports = grammar({
       field('function', $._lval_expression),
       optional(field('type_parameters', alias($.type_argument_list, $.type_parameters))),
       '(',
-      optional(sep1(seq(optional(seq(field('argument_name', $._name), ':')), field('argument', $._expression)), ',')),
+      optional(sep1(seq(optional(seq(field('argument_name', $._name), $._typedef_symbol)), field('argument', $._expression)), ',')),
       ')',
     )),
+
+    struct_expression: $ => seq(
+      field('name', $._name),
+      $._lcb_symbol,
+      optional(sep1(
+        seq(field('field_name', $._name), $._typedef_symbol, field('field_value', $._expression)),
+        $._comma_symbol)),
+      $._rcb_symbol,
+    ),
 
     expression_statement: $ => seq(
       $._expression,
@@ -299,11 +309,11 @@ module.exports = grammar({
 
     struct_definition: $ => seq(
       'struct',
-      field('struct_name', $.identifier),
+      field('name', $.identifier),
       $._lcb_symbol,
       repeat(choice(
         seq(field('field', $.struct_field), ';'),
-        field('method', $.function_definition),
+        field('value', $.function_definition),
       )),
       $._rcb_symbol,
     ),
@@ -485,7 +495,7 @@ module.exports = grammar({
 
     string_literal: $ => seq(
       '"',
-      $._string_literal_content,
+      optional($._string_literal_content),
       '"',
     ),
 
@@ -497,10 +507,10 @@ module.exports = grammar({
 
     array_literal: $ => seq(
       '[',
-      sep1(
+      optional(sep1(
         $._expression,
         ',',
-      ),
+      )),
       ']',
     ),
 
@@ -561,6 +571,7 @@ module.exports = grammar({
       $._reserved_identifier,
     ),
 
-    _comment: _ => token(seq('///', /[^\n\r]*/)),
+    // Comments start with '///'
+    comment: _ => token(seq('///', /[^\n\r]*/)),
   },
 });

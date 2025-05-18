@@ -2622,7 +2622,7 @@
           }
         ]
       },
-      "name": {
+      "struct_name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3568,11 +3568,6 @@
   {
     "type": "break",
     "named": false
-  },
-  {
-    "type": "comment",
-    "named": true,
-    "extra": true
   },
   {
     "type": "const",

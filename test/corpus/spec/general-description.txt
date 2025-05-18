@@ -28,11 +28,16 @@ fn main() {
           (forall_block
             (forall_keyword)
             (block
+              (comment)
+              (comment)
               (variable_definition_statement
                 (identifier)
                 (type_u32)
                 (assign_operator)
                 (uzumaki_keyword))
+              (comment)
+              (comment)
+              (comment)
               (if_statement
                 (uzumaki_keyword)
                 (block
@@ -45,6 +50,8 @@ fn main() {
                     (function_call_expression
                       (identifier)
                       (identifier)))))))
+          (comment)
+          (comment)
           (expression_statement
             (function_call_expression
               (identifier)
@@ -78,11 +85,16 @@ fn main() {
         (block
           (exists_block
             (block
+              (comment)
+              (comment)
               (variable_definition_statement
                 (identifier)
                 (type_u32)
                 (assign_operator)
                 (uzumaki_keyword))
+              (comment)
+              (comment)
+              (comment)
               (if_statement
                 (uzumaki_keyword)
                 (block
@@ -95,6 +107,8 @@ fn main() {
                     (function_call_expression
                       (identifier)
                       (identifier)))))))
+          (comment)
+          (comment)
           (expression_statement
             (function_call_expression
               (identifier)
@@ -132,21 +146,30 @@ fn main() {
           (forall_block
             (forall_keyword)
             (block
+              (comment)
+              (comment)
               (variable_definition_statement
                 (identifier)
                 (type_u32)
                 (assign_operator)
                 (uzumaki_keyword))
+              (comment)
+              (comment)
+              (comment)
               (assume_block
                 (block
                   (expression_statement
                     (function_call_expression
                       (identifier)
                       (identifier)))))
+              (comment)
               (expression_statement
                 (function_call_expression
                   (identifier)
                   (identifier)))))
+          (comment)
+          (comment)
+          (comment)
           (expression_statement
             (function_call_expression
               (identifier)
@@ -205,8 +228,10 @@ fn main() {
             (uzumaki_keyword))
           (if_statement
             (identifier)
-            (block)
-            (block))
+            (block
+              (comment))
+            (block
+              (comment)))
           (variable_definition_statement
             (mut_keyword)
             (identifier)
@@ -226,11 +251,14 @@ fn main() {
                 (identifier)
                 (equals_operator)
                 (number_literal)))
-            (block)
+            (block
+              (comment))
             (parenthesized_expression
               (binary_expression
                 (identifier)
                 (equals_operator)
                 (number_literal)))
-            (block)
-            (block)))))
+            (block
+              (comment))
+            (block
+              (comment))))))

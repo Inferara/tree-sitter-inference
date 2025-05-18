@@ -422,6 +422,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "struct_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "prefix_unary_expression"
         },
         {
@@ -602,8 +606,8 @@
                                 }
                               },
                               {
-                                "type": "STRING",
-                                "value": ":"
+                                "type": "SYMBOL",
+                                "name": "_typedef_symbol"
                               }
                             ]
                           },
@@ -649,8 +653,8 @@
                                       }
                                     },
                                     {
-                                      "type": "STRING",
-                                      "value": ":"
+                                      "type": "SYMBOL",
+                                      "name": "_typedef_symbol"
                                     }
                                   ]
                                 },
@@ -685,6 +689,102 @@
           }
         ]
       }
+    },
+    "struct_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_name"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_lcb_symbol"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "field_name",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_name"
+                      }
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_typedef_symbol"
+                    },
+                    {
+                      "type": "FIELD",
+                      "name": "field_value",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_comma_symbol"
+                      },
+                      {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "FIELD",
+                            "name": "field_name",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "_name"
+                            }
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "_typedef_symbol"
+                          },
+                          {
+                            "type": "FIELD",
+                            "name": "field_value",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "_expression"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_rcb_symbol"
+        }
+      ]
     },
     "expression_statement": {
       "type": "SEQ",
@@ -1654,7 +1754,7 @@
         },
         {
           "type": "FIELD",
-          "name": "struct_name",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -1688,7 +1788,7 @@
               },
               {
                 "type": "FIELD",
-                "name": "method",
+                "name": "value",
                 "content": {
                   "type": "SYMBOL",
                   "name": "function_definition"
@@ -2592,8 +2692,16 @@
           "value": "\""
         },
         {
-          "type": "SYMBOL",
-          "name": "_string_literal_content"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -2645,27 +2753,35 @@
           "value": "["
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    ]
+                  }
+                }
+              ]
             },
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_expression"
-                  }
-                ]
-              }
+              "type": "BLANK"
             }
           ]
         },
@@ -2951,7 +3067,7 @@
         }
       ]
     },
-    "_comment": {
+    "comment": {
       "type": "TOKEN",
       "content": {
         "type": "SEQ",
@@ -2975,7 +3091,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "_comment"
+      "name": "comment"
     }
   ],
   "conflicts": [

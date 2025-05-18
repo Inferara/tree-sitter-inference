@@ -203,7 +203,8 @@ fn foo<T>(a: T) {
         (function_keyword)
         (identifier)
         (argument_list)
-        (block))
+        (block
+          (comment)))
       (function_definition
         (function_keyword)
         (identifier)
@@ -258,7 +259,8 @@ fn foo<T>(a: T) {
           (argument_declaration
             (identifier)
             (identifier)))
-                (block))
+                (block
+                (comment)))
       (function_definition
         (function_keyword)
         (identifier)
@@ -268,4 +270,5 @@ fn foo<T>(a: T) {
           (argument_declaration
             (identifier)
             (identifier)))
-        (block)))
+        (block 
+          (comment))))
