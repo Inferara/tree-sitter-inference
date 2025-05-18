@@ -4,8 +4,7 @@
 ;; Punctuation symbols
 [ ";" ":" "," "{" "}" "(" ")" "[" "]" "<" ">" ] @punctuation
 
-[ "struct" "enum" "const" "spec" "return" "self" "loop" "let" "assume" "exists" "unique" "if" "else" "break" "use" "from" ] @keyword
-
+[ "struct" "enum" "const" "spec" "return" "self" "loop" "let" "assume" "exists" "unique" "if" "else" "break" "use" "from" "assert" "type" "external" ] @keyword
 
 ;; Operators (node types from grammar.js)
 (assign_operator) @operator
@@ -42,9 +41,9 @@
 (bool_literal) @boolean
 
 ;; Types
-(type_i8)  @type  (type_i16) @type  (type_i32) @type  (type_i64) @type
-(type_u8)  @type  (type_u16) @type  (type_u32) @type  (type_u64) @type
-(type_bool) @type (type_unit) @type  (type_array) @type  (type_fn) @type
+(type_i8) @type (type_i16) @type (type_i32) @type (type_i64) @type
+(type_u8) @type (type_u16) @type (type_u32) @type (type_u64) @type
+(type_bool) @type (type_unit) @type
 
 ;; Literals
 (string_literal) @string
@@ -56,17 +55,22 @@
 (identifier) @identifier
 
 ;; Name definitions
-;;(variable_definition_statement
-;;name: (identifier) @variable)
-;;(constant_definition
-;;name: (identifier) @constant)
-;;(function_definition
-;;name: (identifier) @function)
-;;(external_function_definition
-;;name: (identifier) @function)
-;;(type_definition_statement
-;;name: (identifier) @type.definition)
-;;(enum_definition
-;;name: (identifier) @type.definition)
-;;(struct_definition
-;;name: (identifier) @type.definition)
+(variable_definition_statement
+  name: (identifier) @variable
+  value: (array_literal (bool_literal) @boolean) @variable.value
+)
+(constant_definition
+  name: (identifier) @constant)
+(function_definition
+  name: (identifier) @function)
+(external_function_definition
+  name: (identifier) @function)
+(type_definition_statement
+  name: (identifier) @type.definition)
+(enum_definition
+  name: (identifier) @type.definition)
+(struct_definition
+  name: (identifier) @type.definition)
+(member_access_expression
+  expression: ( (identifier) @type.definition)
+)
