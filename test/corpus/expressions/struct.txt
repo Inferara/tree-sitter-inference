@@ -16,8 +16,8 @@ fn main() {
         (argument_list)
         (block
           (variable_definition_statement
-            (identifier)
-            (identifier)
+	    (identifier)
+	    (identifier)
             (assign_operator)
             (struct_expression
               (identifier)

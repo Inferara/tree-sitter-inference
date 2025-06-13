@@ -132,7 +132,6 @@ fn foo(i: i32) -> () forall {
         (rightarrow_operator)
         (type_unit)
         (forall_block
-          (forall_keyword)
           (block
             (assume_block
               (block
@@ -211,7 +210,6 @@ fn infinite_loop_example() forall {
         (identifier)
         (argument_list)
         (forall_block
-          (forall_keyword)
           (block
             (assume_block
               (block

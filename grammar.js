@@ -185,7 +185,7 @@ module.exports = grammar({
       choice($.attribute_access_operator, $.expand_operator),
       field('name', $._simple_name),
     )),
-    
+
     function_call_expression: $ => prec.dynamic(PRECEDENCE.FUNC_CALL, seq(
       field('function', $._lval_expression),
       optional(field('type_parameters', alias($.type_argument_list, $.type_parameters))),
@@ -207,14 +207,14 @@ module.exports = grammar({
       $._expression,
       $._terminal_symbol
     ),
-    
+
     assign_statement: $ => prec.left(seq(
       field('left', $._lval_expression),
       $.assign_operator,
       field('right', $._expression),
       $._terminal_symbol,
     )),
-    
+
     assert_statement: $ => seq(
       'assert',
       $._expression,
@@ -374,28 +374,28 @@ module.exports = grammar({
     ),
 
     ignore_argument: $ => seq(
-      '_', 
+      '_',
       $._typedef_symbol,
       field('type', $._type)
     ),
 
     assume_block: $ => seq(
-      'assume',
+      $._assume_keyword,
       field('body', $.block),
     ),
 
     forall_block: $ => seq(
-      $.forall_keyword,
+      $._forall_keyword,
       field('body', $.block),
     ),
 
     exists_block: $ => seq(
-      'exists',
+      $._exists_keyword,
       field('body', $.block),
     ),
-    
+
     unique_block: $ => seq(
-      'unique',
+      $._unique_keyword,
       field('body', $.block),
     ),
 
@@ -445,7 +445,10 @@ module.exports = grammar({
     ),
 
     function_keyword: _ => 'fn',
-    forall_keyword: _ => 'forall',
+    _forall_keyword: _ => 'forall',
+    _assume_keyword: _ => 'assume',
+    _exists_keyword: _ => 'exists',
+    _unique_keyword: _ => 'unique',
     uzumaki_keyword: _ => '@',
     mut_keyword: _ => 'mut',
 
@@ -483,9 +486,9 @@ module.exports = grammar({
     _rcb_symbol: _ => '}',
     _lrb_symbol: _ => '(',
     _rrb_symbol: _ => ')',
-    _comma_symbol: $ => ',',
-    _typedef_symbol: $ => ':',
-    _terminal_symbol: $ => ';',
+    _comma_symbol: _ => ',',
+    _typedef_symbol: _ => ':',
+    _terminal_symbol: _ => ';',
 
 
     bool_literal: _ => choice(
@@ -503,7 +506,7 @@ module.exports = grammar({
 
     number_literal: $ => seq(optional('-'), /\d+/),
 
-    unit_literal: $ => '()',
+    unit_literal: _ => '()',
 
     array_literal: $ => seq(
       '[',
@@ -544,7 +547,6 @@ module.exports = grammar({
     type_argument_list_definition: $ => seq(
       '<',
       choice(
-        repeat(','),
         sep1(field('type', $.identifier), $._comma_symbol),
       ),
       '>',
@@ -553,7 +555,6 @@ module.exports = grammar({
     type_argument_list: $ => seq(
       '<',
       choice(
-        repeat(','),
         sep1(field('type', $._type), $._comma_symbol),
       ),
       '>',

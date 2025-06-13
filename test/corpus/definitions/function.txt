@@ -180,7 +180,6 @@ fn add(a : i32, b : i32) -> i32 forall {
         (rightarrow_operator)
         (type_i32)
         (forall_block
-          (forall_keyword)
           (block
             (return_statement
               (binary_expression
@@ -209,7 +208,6 @@ fn procuring_sorted(func: sf) -> () forall {
         (rightarrow_operator)
         (type_unit)
         (forall_block
-          (forall_keyword)
           (block
             (assume_block
               (block

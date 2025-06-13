@@ -1,80 +1,77 @@
 ;; Comments
 (comment) @comment
 
-;; Punctuation symbols
-[ ";" ":" "," "{" "}" "(" ")" "[" "]" "<" ">" ] @punctuation
+;; Punctuation
 
-[ "struct" "enum" "const" "spec" "return" "self" "loop" "let" "assume" "exists" "unique" "if" "else" "break" "use" "from" "assert" "type" "external" ] @keyword
+[ ";" "," ] @punctuation.delimiter
+[ "(" ")" "{" "}" "[" "]" ] @punctuation.bracket
+"->" @punctuation.special
 
-;; Operators (node types from grammar.js)
-(assign_operator) @operator
-(rightarrow_operator) @operator
-(expand_operator) @operator
-(attribute_access_operator) @operator
-(add_operator) @operator
-(sub_operator) @operator
-(mul_operator) @operator
-(pow_operator) @operator
-(mod_operator) @operator
-(equals_operator) @operator
-(not_equals_operator) @operator
-(less_operator) @operator
-(greater_operator) @operator
-(less_equal_operator) @operator
-(greater_equal_operator) @operator
-(and_operator) @operator
-(or_operator) @operator
-(bit_and_operator) @operator
-(bit_or_operator) @operator
-(bit_xor_operator) @operator
-(shift_left_operator) @operator
-(shift_right_operator) @operator
-(unary_not) @operator
+;; Keywords
+"const" @keyword.modifier
 
-;; Keywords (token nodes)
+(forall_block
+  ("forall" @keyword.modifier))
 
-((function_keyword) @keyword)
-((forall_keyword) @keyword)
-((mut_keyword) @keyword)
+(assume_block
+  ("assume" @keyword.modifier) )
 
-;; Boolean literals
-(bool_literal) @boolean
+(unique_block
+  ("unique" @keyword.modifier) )
 
+(exists_block
+  ("exists" @keyword.modifier))
+
+"spec" @keyword.type
+"struct" @keyword.type
+"enum" @keyword.type
+"return" @keyword.return
+(function_keyword) @keyword.function
+[ "use" "external" ] @keyword.import
+[ "if" "else" ] @keyword.conditional
+"let" @keyword
+"type" @keyword
 ;; Types
-(type_i8) @type (type_i16) @type (type_i32) @type (type_i64) @type
-(type_u8) @type (type_u16) @type (type_u32) @type (type_u64) @type
-(type_bool) @type (type_unit) @type
+
+(type_i8) @type.builtin
+(type_i16) @type.builtin
+(type_i32) @type.builtin
+(type_i64) @type.builtin
+(type_u8) @type.builtin
+(type_u16) @type.builtin
+(type_u32) @type.builtin
+(type_u64) @type.builtin
+(type_bool) @type.builtin
+(type_unit) @type.builtin
+(type_array) @type.builtin
+(type_fn) @type.builtin
 
 ;; Literals
-(string_literal) @string
 (number_literal) @number
-(unit_literal) @constant
-(uzumaki_keyword) @constant
+(bool_literal) @boolean
+(unit_literal) @number.float
 
-;; Identifiers
-(identifier) @identifier
-
-;; Name definitions
-(variable_definition_statement
-  name: (identifier) @variable)
+;; Definitions
 (constant_definition
   name: (identifier) @constant)
+
+(enum_definition
+  name: (identifier) @type.definition
+  variant: (identifier) @variable.member)
+
 (function_definition
   name: (identifier) @function)
-(external_function_definition
-  name: (identifier) @function)
-(type_definition_statement
-  name: (identifier) @type.definition)
-(enum_definition
-  name: (identifier) @type.definition)
+
 (struct_definition
+  name: (identifier) @type.definition
+  (struct_field
+    name: (identifier) @variable.member
+    type: (identifier) @type))
+
+(spec_definition
   name: (identifier) @type.definition)
-(member_access_expression
-  expression: ( (identifier) @type.definition)
-)
+
+;; Expressions
 (function_call_expression
-  function: ( (identifier) @function)
-)
-(qualified_name
-  qualifier: ( (identifier) @type.definition)
-  name: (identifier) @type.definition)
+  function: (identifier) @function.call)
+

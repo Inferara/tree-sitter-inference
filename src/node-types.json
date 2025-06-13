@@ -1236,16 +1236,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "forall_keyword",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2743,7 +2733,7 @@
     "fields": {
       "type": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "generic_name",
@@ -2819,7 +2809,7 @@
     "fields": {
       "type": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "identifier",
@@ -3119,7 +3109,7 @@
     "fields": {
       "type": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "generic_name",
@@ -3619,8 +3609,8 @@
     "named": false
   },
   {
-    "type": "forall_keyword",
-    "named": true
+    "type": "forall",
+    "named": false
   },
   {
     "type": "from",

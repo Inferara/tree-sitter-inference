@@ -26,7 +26,6 @@ fn main() {
         (argument_list)
         (block
           (forall_block
-            (forall_keyword)
             (block
               (comment)
               (comment)
@@ -144,7 +143,6 @@ fn main() {
         (argument_list)
         (block
           (forall_block
-            (forall_keyword)
             (block
               (comment)
               (comment)

@@ -76,7 +76,6 @@ spec Hasher {
           (identifier)
           (argument_list)
           (forall_block
-            (forall_keyword)
             (block
               (variable_definition_statement
                 (identifier)
@@ -377,7 +376,6 @@ spec HashContext {
           (rightarrow_operator)
           (type_unit)
           (forall_block
-            (forall_keyword)
             (block
               (expression_statement
                 (function_call_expression

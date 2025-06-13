@@ -47,7 +47,6 @@ spec BasicConcepts {
           (identifier)
           (argument_list)
           (forall_block
-            (forall_keyword)
             (block
               (variable_definition_statement
                 (identifier)
@@ -119,7 +118,6 @@ fn foo() {
                 (assign_operator)
                 (uzumaki_keyword))
               (forall_block
-                (forall_keyword)
                 (block
                   (variable_definition_statement
                     (identifier)
