@@ -188,7 +188,7 @@ module.exports = grammar({
       field('name', $._simple_name),
     )),
 
-     _identifier_like_embedded_type: $ => choice(
+    _identifier_like_embedded_type: $ => choice(
       $.type_i8, $.type_i16, $.type_i32, $.type_i64,
       $.type_u8, $.type_u16, $.type_u32, $.type_u64,
       $.type_bool, $.type_fn
@@ -202,13 +202,13 @@ module.exports = grammar({
       )),
       alias(token.immediate('::'), '::'),
       field('name', $._simple_name),
-    )),
-    prec(PRECEDENCE.DOT, seq(
-      field('expression', $._bracketed_generic_name),
-      alias(token.immediate('::'), '::'),
-      field('name', $._simple_name),
-    )),
-  ),
+      )),
+      prec(PRECEDENCE.DOT, seq(
+        field('expression', $._bracketed_generic_name),
+        alias(token.immediate('::'), '::'),
+        field('name', $._simple_name),
+      )),
+    ),
 
     function_call_expression: $ => prec.dynamic(PRECEDENCE.FUNC_CALL, seq(
       field('function', choice($._lval_expression, $.type_member_access_expression, $.parenthesized_expression)),
