@@ -333,7 +333,7 @@ fn ignore_first(_, x : i32) -> i32 {
 ===
 Generic function with one parameter
 ===
-fn func<T>(x: T) -> T {
+fn func T' (x: T) -> T {
     return x;
 }
 ---
@@ -356,7 +356,7 @@ fn func<T>(x: T) -> T {
 ===
 Generic function with multiple parameters
 ===
-fn func<T, U>(x: T, y: U) -> T {
+fn func T' U' (x: T, y: U) -> T {
     return x;
 }
 ---

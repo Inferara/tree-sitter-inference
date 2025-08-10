@@ -171,7 +171,7 @@ spec AuctionSpec {
               (binary_expression
                 (identifier)
                 (equals_operator)
-                (member_access_expression
+                (type_member_access_expression
                   (identifier)
                   (expand_operator)
                   (identifier))))))))

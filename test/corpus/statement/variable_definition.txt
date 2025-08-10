@@ -22,7 +22,7 @@ fn test() {
 Multi-dimensional arrays
 ===
 fn test() {
-  let 3d_array : [[[u32]]];
+  let array_3d : [[[u32]]];
 }
 
 ---
@@ -43,7 +43,7 @@ fn test() {
 Array of non-primitive types
 ===
 fn test() {
-  let x : [Optional<someNamespace::String>; 4];
+  let x : [Optional someNamespace::String'; 4];
 }
 ---
 (source_file

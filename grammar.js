@@ -37,12 +37,11 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$._simple_name, $.generic_name],
-    [$._simple_name, $.type_qualified_name],
 
     [$._lval_expression, $._name],
 
     [$.qualified_name, $.member_access_expression],
-    [$.type_unit, $.unit_literal],
+    [$._bracketed_generic_name, $._simple_name],
   ],
 
   extras: $ => [
@@ -86,6 +85,7 @@ module.exports = grammar({
 
     _type: $ => choice(
       $._embedded_type,
+      $._bracketed_generic_name,
       $._name,
     ),
 
@@ -113,7 +113,7 @@ module.exports = grammar({
     type_u32: _ => token('u32'),
     type_u64: _ => token('u64'),
     type_bool: _ => token('bool'),
-    type_unit: _ => token('()'),
+    type_unit: $ => seq($._left_round_bracket, token.immediate(')')),
     type_array: $ => seq(
       '[',
       field('type', $._type),
@@ -157,6 +157,7 @@ module.exports = grammar({
 
     _non_lval_expression: $ => choice(
       $._literal,
+      $.type_member_access_expression,
       $.binary_expression,
       $.function_call_expression,
       $.struct_expression,
@@ -181,17 +182,46 @@ module.exports = grammar({
     ),
 
     member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
-      field('expression', choice($._expression, $._embedded_type, $._name)),
-      choice($.attribute_access_operator, $.expand_operator),
+      field('expression', choice($._name, $.member_access_expression)),
+      $.attribute_access_operator,
       field('name', $._simple_name),
     )),
 
+     _identifier_like_embedded_type: $ => choice(
+      $.type_i8, $.type_i16, $.type_i32, $.type_i64,
+      $.type_u8, $.type_u16, $.type_u32, $.type_u64,
+      $.type_bool, $.type_fn
+    ),
+
+    type_member_access_expression: $ => choice(prec(PRECEDENCE.DOT, seq(
+      field('expression', choice(
+        $.type_member_access_expression,
+        $._identifier_like_embedded_type,
+        $._name
+      )),
+      alias(token.immediate('::'), $.expand_operator),
+      field('name', $._simple_name),
+    )),
+    prec(PRECEDENCE.DOT, seq(
+      field('expression', $._bracketed_generic_name),
+      alias(token.immediate('::'), $.expand_operator),
+      field('name', $._simple_name),
+    )),
+  ),
+
     function_call_expression: $ => prec.dynamic(PRECEDENCE.FUNC_CALL, seq(
-      field('function', $._lval_expression),
-      optional(field('type_parameters', alias($.type_argument_list, $.type_parameters))),
-      '(',
-      optional(sep1(seq(optional(seq(field('argument_name', $._name), $._typedef_symbol)), field('argument', $._expression)), ',')),
-      ')',
+      field('function', choice($._lval_expression, $.type_member_access_expression, $.parenthesized_expression)),
+      $._left_round_bracket,
+      optional(
+        sep1(
+          seq(
+            optional(seq(field('argument_name', $._name), $._typedef_symbol)),
+            field('argument', $._expression)
+          ),
+          ','
+        ),
+      ),
+      $._right_round_bracket,
     )),
 
     struct_expression: $ => seq(
@@ -223,11 +253,11 @@ module.exports = grammar({
 
     break_statement: $ => prec.left(seq('break', $._terminal_symbol)),
 
-    parenthesized_expression: $ => seq(
-      '(',
-      $._non_lval_expression,
-      ')',
-    ),
+    parenthesized_expression: $ => prec(1, seq(
+      $._left_round_bracket,
+      $._expression,
+      $._right_round_bracket,
+    )),
 
     prefix_unary_expression: $ => prec(PRECEDENCE.UNARY, seq(
       field('operator', $.unary_not),
@@ -235,8 +265,12 @@ module.exports = grammar({
     )),
 
     binary_expression: $ => choice(
+      prec.right(PRECEDENCE.POW, seq(
+        field('left',  $._expression),
+        field('operator', $.pow_operator),
+        field('right', $._expression),
+      )),
       ...[
-        [$.pow_operator, PRECEDENCE.POW],
         [$.and_operator, PRECEDENCE.LOGICAL_AND],
         [$.or_operator, PRECEDENCE.LOGICAL_OR],
         [$.bit_and_operator, PRECEDENCE.AND],
@@ -349,7 +383,7 @@ module.exports = grammar({
     ),
 
     argument_list: $ => seq(
-      $._lrb_symbol,
+      $._left_round_bracket,
       optional(
         sep1(
           field('argument',
@@ -358,7 +392,7 @@ module.exports = grammar({
           $._comma_symbol
         )
       ),
-      $._rrb_symbol,
+      $._right_round_bracket,
     ),
 
     argument_declaration: $ => seq(
@@ -403,7 +437,7 @@ module.exports = grammar({
       'if',
       field('condition', $._expression),
       field('if_arm', $._block),
-      repeat(seq('else if', field('else_if_condition', $._expression), field('else_if_arm', $._block))),
+      repeat(seq('else', 'if', field('else_if_condition', $._expression), field('else_if_arm', $._block))),
       optional(seq('else', field('else_arm', $._block))),
     )),
 
@@ -484,8 +518,8 @@ module.exports = grammar({
 
     _lcb_symbol: _ => '{',
     _rcb_symbol: _ => '}',
-    _lrb_symbol: _ => '(',
-    _rrb_symbol: _ => ')',
+    _left_round_bracket: _ => '(',
+    _right_round_bracket: _ => ')',
     _comma_symbol: _ => ',',
     _typedef_symbol: _ => ':',
     _terminal_symbol: _ => ';',
@@ -504,9 +538,9 @@ module.exports = grammar({
 
     _string_literal_content: _ => token.immediate(prec(1, /[^"\\\n]+/)),
 
-    number_literal: $ => seq(optional('-'), /\d+/),
+    number_literal: _ => seq(optional('-'), /\d+/),
 
-    unit_literal: _ => '()',
+    unit_literal: $ => seq($._left_round_bracket, token.immediate(')')),
 
     array_literal: $ => seq(
       '[',
@@ -542,23 +576,29 @@ module.exports = grammar({
       field('name', $._simple_name),
     )),
 
-    generic_name: $ => seq(field('base_type', $.identifier), $.type_argument_list),
-
-    type_argument_list_definition: $ => seq(
-      '<',
-      choice(
-        sep1(field('type', $.identifier), $._comma_symbol),
-      ),
-      '>',
+    generic_name: $ => seq(
+      field('base_type', $.identifier),
+      $.type_argument_list,
     ),
 
-    type_argument_list: $ => seq(
-      '<',
-      choice(
-        sep1(field('type', $._type), $._comma_symbol),
-      ),
-      '>',
+    _bracketed_generic_name: $ => seq(
+      $._left_round_bracket,
+      $.generic_name,
+      $._right_round_bracket
     ),
+
+    type_argument_list_definition: $ => prec.left(seq(
+      seq(field('type', $.identifier), token.immediate('\'')),
+      repeat(
+        seq(field('type', $.identifier), token.immediate('\'')),
+      )
+    )),
+
+    type_argument_list: $ => prec.left(seq(
+      choice(
+        sep1(seq(field('type', $._type), token.immediate('\'')), $._comma_symbol),
+      ),
+    )),
 
     _reserved_identifier: _ => choice(
       'constructor',
@@ -566,13 +606,12 @@ module.exports = grammar({
       'uzumaki',
     ),
 
-    _identifier: _ => /\w*[_a-zA-Z]\w*/,
+    _identifier: _ => token(prec(-1, /[A-Za-z_]\w*/)),
     identifier: $ => choice(
       $._identifier,
       $._reserved_identifier,
     ),
 
-    // Comments start with '///'
     comment: _ => token(seq('///', /[^\n\r]*/)),
   },
 });
