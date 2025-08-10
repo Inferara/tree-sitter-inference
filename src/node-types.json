@@ -543,16 +543,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "assign_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -650,76 +640,76 @@
         "required": true,
         "types": [
           {
-            "type": "add_operator",
-            "named": true
+            "type": "!=",
+            "named": false
           },
           {
-            "type": "and_operator",
-            "named": true
+            "type": "%",
+            "named": false
           },
           {
-            "type": "bit_and_operator",
-            "named": true
+            "type": "&",
+            "named": false
           },
           {
-            "type": "bit_or_operator",
-            "named": true
+            "type": "&&",
+            "named": false
           },
           {
-            "type": "bit_xor_operator",
-            "named": true
+            "type": "*",
+            "named": false
           },
           {
-            "type": "equals_operator",
-            "named": true
+            "type": "**",
+            "named": false
           },
           {
-            "type": "greater_equal_operator",
-            "named": true
+            "type": "+",
+            "named": false
           },
           {
-            "type": "greater_operator",
-            "named": true
+            "type": "-",
+            "named": false
           },
           {
-            "type": "less_equal_operator",
-            "named": true
+            "type": "<",
+            "named": false
           },
           {
-            "type": "less_operator",
-            "named": true
+            "type": "<<",
+            "named": false
           },
           {
-            "type": "mod_operator",
-            "named": true
+            "type": "<=",
+            "named": false
           },
           {
-            "type": "mul_operator",
-            "named": true
+            "type": "==",
+            "named": false
           },
           {
-            "type": "not_equals_operator",
-            "named": true
+            "type": ">",
+            "named": false
           },
           {
-            "type": "or_operator",
-            "named": true
+            "type": ">=",
+            "named": false
           },
           {
-            "type": "pow_operator",
-            "named": true
+            "type": ">>",
+            "named": false
           },
           {
-            "type": "shift_left_operator",
-            "named": true
+            "type": "^",
+            "named": false
           },
           {
-            "type": "shift_right_operator",
-            "named": true
+            "type": "|",
+            "named": false
           },
           {
-            "type": "sub_operator",
-            "named": true
+            "type": "||",
+            "named": false
           }
         ]
       },
@@ -1039,16 +1029,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "assign_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1099,7 +1079,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "array_index_access_expression",
@@ -1270,20 +1250,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "function_keyword",
-          "named": true
-        },
-        {
-          "type": "rightarrow_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1568,26 +1534,7 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "function_keyword",
-          "named": true
-        },
-        {
-          "type": "rightarrow_operator",
-          "named": true
-        }
-      ]
     }
-  },
-  {
-    "type": "function_keyword",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "generic_name",
@@ -2074,16 +2021,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "attribute_access_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2097,7 +2034,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "array_index_access_expression",
@@ -2292,16 +2229,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "attribute_access_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2310,7 +2237,7 @@
     "fields": {
       "expression": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "array_index_access_expression",
@@ -2379,11 +2306,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "rightarrow_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "self_reference",
@@ -2747,11 +2669,6 @@
     }
   },
   {
-    "type": "sub_operator",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "type_argument_list",
     "named": true,
     "fields": {
@@ -3053,16 +2970,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "assign_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -3251,16 +3158,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "expand_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -3291,16 +3188,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "expand_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -3363,16 +3250,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "expand_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -3547,20 +3424,26 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "assign_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
+    "type": "!=",
+    "named": false
+  },
+  {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "&&",
     "named": false
   },
   {
@@ -3576,6 +3459,18 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "**",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
@@ -3588,11 +3483,51 @@
     "named": false
   },
   {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
   {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>",
     "named": false
   },
   {
@@ -3604,44 +3539,20 @@
     "named": false
   },
   {
-    "type": "_",
+    "type": "^",
     "named": false
   },
   {
-    "type": "add_operator",
-    "named": true
-  },
-  {
-    "type": "and_operator",
-    "named": true
+    "type": "_",
+    "named": false
   },
   {
     "type": "assert",
     "named": false
   },
   {
-    "type": "assign_operator",
-    "named": true
-  },
-  {
     "type": "assume",
     "named": false
-  },
-  {
-    "type": "attribute_access_operator",
-    "named": true
-  },
-  {
-    "type": "bit_and_operator",
-    "named": true
-  },
-  {
-    "type": "bit_or_operator",
-    "named": true
-  },
-  {
-    "type": "bit_xor_operator",
-    "named": true
   },
   {
     "type": "break",
@@ -3661,6 +3572,11 @@
     "named": false
   },
   {
+    "type": "docstring",
+    "named": true,
+    "extra": true
+  },
+  {
     "type": "else",
     "named": false
   },
@@ -3669,16 +3585,8 @@
     "named": false
   },
   {
-    "type": "equals_operator",
-    "named": true
-  },
-  {
     "type": "exists",
     "named": false
-  },
-  {
-    "type": "expand_operator",
-    "named": true
   },
   {
     "type": "external",
@@ -3701,24 +3609,8 @@
     "named": false
   },
   {
-    "type": "greater_equal_operator",
-    "named": true
-  },
-  {
-    "type": "greater_operator",
-    "named": true
-  },
-  {
     "type": "if",
     "named": false
-  },
-  {
-    "type": "less_equal_operator",
-    "named": true
-  },
-  {
-    "type": "less_operator",
-    "named": true
   },
   {
     "type": "let",
@@ -3729,27 +3621,7 @@
     "named": false
   },
   {
-    "type": "mod_operator",
-    "named": true
-  },
-  {
-    "type": "mul_operator",
-    "named": true
-  },
-  {
     "type": "mut_keyword",
-    "named": true
-  },
-  {
-    "type": "not_equals_operator",
-    "named": true
-  },
-  {
-    "type": "or_operator",
-    "named": true
-  },
-  {
-    "type": "pow_operator",
     "named": true
   },
   {
@@ -3763,14 +3635,6 @@
   {
     "type": "self",
     "named": false
-  },
-  {
-    "type": "shift_left_operator",
-    "named": true
-  },
-  {
-    "type": "shift_right_operator",
-    "named": true
   },
   {
     "type": "spec",
@@ -3846,6 +3710,14 @@
   },
   {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "||",
     "named": false
   },
   {

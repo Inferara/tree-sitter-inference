@@ -21,22 +21,20 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (forall_block
             (block
-              (comment)
-              (comment)
+              (docstring)
+              (docstring)
               (variable_definition_statement
                 (identifier)
                 (type_u32)
-                (assign_operator)
                 (uzumaki_keyword))
-              (comment)
-              (comment)
-              (comment)
+              (docstring)
+              (docstring)
+              (docstring)
               (if_statement
                 (uzumaki_keyword)
                 (block
@@ -49,8 +47,8 @@ fn main() {
                     (function_call_expression
                       (identifier)
                       (identifier)))))))
-          (comment)
-          (comment)
+          (docstring)
+          (docstring)
           (expression_statement
             (function_call_expression
               (identifier)
@@ -60,13 +58,13 @@ fn main() {
 ===
 fn main() {
   exists {
-      /// Here computation splits into 2^32 subpaths,
-      /// with `x` holding distinct value on each
+      // Here computation splits into 2^32 subpaths,
+      // with `x` holding distinct value on each
       let x: u32 = @;
 
-      /// Here each computation splits further, independently
-      /// checking both required properties for every possible
-      /// value of `x` on separate execution paths.
+      // Here each computation splits further, independently
+      // checking both required properties for every possible
+      // value of `x` on separate execution paths.
       if @ { check_foo(x); }
       else { check_bar(x); }
   }
@@ -78,7 +76,6 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -89,7 +86,6 @@ fn main() {
               (variable_definition_statement
                 (identifier)
                 (type_u32)
-                (assign_operator)
                 (uzumaki_keyword))
               (comment)
               (comment)
@@ -106,8 +102,8 @@ fn main() {
                     (function_call_expression
                       (identifier)
                       (identifier)))))))
-          (comment)
-          (comment)
+          (docstring)
+          (docstring)
           (expression_statement
             (function_call_expression
               (identifier)
@@ -117,28 +113,27 @@ fn main() {
 ===
 fn main() {
   forall {
-      /// Here computation splits into 2^32 subpaths,
-      /// with `x` holding distinct value on each
+      // Here computation splits into 2^32 subpaths,
+      // with `x` holding distinct value on each
       let x: u32 = @;
 
-      /// Here we filter only execution paths, where given
-      /// precondition is met, indicated by successfull termination
-      /// of function.
+      // Here we filter only execution paths, where given
+      // precondition is met, indicated by successfull termination
+      // of function.
       assume { check_foo(x); }
 
-      /// Here we check given implication of precondition above
+      // Here we check given implication of precondition above
       check_bar(x);
   }
 
-  /// This point is reached iff every value of x that successfully
-  /// pass through `check_foo` also successfully pass through
-  /// `check_bar`.
+  // This point is reached iff every value of x that successfully
+  // pass through `check_foo` also successfully pass through
+  // `check_bar`.
   print("Success!");
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -149,7 +144,6 @@ fn main() {
               (variable_definition_statement
                 (identifier)
                 (type_u32)
-                (assign_operator)
                 (uzumaki_keyword))
               (comment)
               (comment)
@@ -183,46 +177,41 @@ fn main() {
   let user_input: bool = @;
 
   if user_input {
-      /// Handle true case
+      // Handle true case
   } else {
-      /// Handle false case
+      // Handle false case
   }
 
   let mut choice: i32 = @;
   choice = choice % 3;
   if (choice == 0) {
-      /// Handle case 0
+      // Handle case 0
   } else if (choice == 1) {
-      /// Handle case 1
+      // Handle case 1
   } else {
-      /// Handle case 2
+      // Handle case 2
   }
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (uzumaki_keyword))
           (assert_statement
             (parenthesized_expression
               (binary_expression
                 (binary_expression
                   (identifier)
-                  (add_operator)
                   (number_literal))
-                (greater_operator)
                 (identifier))))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (uzumaki_keyword))
           (if_statement
             (identifier)
@@ -234,27 +223,22 @@ fn main() {
             (mut_keyword)
             (identifier)
             (type_i32)
-            (assign_operator)
             (uzumaki_keyword))
           (assign_statement
             (identifier)
-            (assign_operator)
             (binary_expression
               (identifier)
-              (mod_operator)
               (number_literal)))
           (if_statement
             (parenthesized_expression
               (binary_expression
                 (identifier)
-                (equals_operator)
                 (number_literal)))
             (block
               (comment))
             (parenthesized_expression
               (binary_expression
                 (identifier)
-                (equals_operator)
                 (number_literal)))
             (block
               (comment))

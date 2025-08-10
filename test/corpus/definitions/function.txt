@@ -10,10 +10,8 @@ fn func() -> i32 {
 
 (source_file
     (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_i32)
         (block)))
 
@@ -29,7 +27,6 @@ fn func() {
 
 (source_file
     (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block)))
@@ -46,13 +43,11 @@ fn func(x: i32) -> i32 {
 
 (source_file
     (function_definition
-    (function_keyword)
     (identifier)
     (argument_list
         (argument_declaration
             (identifier)
             (type_i32)))
-    (rightarrow_operator)
     (type_i32)
     (block)))
 
@@ -66,7 +61,6 @@ fn func(x: i32, y: i32) -> i32 {
 
 (source_file
     (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -75,7 +69,6 @@ fn func(x: i32, y: i32) -> i32 {
           (argument_declaration
             (identifier)
             (type_i32)))
-        (rightarrow_operator)
         (type_i32)
         (block)))
 
@@ -89,10 +82,8 @@ fn func() -> i32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_i32)
         (block
           (return_statement
@@ -108,10 +99,8 @@ fn func() -> bool {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_bool)
         (block
           (return_statement
@@ -125,10 +114,8 @@ fn constructor() -> some_spec {
 ---
 (source_file
     (function_definition
-    (function_keyword)
     (identifier)
     (argument_list)
-    (rightarrow_operator)
     (identifier)
     (block)))
 
@@ -141,7 +128,6 @@ fn add(a : i32, b : i32) -> i32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -150,13 +136,11 @@ fn add(a : i32, b : i32) -> i32 {
           (argument_declaration
             (identifier)
             (type_i32)))
-        (rightarrow_operator)
         (type_i32)
         (block
           (return_statement
             (binary_expression
               (identifier)
-              (add_operator)
               (identifier))))))
 
 ===
@@ -168,7 +152,6 @@ fn add(a : i32, b : i32) -> i32 forall {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -177,14 +160,12 @@ fn add(a : i32, b : i32) -> i32 forall {
           (argument_declaration
             (identifier)
             (type_i32)))
-        (rightarrow_operator)
         (type_i32)
         (forall_block
           (block
             (return_statement
               (binary_expression
                 (identifier)
-                (add_operator)
                 (identifier)))))))
 ===
 Function with assume block
@@ -199,13 +180,11 @@ fn procuring_sorted(func: sf) -> () forall {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
             (identifier)
             (identifier)))
-        (rightarrow_operator)
         (type_unit)
         (forall_block
           (block
@@ -213,19 +192,16 @@ fn procuring_sorted(func: sf) -> () forall {
               (block
                 (assign_statement
                   (identifier)
-                  (assign_operator)
                   (function_call_expression
                     (identifier)))
                 (assign_statement
                   (identifier)
-                  (assign_operator)
                   (function_call_expression
                     (identifier)))
                 (assert_statement
                   (parenthesized_expression
                     (binary_expression
                       (identifier)
-                      (less_equal_operator)
                       (identifier))))))))))
 
 ===
@@ -237,10 +213,8 @@ fn func() -> () {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_unit)
         (block
           (return_statement
@@ -255,7 +229,6 @@ fn concatInts(xss : [[i64]]) -> [i64] {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (argument_list
       (argument_declaration
@@ -263,7 +236,6 @@ fn concatInts(xss : [[i64]]) -> [i64] {
         (type_array
           (type_array
             (type_i64)))))
-    (rightarrow_operator)
     (type_array
       (type_i64))
     (block)))
@@ -278,10 +250,8 @@ fn func() -> () {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_unit)
         (block
           (unique_block
@@ -289,7 +259,6 @@ fn func() -> () {
               (variable_definition_statement
                 (identifier)
                 (type_i32)
-                (assign_operator)
                 (number_literal)))))))
 
 
@@ -305,7 +274,6 @@ fn ignore_first(_: i32, x : i32) -> i32 {
 
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (argument_list
       (ignore_argument
@@ -313,7 +281,6 @@ fn ignore_first(_: i32, x : i32) -> i32 {
       (argument_declaration
         (identifier)
         (type_i32)))
-    (rightarrow_operator)
     (type_i32)
     (block
       (return_statement
@@ -339,7 +306,6 @@ fn func T' (x: T) -> T {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (type_argument_list_definition
       (identifier))
@@ -347,7 +313,6 @@ fn func T' (x: T) -> T {
       (argument_declaration
         (identifier)
         (identifier)))
-    (rightarrow_operator)
     (identifier)
     (block
       (return_statement
@@ -362,7 +327,6 @@ fn func T' U' (x: T, y: U) -> T {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (type_argument_list_definition
       (identifier)
@@ -374,7 +338,6 @@ fn func T' U' (x: T, y: U) -> T {
       (argument_declaration
         (identifier)
         (identifier)))
-    (rightarrow_operator)
     (identifier)
     (block
       (return_statement

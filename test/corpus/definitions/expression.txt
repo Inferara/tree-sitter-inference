@@ -9,18 +9,15 @@ fn valid_Address(a: Address) -> Address {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
             (identifier)
             (identifier)))
-        (rightarrow_operator)
         (identifier)
         (block
           (assign_statement
             (identifier)
-            (assign_operator)
             (prefix_unary_expression
               (unary_not)
               (identifier)))
@@ -38,7 +35,6 @@ fn get_first(xs: [i32; 3]) -> i32 {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (argument_list
       (argument_declaration
@@ -46,7 +42,6 @@ fn get_first(xs: [i32; 3]) -> i32 {
         (type_array
           (type_i32)
           (number_literal))))
-    (rightarrow_operator)
     (type_i32)
     (block
       (return_statement

@@ -25,12 +25,10 @@ spec some_spec {
       (spec_definition
         (identifier)
         (external_function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (identifier)
             (identifier))
-          (rightarrow_operator)
           (identifier))))
 
 ===
@@ -47,5 +45,4 @@ spec some_spec {
         (identifier)
         (type_definition_statement
           (identifier)
-          (assign_operator)
           (identifier))))

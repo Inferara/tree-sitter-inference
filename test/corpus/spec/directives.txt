@@ -8,11 +8,8 @@ use inference::std::algorithms::{sort, hash};
     (source_file
       (use_directive
         (identifier)
-        (expand_operator)
         (identifier)
-        (expand_operator)
         (identifier)
-        (expand_operator)
         (identifier))
       (use_directive
         (identifier)
@@ -20,10 +17,7 @@ use inference::std::algorithms::{sort, hash};
         (string_literal))
       (use_directive
         (identifier)
-        (expand_operator)
         (identifier)
-        (expand_operator)
         (identifier)
-        (expand_operator)
         (identifier)
         (identifier)))

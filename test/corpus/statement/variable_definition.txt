@@ -9,7 +9,6 @@ fn test() {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (argument_list)
     (block
@@ -28,7 +27,6 @@ fn test() {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (argument_list)
     (block
@@ -48,7 +46,6 @@ fn test() {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (argument_list)
     (block
@@ -60,7 +57,6 @@ fn test() {
             (type_argument_list
               (type_qualified_name
                 (identifier)
-                (expand_operator)
                 (identifier))))
           (number_literal))))))
 ===
@@ -72,7 +68,6 @@ fn test() {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (argument_list)
     (block
@@ -81,7 +76,6 @@ fn test() {
         (type_array
           (type_i32)
           (number_literal))
-        (assign_operator)
         (array_literal
           (number_literal)
           (identifier)

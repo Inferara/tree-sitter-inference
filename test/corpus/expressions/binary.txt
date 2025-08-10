@@ -7,18 +7,14 @@ fn spec_assign() -> () {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_unit)
         (block
           (assign_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))
-            (assign_operator)
             (identifier)))))
 
 ===
@@ -30,18 +26,14 @@ fn assign_from_fn_call() -> () {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_unit)
         (block
           (assign_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))
-            (assign_operator)
             (function_call_expression
               (identifier))))))
 
@@ -54,10 +46,8 @@ fn return_fn_call_with_param() -> Type {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (identifier)
         (block
           (return_statement
@@ -74,10 +64,8 @@ fn fn_call_with_multiple_params() -> () {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_unit)
         (block
           (expression_statement
@@ -101,41 +89,30 @@ fn constructor() -> some_spec {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (identifier)
         (block
           (assign_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))
-            (assign_operator)
             (type_member_access_expression
               (identifier)
-              (expand_operator)
               (identifier)))
           (assign_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))
-            (assign_operator)
             (type_member_access_expression
               (identifier)
-              (expand_operator)
               (identifier)))
           (assign_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (pow_operator)
               (number_literal))))))
 
 ===
@@ -147,25 +124,20 @@ fn constructor() -> some_spec {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (identifier)
         (block
           (assign_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))
-            (assign_operator)
             (function_call_expression
               (type_member_access_expression
                 (generic_name
                   (identifier)
                   (type_argument_list
                     (type_u32)))
-                (expand_operator)
                 (identifier)))))))
 
 ===
@@ -177,25 +149,20 @@ fn constructor() -> some_spec {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (identifier)
         (block
           (assign_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))
-            (assign_operator)
             (function_call_expression
               (type_member_access_expression
                 (generic_name
                   (identifier)
                   (type_argument_list
                     (type_i64)))
-                (expand_operator)
                 (identifier))
               (number_literal))))))
 
@@ -208,25 +175,20 @@ fn constructor() -> some_spec {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (identifier)
         (block
           (assign_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))
-            (assign_operator)
             (function_call_expression
               (type_member_access_expression
                 (generic_name
                   (identifier)
                   (type_argument_list
                     (type_u64)))
-                (expand_operator)
                 (identifier))
               (number_literal)
               (identifier)
@@ -241,11 +203,9 @@ fn constructor() -> some_spec {
                     (identifier)
                     (type_argument_list
                       (type_i32)))
-                  (expand_operator)
                   (identifier))
                 (binary_expression
                   (number_literal)
-                  (mul_operator)
                   (number_literal))))))))
 
 ===
@@ -260,13 +220,11 @@ fn valid_Address(a: Address) -> Address {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
             (identifier)
             (identifier)))
-        (rightarrow_operator)
         (identifier)
         (block
           (assert_statement
@@ -274,16 +232,12 @@ fn valid_Address(a: Address) -> Address {
               (binary_expression
                 (binary_expression
                   (identifier)
-                  (less_operator)
                   (member_access_expression
                     (identifier)
-                    (attribute_access_operator)
                     (identifier)))
-                (and_operator)
                 (parenthesized_expression
                   (binary_expression
                     (identifier)
-                    (mod_operator)
                     (number_literal))))))
           (return_statement
             (identifier)))))
@@ -300,13 +254,11 @@ fn valid_Address(a: Address) -> Address {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
             (identifier)
             (identifier)))
-        (rightarrow_operator)
         (identifier)
         (block
           (assert_statement
@@ -315,20 +267,15 @@ fn valid_Address(a: Address) -> Address {
                 (binary_expression
                   (binary_expression
                     (identifier)
-                    (less_operator)
                     (member_access_expression
                       (identifier)
-                      (attribute_access_operator)
                       (identifier)))
-                  (and_operator)
                   (prefix_unary_expression
                     (unary_not)
                     (parenthesized_expression
                       (binary_expression
                         (identifier)
-                        (mod_operator)
                         (number_literal)))))
-                (and_operator)
                 (prefix_unary_expression
                   (unary_not)
                   (identifier)))))
@@ -346,15 +293,12 @@ fn main() -> i32 {
 ---
 (source_file
   (function_definition
-    (function_keyword)
     (identifier)
     (argument_list)
-    (rightarrow_operator)
     (type_i32)
     (block
       (return_statement
         (binary_expression
           (number_literal)
-          (sub_operator)
           (number_literal))))))
 

@@ -8,19 +8,16 @@ fn foo() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (bool_literal)))))
 
 ===
@@ -33,7 +30,6 @@ fn foo() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -42,7 +38,6 @@ fn foo() {
             (type_array
               (type_i32)
               (number_literal))
-            (assign_operator)
             (array_literal
               (number_literal)
               (number_literal)
@@ -52,7 +47,6 @@ fn foo() {
             (type_array
               (type_bool)
               (number_literal))
-            (assign_operator)
             (array_literal
               (bool_literal)
               (bool_literal))))))
@@ -67,21 +61,18 @@ fn foo() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_u32)
-            (assign_operator)
             (uzumaki_keyword))
           (variable_definition_statement
             (identifier)
             (type_array
               (type_i32)
               (identifier))
-            (assign_operator)
             (uzumaki_keyword)))))
 
 
@@ -107,52 +98,42 @@ fn foo() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (variable_definition_statement
             (mut_keyword)
             (identifier)
             (type_bool)
-            (assign_operator)
             (bool_literal))
           (variable_definition_statement
             (mut_keyword)
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (variable_definition_statement
             (mut_keyword)
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (loop_statement
             (identifier)
             (block
               (assign_statement
                 (identifier)
-                (assign_operator)
                 (binary_expression
                   (identifier)
-                  (add_operator)
                   (number_literal)))
               (assign_statement
                 (identifier)
-                (assign_operator)
                 (binary_expression
                   (binary_expression
                     (identifier)
-                    (mod_operator)
                     (number_literal))
-                  (equals_operator)
                   (number_literal)))
               (if_statement
                 (identifier)
@@ -160,17 +141,13 @@ fn foo() {
                   (variable_definition_statement
                     (identifier)
                     (type_i32)
-                    (assign_operator)
                     (binary_expression
                       (identifier)
-                      (mul_operator)
                       (number_literal)))
                   (assign_statement
                     (identifier)
-                    (assign_operator)
                     (binary_expression
                       (identifier)
-                      (add_operator)
                       (identifier))))))))))
 
 ===
@@ -186,7 +163,6 @@ fn inverse_bool_array(mut bool_arr: [bool; 10]) {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -200,7 +176,6 @@ fn inverse_bool_array(mut bool_arr: [bool; 10]) {
             (mut_keyword)
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (loop_statement
             (number_literal)
@@ -209,7 +184,6 @@ fn inverse_bool_array(mut bool_arr: [bool; 10]) {
                 (array_index_access_expression
                   (identifier)
                   (identifier))
-                (assign_operator)
                 (prefix_unary_expression
                   (unary_not)
                   (array_index_access_expression
@@ -217,8 +191,6 @@ fn inverse_bool_array(mut bool_arr: [bool; 10]) {
                     (identifier))))
               (assign_statement
                 (identifier)
-                (assign_operator)
                 (binary_expression
                   (identifier)
-                  (add_operator)
                   (number_literal))))))))

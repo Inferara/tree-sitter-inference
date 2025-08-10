@@ -11,7 +11,6 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -36,7 +35,6 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -63,7 +61,6 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -71,17 +68,14 @@ fn main() {
             (mut_keyword)
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (loop_statement
             (identifier)
             (block
               (assign_statement
                 (identifier)
-                (assign_operator)
                 (binary_expression
                   (identifier)
-                  (add_operator)
                   (number_literal)))
               (expression_statement
                 (function_call_expression
@@ -105,7 +99,6 @@ fn sum_all(xs: [i32; 10]) -> i32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -113,38 +106,31 @@ fn sum_all(xs: [i32; 10]) -> i32 {
             (type_array
               (type_i32)
               (number_literal))))
-        (rightarrow_operator)
         (type_i32)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (variable_definition_statement
             (mut_keyword)
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (loop_statement
             (number_literal)
             (block
               (assign_statement
                 (identifier)
-                (assign_operator)
                 (binary_expression
                   (identifier)
-                  (add_operator)
                   (array_index_access_expression
                     (identifier)
                     (identifier))))
               (assign_statement
                 (identifier)
-                (assign_operator)
                 (binary_expression
                   (identifier)
-                  (add_operator)
                   (number_literal)))))
           (return_statement
             (identifier)))))

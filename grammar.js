@@ -46,6 +46,7 @@ module.exports = grammar({
 
   extras: $ => [
     /\s/,
+    $.docstring,
     $.comment,
   ],
 
@@ -113,7 +114,7 @@ module.exports = grammar({
     type_u32: _ => token('u32'),
     type_u64: _ => token('u64'),
     type_bool: _ => token('bool'),
-    type_unit: $ => seq($._left_round_bracket, token.immediate(')')),
+    type_unit: $ => seq('(', token.immediate(')')),
     type_array: $ => seq(
       '[',
       field('type', $._type),
@@ -183,7 +184,7 @@ module.exports = grammar({
 
     member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
       field('expression', choice($._name, $.member_access_expression)),
-      $.attribute_access_operator,
+      '.',
       field('name', $._simple_name),
     )),
 
@@ -199,64 +200,63 @@ module.exports = grammar({
         $._identifier_like_embedded_type,
         $._name
       )),
-      alias(token.immediate('::'), $.expand_operator),
+      alias(token.immediate('::'), '::'),
       field('name', $._simple_name),
     )),
     prec(PRECEDENCE.DOT, seq(
       field('expression', $._bracketed_generic_name),
-      alias(token.immediate('::'), $.expand_operator),
+      alias(token.immediate('::'), '::'),
       field('name', $._simple_name),
     )),
   ),
 
     function_call_expression: $ => prec.dynamic(PRECEDENCE.FUNC_CALL, seq(
       field('function', choice($._lval_expression, $.type_member_access_expression, $.parenthesized_expression)),
-      $._left_round_bracket,
+      '(',
       optional(
         sep1(
           seq(
-            optional(seq(field('argument_name', $._name), $._typedef_symbol)),
+            optional(seq(field('argument_name', $._name), ':')),
             field('argument', $._expression)
           ),
           ','
         ),
       ),
-      $._right_round_bracket,
+      ')',
     )),
 
     struct_expression: $ => seq(
       field('name', $._name),
-      $._lcb_symbol,
+      '{',
       optional(sep1(
-        seq(field('field_name', $._name), $._typedef_symbol, field('field_value', $._expression)),
-        $._comma_symbol)),
-      $._rcb_symbol,
+        seq(field('field_name', $._name), ':', field('field_value', $._expression)), ',')),
+      '}',
     ),
 
     expression_statement: $ => seq(
       $._expression,
-      $._terminal_symbol
+      ';'
     ),
 
     assign_statement: $ => prec.left(seq(
       field('left', $._lval_expression),
-      $.assign_operator,
+      '=',
       field('right', $._expression),
-      $._terminal_symbol,
+      ';',
     )),
 
     assert_statement: $ => seq(
       'assert',
       $._expression,
-      $._terminal_symbol,
+      ';',
     ),
 
-    break_statement: $ => prec.left(seq('break', $._terminal_symbol)),
+    break_statement: _ => prec.left(seq('break', ';')),
 
     parenthesized_expression: $ => prec(1, seq(
-      $._left_round_bracket,
+      '(',
       $._expression,
-      $._right_round_bracket,
+      ')',
     )),
 
     prefix_unary_expression: $ => prec(PRECEDENCE.UNARY, seq(
@@ -267,27 +267,27 @@ module.exports = grammar({
     binary_expression: $ => choice(
       prec.right(PRECEDENCE.POW, seq(
         field('left',  $._expression),
-        field('operator', $.pow_operator),
+        field('operator', '**'),
         field('right', $._expression),
       )),
       ...[
-        [$.and_operator, PRECEDENCE.LOGICAL_AND],
-        [$.or_operator, PRECEDENCE.LOGICAL_OR],
-        [$.bit_and_operator, PRECEDENCE.AND],
-        [$.bit_or_operator, PRECEDENCE.OR],
-        [$.bit_xor_operator, PRECEDENCE.XOR],
-        [$.shift_left_operator, PRECEDENCE.SHIFT],
-        [$.shift_right_operator, PRECEDENCE.SHIFT],
-        [$.add_operator, PRECEDENCE.ADD],
-        [$.sub_operator, PRECEDENCE.ADD],
-        [$.mul_operator, PRECEDENCE.MUL],
-        [$.mod_operator, PRECEDENCE.MUL],
-        [$.less_operator, PRECEDENCE.COMPARE],
-        [$.less_equal_operator, PRECEDENCE.COMPARE],
-        [$.equals_operator, PRECEDENCE.EQUALS],
-        [$.not_equals_operator, PRECEDENCE.EQUALS],
-        [$.greater_equal_operator, PRECEDENCE.COMPARE],
-        [$.greater_operator, PRECEDENCE.COMPARE],
+        ['&&', PRECEDENCE.LOGICAL_AND],
+        ['||', PRECEDENCE.LOGICAL_OR],
+        ['&', PRECEDENCE.AND],
+        ['|', PRECEDENCE.OR],
+        ['^', PRECEDENCE.XOR],
+        ['<<', PRECEDENCE.SHIFT],
+        ['>>', PRECEDENCE.SHIFT],
+        ['+', PRECEDENCE.ADD],
+        ['-', PRECEDENCE.ADD],
+        ['*', PRECEDENCE.MUL],
+        ['%', PRECEDENCE.MUL],
+        ['<', PRECEDENCE.COMPARE],
+        ['<=', PRECEDENCE.COMPARE],
+        ['==', PRECEDENCE.EQUALS],
+        ['!=', PRECEDENCE.EQUALS],
+        ['>=', PRECEDENCE.COMPARE],
+        ['>', PRECEDENCE.COMPARE],
       ].map(([operator, precedence]) =>
         prec.left(precedence, seq(
           field('left', $._expression),
@@ -301,104 +301,104 @@ module.exports = grammar({
       'let',
       optional(field('mut', $.mut_keyword)),
       field('name', $.identifier),
-      $._typedef_symbol,
+      ':',
       field('type', $._type),
-      optional(seq($.assign_operator, field('value', $._expression))),
-      $._terminal_symbol,
+      optional(seq('=', field('value', $._expression))),
+      ';',
     ),
 
     type_definition_statement: $ => seq(
       'type',
       field('name', $.identifier),
-      $.assign_operator,
+      '=',
       field('type', $._type),
-      $._terminal_symbol,
+      ';',
     ),
 
     constant_definition: $ => seq(
       'const',
       field('name', $.identifier),
-      $._typedef_symbol,
+      ':',
       field('type', $._type),
-      $.assign_operator,
+      '=',
       field('value', $._expression),
-      $._terminal_symbol,
+      ';',
     ),
 
     spec_definition: $ => seq(
       'spec',
       field('name', $.identifier),
-      $._lcb_symbol,
+      '{',
       repeat($._definition),
-      $._rcb_symbol,
+      '}',
     ),
 
     enum_definition: $ => seq(
       'enum',
       field('name', $.identifier),
-      $._lcb_symbol,
-      sep1(field('variant', $.identifier), $._comma_symbol),
-      $._rcb_symbol,
+      '{',
+      sep1(field('variant', $.identifier), ','),
+      '}',
     ),
 
     struct_definition: $ => seq(
       'struct',
       field('name', $.identifier),
-      $._lcb_symbol,
+      '{',
       repeat(choice(
         seq(field('field', $.struct_field), ';'),
         field('value', $.function_definition),
       )),
-      $._rcb_symbol,
+      '}',
     ),
 
     struct_field: $ => seq(
       field('name', $.identifier),
-      $._typedef_symbol,
+      ':',
       field('type', $._type),
     ),
 
     block: $ => seq(
-      $._lcb_symbol,
+      '{',
       repeat(field('statement', $._statement)),
-      $._rcb_symbol,
+      '}',
     ),
 
     function_definition: $ => seq(
-      $.function_keyword,
+      'fn',
       field('name', $.identifier),
       optional(field('type_parameters', $.type_argument_list_definition)),
       field('argument_list', $.argument_list),
-      optional(seq($.rightarrow_operator, field('returns', $._type))),
+      optional(seq('->', field('returns', $._type))),
       field('body', $._block),
     ),
 
     external_function_definition: $ => seq(
       'external',
-      $.function_keyword,
+      'fn',
       field('name', $.identifier),
       field('argument_list', $.argument_list),
-      optional(seq($.rightarrow_operator, field('returns', $._type))),
+      optional(seq('->', field('returns', $._type))),
       ';',
     ),
 
     argument_list: $ => seq(
-      $._left_round_bracket,
+      '(',
       optional(
         sep1(
           field('argument',
             choice($.argument_declaration, $.self_reference, $.ignore_argument, $._type)
           ),
-          $._comma_symbol
+          ','
         )
       ),
-      $._right_round_bracket,
+      ')',
     ),
 
     argument_declaration: $ => seq(
       optional(field('mut', $.mut_keyword)),
       field('name', $.identifier),
-      $._typedef_symbol,
+      ':',
       field('type', $._type),
     ),
 
@@ -409,27 +409,27 @@ module.exports = grammar({
 
     ignore_argument: $ => seq(
       '_',
-      $._typedef_symbol,
+      ':',
       field('type', $._type)
     ),
 
     assume_block: $ => seq(
-      $._assume_keyword,
+      'assume',
       field('body', $.block),
     ),
 
     forall_block: $ => seq(
-      $._forall_keyword,
+      'forall',
       field('body', $.block),
     ),
 
     exists_block: $ => seq(
-      $._exists_keyword,
+      'exists',
       field('body', $.block),
     ),
 
     unique_block: $ => seq(
-      $._unique_keyword,
+      'unique',
       field('body', $.block),
     ),
 
@@ -451,83 +451,39 @@ module.exports = grammar({
       'use',
       choice(
         seq(
-          sep1(field('segment', $.identifier), $.expand_operator),
+          sep1(field('segment', $.identifier), '::'),
           optional(
             seq(
-              $.expand_operator,
-              $._lcb_symbol,
-              sep1(field('imported_type', $.identifier), $._comma_symbol),
-              $._rcb_symbol,
+              '::',
+              '{',
+              sep1(field('imported_type', $.identifier), ','),
+              '}',
             ),
           ),
         ),
         seq(
-          $._lcb_symbol,
-          sep1(field('imported_type', $.identifier), $._comma_symbol),
-          $._rcb_symbol,
+          '{',
+          sep1(field('imported_type', $.identifier), ','),
+          '}',
           'from',
           field('from_literal', $.string_literal),
         ),
       ),
-      $._terminal_symbol,
+      ';',
     ),
 
     return_statement: $ => seq(
       'return',
-      field('expression', $._expression),
-      $._terminal_symbol,
+      optional(field('expression', $._expression)),
+      ';',
     ),
 
-    function_keyword: _ => 'fn',
-    _forall_keyword: _ => 'forall',
-    _assume_keyword: _ => 'assume',
-    _exists_keyword: _ => 'exists',
-    _unique_keyword: _ => 'unique',
     uzumaki_keyword: _ => '@',
     mut_keyword: _ => 'mut',
-
     unary_not: _ => '!',
-
-    add_operator: _ => '+',
-    sub_operator: _ => '-',
-    mul_operator: _ => '*',
-    pow_operator: _ => '**',
-    mod_operator: _ => '%',
-
-    and_operator: _ => '&&',
-    or_operator: _ => '||',
-
-    shift_left_operator: _ => '<<',
-    shift_right_operator: _ => '>>',
-    bit_and_operator: _ => '&',
-    bit_or_operator: _ => '|',
-    bit_xor_operator: _ => '^',
-
-    less_operator: _ => '<',
-    greater_operator: _ => '>',
-    less_equal_operator: _ => '<=',
-    greater_equal_operator: _ => '>=',
-    equals_operator: _ => '==',
-    not_equals_operator: _ => '!=',
-
-    assign_operator: _ => '=',
-    expand_operator: _ => '::',
-    attribute_access_operator: _ => '.',
-
-    rightarrow_operator: _ => '->',
-
-    _lcb_symbol: _ => '{',
-    _rcb_symbol: _ => '}',
-    _left_round_bracket: _ => '(',
-    _right_round_bracket: _ => ')',
-    _comma_symbol: _ => ',',
-    _typedef_symbol: _ => ':',
-    _terminal_symbol: _ => ';',
-
-
     bool_literal: _ => choice(
-      'true',
-      'false',
+      token('true'),
+      token('false'),
     ),
 
     string_literal: $ => seq(
@@ -540,7 +496,7 @@ module.exports = grammar({
 
     number_literal: _ => seq(optional('-'), /\d+/),
 
-    unit_literal: $ => seq($._left_round_bracket, token.immediate(')')),
+    unit_literal: _ => seq('(', token.immediate(')')),
 
     array_literal: $ => seq(
       '[',
@@ -551,7 +507,7 @@ module.exports = grammar({
       ']',
     ),
 
-    qualified_identifier: $ => sep1($.identifier, $.attribute_access_operator),
+    qualified_identifier: $ => sep1($.identifier, '.'),
 
     _name: $ => choice(
       $.type_qualified_name,
@@ -561,7 +517,7 @@ module.exports = grammar({
 
     type_qualified_name: $ => seq(
       field('alias', $.identifier),
-      $.expand_operator,
+      '::',
       field('name', $._simple_name),
     ),
 
@@ -572,7 +528,7 @@ module.exports = grammar({
 
     qualified_name: $ => prec(PRECEDENCE.DOT, seq(
       field('qualifier', $._name),
-      $.attribute_access_operator,
+      '.',
       field('name', $._simple_name),
     )),
 
@@ -582,9 +538,9 @@ module.exports = grammar({
     ),
 
     _bracketed_generic_name: $ => seq(
-      $._left_round_bracket,
+      '(',
       $.generic_name,
-      $._right_round_bracket
+      ')'
     ),
 
     type_argument_list_definition: $ => prec.left(seq(
@@ -596,7 +552,7 @@ module.exports = grammar({
 
     type_argument_list: $ => prec.left(seq(
       choice(
-        sep1(seq(field('type', $._type), token.immediate('\'')), $._comma_symbol),
+        sep1(seq(field('type', $._type), token.immediate('\'')), ','),
       ),
     )),
 
@@ -606,12 +562,13 @@ module.exports = grammar({
       'uzumaki',
     ),
 
-    _identifier: _ => token(prec(-1, /[A-Za-z_]\w*/)),
+    _identifier: _ => /[A-Za-z_]\w*/,
     identifier: $ => choice(
       $._identifier,
       $._reserved_identifier,
     ),
 
-    comment: _ => token(seq('///', /[^\n\r]*/)),
+    docstring: _ => token(prec(1, /\/\/\/[^\n\r]*/)),
+    comment: _ => token(prec(0, /\/\/[^\n\r]*/)),
   },
 });
