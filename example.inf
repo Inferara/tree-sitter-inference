@@ -247,7 +247,7 @@ spec Definitions {
 spec Definitions {
   type Address = u32;
 }
-spec AuctionSpec {  
+spec AuctionSpec {
   const MAX_BID: u64 = 1000;
   const MIN_BID: u64 = 100;
   struct Bid {
@@ -617,11 +617,11 @@ fn foo() {
   let a: i32 = 42;
   let mut b: bool = true;
   let mut i: i32 = 10;
-  let mut acc: i32 = 0; 
+  let mut acc: i32 = 0;
   loop i {
       i = i + 1;
       b = i % 2 == 0;
-      if b {        
+      if b {
           let c: i32 = a * 2;
           acc = acc + c;
       }
