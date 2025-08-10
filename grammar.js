@@ -202,12 +202,12 @@ module.exports = grammar({
       )),
       alias(token.immediate('::'), '::'),
       field('name', $._simple_name),
-      )),
-      prec(PRECEDENCE.DOT, seq(
-        field('expression', $._bracketed_generic_name),
-        alias(token.immediate('::'), '::'),
-        field('name', $._simple_name),
-      )),
+    )),
+    prec(PRECEDENCE.DOT, seq(
+      field('expression', $._bracketed_generic_name),
+      alias(token.immediate('::'), '::'),
+      field('name', $._simple_name),
+    )),
     ),
 
     function_call_expression: $ => prec.dynamic(PRECEDENCE.FUNC_CALL, seq(
