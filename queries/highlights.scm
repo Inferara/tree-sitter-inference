@@ -26,7 +26,7 @@
 "struct" @keyword.type
 "enum" @keyword.type
 "return" @keyword.return
-(function_keyword) @keyword.function
+"fn" @keyword.function
 [ "use" "external" ] @keyword.import
 [ "if" "else" ] @keyword.conditional
 "let" @keyword

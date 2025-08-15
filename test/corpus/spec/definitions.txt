@@ -11,7 +11,6 @@ spec Definitions {
         (constant_definition
           (identifier)
           (type_u32)
-          (assign_operator)
           (number_literal))))
 
 ===
@@ -23,7 +22,6 @@ fn sum(a: u32, b: u32) -> u32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -32,13 +30,11 @@ fn sum(a: u32, b: u32) -> u32 {
           (argument_declaration
             (identifier)
             (type_u32)))
-        (rightarrow_operator)
         (type_u32)
         (block
           (return_statement
             (binary_expression
               (identifier)
-              (add_operator)
               (identifier))))))
 
 ===
@@ -52,7 +48,6 @@ spec Definitions {
       (spec_definition
         (identifier)
         (external_function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (argument_declaration
@@ -61,7 +56,6 @@ spec Definitions {
             (argument_declaration
               (identifier)
               (type_u32)))
-          (rightarrow_operator)
           (type_u32))))
 
 ===
@@ -76,7 +70,6 @@ spec Definitions {
         (identifier)
         (type_definition_statement
           (identifier)
-          (assign_operator)
           (type_u32))))
 
 ===
@@ -111,12 +104,10 @@ spec AuctionSpec {
         (constant_definition
           (identifier)
           (type_u64)
-          (assign_operator)
           (number_literal))
         (constant_definition
           (identifier)
           (type_u64)
-          (assign_operator)
           (number_literal))
         (struct_definition
           (identifier)
@@ -131,13 +122,11 @@ spec AuctionSpec {
           (identifier)
           (identifier))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (argument_declaration
               (identifier)
               (identifier)))
-          (rightarrow_operator)
           (type_bool)
           (block
             (return_statement
@@ -145,35 +134,26 @@ spec AuctionSpec {
                 (binary_expression
                   (member_access_expression
                     (identifier)
-                    (attribute_access_operator)
                     (identifier))
-                  (greater_equal_operator)
                   (identifier))
-                (and_operator)
                 (binary_expression
                   (member_access_expression
                     (identifier)
-                    (attribute_access_operator)
                     (identifier))
-                  (less_equal_operator)
                   (identifier))))))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (argument_declaration
               (identifier)
               (identifier)))
-          (rightarrow_operator)
           (type_bool)
           (block
             (return_statement
               (binary_expression
                 (identifier)
-                (equals_operator)
-                (member_access_expression
+                (type_member_access_expression
                   (identifier)
-                  (expand_operator)
                   (identifier))))))))
 
 ===
@@ -221,20 +201,16 @@ struct Account {
           (identifier)
           (type_u64))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (argument_declaration
               (identifier)
               (type_u64)))
-          (rightarrow_operator)
           (type_bool)
           (block
             (return_statement
               (binary_expression
                 (member_access_expression
                   (identifier)
-                  (attribute_access_operator)
                   (identifier))
-                (greater_equal_operator)
                 (identifier)))))))

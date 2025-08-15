@@ -20,19 +20,16 @@ fn get_balance(account: Account) -> u64 {
           (identifier)
           (type_u64)))
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
             (identifier)
             (identifier)))
-        (rightarrow_operator)
         (type_u64)
         (block
           (return_statement
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))))))
 
 ===
@@ -44,7 +41,6 @@ fn get_element(arr: [u32; 10], index: u32) -> u32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -55,7 +51,6 @@ fn get_element(arr: [u32; 10], index: u32) -> u32 {
           (argument_declaration
             (identifier)
             (type_u32)))
-        (rightarrow_operator)
         (type_u32)
         (block
           (return_statement
@@ -79,7 +74,6 @@ fn example() -> u32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -88,25 +82,20 @@ fn example() -> u32 {
           (argument_declaration
             (identifier)
             (type_u32)))
-        (rightarrow_operator)
         (type_u32)
         (block
           (return_statement
             (binary_expression
               (identifier)
-              (add_operator)
               (identifier)))))
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_u32)
         (block
           (variable_definition_statement
             (identifier)
             (type_u32)
-            (assign_operator)
             (function_call_expression
               (identifier)
               (number_literal)
@@ -114,7 +103,6 @@ fn example() -> u32 {
           (variable_definition_statement
             (identifier)
             (type_u32)
-            (assign_operator)
             (function_call_expression
               (identifier)
               (identifier)
@@ -124,7 +112,6 @@ fn example() -> u32 {
           (variable_definition_statement
             (identifier)
             (type_u32)
-            (assign_operator)
             (function_call_expression
               (identifier)
               (uzumaki_keyword)
@@ -145,10 +132,8 @@ fn example() -> u32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_u32)
         (block
           (return_statement
@@ -156,9 +141,7 @@ fn example() -> u32 {
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (add_operator)
                   (number_literal)))
-              (mul_operator)
               (number_literal))))))
 
 ===
@@ -171,16 +154,13 @@ fn example() -> i32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_i32)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (return_statement
             (identifier)))))
@@ -212,161 +192,121 @@ fn example() -> u32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_u32)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (pow_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (mul_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (mod_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (add_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (sub_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (less_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (less_equal_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (equals_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (not_equals_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (greater_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (greater_equal_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (binary_expression
               (bool_literal)
-              (and_operator)
               (bool_literal)))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (binary_expression
               (bool_literal)
-              (or_operator)
               (bool_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (shift_left_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (shift_right_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (bit_xor_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (bit_or_operator)
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (number_literal)
-              (bit_and_operator)
               (number_literal)))
           (return_statement
             (binary_expression
               (number_literal)
-              (add_operator)
               (binary_expression
                 (number_literal)
-                (mul_operator)
                 (number_literal)))))))

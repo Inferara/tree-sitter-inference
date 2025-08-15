@@ -6,12 +6,11 @@ fn sum(a: u32, b: u32) -> u32 {
 }
 
 spec Bridge {
-  /// Spec-specific functions
+  // Spec-specific functions
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -20,13 +19,11 @@ spec Bridge {
           (argument_declaration
             (identifier)
             (type_u32)))
-        (rightarrow_operator)
         (type_u32)
         (block
           (return_statement
             (binary_expression
               (identifier)
-              (add_operator)
               (identifier)))))
       (spec_definition
         (identifier)
@@ -57,7 +54,6 @@ spec Hasher {
 ---
     (source_file
       (external_function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -65,14 +61,12 @@ spec Hasher {
             (type_array
               (type_u8)
               (number_literal))))
-        (rightarrow_operator)
         (type_array
           (type_u8)
           (number_literal)))
       (spec_definition
         (identifier)
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list)
           (forall_block
@@ -82,14 +76,12 @@ spec Hasher {
                 (type_array
                   (type_u8)
                   (number_literal))
-                (assign_operator)
                 (uzumaki_keyword))
               (variable_definition_statement
                 (identifier)
                 (type_array
                   (type_u8)
                   (number_literal))
-                (assign_operator)
                 (function_call_expression
                   (identifier)
                   (identifier)))
@@ -98,38 +90,32 @@ spec Hasher {
                 (type_array
                   (type_u8)
                   (number_literal))
-                (assign_operator)
                 (uzumaki_keyword))
               (variable_definition_statement
                 (identifier)
                 (type_array
                   (type_u8)
                   (number_literal))
-                (assign_operator)
                 (function_call_expression
                   (identifier)
                   (identifier)))
               (if_statement
                 (binary_expression
                   (identifier)
-                  (equals_operator)
                   (identifier))
                 (block
                   (assert_statement
                     (parenthesized_expression
                       (binary_expression
                         (identifier)
-                        (equals_operator)
                         (identifier)))))
                 (block
                   (assert_statement
                     (parenthesized_expression
                       (binary_expression
                         (identifier)
-                        (not_equals_operator)
                         (identifier)))))))))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list)
           (block
@@ -158,7 +144,6 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -177,49 +162,39 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
                   (identifier)
                   (type_i32)))
               (type_i32))))
-        (rightarrow_operator)
         (type_unit)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (loop_statement
             (identifier)
             (block
               (assign_statement
                 (identifier)
-                (assign_operator)
                 (binary_expression
                   (identifier)
-                  (add_operator)
                   (number_literal)))
               (variable_definition_statement
                 (identifier)
                 (type_i32)
-                (assign_operator)
                 (number_literal))
               (loop_statement
                 (binary_expression
                   (binary_expression
                     (identifier)
-                    (sub_operator)
                     (identifier))
-                  (sub_operator)
                   (number_literal))
                 (block
                   (assign_statement
                     (identifier)
-                    (assign_operator)
                     (binary_expression
                       (identifier)
-                      (add_operator)
                       (number_literal)))
                   (if_statement
                     (binary_expression
@@ -232,15 +207,12 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
                           (identifier)
                           (binary_expression
                             (identifier)
-                            (add_operator)
                             (number_literal))))
-                      (greater_operator)
                       (number_literal))
                     (block
                       (variable_definition_statement
                         (identifier)
                         (type_i32)
-                        (assign_operator)
                         (array_index_access_expression
                           (identifier)
                           (identifier)))
@@ -248,21 +220,17 @@ fn bubble_sort(arr: [i32;10], compare_function: fn(left: i32, right: i32) -> i32
                         (array_index_access_expression
                           (identifier)
                           (identifier))
-                        (assign_operator)
                         (array_index_access_expression
                           (identifier)
                           (binary_expression
                             (identifier)
-                            (add_operator)
                             (number_literal))))
                       (assign_statement
                         (array_index_access_expression
                           (identifier)
                           (binary_expression
                             (identifier)
-                            (add_operator)
                             (number_literal)))
-                        (assign_operator)
                         (identifier)))))))))))
 
 ===
@@ -299,7 +267,6 @@ spec HashContext {
         (identifier)
         (type_definition_statement
           (identifier)
-          (assign_operator)
           (type_fn
             (argument_list
               (type_array
@@ -309,13 +276,11 @@ spec HashContext {
               (type_u8)
               (number_literal))))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (argument_declaration
               (identifier)
               (identifier)))
-          (rightarrow_operator)
           (type_unit)
           (block
             (variable_definition_statement
@@ -323,14 +288,12 @@ spec HashContext {
               (type_array
                 (type_u8)
                 (number_literal))
-              (assign_operator)
               (uzumaki_keyword))
             (variable_definition_statement
               (identifier)
               (type_array
                 (type_u8)
                 (number_literal))
-              (assign_operator)
               (function_call_expression
                 (identifier)
                 (identifier)))
@@ -339,41 +302,34 @@ spec HashContext {
               (type_array
                 (type_u8)
                 (number_literal))
-              (assign_operator)
               (uzumaki_keyword))
             (variable_definition_statement
               (identifier)
               (type_array
                 (type_u8)
                 (number_literal))
-              (assign_operator)
               (function_call_expression
                 (identifier)
                 (identifier)))
             (if_statement
               (binary_expression
                 (identifier)
-                (equals_operator)
                 (identifier))
               (block
                 (assert_statement
                   (parenthesized_expression
                     (binary_expression
                       (identifier)
-                      (equals_operator)
                       (identifier)))))
               (block
                 (assert_statement
                   (parenthesized_expression
                     (binary_expression
                       (identifier)
-                      (not_equals_operator)
                       (identifier))))))))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list)
-          (rightarrow_operator)
           (type_unit)
           (forall_block
             (block
@@ -401,7 +357,6 @@ fn example() {
 ---
 (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -410,16 +365,13 @@ fn example() {
           (argument_declaration
             (identifier)
             (type_i32)))
-        (rightarrow_operator)
         (type_i32)
         (block
           (return_statement
             (binary_expression
               (identifier)
-              (add_operator)
               (identifier)))))
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -428,16 +380,13 @@ fn example() {
           (argument_declaration
             (identifier)
             (type_i32)))
-        (rightarrow_operator)
         (type_i32)
         (block
           (return_statement
             (binary_expression
               (identifier)
-              (sub_operator)
               (identifier)))))
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -448,7 +397,6 @@ fn example() {
                 (type_i32)
                 (type_i32))
               (type_i32))
-            (assign_operator)
             (identifier))
           (variable_definition_statement
             (identifier)
@@ -457,11 +405,9 @@ fn example() {
                 (type_i32)
                 (type_i32))
               (type_i32))
-            (assign_operator)
             (identifier))
           (assert_statement
             (parenthesized_expression
               (binary_expression
                 (identifier)
-                (equals_operator)
                 (identifier)))))))
