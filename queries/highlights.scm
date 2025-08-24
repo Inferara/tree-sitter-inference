@@ -1,6 +1,3 @@
-;; Comments
-(comment) @comment
-
 ;; Punctuation
 
 [ ";" "," ] @punctuation.delimiter

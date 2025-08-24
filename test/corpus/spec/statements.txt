@@ -48,8 +48,7 @@ fn bar() {
       (function_definition
         (identifier)
         (argument_list)
-        (block
-          (comment)))
+        (block))
       (function_definition
         (identifier)
         (argument_list)
@@ -60,18 +59,15 @@ fn bar() {
             (bool_literal))
           (if_statement
             (identifier)
-            (block
-              (comment))
-            (block
-              (comment)))
+            (block)
+            (block))
           (variable_definition_statement
             (identifier)
             (type_i32)
             (number_literal))
           (loop_statement
             (identifier)
-            (block
-              (comment))))))
+            (block)))))
 
 ===
 9.2.2 Examples (Return)
@@ -126,7 +122,6 @@ fn foo(i: i32) -> () forall {
                   (binary_expression
                     (identifier)
                     (number_literal)))))
-            (comment)
             (if_statement
               (prefix_unary_expression
                 (unary_not)
@@ -135,7 +130,6 @@ fn foo(i: i32) -> () forall {
                     (identifier)
                     (number_literal))))
               (block
-                (comment)
                 (return_statement
                   (unit_literal))))))))
 ===
@@ -173,21 +167,17 @@ fn infinite_loop_example() forall {
         (block
           (loop_statement
             (number_literal)
-            (block
-              (comment)))
+            (block))
           (loop_statement
             (number_literal)
-            (block
-              (comment)))
+            (block))
           (variable_definition_statement
             (identifier)
             (type_i32)
             (number_literal))
           (loop_statement
             (identifier)
-            (block
-              (comment)
-              (comment)))))
+            (block))))
       (function_definition
         (identifier)
         (argument_list)
@@ -198,7 +188,6 @@ fn infinite_loop_example() forall {
                 (loop_statement
                   (unit_literal)
                   (block
-                    (comment)
                     (break_statement)))))))))
 
 ===
@@ -224,10 +213,8 @@ fn foo() {
             (bool_literal))
           (if_statement
             (identifier)
-            (block
-              (comment))
-            (block
-              (comment))))))
+            (block)
+            (block)))))
 
 ===
 9.6.3 Examples (Uzumaki)
@@ -250,8 +237,7 @@ fn foo() {
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (uzumaki_keyword))
-            (comment))))
+            (uzumaki_keyword)))))
 
 ===
 9.7.2 Examples (Type definition)

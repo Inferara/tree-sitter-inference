@@ -190,8 +190,7 @@ fn foo T' (a: T) {
       (function_definition
         (identifier)
         (argument_list)
-        (block
-          (comment)))
+        (block))
       (function_definition
         (identifier)
         (argument_list
@@ -238,8 +237,7 @@ fn foo T' (a: T) {
           (argument_declaration
             (identifier)
             (identifier)))
-                (block
-                (comment)))
+                (block))
       (function_definition
         (identifier)
         (type_argument_list_definition
@@ -248,5 +246,4 @@ fn foo T' (a: T) {
           (argument_declaration
             (identifier)
             (identifier)))
-        (block 
-          (comment))))
+        (block)))

@@ -3138,7 +3138,7 @@
         }
       ]
     },
-    "docstring": {
+    "_docstring": {
       "type": "TOKEN",
       "content": {
         "type": "PREC",
@@ -3149,7 +3149,7 @@
         }
       }
     },
-    "comment": {
+    "_comment": {
       "type": "TOKEN",
       "content": {
         "type": "PREC",
@@ -3168,11 +3168,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "docstring"
+      "name": "_docstring"
     },
     {
       "type": "SYMBOL",
-      "name": "comment"
+      "name": "_comment"
     }
   ],
   "conflicts": [

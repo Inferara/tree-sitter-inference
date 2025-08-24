@@ -27,7 +27,7 @@ spec Bridge {
               (identifier)))))
       (spec_definition
         (identifier)
-        (comment)))
+        ))
 
 ===
 11.2.2 Examples (External functions)

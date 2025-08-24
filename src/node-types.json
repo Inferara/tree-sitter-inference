@@ -3563,22 +3563,12 @@
     "named": false
   },
   {
-    "type": "comment",
-    "named": true,
-    "extra": true
-  },
-  {
     "type": "const",
     "named": false
   },
   {
     "type": "constructor",
     "named": false
-  },
-  {
-    "type": "docstring",
-    "named": true,
-    "extra": true
   },
   {
     "type": "else",

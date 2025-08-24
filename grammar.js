@@ -46,8 +46,8 @@ module.exports = grammar({
 
   extras: $ => [
     /\s/,
-    $.docstring,
-    $.comment,
+    $._docstring,
+    $._comment,
   ],
 
   rules: {
@@ -569,7 +569,7 @@ module.exports = grammar({
       $._reserved_identifier,
     ),
 
-    docstring: _ => token(prec(1, /\/\/\/[^\n\r]*/)),
-    comment: _ => token(prec(0, /\/\/[^\n\r]*/)),
+    _docstring: _ => token(prec(1, /\/\/\/[^\n\r]*/)),
+    _comment: _ => token(prec(0, /\/\/[^\n\r]*/)),
   },
 });

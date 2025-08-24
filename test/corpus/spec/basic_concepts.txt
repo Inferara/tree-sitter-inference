@@ -116,4 +116,4 @@ fn foo() {
                       (uzumaki_keyword)
                       (identifier)
                       (number_literal)))
-                      (comment))))))))
+                      )))))))
