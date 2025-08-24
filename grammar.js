@@ -198,7 +198,8 @@ module.exports = grammar({
       field('expression', choice(
         $.type_member_access_expression,
         $._identifier_like_embedded_type,
-        $._name
+        $._name,
+        $.parenthesized_expression
       )),
       alias(token.immediate('::'), '::'),
       field('name', $._simple_name),

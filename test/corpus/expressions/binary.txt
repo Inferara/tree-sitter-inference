@@ -173,7 +173,7 @@ fn constructor() -> some_spec {
     self.mem = (Array u64')::new(10, a, false, get_name("abc"), "str", (Array i32')::new(10 * 2));
 }
 ---
-    (source_file
+        (source_file
       (function_definition
         (identifier)
         (argument_list)
@@ -185,10 +185,11 @@ fn constructor() -> some_spec {
               (identifier))
             (function_call_expression
               (type_member_access_expression
-                (generic_name
-                  (identifier)
-                  (type_argument_list
-                    (type_u64)))
+                (parenthesized_expression
+                  (generic_name
+                    (identifier)
+                    (type_argument_list
+                      (type_u64))))
                 (identifier))
               (number_literal)
               (identifier)
@@ -199,10 +200,11 @@ fn constructor() -> some_spec {
               (string_literal)
               (function_call_expression
                 (type_member_access_expression
-                  (generic_name
-                    (identifier)
-                    (type_argument_list
-                      (type_i32)))
+                  (parenthesized_expression
+                    (generic_name
+                      (identifier)
+                      (type_argument_list
+                        (type_i32))))
                   (identifier))
                 (binary_expression
                   (number_literal)
