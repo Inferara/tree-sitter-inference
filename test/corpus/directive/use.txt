@@ -9,7 +9,6 @@ use inference::std;
 (source_file
     (use_directive
         (identifier)
-        (expand_operator)
         (identifier)))
 
 ===
@@ -23,11 +22,8 @@ use inference::std::algorithms::sort;
 (source_file
     (use_directive
         (identifier)
-        (expand_operator)
         (identifier)
-        (expand_operator)
         (identifier)
-        (expand_operator)
         (identifier)))
 
 ===
@@ -68,10 +64,7 @@ use inference::std::algorithms::{sort,hash};
     (source_file
       (use_directive
         (identifier)
-        (expand_operator)
         (identifier)
-        (expand_operator)
         (identifier)
-        (expand_operator)
         (identifier)
         (identifier)))

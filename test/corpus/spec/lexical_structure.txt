@@ -8,19 +8,16 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_u32)
-            (assign_operator)
             (number_literal))
           (variable_definition_statement
             (identifier)
             (type_i64)
-            (assign_operator)
             (number_literal)))))
 
 ===
@@ -28,11 +25,11 @@ fn main() {
 ===
 fn main() {
     let a: spec::AuctionSpec = spec::AuctionSpec::new();
+    let b: spec::AuctionSpec = spec.field.method();
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -40,16 +37,23 @@ fn main() {
             (identifier)
             (type_qualified_name
               (identifier)
-              (expand_operator)
               (identifier))
-            (assign_operator)
+            (function_call_expression
+              (type_member_access_expression
+                (type_member_access_expression
+                  (identifier)
+                  (identifier))
+                (identifier))))
+          (variable_definition_statement
+            (identifier)
+            (type_qualified_name
+              (identifier)
+              (identifier))
             (function_call_expression
               (member_access_expression
-                (member_access_expression
+                (qualified_name
                   (identifier)
-                  (expand_operator)
                   (identifier))
-                (expand_operator)
                 (identifier)))))))
 
 ===
@@ -75,44 +79,35 @@ fn main() {
           (identifier)
           (type_u32))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (argument_declaration
               (identifier)
               (type_u32)))
-          (rightarrow_operator)
           (identifier)
           (block
             (assign_statement
               (member_access_expression
                 (identifier)
-                (attribute_access_operator)
                 (identifier))
-              (assign_operator)
               (identifier)))))
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (identifier)
-            (assign_operator)
             (function_call_expression
-              (member_access_expression
+              (type_member_access_expression
                 (identifier)
-                (expand_operator)
                 (identifier))
               (number_literal)))
           (variable_definition_statement
             (identifier)
             (type_u32)
-            (assign_operator)
             (member_access_expression
               (identifier)
-              (attribute_access_operator)
               (identifier))))))
 
 ===
@@ -126,24 +121,20 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (bool_literal))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (bool_literal))
           (variable_definition_statement
             (identifier)
             (identifier)
-            (assign_operator)
             (unit_literal)))))
 
 ===
@@ -155,7 +146,6 @@ fn add(a: u32, b: u32) -> u32 {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -164,20 +154,18 @@ fn add(a: u32, b: u32) -> u32 {
           (argument_declaration
             (identifier)
             (type_u32)))
-        (rightarrow_operator)
         (type_u32)
         (block
           (return_statement
             (binary_expression
               (identifier)
-              (add_operator)
               (identifier))))))
 
 ===
 4.10 Braces
 ===
 fn curly_braces_example() {
-    /// code block
+    // code block
 }
 
 fn block_braces_example(a: u32, b: u32) -> u32 {
@@ -190,23 +178,21 @@ fn square_braces_example() {
   let c: u32 = a[0];
 }
 
-fn triangular_braces_example<T>(a: T) {
-    /// code block
+fn triangular_braces_example T' (a: T) {
+    // code block
 }
 
-fn foo<T>(a: T) {
-    /// code block
+fn foo T' (a: T) {
+    // code block
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (comment)))
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
@@ -215,30 +201,25 @@ fn foo<T>(a: T) {
           (argument_declaration
             (identifier)
             (type_u32)))
-        (rightarrow_operator)
         (type_u32)
         (block
           (return_statement
             (binary_expression
               (identifier)
-              (add_operator)
               (identifier)))))
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_unit)
-            (assign_operator)
             (unit_literal))
           (variable_definition_statement
             (identifier)
             (type_array
               (type_u32)
               (number_literal))
-            (assign_operator)
             (array_literal
               (number_literal)
               (number_literal)
@@ -246,12 +227,10 @@ fn foo<T>(a: T) {
           (variable_definition_statement
             (identifier)
             (type_u32)
-            (assign_operator)
             (array_index_access_expression
               (identifier)
               (number_literal)))))
       (function_definition
-        (function_keyword)
         (identifier)
         (type_argument_list_definition
           (identifier))
@@ -262,7 +241,6 @@ fn foo<T>(a: T) {
                 (block
                 (comment)))
       (function_definition
-        (function_keyword)
         (identifier)
         (type_argument_list_definition
           (identifier))

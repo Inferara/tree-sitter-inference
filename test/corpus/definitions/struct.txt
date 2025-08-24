@@ -98,10 +98,8 @@ struct identity {
 			(identifier)
 			(identifier))
     (function_definition
-      (function_keyword)
       (identifier)
       (argument_list)
-      (rightarrow_operator)
       (identifier)
       (block
         (return_statement
@@ -129,20 +127,16 @@ struct Wrapi32 {
           (identifier)
           (type_i32))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (self_reference))
-          (rightarrow_operator)
           (type_i32)
           (block
             (return_statement
               (member_access_expression
                 (identifier)
-                (attribute_access_operator)
                 (identifier)))))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (self_reference
@@ -154,13 +148,9 @@ struct Wrapi32 {
             (assign_statement
               (member_access_expression
                 (identifier)
-                (attribute_access_operator)
                 (identifier))
-              (assign_operator)
               (binary_expression
                 (member_access_expression
                   (identifier)
-                  (attribute_access_operator)
                   (identifier))
-                (add_operator)
                 (identifier)))))))

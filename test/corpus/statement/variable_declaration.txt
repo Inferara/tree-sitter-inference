@@ -9,16 +9,13 @@ fn proof() -> () {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_unit)
         (block
           (variable_definition_statement
             (identifier)
             (identifier)
-            (assign_operator)
             (number_literal)))))
 
 ===
@@ -32,14 +29,11 @@ fn proof() -> () {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_unit)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (uzumaki_keyword)))))

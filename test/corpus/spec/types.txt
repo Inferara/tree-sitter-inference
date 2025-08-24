@@ -7,14 +7,12 @@ fn foo() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_unit)
-            (assign_operator)
             (unit_literal)))))
 
 ===
@@ -22,28 +20,24 @@ fn foo() {
 ===
 fn foo() {
     let a: bool = true;
-    let b: bool = (1 == 2); /// false
+    let b: bool = (1 == 2); // false
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (bool_literal))
           (variable_definition_statement
             (identifier)
             (type_bool)
-            (assign_operator)
             (parenthesized_expression
               (binary_expression
                 (number_literal)
-                (equals_operator)
                 (number_literal))))
                 (comment))))
 
@@ -51,68 +45,55 @@ fn foo() {
 6.2.2.2 Examples (Integers)
 ===
 fn foo() {
-    let a: i8 = (2 ** 7) - 1;       /// 127
-    let b: i16 = (2 ** 15) - 1;     /// 32,767
-    let c: i32 = (2 ** 31) - 1;     /// 2,147,483,647
-    let d: i64 = (2 ** 63) - 1;     /// 9,223,372,036,854,775,807
+    let a: i8 = (2 ** 7) - 1;       // 127
+    let b: i16 = (2 ** 15) - 1;     // 32,767
+    let c: i32 = (2 ** 31) - 1;     // 2,147,483,647
+    let d: i64 = (2 ** 63) - 1;     // 9,223,372,036,854,775,807
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_i8)
-            (assign_operator)
             (binary_expression
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (pow_operator)
                   (number_literal)))
-              (sub_operator)
               (number_literal)))
           (comment)
           (variable_definition_statement
             (identifier)
             (type_i16)
-            (assign_operator)
             (binary_expression
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (pow_operator)
                   (number_literal)))
-              (sub_operator)
               (number_literal)))
           (comment)
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (binary_expression
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (pow_operator)
                   (number_literal)))
-              (sub_operator)
               (number_literal)))
           (comment)
           (variable_definition_statement
             (identifier)
             (type_i64)
-            (assign_operator)
             (binary_expression
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (pow_operator)
                   (number_literal)))
-              (sub_operator)
               (number_literal)))
               (comment))))
 
@@ -120,68 +101,55 @@ fn foo() {
 6.2.3.2 Examples (Unsigned Integers)
 ===
 fn foo() {
-    let a: u8 = (2 ** 8) - 1;       /// 255
-    let b: u16 = (2 ** 16) - 1;     /// 65,535
-    let c: u32 = (2 ** 32) - 1;     /// 4,294,967,295
-    let d: u64 = (2 ** 64) - 1;     /// 18,446,744,073,709,551,615
+    let a: u8 = (2 ** 8) - 1;       // 255
+    let b: u16 = (2 ** 16) - 1;     // 65,535
+    let c: u32 = (2 ** 32) - 1;     // 4,294,967,295
+    let d: u64 = (2 ** 64) - 1;     // 18,446,744,073,709,551,615
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_u8)
-            (assign_operator)
             (binary_expression
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (pow_operator)
                   (number_literal)))
-              (sub_operator)
               (number_literal)))
           (comment)
           (variable_definition_statement
             (identifier)
             (type_u16)
-            (assign_operator)
             (binary_expression
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (pow_operator)
                   (number_literal)))
-              (sub_operator)
               (number_literal)))
           (comment)
           (variable_definition_statement
             (identifier)
             (type_u32)
-            (assign_operator)
             (binary_expression
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (pow_operator)
                   (number_literal)))
-              (sub_operator)
               (number_literal)))
           (comment)
           (variable_definition_statement
             (identifier)
             (type_u64)
-            (assign_operator)
             (binary_expression
               (parenthesized_expression
                 (binary_expression
                   (number_literal)
-                  (pow_operator)
                   (number_literal)))
-              (sub_operator)
               (number_literal)))
           (comment))))
 ===
@@ -193,7 +161,6 @@ fn foo() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -202,7 +169,6 @@ fn foo() {
             (type_array
               (type_i32)
               (number_literal))
-            (assign_operator)
             (array_literal
               (number_literal)
               (number_literal)

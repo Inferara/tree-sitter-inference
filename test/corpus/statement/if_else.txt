@@ -15,19 +15,16 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (if_statement
             (binary_expression
               (identifier)
-              (less_operator)
               (number_literal))
             (block
               (expression_statement
@@ -55,19 +52,16 @@ fn main() {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
           (variable_definition_statement
             (identifier)
             (type_i32)
-            (assign_operator)
             (number_literal))
           (if_statement
             (binary_expression
               (identifier)
-              (less_operator)
               (number_literal))
             (block
               (expression_statement

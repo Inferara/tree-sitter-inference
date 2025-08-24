@@ -10,7 +10,6 @@ const MAX_MEM : i64 = 1000;
     (constant_definition
     (identifier)
     (type_i64)
-    (assign_operator)
     (number_literal)))
 
 ===
@@ -24,7 +23,6 @@ const X : i32 = -1;
     (constant_definition
     (identifier)
     (type_i32)
-    (assign_operator)
     (number_literal)))
 
 ===
@@ -38,7 +36,6 @@ const UNIT : () = ();
   (constant_definition
     (identifier)
     (type_unit)
-    (assign_operator)
     (unit_literal)))
 
 ===
@@ -54,7 +51,6 @@ const arr : [i32;3] = [1,2,3];
     (type_array
       (type_i32)
       (number_literal))
-    (assign_operator)
     (array_literal
       (number_literal)
       (number_literal)
@@ -78,7 +74,6 @@ const EMPTY_BOARD : [[bool; 3]; 3] =
         (type_bool)
         (number_literal))
       (number_literal))
-    (assign_operator)
     (array_literal
       (array_literal
         (bool_literal)

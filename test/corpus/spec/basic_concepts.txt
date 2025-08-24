@@ -23,7 +23,6 @@ spec BasicConcepts {
       (spec_definition
         (identifier)
         (external_function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (argument_declaration
@@ -32,18 +31,14 @@ spec BasicConcepts {
             (argument_declaration
               (identifier)
               (type_i32)))
-          (rightarrow_operator)
           (type_i32))
         (external_function_definition
-          (function_keyword)
           (identifier)
           (argument_list
             (type_i32)
             (type_i32))
-          (rightarrow_operator)
           (type_i32))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list)
           (forall_block
@@ -51,12 +46,10 @@ spec BasicConcepts {
               (variable_definition_statement
                 (identifier)
                 (type_i32)
-                (assign_operator)
                 (uzumaki_keyword))
               (variable_definition_statement
                 (identifier)
                 (type_i32)
-                (assign_operator)
                 (uzumaki_keyword))
               (assert_statement
                 (parenthesized_expression
@@ -65,10 +58,8 @@ spec BasicConcepts {
                       (identifier)
                       (identifier)
                       (identifier))
-                    (equals_operator)
                     (binary_expression
                       (identifier)
-                      (add_operator)
                       (identifier)))))
               (assert_statement
                 (parenthesized_expression
@@ -77,13 +68,10 @@ spec BasicConcepts {
                       (identifier)
                       (identifier)
                       (identifier))
-                    (equals_operator)
                     (binary_expression
                       (identifier)
-                      (sub_operator)
                       (identifier))))))))
         (function_definition
-          (function_keyword)
           (identifier)
           (argument_list)
           (block
@@ -99,14 +87,13 @@ fn foo() {
         forall {
             let y: u32 = @;
             foobar(param1 : @, param2: 5);
-            ///<do some checking for x and y>
+            //<do some checking for x and y>
         }
     }
 }
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
         (block
@@ -115,14 +102,12 @@ fn foo() {
               (variable_definition_statement
                 (identifier)
                 (type_u32)
-                (assign_operator)
                 (uzumaki_keyword))
               (forall_block
                 (block
                   (variable_definition_statement
                     (identifier)
                     (type_u32)
-                    (assign_operator)
                     (uzumaki_keyword))
                   (expression_statement
                     (function_call_expression

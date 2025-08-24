@@ -9,20 +9,17 @@ fn valid_Address(a: Address) -> Address {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list
           (argument_declaration
             (identifier)
             (identifier)))
-        (rightarrow_operator)
         (identifier)
         (block
           (assert_statement
             (parenthesized_expression
               (binary_expression
                 (identifier)
-                (less_operator)
                 (number_literal))))
           (return_statement
             (identifier)))))
@@ -38,14 +35,11 @@ fn proof() -> () {
 ---
     (source_file
       (function_definition
-        (function_keyword)
         (identifier)
         (argument_list)
-        (rightarrow_operator)
         (type_unit)
         (block
           (assert_statement
             (binary_expression
               (identifier)
-              (less_operator)
               (number_literal))))))
