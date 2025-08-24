@@ -618,6 +618,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "_name"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "parenthesized_expression"
                     }
                   ]
                 }
