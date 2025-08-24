@@ -2,10 +2,10 @@ prefix=@PREFIX@
 libdir=@LIBDIR@
 includedir=@INCLUDEDIR@
 
-Name: tree-sitter-Inference
+Name: tree-sitter-inference
 Description: Inference grammar for tree-sitter
 URL: @URL@
 Version: @VERSION@
 Requires: @REQUIRES@
-Libs: -L${libdir} @ADDITIONAL_LIBS@ -ltree-sitter-Inference
+Libs: -L${libdir} @ADDITIONAL_LIBS@ -ltree-sitter-inference
 Cflags: -I${includedir}
