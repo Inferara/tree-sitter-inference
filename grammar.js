@@ -154,13 +154,13 @@ module.exports = grammar({
       $._simple_name,
       $.member_access_expression,
       $.array_index_access_expression,
+      $.function_call_expression,
     ),
 
     _non_lval_expression: $ => choice(
       $._literal,
       $.type_member_access_expression,
       $.binary_expression,
-      $.function_call_expression,
       $.struct_expression,
       $.prefix_unary_expression,
       $.parenthesized_expression,

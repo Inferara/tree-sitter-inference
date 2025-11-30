@@ -415,6 +415,10 @@
         {
           "type": "SYMBOL",
           "name": "array_index_access_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_call_expression"
         }
       ]
     },
@@ -432,10 +436,6 @@
         {
           "type": "SYMBOL",
           "name": "binary_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function_call_expression"
         },
         {
           "type": "SYMBOL",
