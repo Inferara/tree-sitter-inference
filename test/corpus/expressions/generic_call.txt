@@ -1,0 +1,294 @@
+===
+Generic function call with single type argument
+===
+
+fn main() {
+    let x: i32 = identity i32'(5);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_i32)))
+          (number_literal))))))
+
+===
+Generic function call with multiple type arguments (space-separated)
+===
+
+fn main() {
+    let p: Pair = make_pair i32' bool'(42, true);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (identifier)
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_i32)
+              (type_bool)))
+          (number_literal)
+          (bool_literal))))))
+
+===
+Generic function call with user-defined type argument
+===
+
+fn main() {
+    let result: MyType = convert MyType'(value);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (identifier)
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (identifier)))
+          (identifier))))))
+
+===
+Generic function call with qualified type argument
+===
+
+fn main() {
+    let x: MyModule = convert module::Type'(value);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (identifier)
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_qualified_name
+                (identifier)
+                (identifier))))
+          (identifier))))))
+
+===
+Chained generic function calls
+===
+
+fn main() {
+    let x: i32 = outer i32'(inner bool'(true));
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_i32)))
+          (function_call_expression
+            (generic_name
+              (identifier)
+              (type_argument_list
+                (type_bool)))
+            (bool_literal)))))))
+
+===
+Generic function call as expression statement
+===
+
+fn main() {
+    process i32'(42);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (expression_statement
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_i32)))
+          (number_literal))))))
+
+===
+Generic function call in return statement
+===
+
+fn wrapper() -> i32 {
+    return identity i32'(100);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_i32)))
+          (number_literal))))))
+
+===
+Generic function call with named arguments
+===
+
+fn main() {
+    let x: i32 = transform i32'(input: 5, scale: 2);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_i32)))
+          (identifier)
+          (number_literal)
+          (identifier)
+          (number_literal))))))
+
+===
+Generic method call on member access
+===
+
+fn main() {
+    let x: i32 = obj.method i32'(5);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (function_call_expression
+          (member_access_expression
+            (identifier)
+            (generic_name
+              (identifier)
+              (type_argument_list
+                (type_i32))))
+          (number_literal))))))
+
+===
+Comparison: non-generic vs generic function call
+===
+
+fn main() {
+    let a: i32 = foo(5);
+    let b: i32 = foo i32'(5);
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (function_call_expression
+          (identifier)
+          (number_literal)))
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (type_i32)))
+          (number_literal))))))
+
+===
+Nested generics are syntactically valid (rejected at compilation)
+===
+
+fn main() {
+    let x: i32 = foo Wrapper i32''(5);
+}
+
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (function_call_expression
+          (generic_name
+            (identifier)
+            (type_argument_list
+              (generic_name
+                (identifier)
+                (type_argument_list
+                  (type_i32)))))
+          (number_literal))))))

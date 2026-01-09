@@ -72,3 +72,12 @@
 (function_call_expression
   function: (identifier) @function.call)
 
+;; Operators
+[ "+" "-" "*" "/" "%" "**" ] @operator
+[ "&&" "||" ] @operator
+[ "&" "|" "^" ] @operator
+[ "<<" ">>" ] @operator
+[ "==" "!=" "<" "<=" ">" ">=" ] @operator
+(unary_not) @operator
+(unary_minus) @operator
+(unary_bitnot) @operator

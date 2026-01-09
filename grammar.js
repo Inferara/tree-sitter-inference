@@ -84,6 +84,8 @@ module.exports = grammar({
       $.struct_definition,
     ),
 
+    visibility: _ => 'pub',
+
     _type: $ => choice(
       $._embedded_type,
       $._bracketed_generic_name,
@@ -261,7 +263,11 @@ module.exports = grammar({
     )),
 
     prefix_unary_expression: $ => prec(PRECEDENCE.UNARY, seq(
-      field('operator', $.unary_not),
+      field('operator', choice(
+        $.unary_not,
+        $.unary_minus,
+        $.unary_bitnot,
+      )),
       $._expression,
     )),
 
@@ -282,6 +288,7 @@ module.exports = grammar({
         ['+', PRECEDENCE.ADD],
         ['-', PRECEDENCE.ADD],
         ['*', PRECEDENCE.MUL],
+        ['/', PRECEDENCE.MUL],
         ['%', PRECEDENCE.MUL],
         ['<', PRECEDENCE.COMPARE],
         ['<=', PRECEDENCE.COMPARE],
@@ -309,6 +316,7 @@ module.exports = grammar({
     ),
 
     type_definition_statement: $ => seq(
+      optional(field('visibility', $.visibility)),
       'type',
       field('name', $.identifier),
       '=',
@@ -317,6 +325,7 @@ module.exports = grammar({
     ),
 
     constant_definition: $ => seq(
+      optional(field('visibility', $.visibility)),
       'const',
       field('name', $.identifier),
       ':',
@@ -335,6 +344,7 @@ module.exports = grammar({
     ),
 
     enum_definition: $ => seq(
+      optional(field('visibility', $.visibility)),
       'enum',
       field('name', $.identifier),
       '{',
@@ -343,12 +353,13 @@ module.exports = grammar({
     ),
 
     struct_definition: $ => seq(
+      optional(field('visibility', $.visibility)),
       'struct',
       field('name', $.identifier),
       '{',
       repeat(choice(
         seq(field('field', $.struct_field), ';'),
-        field('value', $.function_definition),
+        field('method', $.function_definition),
       )),
       '}',
     ),
@@ -366,6 +377,7 @@ module.exports = grammar({
     ),
 
     function_definition: $ => seq(
+      optional(field('visibility', $.visibility)),
       'fn',
       field('name', $.identifier),
       optional(field('type_parameters', $.type_argument_list_definition)),
@@ -482,6 +494,8 @@ module.exports = grammar({
     uzumaki_keyword: _ => '@',
     mut_keyword: _ => 'mut',
     unary_not: _ => '!',
+    unary_minus: _ => '-',
+    unary_bitnot: _ => '~',
     bool_literal: _ => choice(
       token('true'),
       token('false'),
@@ -495,7 +509,9 @@ module.exports = grammar({
 
     _string_literal_content: _ => token.immediate(prec(1, /[^"\\\n]+/)),
 
-    number_literal: _ => seq(optional('-'), /\d+/),
+    // Higher precedence than UNARY ensures -42 parses as a single number_literal,
+    // not as unary_minus applied to a positive literal
+    number_literal: _ => token(prec(PRECEDENCE.UNARY + 1, seq(optional('-'), /\d+/))),
 
     unit_literal: _ => seq('(', token.immediate(')')),
 
@@ -551,10 +567,13 @@ module.exports = grammar({
       )
     )),
 
+    // Type argument list - space-separated like definitions
+    // Note: Nested generics are syntactically valid but rejected at compilation
     type_argument_list: $ => prec.left(seq(
-      choice(
-        sep1(seq(field('type', $._type), token.immediate('\'')), ','),
-      ),
+      seq(field('type', $._type), token.immediate('\'')),
+      repeat(
+        seq(field('type', $._type), token.immediate('\'')),
+      )
     )),
 
     _reserved_identifier: _ => choice(

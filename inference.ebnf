@@ -1,0 +1,467 @@
+(* ============================================================================
+   Inference Language Specification
+   EBNF Grammar + Semantic Rules
+
+   Inference is a specification/verification language supporting formal methods.
+   File extension: .inf
+   ============================================================================ *)
+
+(* ============================================================================
+   1. LEXICAL STRUCTURE
+   ============================================================================ *)
+
+(* 1.1 Comments *)
+comment         = "//" , { any_char - newline } ;
+docstring       = "///" , { any_char - newline } ;
+
+(* 1.2 Identifiers *)
+identifier      = ( letter | "_" ) , { letter | digit | "_" } ;
+letter          = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z" ;
+digit           = "0" | "1" | ... | "9" ;
+
+(* 1.3 Reserved Identifiers - allowed as identifiers but have special meaning *)
+reserved_identifier = "constructor" | "proof" | "uzumaki" ;
+
+(* 1.4 Keywords *)
+keyword         = "fn" | "const" | "spec" | "struct" | "enum" | "return"
+                | "use" | "from" | "external" | "if" | "else" | "let"
+                | "type" | "loop" | "assert" | "break" | "mut" | "self"
+                | "assume" | "forall" | "exists" | "unique" ;
+
+(* 1.5 Literals *)
+number_literal  = [ "-" ] , digit , { digit } ;
+bool_literal    = "true" | "false" ;
+string_literal  = '"' , { string_char } , '"' ;
+string_char     = any_char - ( '"' | "\" | newline ) ;
+unit_literal    = "()" ;
+array_literal   = "[" , [ expression , { "," , expression } ] , "]" ;
+
+(* 1.6 Operators *)
+binary_operator = "**" | "*" | "/" | "%" | "+" | "-"
+                | "<<" | ">>" | "&" | "^" | "|"
+                | "<" | "<=" | ">" | ">=" | "==" | "!="
+                | "&&" | "||" ;
+unary_operator  = "!" | "-" | "~" ;
+
+(* 1.7 Punctuation *)
+punctuation     = "(" | ")" | "{" | "}" | "[" | "]"
+                | ":" | "::" | ";" | "," | "." | "=" | "->" | "'" ;
+
+(* 1.8 Special Symbols *)
+uzumaki_keyword = "@" ;  (* Represents an arbitrary/symbolic value *)
+
+
+(* ============================================================================
+   2. TYPES
+   ============================================================================ *)
+
+type            = embedded_type | bracketed_generic_name | name ;
+
+(* 2.1 Primitive Types *)
+embedded_type   = integer_type | "bool" | unit_type | array_type | fn_type ;
+
+integer_type    = signed_int | unsigned_int ;
+signed_int      = "i8" | "i16" | "i32" | "i64" ;
+unsigned_int    = "u8" | "u16" | "u32" | "u64" ;
+
+unit_type       = "()" ;
+
+(* 2.2 Array Types *)
+array_type      = "[" , type , [ ";" , ( number_literal | name ) ] , "]" ;
+
+(* SEMANTIC: [T; N] is a fixed-size array of N elements of type T
+   SEMANTIC: [T] is a dynamically-sized array of type T
+   SEMANTIC: Array length can be a constant name or literal *)
+
+(* 2.3 Function Types *)
+fn_type         = "fn" , argument_list , [ "->" , type ] ;
+
+(* SEMANTIC: fn(T1, T2) -> R represents a function type
+   SEMANTIC: Return type defaults to () if omitted *)
+
+(* 2.4 Generic Types *)
+generic_name    = identifier , type_argument_list ;
+type_argument_list = type , "'" , { "," , type , "'" } ;
+bracketed_generic_name = "(" , generic_name , ")" ;
+
+(* SEMANTIC: Generic syntax uses trailing apostrophe: Array u32' or (Array u32')
+   SEMANTIC: Multiple type parameters: Map key' value'
+   SEMANTIC: Parentheses required when calling methods: (Array u32')::new() *)
+
+
+(* ============================================================================
+   3. NAMES AND QUALIFIERS
+   ============================================================================ *)
+
+name            = type_qualified_name | qualified_name | simple_name ;
+simple_name     = identifier | generic_name ;
+qualified_name  = name , "." , simple_name ;
+type_qualified_name = identifier , "::" , simple_name ;
+
+(* SEMANTIC: Dot (.) accesses instance members: obj.field, obj.method()
+   SEMANTIC: Double colon (::) accesses type members: Enum::Variant, Type::static_method() *)
+
+
+(* ============================================================================
+   4. EXPRESSIONS
+   ============================================================================ *)
+
+expression      = lval_expression | non_lval_expression ;
+
+(* 4.1 L-value Expressions - can appear on left side of assignment *)
+lval_expression = simple_name
+                | member_access_expression
+                | array_index_expression
+                | function_call_expression ;
+
+member_access_expression = ( name | member_access_expression ) , "." , simple_name ;
+array_index_expression   = lval_expression , "[" , expression , "]" ;
+function_call_expression = ( lval_expression | type_member_access_expression | parenthesized_expression ) ,
+                           "(" , [ argument , { "," , argument } ] , ")" ;
+argument                 = [ name , ":" ] , expression ;
+
+(* SEMANTIC: Named arguments supported: func(param1: value1, param2: value2)
+   SEMANTIC: Positional and named arguments can be mixed *)
+
+(* 4.2 Non L-value Expressions *)
+non_lval_expression = literal
+                    | type_member_access_expression
+                    | binary_expression
+                    | struct_expression
+                    | prefix_unary_expression
+                    | parenthesized_expression
+                    | uzumaki_keyword ;
+
+literal         = array_literal | bool_literal | string_literal | number_literal | unit_literal ;
+
+type_member_access_expression = ( type_member_access_expression
+                                | integer_type | "bool" | "fn"
+                                | name | parenthesized_expression
+                                | bracketed_generic_name ) , "::" , simple_name ;
+
+(* 4.3 Binary Expressions *)
+binary_expression = expression , binary_operator , expression ;
+
+(* 4.4 Struct Instantiation Expression *)
+struct_expression = name , "{" , [ field_init , { "," , field_init } ] , "}" ;
+field_init        = name , ":" , expression ;
+
+(* 4.5 Unary Expressions *)
+prefix_unary_expression = ( "!" | "-" | "~" ) , expression ;
+
+(* 4.6 Parenthesized Expressions *)
+parenthesized_expression = "(" , expression , ")" ;
+
+
+(* ============================================================================
+   5. OPERATOR PRECEDENCE (highest to lowest)
+   ============================================================================ *)
+
+(*
+   Precedence Level | Operators           | Associativity
+   ----------------|---------------------|---------------
+   2000            | .                   | Left
+   1500            | function call ()    | Left
+   1000            | ! - ~ (unary)       | Right
+   990             | **                  | Right
+   980             | * / %               | Left
+   970             | + -                 | Left
+   800             | << >>               | Left
+   700             | < <= > >=           | Left
+   600             | == !=               | Left
+   590             | & (bitwise AND)     | Left
+   580             | ^ (bitwise XOR)     | Left
+   570             | | (bitwise OR)      | Left
+   490             | && (logical AND)    | Left
+   480             | || (logical OR)     | Left
+*)
+
+(* SEMANTIC: Power operator ** is right-associative: 2 ** 3 ** 4 = 2 ** (3 ** 4) *)
+
+
+(* ============================================================================
+   6. STATEMENTS
+   ============================================================================ *)
+
+statement       = block
+                | expression_statement
+                | assign_statement
+                | return_statement
+                | loop_statement
+                | if_statement
+                | variable_definition_statement
+                | constant_definition
+                | type_definition_statement
+                | assert_statement
+                | break_statement
+                | assume_block
+                | forall_block
+                | exists_block
+                | unique_block ;
+
+(* 6.1 Blocks *)
+block           = "{" , { statement } , "}" ;
+
+(* 6.2 Expression Statement *)
+expression_statement = expression , ";" ;
+
+(* 6.3 Assignment Statement *)
+assign_statement = lval_expression , "=" , expression , ";" ;
+
+(* SEMANTIC: Target must be mutable (declared with 'mut' keyword) *)
+
+(* 6.4 Return Statement *)
+return_statement = "return" , [ expression ] , ";" ;
+
+(* SEMANTIC: Expression type must match function return type
+   SEMANTIC: Omitting expression returns unit () *)
+
+(* 6.5 Loop Statement *)
+loop_statement  = "loop" , [ expression ] , block ;
+
+(* SEMANTIC: If expression is a number N, loop executes N times
+   SEMANTIC: If expression is boolean, loop continues while true
+   SEMANTIC: If expression is omitted, loop is infinite (use break to exit)
+   SEMANTIC: Loop condition evaluated once at start for numeric loops *)
+
+(* 6.6 If Statement *)
+if_statement    = "if" , expression , block ,
+                  { "else" , "if" , expression , block } ,
+                  [ "else" , block ] ;
+
+(* SEMANTIC: Condition expression must be of type bool *)
+
+(* 6.7 Variable Definition *)
+variable_definition_statement = "let" , [ "mut" ] , identifier , ":" , type ,
+                                [ "=" , expression ] , ";" ;
+
+(* SEMANTIC: 'mut' allows variable to be reassigned
+   SEMANTIC: If initializer omitted, variable is uninitialized (use @ to represent symbolic value)
+   SEMANTIC: Type annotation is required *)
+
+(* 6.8 Type Alias Definition *)
+type_definition_statement = "type" , identifier , "=" , type , ";" ;
+
+(* SEMANTIC: Creates a type alias, not a new distinct type *)
+
+(* 6.9 Assert Statement *)
+assert_statement = "assert" , expression , ";" ;
+
+(* SEMANTIC: Expression must be of type bool
+   SEMANTIC: Verification fails if assertion is false on any execution path *)
+
+(* 6.10 Break Statement *)
+break_statement = "break" , ";" ;
+
+(* SEMANTIC: Exits the innermost enclosing loop *)
+
+
+(* ============================================================================
+   7. VERIFICATION BLOCKS
+   ============================================================================ *)
+
+assume_block    = "assume" , block ;
+forall_block    = "forall" , block ;
+exists_block    = "exists" , block ;
+unique_block    = "unique" , block ;
+
+(* SEMANTIC: assume { ... }
+   - Filters execution paths to only those where block completes successfully
+   - Acts as a precondition filter
+   - Paths where assume block fails are not considered
+*)
+
+(* SEMANTIC: forall { ... }
+   - Verifies property holds for ALL possible values of symbolic variables (@)
+   - Computation splits into multiple paths, one for each possible value
+   - Verification succeeds only if ALL paths succeed
+   - Used to prove universal properties
+*)
+
+(* SEMANTIC: exists { ... }
+   - Verifies property holds for AT LEAST ONE value of symbolic variables (@)
+   - Verification succeeds if ANY path succeeds
+   - Used to prove existence of satisfying values
+*)
+
+(* SEMANTIC: unique { ... }
+   - Verifies property holds for EXACTLY ONE value of symbolic variables (@)
+   - Used to prove uniqueness constraints
+*)
+
+
+(* ============================================================================
+   8. DEFINITIONS (Top-level declarations)
+   ============================================================================ *)
+
+definition      = constant_definition
+                | function_definition
+                | external_function_definition
+                | type_definition_statement
+                | enum_definition
+                | struct_definition ;
+
+(* 8.1 Constant Definition *)
+constant_definition = "const" , identifier , ":" , type , "=" , expression , ";" ;
+
+(* SEMANTIC: Constants are immutable and globally accessible
+   SEMANTIC: Expression must be evaluable at compile time *)
+
+(* 8.2 Function Definition *)
+function_definition = "fn" , identifier , [ type_parameter_list ] ,
+                      argument_list_decl , [ "->" , type ] ,
+                      ( block | verification_block ) ;
+
+type_parameter_list = identifier , "'" , { identifier , "'" } ;
+argument_list_decl  = "(" , [ argument_decl , { "," , argument_decl } ] , ")" ;
+argument_decl       = argument_declaration | self_reference | ignore_argument | type ;
+
+argument_declaration = [ "mut" ] , identifier , ":" , type ;
+self_reference       = [ "mut" ] , "self" ;
+ignore_argument      = "_" , ":" , type ;
+
+(* SEMANTIC: Type parameters use trailing apostrophe: fn foo T' U' (x: T, y: U) -> T
+   SEMANTIC: 'self' in method refers to the enclosing struct instance
+   SEMANTIC: 'mut self' allows the method to modify the struct
+   SEMANTIC: '_: Type' ignores a parameter while preserving its type for signature *)
+
+(* 8.3 External Function Definition *)
+external_function_definition = "external" , "fn" , identifier ,
+                               argument_list_decl , [ "->" , type ] , ";" ;
+
+(* SEMANTIC: Declares a function implemented externally (imported from WebAssembly, etc.)
+   SEMANTIC: No body provided - implementation comes from external source
+   SEMANTIC: Arguments may omit names: external fn sub(i32, i32) -> i32; *)
+
+(* 8.4 Enum Definition *)
+enum_definition = "enum" , identifier , "{" , identifier , { "," , identifier } , "}" ;
+
+(* SEMANTIC: Defines a sum type with named variants
+   SEMANTIC: Variants accessed via :: notation: Enum::Variant *)
+
+(* 8.5 Struct Definition *)
+struct_definition = "struct" , identifier , "{" ,
+                    { ( struct_field , ";" ) | function_definition } ,
+                    "}" ;
+struct_field      = identifier , ":" , type ;
+
+(* SEMANTIC: Structs can contain both fields and methods
+   SEMANTIC: Methods can use 'self' to access the struct instance
+   SEMANTIC: Fields are accessed with dot notation: instance.field
+   SEMANTIC: Static methods accessed with :: notation: Struct::method() *)
+
+(* 8.6 Spec Definition *)
+spec_definition = "spec" , identifier , "{" , { definition } , "}" ;
+
+(* SEMANTIC: Specs group related definitions for verification
+   SEMANTIC: Can contain constants, functions, types, structs, enums
+   SEMANTIC: Typically contains verification properties and proofs *)
+
+
+(* ============================================================================
+   9. USE DIRECTIVES (Imports)
+   ============================================================================ *)
+
+use_directive   = "use" , ( module_path | from_import ) , ";" ;
+
+module_path     = identifier , { "::" , identifier } ,
+                  [ "::" , "{" , identifier , { "," , identifier } , "}" ] ;
+
+from_import     = "{" , identifier , { "," , identifier } , "}" ,
+                  "from" , string_literal ;
+
+(* SEMANTIC: use module::name imports name from module path
+   SEMANTIC: use module::{A, B} imports multiple items from module
+   SEMANTIC: use { A, B } from "file.wasm" imports from external file *)
+
+
+(* ============================================================================
+   10. SOURCE FILE
+   ============================================================================ *)
+
+source_file     = { use_directive | spec_definition | definition } ;
+
+
+(* ============================================================================
+   11. SYMBOLIC VALUES AND VERIFICATION
+   ============================================================================ *)
+
+(* SEMANTIC: The @ symbol (uzumaki_keyword) represents a symbolic/arbitrary value
+
+   Usage patterns:
+   - let x: u32 = @;           -- x can be any possible u32 value
+   - func(@, param2);          -- first argument is symbolic
+   - if @ { ... } else { ... } -- explores both branches
+
+   When used inside verification blocks:
+   - forall: @ represents all possible values (universal quantification)
+   - exists: @ searches for any satisfying value (existential quantification)
+   - unique: @ must have exactly one satisfying value
+
+   Verification explores all possible assignments to @ symbols,
+   enabling exhaustive property checking.
+*)
+
+
+(* ============================================================================
+   12. TYPE SYSTEM RULES
+   ============================================================================ *)
+
+(* SEMANTIC: Integer Types and Ranges
+   i8:  -128 to 127                    (2^7 - 1)
+   i16: -32,768 to 32,767              (2^15 - 1)
+   i32: -2,147,483,648 to 2,147,483,647 (2^31 - 1)
+   i64: -(2^63) to 2^63 - 1
+   u8:  0 to 255                       (2^8 - 1)
+   u16: 0 to 65,535                    (2^16 - 1)
+   u32: 0 to 4,294,967,295             (2^32 - 1)
+   u64: 0 to 18,446,744,073,709,551,615 (2^64 - 1)
+*)
+
+(* SEMANTIC: Type Compatibility
+   - Arithmetic operators require matching integer types
+   - Comparison operators return bool
+   - Logical operators (&&, ||, !) work on bool only
+   - Bitwise operators work on integer types
+   - Array indexing requires integer index type
+*)
+
+(* SEMANTIC: Mutability Rules
+   - Variables are immutable by default
+   - 'let mut' creates a mutable binding
+   - 'mut' on function parameters allows modification within function
+   - Array elements are mutable if the array binding is mutable
+*)
+
+
+(* ============================================================================
+   13. VERIFICATION SEMANTICS
+   ============================================================================ *)
+
+(* SEMANTIC: Proof Functions
+   - Functions named 'proof' conventionally contain verification logic
+   - Proof functions call specification functions to verify properties
+   - Pattern: spec_function checks property, proof function invokes it
+
+   Example pattern:
+   fn property_spec() forall {
+       let x: T = @;
+       assume { precondition(x); }
+       assert postcondition(x);
+   }
+   fn proof() {
+       property_spec();
+   }
+*)
+
+(* SEMANTIC: Verification Flow
+   1. forall block splits execution for all possible values of @
+   2. assume block filters paths that don't satisfy preconditions
+   3. assert statements verify postconditions on remaining paths
+   4. Verification succeeds if all assertions pass on all valid paths
+*)
+
+
+(* ============================================================================
+   End of Inference Language Specification
+   ============================================================================ *)

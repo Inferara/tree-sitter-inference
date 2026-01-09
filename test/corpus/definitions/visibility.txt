@@ -1,0 +1,220 @@
+===
+Public function definition
+===
+
+pub fn foo() -> i32 {
+    return 1;
+}
+
+---
+
+(source_file
+  (function_definition
+    (visibility)
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (number_literal)))))
+
+===
+Public constant definition
+===
+
+pub const MAX_SIZE: u32 = 100;
+
+---
+
+(source_file
+  (constant_definition
+    (visibility)
+    (identifier)
+    (type_u32)
+    (number_literal)))
+
+===
+Public type definition
+===
+
+pub type Address = u32;
+
+---
+
+(source_file
+  (type_definition_statement
+    (visibility)
+    (identifier)
+    (type_u32)))
+
+===
+Public enum definition
+===
+
+pub enum Color {
+    Red,
+    Green,
+    Blue
+}
+
+---
+
+(source_file
+  (enum_definition
+    (visibility)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))
+
+===
+Public struct definition
+===
+
+pub struct Point {
+    x: i32;
+    y: i32;
+}
+
+---
+
+(source_file
+  (struct_definition
+    (visibility)
+    (identifier)
+    (struct_field
+      (identifier)
+      (type_i32))
+    (struct_field
+      (identifier)
+      (type_i32))))
+
+===
+Public struct with public method
+===
+
+pub struct Counter {
+    value: i32;
+    pub fn increment(mut self) {
+        self.value = self.value + 1;
+    }
+}
+
+---
+
+(source_file
+  (struct_definition
+    (visibility)
+    (identifier)
+    (struct_field
+      (identifier)
+      (type_i32))
+    (function_definition
+      (visibility)
+      (identifier)
+      (argument_list
+        (self_reference
+          (mut_keyword)))
+      (block
+        (assign_statement
+          (member_access_expression
+            (identifier)
+            (identifier))
+          (binary_expression
+            (member_access_expression
+              (identifier)
+              (identifier))
+            (number_literal)))))))
+
+===
+Public generic function
+===
+
+pub fn identity T' (x: T) -> T {
+    return x;
+}
+
+---
+
+(source_file
+  (function_definition
+    (visibility)
+    (identifier)
+    (type_argument_list_definition
+      (identifier))
+    (argument_list
+      (argument_declaration
+        (identifier)
+        (identifier)))
+    (identifier)
+    (block
+      (return_statement
+        (identifier)))))
+
+===
+Mixed visibility in spec
+===
+
+spec MySpec {
+    pub const VALUE: i32 = 42;
+    pub fn get_value() -> i32 {
+        return VALUE;
+    }
+    fn private_helper() -> i32 {
+        return 0;
+    }
+}
+
+---
+
+(source_file
+  (spec_definition
+    (identifier)
+    (constant_definition
+      (visibility)
+      (identifier)
+      (type_i32)
+      (number_literal))
+    (function_definition
+      (visibility)
+      (identifier)
+      (argument_list)
+      (type_i32)
+      (block
+        (return_statement
+          (identifier))))
+    (function_definition
+      (identifier)
+      (argument_list)
+      (type_i32)
+      (block
+        (return_statement
+          (number_literal))))))
+
+===
+Public function with forall block
+===
+
+pub fn verify_property(x: i32) -> bool forall {
+    return x + 1 > x;
+}
+
+---
+
+(source_file
+  (function_definition
+    (visibility)
+    (identifier)
+    (argument_list
+      (argument_declaration
+        (identifier)
+        (type_i32)))
+    (type_bool)
+    (forall_block
+      (block
+        (return_statement
+          (binary_expression
+            (binary_expression
+              (identifier)
+              (number_literal))
+            (identifier)))))))
