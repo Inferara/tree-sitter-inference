@@ -304,3 +304,101 @@ fn main() -> i32 {
           (number_literal)
           (number_literal))))))
 
+===
+Division expression
+===
+fn main() -> i32 {
+    return 10 / 2;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (binary_expression
+          (number_literal)
+          (number_literal))))))
+
+===
+Division with other arithmetic
+===
+fn main() -> i32 {
+    return a * b / c + d;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (binary_expression
+          (binary_expression
+            (binary_expression
+              (identifier)
+              (identifier))
+            (identifier))
+          (identifier))))))
+
+===
+Division with modulo
+===
+fn main() -> i32 {
+    return a / b % c;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (binary_expression
+          (binary_expression
+            (identifier)
+            (identifier))
+          (identifier))))))
+
+===
+Unary minus with division
+===
+fn main() -> i32 {
+    return -(a / b);
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (prefix_unary_expression
+          (unary_minus)
+          (parenthesized_expression
+            (binary_expression
+              (identifier)
+              (identifier))))))))
+
+===
+Division by negative literal
+===
+fn main() -> i32 {
+    return a / -2;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (binary_expression
+          (identifier)
+          (number_literal))))))

@@ -1,0 +1,180 @@
+===
+Unary NOT operator
+===
+fn main() -> bool {
+    return !true;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_bool)
+    (block
+      (return_statement
+        (prefix_unary_expression
+          (unary_not)
+          (bool_literal))))))
+
+===
+Unary minus with identifier
+===
+fn main() -> i32 {
+    let x: i32 = 5;
+    return -x;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (variable_definition_statement
+        (identifier)
+        (type_i32)
+        (number_literal))
+      (return_statement
+        (prefix_unary_expression
+          (unary_minus)
+          (identifier))))))
+
+===
+Unary minus with parenthesized expression
+===
+fn main() -> i32 {
+    return -(a + b);
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (prefix_unary_expression
+          (unary_minus)
+          (parenthesized_expression
+            (binary_expression
+              (identifier)
+              (identifier))))))))
+
+===
+Bitwise NOT operator
+===
+fn main() -> i32 {
+    return ~x;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (prefix_unary_expression
+          (unary_bitnot)
+          (identifier))))))
+
+===
+Bitwise NOT with parenthesized expression
+===
+fn main() -> i32 {
+    return ~(a & b);
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (prefix_unary_expression
+          (unary_bitnot)
+          (parenthesized_expression
+            (binary_expression
+              (identifier)
+              (identifier))))))))
+
+===
+Double negation
+===
+fn main() -> i32 {
+    return --x;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (prefix_unary_expression
+          (unary_minus)
+          (prefix_unary_expression
+            (unary_minus)
+            (identifier)))))))
+
+===
+Combined unary operators (minus then bitnot)
+===
+fn main() -> i32 {
+    return -~x;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (prefix_unary_expression
+          (unary_minus)
+          (prefix_unary_expression
+            (unary_bitnot)
+            (identifier)))))))
+
+===
+Combined unary operators (bitnot then minus)
+===
+fn main() -> i32 {
+    return ~-x;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (prefix_unary_expression
+          (unary_bitnot)
+          (prefix_unary_expression
+            (unary_minus)
+            (identifier)))))))
+
+===
+Unary minus in binary expression
+===
+fn main() -> i32 {
+    return a - -b;
+}
+---
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (binary_expression
+          (identifier)
+          (prefix_unary_expression
+            (unary_minus)
+            (identifier)))))))

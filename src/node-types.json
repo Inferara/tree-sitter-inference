@@ -680,6 +680,10 @@
             "named": false
           },
           {
+            "type": "/",
+            "named": false
+          },
+          {
             "type": "<",
             "named": false
           },
@@ -1036,6 +1040,16 @@
             "named": true
           }
         ]
+      },
+      "visibility": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "visibility",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -1059,6 +1073,16 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "visibility": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "visibility",
             "named": true
           }
         ]
@@ -1542,6 +1566,16 @@
         "types": [
           {
             "type": "type_argument_list_definition",
+            "named": true
+          }
+        ]
+      },
+      "visibility": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "visibility",
             "named": true
           }
         ]
@@ -2036,11 +2070,6 @@
     }
   },
   {
-    "type": "number_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "parenthesized_expression",
     "named": true,
     "fields": {},
@@ -2123,6 +2152,14 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "unary_bitnot",
+            "named": true
+          },
+          {
+            "type": "unary_minus",
+            "named": true
+          },
           {
             "type": "unary_not",
             "named": true
@@ -2444,6 +2481,16 @@
           }
         ]
       },
+      "method": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_definition",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2454,12 +2501,12 @@
           }
         ]
       },
-      "value": {
-        "multiple": true,
+      "visibility": {
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "function_definition",
+            "type": "visibility",
             "named": true
           }
         ]
@@ -2981,6 +3028,16 @@
             "named": true
           }
         ]
+      },
+      "visibility": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "visibility",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -3208,6 +3265,11 @@
   },
   {
     "type": "type_unit",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "unary_minus",
     "named": true,
     "fields": {}
   },
@@ -3503,6 +3565,10 @@
     "named": false
   },
   {
+    "type": "/",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -3631,6 +3697,10 @@
     "named": true
   },
   {
+    "type": "number_literal",
+    "named": true
+  },
+  {
     "type": "proof",
     "named": false
   },
@@ -3695,6 +3765,10 @@
     "named": true
   },
   {
+    "type": "unary_bitnot",
+    "named": true
+  },
+  {
     "type": "unary_not",
     "named": true
   },
@@ -3712,6 +3786,10 @@
   },
   {
     "type": "uzumaki_keyword",
+    "named": true
+  },
+  {
+    "type": "visibility",
     "named": true
   },
   {

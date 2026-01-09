@@ -36,3 +36,8 @@ dist/
 *.wasm
 *.obj
 *.o
+
+.*/
+!.github/
+*.md
+!README.md

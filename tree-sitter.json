@@ -13,13 +13,17 @@
     }
   ],
   "metadata": {
-    "version": "0.0.29",
+    "version": "0.0.38",
     "license": "MIT",
     "description": "Inference grammar for tree-sitter",
     "authors": [
       {
         "name": "Georgii Plotnikov",
         "email": "georgii@inferara.com"
+      },
+      {
+        "name": "Nikolay Nikitin",
+        "email": "nikolaynikitin2006@gmail.com"
       }
     ],
     "links": {
