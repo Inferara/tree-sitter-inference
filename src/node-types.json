@@ -2032,6 +2032,14 @@
         "required": true,
         "types": [
           {
+            "type": "array_index_access_expression",
+            "named": true
+          },
+          {
+            "type": "function_call_expression",
+            "named": true
+          },
+          {
             "type": "generic_name",
             "named": true
           },
@@ -2041,6 +2049,10 @@
           },
           {
             "type": "member_access_expression",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {

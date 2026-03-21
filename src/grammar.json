@@ -532,6 +532,18 @@
                 {
                   "type": "SYMBOL",
                   "name": "member_access_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "function_call_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "array_index_access_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "parenthesized_expression"
                 }
               ]
             }

@@ -185,7 +185,13 @@ module.exports = grammar({
     ),
 
     member_access_expression: $ => prec(PRECEDENCE.DOT, seq(
-      field('expression', choice($._name, $.member_access_expression)),
+      field('expression', choice(
+        $._name,
+        $.member_access_expression,
+        $.function_call_expression,
+        $.array_index_access_expression,
+        $.parenthesized_expression,
+      )),
       '.',
       field('name', $._simple_name),
     )),

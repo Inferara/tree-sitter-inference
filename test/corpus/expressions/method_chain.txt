@@ -1,0 +1,142 @@
+===
+Method chain
+===
+
+fn main() {
+  return a.foo().bar();
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (return_statement
+        (function_call_expression
+          (member_access_expression
+            (function_call_expression
+              (member_access_expression
+                (identifier)
+                (identifier)))
+            (identifier)))))))
+
+===
+Deep method chain
+===
+
+fn main() {
+  return a.foo().bar().baz();
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (return_statement
+        (function_call_expression
+          (member_access_expression
+            (function_call_expression
+              (member_access_expression
+                (function_call_expression
+                  (member_access_expression
+                    (identifier)
+                    (identifier)))
+                (identifier)))
+            (identifier)))))))
+
+===
+Array index then field access
+===
+
+fn main() -> i32 {
+  return arr[0].field;
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (type_i32)
+    (block
+      (return_statement
+        (member_access_expression
+          (array_index_access_expression
+            (identifier)
+            (number_literal))
+          (identifier))))))
+
+===
+Array index then method call
+===
+
+fn main() {
+  return arr[0].method();
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (return_statement
+        (function_call_expression
+          (member_access_expression
+            (array_index_access_expression
+              (identifier)
+              (number_literal))
+            (identifier)))))))
+
+===
+Method call with args then field access
+===
+
+fn main() {
+  return obj.compute(a, b).result;
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (return_statement
+        (member_access_expression
+          (function_call_expression
+            (member_access_expression
+              (identifier)
+              (identifier))
+            (identifier)
+            (identifier))
+          (identifier))))))
+
+===
+Parenthesized expression then field access
+===
+
+fn main() {
+  return (a).field;
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (argument_list)
+    (block
+      (return_statement
+        (member_access_expression
+          (parenthesized_expression
+            (identifier))
+          (identifier))))))
