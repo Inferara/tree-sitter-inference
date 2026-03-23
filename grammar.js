@@ -40,8 +40,7 @@ module.exports = grammar({
 
     [$._lval_expression, $._name],
 
-    [$.qualified_name, $.member_access_expression],
-    [$._bracketed_generic_name, $._simple_name],
+[$._bracketed_generic_name, $._simple_name],
   ],
 
   extras: $ => [
@@ -534,7 +533,6 @@ module.exports = grammar({
 
     _name: $ => choice(
       $.type_qualified_name,
-      $.qualified_name,
       $._simple_name,
     ),
 
@@ -549,13 +547,7 @@ module.exports = grammar({
       $.generic_name,
     ),
 
-    qualified_name: $ => prec(PRECEDENCE.DOT, seq(
-      field('qualifier', $._name),
-      '.',
-      field('name', $._simple_name),
-    )),
-
-    generic_name: $ => seq(
+generic_name: $ => seq(
       field('base_type', $.identifier),
       $.type_argument_list,
     ),

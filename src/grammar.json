@@ -3029,10 +3029,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "qualified_name"
-        },
-        {
-          "type": "SYMBOL",
           "name": "_simple_name"
         }
       ]
@@ -3074,35 +3070,6 @@
           "name": "generic_name"
         }
       ]
-    },
-    "qualified_name": {
-      "type": "PREC",
-      "value": 2000,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "qualifier",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_name"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": "."
-          },
-          {
-            "type": "FIELD",
-            "name": "name",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_simple_name"
-            }
-          }
-        ]
-      }
     },
     "generic_name": {
       "type": "SEQ",
@@ -3321,10 +3288,6 @@
     [
       "_lval_expression",
       "_name"
-    ],
-    [
-      "qualified_name",
-      "member_access_expression"
     ],
     [
       "_bracketed_generic_name",
